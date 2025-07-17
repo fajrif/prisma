@@ -1,0 +1,15 @@
+<%= simple_form_for @member_type, url: (@member_type.new_record? ? admins_member_types_path : admins_member_type_path(@member_type.id)), method: (@member_type.new_record? ? :post : :put) do |f| %>
+	<%= f.error_notification %>
+	<fieldset>
+		<%= f.input :name, as: :string %>
+	</fieldset>
+	<%= f.error :base %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn btn-secondary' %>
+		<% unless @member_type.new_record? %>
+			<%= link_to "Cancel", admins_member_type_path(@member_type.id), :class => 'btn btn-light' %>
+		<% else %>
+			<%= link_to "Cancel", admins_member_types_path, :class => 'btn btn-light' %>
+		<% end %>
+	</div>
+<% end %>

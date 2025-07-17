@@ -1,0 +1,66 @@
+<% title_page("Archive details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @archive.id %></td>
+					</tr>
+					<tr>
+						<td><b>File</b></td>
+						<td>
+							<% if @archive.file.attached? %>
+								<%= link_to @archive.file.filename, url_for(@archive.file), target: :_blank %>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Title</b></td>
+						<td>
+							<h5 class="fs-14 mb-0 text-body"><%= @archive.title %></h5>
+							<% unless @archive.category_name.blank? %>
+								<p class="text-muted mb-0">Category: <%= @archive.category_name %></p>
+							<% end %>
+							<% if @archive.private? %>
+								<p class="text-danger mb-0">Private</p>
+							<% end %>
+							<% if @archive.read_only? %>
+								<p class="text-danger mb-0">Read-Only</p>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Archive Type</b></td>
+						<td><%= badge_category(@archive.archive_type) %></td>
+					</tr>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td><%= @archive.short_description %></td>
+					</tr>
+					<tr>
+						<td><b>Status</b></td>
+						<td>
+							<h5 class="fs-14 mb-1 <%= 'text-danger' unless @archive.published? %>"><%= @archive.published_label %></h5>
+							<p class="text-muted mb-0">Date : <%= @archive.published_date_label %></p>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @archive.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+					<tr>
+						<td><b>Updated At</b></td>
+						<td><%= @archive.updated_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_archive_path(@archive), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_archive_path(@archive), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_archives_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

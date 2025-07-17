@@ -1,0 +1,24 @@
+<div class="modal-header">
+	<h5 class="modal-title">Link Button</h5>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<%= simple_form_for [:admins, @banner, @link_button], remote: true do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :route_category, as: :select, collection: get_link_button_route_categories, value_method: :first, label_method: :second, include_blank: false %>
+	<%= f.input :objectable_type, as: :select, collection: get_link_button_objects, :input_html => { 'data-url' => admins_link_button_objectable_types_path(type: 'selected')} %>
+	<%= f.input :objectable_id, as: :select, collection: @objectables %>
+	<%= f.input :link_text  %>
+	<%= f.input :link_url %>
+	<%= f.input :anchor %>
+	<%= f.input :open_new_tab, as: :boolean, label: "Open link in new tab" %>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="hstack gap-2 justify-content-end">
+				<a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+				<%= f.button :submit, 'Save', :class => 'btn btn-secondary' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+</div>

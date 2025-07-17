@@ -1,0 +1,31 @@
+<%- header_tag = "h5" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+<!-- start interactive banners item -->
+<div class="col text-start wow animate__fadeInUp" data-wow-delay="0.<%= index + 2 %>s">
+	<figure>
+		<div class="feature-box-content sm-w-100 margin-30px-bottom">
+			<div class="feature-box-image d-flex justify-content-center align-items-center">
+				<%= image_tag(url_for(snippet.image)) if snippet.image.attached? %>
+			</div>
+		</div>
+		<figcaption>
+			<div class="margin-25px-tb sm-padding-one-lr text-center text-md-start <%= padding_lr %>">
+				<div>
+					<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase margin-20px-bottom sm-margin-10px-bottom d-inline-block w-95 sm-w-100") %>
+					<% unless snippet.caption.blank? %>
+						<p><%= snippet.caption %></p>
+					<% end %>
+					<% unless snippet.short_description.blank? %>
+						<div class="last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+							<%= raw snippet.short_description %>
+						</div>
+					<% end %>
+				</div>
+				<% if link_button = snippet.link_buttons.first %>
+					<%= render_link_text_url(link_button, "btn btn-medium btn-prisma btn-rounded") %>
+				<% end %>
+			</div>
+		</figcaption>
+	</figure>
+</div>
+<!-- end interactive banners item -->

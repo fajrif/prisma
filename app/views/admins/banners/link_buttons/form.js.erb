@@ -1,0 +1,48 @@
+$("#myModal .modal-content").html("<%= escape_javascript(render("form")) %>");
+$("#myModal").modal('show');
+
+function resetFields() {
+	$('#link_button_objectable_type').val('');
+	$('#link_button_objectable_id').val('');
+	$('#link_button_link_text').val('');
+	$('#link_button_link_url').val('');
+	$('#link_button_anchor').val('');
+}
+
+function hideShowElements(selectCategory) {
+	$('.link_button_objectable_type').hide();
+	$('.link_button_objectable_id').hide();
+	$('.link_button_link_url').hide();
+
+	if (selectCategory.val() == '1') {
+		$('.link_button_link_url').show();
+	}
+	else if (selectCategory.val() == '2') {
+		$('.link_button_objectable_type').show();
+		$('.link_button_objectable_id').show();
+	}
+	else if (selectCategory.val() == '3') {
+		$('.link_button_link_url').show();
+	}
+}
+
+$('#link_button_route_category').change(function () {
+	resetFields();
+	hideShowElements($(this));
+});
+
+// Init Field Hide & Show
+hideShowElements($('#link_button_route_category'));
+
+$('#link_button_objectable_type').on('change', function () {
+	var selected = $(this).find(':selected').val();
+	var url = $(this).attr('data-url').replace('selected', selected)
+
+	$.ajax({
+		url: url,
+		processData: false,
+		contentType: false,
+		dataType: 'script'
+	});
+	return false;
+});

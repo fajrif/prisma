@@ -1,0 +1,13 @@
+<% if snippet.children.size > 0 %>
+	<% snippet.children.each do |sp| %>
+		<%- template = sp.template.blank? ? sp.name : sp.template -%>
+		<section id="<%= sp.name %>" class="<%= "snippet-#{sp.id} #{sp.bg_color} half-section pt-0".strip %>">
+			<%= render template, snippet: sp, bg_color: sp.bg_color %>
+		</section>
+	<% end %>
+<% else %>
+	<section id="<%= snippet.name %>" class="<%= "snippet-#{snippet.id} #{snippet.bg_color} half-section pt-0".strip %>">
+		<%- template = snippet.template.blank? ? snippet.name : snippet.template -%>
+		<%= render template, snippet: snippet, bg_color: snippet.bg_color %>
+	</section>
+<% end %>

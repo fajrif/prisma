@@ -1,0 +1,51 @@
+<%= simple_form_for @member, url: (@member.new_record? ? admins_members_path : admins_member_path(@member.id)), method: (@member.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :photo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+						<div class="row mb-3">
+							<%= f.input :full_name, wrapper: false, input_wrapper_html: { class: "col-md-6" } %>
+							<%= f.input :job_title, as: :string, wrapper: false, input_wrapper_html: { class: "col-md-6" } %>
+						</div>
+						<div class="row mb-3">
+							<%= f.input :description, as: :text, input_html: { class: 'quill_container', rows: 20 } %>
+						</div>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions" style="margin-top:100px;">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @member.new_record? %>
+							<%= link_to "Cancel", admins_member_path(@member.id), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_members_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @member, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.input :order_no %>
+							<%= f.association :member_type, as: :select %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+<% end %>

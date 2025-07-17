@@ -1,0 +1,32 @@
+<%- portfolios = Portfolio.first(2) %>
+<% unless portfolios.empty? %>
+<div class="container-xl">
+	<div class="row">
+		<div class="col-12 blog-content">
+			<ul class="blog-classic blog-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
+				<li class="grid-sizer"></li>
+				<% portfolios.each do |portfolio| %>
+					<!-- start post item -->
+					<li class="grid-item last-paragraph-no-margin wow animate__fadeInUp">
+						<div class="blog-post blog-post-style1 text-start">
+							<div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
+								<a href="<%= page_path(portfolio.page) %>">
+									<%= image_tag url_for(portfolio.image), alt: portfolio.name %>
+								</a>
+							</div>
+							<div class="post-details margin-20px-bottom w-95 sm-w-100">
+								<a href="<%= page_path(portfolio.page) %>" class="post-title font-weight-600 text-extra-large text-black text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= portfolio.name %></a>
+								<span class="post-author text-extra-dark-gray d-block margin-15px-bottom"><%= portfolio.description %></span>
+								<%= link_to page_path(portfolio.page), class: "btn btn-medium btn-prisma btn-rounded margin-10px-top sm-margin-10px-top" do %>
+									<%= t('global.read_more') %> <i class="fa-solid fa-arrow-right icon-very-small" aria-hidden="true"></i>
+								<% end %>
+							</div>
+						</div>
+					</li>
+					<!-- end post item -->
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="container-xl">
+	<div class="row">
+		<div class="col-12 justify-content-center align-items-end p-0 tab-style1">
+			<!-- start tab navigation -->
+			<ul class="nav nav-tabs">
+				<% snippet.link_buttons.each_with_index do |link_button, index| %>
+					<li class="nav-item">
+						<a href="<%= page_path(link_button.objectable) %>" class="nav-link text-gray <%= 'active' if @page == link_button.objectable %>"tabindex="-1">
+							<% unless snippet.caption.blank? %>
+								<span class="d-block mb-2 text-uppercase text-caption"><%= snippet.caption if index == 0 %>&nbsp;</span>
+							<% end %>
+							<h5 class="font-weight-800 mb-0"><%= t("global.#{link_button.link_text}") %></h5>
+						</a>
+					</li>
+				<% end %>
+			</ul>
+			<!-- end tab navigation -->
+		</div>
+		<!-- end tab -->
+	</div>
+</div>

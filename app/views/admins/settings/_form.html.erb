@@ -1,0 +1,11 @@
+<%= simple_form_for @setting, url: admins_setting_path, method: (@setting.new_record? ? :post : :put) do |f| %>
+	<%= f.error_notification %>
+	<fieldset>
+		<%= f.input :admin_investor, as: :string %>
+	</fieldset>
+	<%= f.error :base %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn btn-secondary' %>
+		<%= link_to "Back", admins_setting_path, :class => 'btn btn-light' %>
+	</div>
+<% end %>

@@ -1,0 +1,45 @@
+<% title_page("Author details") %>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card card-box">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:10%;"><b>ID</b></td>
+						<td><%= @author.id %></td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><h5 class="fs-14 mb-0 text-body"><%= @author.name %></h5></td>
+					</tr>
+					<tr>
+						<td><b>Title</b></td>
+						<td><%= raw @author.title %></td>
+					</tr>
+					<tr>
+						<td><b>Company Name</b></td>
+						<td><%= @author.company_name %></td>
+					</tr>
+					<tr>
+						<td><b>Phone</b></td>
+						<td><%= @author.phone %></td>
+					</tr>
+					<tr>
+						<td><b>Email</b></td>
+						<td><%= @author.email %></td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @page.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_author_path(@author.id), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_author_path(@author.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_authors_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

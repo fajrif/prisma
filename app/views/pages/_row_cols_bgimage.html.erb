@@ -1,0 +1,20 @@
+<div class="container-xl">
+	<% unless snippet.title.blank? %>
+	<div class="row">
+		<div class="row justify-content-start wow animate__fadeIn">
+			<div class="col-lg-7">
+				<h3 class="font-weight-320 text-uppercase mb-2"><%= snippet.title %></h3>
+				<div class="mb-3">
+					<%= raw snippet.short_description %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<div class="row row-cols-1">
+		<% snippet.children.each_with_index do |sp, index| %>
+			<%- template = sp.template.blank? ? sp.name : sp.template -%>
+			<%= render template, snippet: sp, index: index %>
+		<% end %>
+	</div>
+</div>

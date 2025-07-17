@@ -1,0 +1,86 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+cn:
+  contacts:
+    title: "联系我们"
+    short_description: "如果您有任何疑问或意见，可以联系我们"
+    instructions: "通过此表格提交您的询问"
+    investor: "投资者"
+  inquiries:
+    success: "感谢您的查询！"
+    errors: "抱歉，我们无法提交您的询问！"
+  sumatra_kruh:
+    key_point1: "正现金流产生块。"
+    key_point2: "2018年4口井平均日产油总量330桶"
+    key_point3: "Kruh 区块内的另外 5 个勘探区在储量方面具有巨大的上行潜力"
+  java_citarum:
+    key_point1: "已证实存在碳氢化合物的低风险勘探区块"
+    key_point2: "位于目前天然气供应短缺的市场附近"
+    key_point3: "可以利用该地区现有的管道基础设施网络"
+  errors:
+    404_title: "找不到网页"
+    404_desc: "找不到您要查找的页面。"
+    403_title: "禁止访问"
+    403_desc: "禁止访问所请求的资源。"
+    422_title: "无法处理的内容"
+    422_desc: "您想要的更改被拒绝。"
+    500_title: "页面错误"
+    500_desc: "我们很抱歉，但有些不对劲。"
+  global:
+    read_more: "阅读更多"
+    recaptcha_failed: "验证码验证失败"
+    view_profile: "查看资料"
+    view_all: "查看全部"
+    view_locations: "查看所有地点"
+    view_media: "查看所有媒体"
+    view: "看法"
+    about_us: "关于我们"
+    contact_us: "联系我们"
+    press_release: "新闻稿"
+    media_page: "媒体"
+    sec_filings: "美国证券交易委员会备案"
+    research_reports: "研究报告"
+    corporate_governance: "研究报告"
+    back_to: "回到 %{object_name}"
+    back_to_news: "返回新闻"
+    others: "其他 %{object_name}"
+    others_news: "其他新闻"
+    no_data_found: "没有找到数据"
+    download: "下载"
+    download_now: "现在下载"
+    apply_now: "现在申请"
+    submit: "提交"
+    search_results: "搜索结果"
+    search_not_found: "搜索未找到： `%{search}`"
+    articles: "Articles"
+    pages: "页数"
+    max: "最大限度"
+    key_points: "关键点"
+    all: "全部"

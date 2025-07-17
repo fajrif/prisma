@@ -1,0 +1,46 @@
+<%- medias = Gallery.videos.first(3) %>
+<% unless medias.empty? %>
+<div class="container-xl">
+	<div class="row justify-content-start align-items-center sm-no-margin-bottom wow animate__fadeIn">
+		<div class="col-7 col-lg-7 text-gray">
+			<% unless snippet.caption.blank? %>
+				<span class="d-block mb-2 text-uppercase text-caption"><%= snippet.caption %></span>
+			<% end %>
+			<h5 class="font-weight-800 mb-4"><%= snippet.title %></h5>
+		</div>
+		<div class="col-5 col-lg-5 no-padding-lr text-start text-md-end">
+			<%- if link_button = snippet.link_buttons.first -%>
+				<%= render_link_text_url(link_button, "btn btn-medium btn-transparent-prisma text-gray text-uppercase btn-rounded btn-border margin-30px-bottom") %>
+			<%- end -%>
+		</div>
+	</div>
+	<div class="row align-items-center">
+		<%- if media = medias.pop -%>
+			<div class="col-12 col-md-8 position-relative text-center margin-10px-bottom">
+				<a class="popup-youtube" href="<%= media.video_url %>">
+					<img src="<%= url_for(media.image) if media.image.attached? %>" class="w-100 border-radius-8" alt="<%= media.title %>" />
+					<div class="icon-play">
+						<div class="absolute-middle-center w-80">
+							<%= image_tag("icon-play.png") %>
+						</div>
+					</div>
+				</a>
+			</div>
+		<%- end -%>
+		<div class="col-12 col-md-4">
+			<% medias.each do |media| %>
+				<div class="col-12 position-relative text-center margin-10px-bottom">
+					<a class="popup-youtube" href="<%= media.video_url %>">
+						<img src="<%= url_for(media.image.variant(resize_to_limit: [432,243])) if media.image.attached? %>" class="border-radius-8" alt="<%= media.title %>" />
+						<div class="icon-play">
+							<div class="absolute-middle-center w-80">
+								<%= image_tag("icon-play.png") %>
+							</div>
+						</div>
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>

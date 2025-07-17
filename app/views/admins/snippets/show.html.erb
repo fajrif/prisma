@@ -1,0 +1,145 @@
+<% title_page("Snippet details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-actions text-end">
+					<%= link_to 'Add Link Button', new_admins_snippet_link_button_path(@snippet), :class => 'btn btn-success', :remote => true %>
+					<%= link_to 'Edit', edit_admins_snippet_path(@snippet), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_snippet_path(@snippet), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_snippets_path, :class => 'btn btn-light' %>
+				</div>
+				<div id="show-table">
+					<table class="table table-hover">
+						<tr>
+							<td style="width:15%;"><b>ID</b></td>
+							<td><%= @snippet.id %></td>
+						</tr>
+						<tr>
+							<td><b>Name</b></td>
+							<td><b><%= @snippet.name %></b></td>
+						</tr>
+						<% unless @snippet.template.blank? %>
+						<tr>
+							<td><b>Template</b></td>
+							<td><b><%= @snippet.template %></b></td>
+						</tr>
+						<% end %>
+						<% if @snippet.image.attached? %>
+						<tr>
+							<td><b>Image / Background</b></td>
+							<td>
+									<%= image_tag @snippet.image.variant(resize_to_limit: [100,100]) %>
+									<%= link_to delete_attachment_admins_snippet_path(@snippet.id, @snippet.image.id), :class => "ms-2 btn btn-danger btn-sm", :data => { :confirm => 'Are You sure want to delete this image?' }, :method => :delete do %>
+										<i class="ri-delete-bin-fill"></i>
+									<% end %>
+							</td>
+						</tr>
+						<% end %>
+						<% if @snippet.background.attached? %>
+						<tr>
+							<td><b>Section Background</b></td>
+							<td>
+									<%= image_tag @snippet.background.variant(resize_to_limit: [100,100]) %>
+									<%= link_to delete_attachment_admins_snippet_path(@snippet.id, @snippet.background.id), :class => "ms-2 btn btn-danger btn-sm", :data => { :confirm => 'Are You sure want to delete this image?' }, :method => :delete do %>
+										<i class="ri-delete-bin-fill"></i>
+									<% end %>
+							</td>
+						</tr>
+						<% end %>
+						<tr>
+							<td><b>Title</b></td>
+							<td><h5 class="fs-14 mb-0 text-body"><%= @snippet.title %></h5></td>
+						</tr>
+						<% unless @snippet.title_tag.blank? %>
+						<tr>
+							<td><b>Title Tag</b></td>
+							<td><%= @snippet.title_tag %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.caption.blank? %>
+						<tr>
+							<td><b>Caption</b></td>
+							<td><%= @snippet.caption %></td>
+						</tr>
+						<% end %>
+						<tr>
+							<td><b>Short Description</b></td>
+							<td><%= raw @snippet.short_description %></td>
+						</tr>
+						<tr>
+							<td><b>Description</b></td>
+							<td><%= raw @snippet.description %></td>
+						</tr>
+						<% unless @snippet.video_url.blank? %>
+						<tr>
+							<td><b>Video URL</b></td>
+							<td><%= @snippet.video_url %></td>
+						</tr>
+						<% end %>
+						<% if @snippet.parent_id %>
+						<tr>
+							<td><b>Parent</b></td>
+							<td><%= @snippet.parent.name %></td>
+						</tr>
+						<% end %>
+						<% if nested_snippets_template.include? @snippet.template %>
+						<tr>
+							<td><b>Children</b></td>
+							<td>
+								<% unless @snippet.children.empty? %>
+								<ul>
+									<% for snippet in @snippet.children %>
+										<li><%= link_to snippet.name, admins_snippet_path(snippet), class: "text-primary" %></li>
+									<% end %>
+								</ul>
+								<% end %>
+							</td>
+						</tr>
+						<% end %>
+						<% unless @snippet.orientation.blank? %>
+						<tr>
+							<td><b>Orientation</b></td>
+							<td><%= @snippet.orientation %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.bg_color.blank? %>
+						<tr>
+							<td><b>Bg Color</b></td>
+							<td><%= @snippet.bg_color %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.text_color.blank? %>
+						<tr>
+							<td><b>Text Color</b></td>
+							<td><%= @snippet.text_color %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.css_class.blank? %>
+						<tr>
+							<td><b>CSS Class</b></td>
+							<td><%= @snippet.css_class %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.css_title.blank? %>
+						<tr>
+							<td><b>CSS Title</b></td>
+							<td><%= @snippet.css_title %></td>
+						</tr>
+						<% end %>
+						<% unless @snippet.css_desc.blank? %>
+						<tr>
+							<td><b>CSS Desc</b></td>
+							<td><%= @snippet.css_desc %></td>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="link-buttons-table">
+	<%= render "admins/snippets/link_buttons/table" %>
+</div>

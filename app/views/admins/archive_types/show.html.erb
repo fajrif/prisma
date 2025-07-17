@@ -1,0 +1,32 @@
+<% title_page("Archive Type details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:10%;"><b>ID</b></td>
+						<td><%= @archive_type.id %></td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><h5 class="fs-14 mb-0 text-body"><%= @archive_type.name %></h5></td>
+					</tr>
+					<tr>
+						<td><b>Badge</b></td>
+						<td><%= badge_category(@archive_type) %></td>
+					</tr>
+					<tr>
+						<td><b>Archives</b></td>
+						<td><%= @archive_type.archives.size %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_archive_type_path(@archive_type.id), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_archive_type_path(@archive_type.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_archive_types_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

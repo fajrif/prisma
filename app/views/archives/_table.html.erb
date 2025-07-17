@@ -1,0 +1,16 @@
+<% unless @archives.empty? %>
+	<% @archives.each_with_index do |archive, idx| %>
+		<div class="row padding-two-tb sm-margin-ten-bottom border-bottom <%= 'border-top' if idx == 0 %>">
+			<div class="col-lg-9 col-md-7 last-paragraph-no-margin col-12 sm-margin-15px-tb">
+				<span class="text-large text-uppercase alt-font font-weight-400 w-90 sm-w-100"><%= archive.title %></span>
+				<span class="text-small text-uppercase d-block"><%= archive.try(:published_date).try(:strftime, '%d %b %Y') %></span>
+				<span class="text-uppercase text-small"><%= archive.try(:archive_type).try(:name) %></span>
+			</div>
+			<div class="col-lg-3 col-md-2 text-end">
+				<%= render_link_download_file(archive, "btn btn-small btn-prisma btn-rounded btn-border lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto sm-no-margin-lr") %>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<span class="text-extra-large text-extra-dark-gray alt-font font-weight-500 margin-20px-bottom d-block"><%= t('global.no_data_found') %></span>
+<% end %>

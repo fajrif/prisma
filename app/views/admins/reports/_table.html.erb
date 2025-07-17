@@ -1,0 +1,70 @@
+<div class="table-card">
+	<table class="table table-hover table-striped align-middle mb-0">
+		<thead class="table-light">
+			<tr>
+				<th class="text-center">ID</th>
+				<th>Title</th>
+				<th>File</th>
+				<th>Type</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for report in @reports %>
+				<tr>
+					<td class="text-center"><%= report.id %></td>
+					<td>
+						<h5 class="fs-14 mb-1"><%= link_to report.title, admins_report_path(report), class: "text-body" %></h5>
+						<% if report.private? %>
+							<p class="text-danger mb-0">Private</p>
+						<% end %>
+						<% if report.read_only? %>
+							<p class="text-danger mb-0">Read-Only</p>
+						<% end %>
+					</td>
+					<td>
+						<% if report.file.attached? %>
+							<i class="ri-file-pdf-fill text-primary fs-22 me-2"></i>
+							<%= link_to report.file.filename, url_for(report.file), target: :_blank %>
+						<% end %>
+					</td>
+					<td>
+						<%= badge_category(report.report_type) %>
+					</td>
+					<td>
+						<h5 class="fs-14 mb-1 <%= 'text-danger' unless report.published? %>"><%= report.published_label %></h5>
+						<p class="text-muted mb-0">Date : <%= report.published_date_label %></p>
+					</td>
+					<td>
+						<div class="dropdown">
+							<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="ri-more-fill"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li>
+									<%= link_to admins_report_path(report), class: "dropdown-item" do %>
+										<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
+									<% end %>
+								</li>
+								<li>
+									<%= link_to edit_admins_report_path(report), class: "dropdown-item edit-list" do %>
+										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+									<% end %>
+								</li>
+								<li class="dropdown-divider"></li>
+								<li>
+									<%= link_to admins_report_path(report), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
+										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+									<% end %>
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<!-- pagination -->
+<%= paginate @reports %>

@@ -1,0 +1,87 @@
+<%- row_cols = "" -%>
+<%- cols = snippet.children.size -%>
+<%- case cols -%>
+<%- when 4 -%>
+<%- row_cols = "col-6 col-lg-3 col-md-3" -%>
+<%- when 3 -%>
+<%- row_cols = "col-6 col-lg-4 col-md-4" -%>
+<%- when 2 -%>
+<%- row_cols = "col-12 col-lg-6 col-md-6" -%>
+<%- when 1 -%>
+<%- row_cols = "col-12" -%>
+<%- end -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<%- if snippet.title_rotate? -%>
+	<%- text_width = snippet.title.length >= 20 ? 'w-170px sm-w-100' : '' -%>
+	<%- content_cols = "col-md-11 " -%>
+	<%- content_cols += "offset-md-1" unless snippet.short_description.blank? -%>
+<%- end -%>
+
+<%- desc_width = 'w-70 sm-w-100' -%>
+<%- desc_width = snippet.css_desc unless snippet.css_desc.blank? -%>
+
+<%- padding_lr = "padding-ten-lr" -%>
+<%- padding_lr = snippet.css_class unless snippet.css_class.blank? -%>
+
+<div class="container-xl">
+	<div class="row">
+		<% unless snippet.title.blank? %>
+			<% if snippet.title_rotate? %>
+				<div class="col-12 col-md-1">
+					<div class="text-rotate">
+						<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase text-flip #{text_width}") %>
+					</div>
+				</div>
+				<% unless snippet.short_description.blank? %>
+					<div class="col-12 col-md-11">
+						<div class="margin-50px-bottom sm-margin-30px-bottom <%= desc_width %>">
+							<%= raw snippet.short_description %>
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="col-12 margin-30px-bottom sm-margin-30px-bottom">
+					<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase mb-2") %>
+					<% unless snippet.short_description.blank? %>
+						<div class="<%= desc_width %>">
+							<%= raw snippet.short_description %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		<% end %>
+		<div class="col-12 <%= content_cols %>">
+			<div class="row justify-content-start justify-content-md-center">
+				<% snippet.children.each_with_index do |sp, index| %>
+					<%- h_tag = "h5" -%>
+					<%- h_tag = sp.title_tag unless sp.title_tag.blank? -%>
+					<!-- start interactive banners item -->
+					<div class="<%= row_cols %> text-center text-md-start wow animate__fadeInUp" data-wow-delay="0.<%= index + 2 %>s">
+						<div class="h-100 d-flex flex-column">
+							<div class="feature-box-content sm-w-100 margin-30px-bottom sm-margin-15px-bottom">
+								<div class="feature-box-image d-flex justify-content-center align-items-center">
+									<%= image_tag(cdn_image_url(sp.image)) if sp.image.attached? %>
+								</div>
+							</div>
+							<div class="h-100 d-flex flex-column justify-content-between align-items-start margin-25px-bottom <%= padding_lr %> sm-padding-one-lr text-center text-md-start">
+								<div>
+									<%= content_tag(h_tag.to_sym, sp.title, class: "font-weight-320 text-uppercase margin-20px-bottom d-inline-block w-95 sm-w-100") %>
+									<% unless sp.short_description.blank? %>
+										<div class="last-paragraph-no-margin margin-20px-bottom"><%= raw sp.short_description %></div>
+									<% end %>
+								</div>
+								<% if link_button = sp.link_buttons.first %>
+									<%= render_link_text_url(link_button, "btn btn-medium btn-prisma btn-rounded sm-w-100") %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+					<!-- end interactive banners item -->
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

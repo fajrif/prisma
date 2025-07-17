@@ -1,0 +1,34 @@
+<% archives = ArchiveType.get_corporate_materials %>
+<% unless archives.empty? %>
+<div class="container-xl">
+	<div class="row justify-content-start align-items-start wow animate__fadeIn">
+		<div class="col-12 col-md-4 text-gray">
+			<h5 class="font-weight-800 mb-4"><%= snippet.title %></h5>
+		</div>
+		<% archives.reverse.each_slice(2) do |arr| %>
+			<div class="col-12 col-md-4">
+				<div class="row">
+					<% arr.each do |archive| %>
+					<div class="col-12 margin-30px-bottom sm-margin-30px-bottom">
+						<div class="bg-light-grey padding-30px-all border-radius-8">
+							<div class="feature-box-6 position-relative h-50px sm-h-auto">
+								<h6 class="alt-font post-title font-weight-400 text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom line-height-20">
+									<% if archive.file.attached? %>
+										<%= link_to archive.title, url_for(archive.file), target: :_blank %>
+									<% else %>
+										<%= archive.title %>
+									<% end %>
+								</h6>
+								<%= link_to rails_blob_path(archive.file, disposition: "attachment") do %>
+									<i class="fa-solid fa-download icon-small text-extra-dark-gray"></i>
+									<% end if archive.file.attached? %>
+								</div>
+							</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<% end %>

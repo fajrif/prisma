@@ -1,0 +1,50 @@
+<%= render "shared/setting_banners" %>
+
+<%- unless @page.content.blank? -%>
+	<section class="half-section">
+		<div class="container-xl">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="font-weight-320 text-uppercase"><%= @page.title %></h3>
+					<%= raw @page.content %>
+				</div>
+			</div>
+		</div>
+	</section>
+<%- else -%>
+	<% @sections.each_with_index do |section, index| %>
+		<%- section_id = "section-#{section.id}" -%>
+		<%- bg_color = section.bg_color -%>
+		<%- css_class = section.css_class -%>
+
+		<% if snippet = section.snippet %>
+			<% template = snippet.template %>
+			<% if template.blank? %>
+				<!-- start section -->
+				<% if bg_color == 'bg-image' %>
+					<% if snippet.background.attached? %>
+						<section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>" style="background-image:url('<%= url_for(snippet.background) %>');">
+					<% end %>
+				<% else %>
+					<section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>">
+				<% end %>
+					<%= render snippet.name, snippet: snippet, bg_color: bg_color %>
+				</section>
+				<!-- end section -->
+			<% else %>
+				<!-- start section -->
+				<% if bg_color == 'bg-image' %>
+					<% if snippet.background.attached? %>
+						<section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>" style="background-image:url('<%= url_for(snippet.background) %>');">
+					<% end %>
+				<% else %>
+					<section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>">
+				<% end %>
+					<%= render template, snippet: snippet, bg_color: bg_color %>
+				</section>
+				<!-- end section -->
+			<% end %>
+		<% end %>
+	<% end %>
+<%- end -%>
+

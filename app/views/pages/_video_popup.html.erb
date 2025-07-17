@@ -1,0 +1,13 @@
+<div class="col margin-30px-tb sm-margin-20px-top sm-no-margin-bottom">
+	<div class="overflow-hidden position-relative w-100 mb-2">
+		<img src="<%= url_for(snippet.image) if snippet.image.attached? %>" class="w-100 border-radius-8" alt="prisma's Video" />
+		<div class="absolute-middle-center text-center">
+			<a href="<%= snippet.video_url %>" class="popup-youtube">
+				<i class="prisma-icon-play icon-large text-white-2" aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
+	<% unless snippet.title.blank? %>
+		<span class="alt-font font-weight-320 text-uppercase"><%= snippet.title %></span>
+	<% end %>
+</div>

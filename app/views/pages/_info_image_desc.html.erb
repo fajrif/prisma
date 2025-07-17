@@ -1,0 +1,15 @@
+<div class="w-95 sm-w-100">
+	<% unless snippet.short_description.blank? %>
+		<div class="info_short_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+			<%= raw snippet.short_description %>
+		</div>
+	<% end %>
+	<% unless snippet.description.blank? %>
+		<div class="info_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+			<%= raw snippet.description %>
+		</div>
+	<% end %>
+	<% snippet.link_buttons.each do |link_button| %>
+		<%= render_link_text_url(link_button, "btn btn-medium #{btn_color} btn-rounded margin-20px-bottom d-block w-fit-content") %>
+	<% end %>
+</div>

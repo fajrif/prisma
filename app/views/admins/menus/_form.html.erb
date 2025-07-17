@@ -1,0 +1,16 @@
+<%= simple_form_for [:admins, @menu] do |f| %>
+	<%= f.error_notification %>
+	<fieldset>
+		<%= f.input :section, as: :select, collection: [['1', 'Header'], ['2', 'Footer']], label_method: :second, value_method: :first %>
+		<%= f.input :data, as: :text, input_html: { rows: 20 } %>
+	</fieldset>
+	<%= f.error :base %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn btn-secondary' %>
+		<% unless @menu.new_record? %>
+			<%= link_to "Cancel", admins_menu_path(@menu.id), :class => 'btn btn-light' %>
+		<% else %>
+			<%= link_to "Cancel", admins_menus_path, :class => 'btn btn-light' %>
+		<% end %>
+	</div>
+<% end %>

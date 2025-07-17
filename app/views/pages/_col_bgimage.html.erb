@@ -1,0 +1,36 @@
+<%- title_width = 'w-80' -%>
+<%- title_width = snippet.css_title unless snippet.css_title.blank? -%>
+<%- desc_width = 'w-80 sm-w-100' -%>
+<%- desc_width = snippet.css_desc unless snippet.css_desc.blank? -%>
+
+<%- height = 'h-400px sm-h-250px' -%>
+<%- height = 'h-250px' if snippet.orientation == 'right' -%>
+<%- height = snippet.css_class unless snippet.css_class.blank? -%>
+
+<%- justify_align = 'justify-content-start' -%>
+<%- if snippet.orientation == 'right' -%>
+	<%- justify_align = 'justify-content-md-end' -%>
+<%- end -%>
+
+<%- header_tag = "h1" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<%- no_margin = 'last-paragraph-no-margin' -%>
+
+<!-- start features item -->
+<div class="col margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.<%= index + 2 %>s">
+	<div class="cover-background padding-30px-all sm-padding-five-lr d-flex flex-column justify-content-between h-100 border-radius-8" style="background: transparent url('<%= url_for(snippet.image) if snippet.image.attached? %>')">
+		<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-white-2 text-uppercase margin-10px-bottom d-inline-block #{title_width}") %>
+		<div class="d-flex flex-row justify-content-start <%= justify_align %> align-items-end <%= height %>">
+			<div class="<%= "text-white-2 #{no_margin} #{desc_width}" %>">
+				<div class="desc">
+					<%= raw snippet.short_description %>
+				</div>
+				<% snippet.link_buttons.each_with_index do |link_button, index| %>
+					<%= render_link_text_url(link_button, "btn btn-small btn-line text-white text-uppercase #{'margin-10px-top' if index == 0}") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end features item -->

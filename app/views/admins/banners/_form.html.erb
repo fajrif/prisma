@@ -1,0 +1,48 @@
+<%= simple_form_for [:admins, @banner] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :video, as: :file, input_html: { class: "mb-3", accept: "video/mp4, video/webm, video/quicktime" } %>
+						<%= f.input :title, as: :string %>
+						<%= f.input :description, input_html: { class: 'quill_container' } %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions" style="margin-top:100px;">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @banner.new_record? %>
+							<%= link_to "Cancel", admins_banner_path(@banner), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_banners_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @banner, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.input :order_no %>
+							<%= f.association :banner_section, as: :select %>
+							<%= f.input :orientation, as: :select, collection: ['left', 'center', 'right'] %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+<% end %>

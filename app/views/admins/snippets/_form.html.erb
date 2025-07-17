@@ -1,0 +1,63 @@
+<%= simple_form_for [:admins, @snippet] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :background, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :name %>
+						<%= f.input :title, as: :string %>
+						<%= f.input :caption, as: :string %>
+						<%= f.input :short_description, input_html: { class: 'quill_container' } %>
+						<%= f.input :description, input_html: { class: 'quill_container' } %>
+						<%= f.input :video_url %>
+					</fieldset>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @snippet.new_record? %>
+							<%= link_to "Cancel", admins_snippet_path(@snippet), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_snippets_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @snippet, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.input :template, as: :select, collection: available_snippets_template %>
+							<%= f.input :title_tag, as: :select, collection: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] %>
+							<%= f.input :orientation, as: :select, collection: available_snippets_orientations, include_blank: true %>
+							<%= f.input :parent_id, as: :select, collection: Snippet.where(template: nested_snippets_template), value_mthod: :id, label_method: :name, include_blank: true %>
+							<%= f.input :bg_color, as: :select, collection: available_bg_colors, include_blank: true %>
+							<%= f.input :text_color, as: :select, collection: available_text_colors, include_blank: true %>
+							<%= f.input :css_class %>
+							<%= f.input :css_title %>
+							<%= f.input :css_desc %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+	<style>
+		.snippet_short_description,
+		.snippet_description {
+			margin-bottom: 100px !important;
+		}
+	</style>
+<% end %>

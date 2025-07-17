@@ -1,0 +1,127 @@
+<% title_page("Page details") %>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card card-box">
+			<div class="card-body">
+				<ul class="nav nav-tabs mb-3" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" data-bs-toggle="tab" href="#details" role="tab" aria-selected="true">
+								Details
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#metatags" role="tab" aria-selected="false" tabindex="-1">
+								Meta Tags
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#banners" role="tab" aria-selected="false" tabindex="-1">
+							<%= "Banners (#{ @page.banners.try(:size) || 0 })" %>
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#sections" role="tab" aria-selected="false" tabindex="-1">
+							<%= "Sections (#{ @page.sections.size })" %>
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active show" id="details" role="tabpanel">
+						<%= render "details" %>
+					</div>
+					<div class="tab-pane" id="metatags" role="tabpanel">
+						<%= render "meta_tags" %>
+					</div>
+					<div class="tab-pane" id="banners" role="tabpanel">
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-sm-auto ms-auto" style="padding-bottom:20px;">
+										<div class="hstack gap-2">
+											<%= link_to new_admins_banner_path, class: "btn btn-success add-btn" do %>
+												<i class="ri-add-line align-bottom me-1"></i> Add Banner</a>
+											<% end %>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 mb-3" style="min-height:200px;" id="pageBannersTable">
+										<%= render "admins/pages/banners/table" %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="sections" role="tabpanel">
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-sm-auto ms-auto" style="padding-bottom:20px;">
+										<div class="hstack gap-2">
+											<%= link_to new_admins_page_section_path(@page.id), class: "btn btn-success add-btn", remote: true do %>
+												<i class="ri-add-line align-bottom me-1"></i> Add Section</a>
+											<% end %>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 mb-3" style="min-height:200px;" id="pageSectionsTable">
+										<%= render "admins/pages/sections/table" %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_page_path(@page.id), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_page_path(@page.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_pages_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= content_for :tail do %>
+	<%= javascript_include_tag "jquery-ui/widget" %>
+	<%= javascript_include_tag "jquery-ui/widgets/sortable" %>
+	<script>
+		$(document).on('ready page:load', function () {
+			$("#contents").sortable({
+				handle: '.handle',
+				update: function(e, ui) {
+					$.ajax({
+							url: $(this).data("url"),
+							type: "PATCH",
+							data: $(this).sortable('serialize'),
+							dataType: 'script',
+							error: function() {
+									console.log('Unable to use jquery-ui sortable');
+							}
+					});
+				}
+			});
+			$("#contents1").sortable({
+				handle: '.handle',
+				update: function(e, ui) {
+					$.ajax({
+							url: $(this).data("url"),
+							type: "PATCH",
+							data: $(this).sortable('serialize'),
+							dataType: 'script',
+							error: function() {
+									console.log('Unable to use jquery-ui sortable');
+							}
+					});
+				}
+			});
+		});
+	</script>
+	<style>
+		.ui-sortable-handle{
+			cursor: pointer;
+		}
+	</style>
+<% end %>
+

@@ -1,0 +1,15 @@
+<%= simple_form_for @report_type, url: (@report_type.new_record? ? admins_report_types_path : admins_report_type_path(@report_type.id)), method: (@report_type.new_record? ? :post : :put) do |f| %>
+	<%= f.error_notification %>
+	<fieldset>
+		<%= f.input :name, as: :string %>
+	</fieldset>
+	<%= f.error :base %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn btn-secondary' %>
+		<% unless @report_type.new_record? %>
+			<%= link_to "Cancel", admins_report_type_path(@report_type.id), :class => 'btn btn-light' %>
+		<% else %>
+			<%= link_to "Cancel", admins_report_types_path, :class => 'btn btn-light' %>
+		<% end %>
+	</div>
+<% end %>

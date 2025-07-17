@@ -1,0 +1,25 @@
+<%- bg_color ||= '' -%>
+<%- text_color, btn_color = get_prisma_element_colors(bg_color) -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<div class="container-xl">
+	<div class="row">
+		<div class="col-12 margin-30px-bottom">
+			<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase w-80 sm-w-100") %>
+		</div>
+	</div>
+	<div class="row <%= text_color %>">
+		<div class="col-md-6 d-flex justify-content-center align-items-center sm-margin-30px-bottom wow animate__fadeInLeft" data-wow-delay="0.2s">
+			<% if snippet.image.attached? %>
+				<%= image_tag(url_for(snippet.image), class: "border-radius-8") %>
+			<% end %>
+		</div>
+		<div class="col-md-6 d-flex justify-content-center align-items-center padding-five-lr wow animate__fadeInRight" data-wow-delay="0.4s">
+			<div>
+				<%= render "info_image_desc", snippet: snippet, btn_color: btn_color %>
+			</div>
+		</div>
+	</div>
+</div>

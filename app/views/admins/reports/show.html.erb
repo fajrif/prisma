@@ -1,0 +1,69 @@
+<% title_page("Report details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @report.id %></td>
+					</tr>
+					<tr>
+						<td><b>File</b></td>
+						<td>
+							<% if @report.file.attached? %>
+								<%= link_to @report.file.filename, url_for(@report.file), target: :_blank %>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Title</b></td>
+						<td>
+							<h5 class="fs-14 mb-0 text-body"><%= @report.title %></h5>
+							<% if @report.private? %>
+								<p class="text-danger mb-0">Private</p>
+							<% end %>
+							<% if @report.read_only? %>
+								<p class="text-danger mb-0">Read-Only</p>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Report Type</b></td>
+						<td><%= badge_category(@report.report_type) %></td>
+					</tr>
+					<% if @report.author %>
+					<tr>
+						<td><b>Author</b></td>
+						<td><%= link_to @report.author.name, admins_author_path(@report.author) %></td>
+					</tr>
+					<% end %>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td><%= @report.short_description %></td>
+					</tr>
+					<tr>
+						<td><b>Status</b></td>
+						<td>
+							<h5 class="fs-14 mb-1 <%= 'text-danger' unless @report.published? %>"><%= @report.published_label %></h5>
+							<p class="text-muted mb-0">Date : <%= @report.published_date_label %></p>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @report.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+					<tr>
+						<td><b>Updated At</b></td>
+						<td><%= @report.updated_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_report_path(@report), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_report_path(@report), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_reports_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

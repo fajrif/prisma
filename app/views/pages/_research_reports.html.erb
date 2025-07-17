@@ -1,0 +1,32 @@
+<%- authors = Author.all %>
+<% unless authors.empty? %>
+<div class="container">
+	<div class="row">
+		<div class="col-12 blog-content no-padding-lr">
+			<ul class="hover-option4 blog-post-style3 blog-grid blog-wrapper grid grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large">
+				<li class="grid-sizer"></li>
+				<% authors.each do |author| %>
+				<!-- start post item -->
+				<li class="grid-item last-paragraph-no-margin text-start wow animate__fadeInUp">
+					<div class="blog-post bg-light-grey border-radius-10">
+						<div class="post-details padding-40px-all md-padding-20px-all">
+							<h5 class="alt-font post-title font-weight-600 text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= author.name %></h5>
+							<span class="post-author text-medium text-extra-dark-gray text-uppercase d-block margin-20px-bottom sm-margin-10px-bottom"><%= raw author.title %></span>
+							<span class="post-author font-weight-400 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= author.company_name %></span>
+							<a href="tel:<%= author.email %>" class="post-author text-medium text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= author.phone %></a>
+							<a href="mailto:<%= author.email %>" class="post-author text-medium text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= author.email %></a>
+							<% author.reports.each do |report| %>
+								<%= link_to url_for(report.file), class: "btn btn-medium btn-line text-gray text-uppercase margin-20px-top sm-margin-10px-top", target: :_blank do %>
+									<%= t('global.read_more') %> <i class="fa-solid fa-arrow-right icon-very-small" aria-hidden="true"></i>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
+				</li>
+				<!-- end post item -->
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+<% end %>

@@ -1,0 +1,42 @@
+<% title_page("Portfolio details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @portfolio.id %></td>
+					</tr>
+					<tr>
+						<td><b>Image</b></td>
+						<td>
+							<%= image_tag @portfolio.image.variant(resize_to_limit: [100,100]) if @portfolio.image.attached? %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><b><%= @portfolio.name %></b></td>
+					</tr>
+					<tr>
+						<td><b>Company Name</b></td>
+						<td><%= @portfolio.company_name %></td>
+					</tr>
+					<tr>
+						<td><b>Page</b></td>
+						<td><%= link_to @portfolio.page.title, admins_page_path(@portfolio.page) if @portfolio.page %></td>
+					</tr>
+					<tr>
+						<td><b>Description</b></td>
+						<td><%= raw @portfolio.description %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_portfolio_path(@portfolio), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_portfolio_path(@portfolio), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_portfolios_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

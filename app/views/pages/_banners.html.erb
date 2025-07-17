@@ -1,0 +1,47 @@
+<%- swiper_color = @banner_text_color == "text-white-2" ? "bullet-white" : "" -%>
+<!-- start slider section -->
+<section class="p-0 multiple-banner main-slider">
+	<div class="swiper full-screen <%= @banner_text_color %> md-landscape-h-580px" data-slider-options='{ "loop": true, "slidesPerView": "1", "effect": "fade", "allowTouchMove": true, "fadeEffect": { "crossFade": true }, "autoplay": { "delay": 11000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "pagination": { "el": ".swiper-pagination-01", "clickable": true } }'>
+		<div class="swiper-wrapper">
+			<% @banners.each do |banner| %>
+				<%- text_desc_width = "w-25 lg-w-30 md-w-50 sm-w-100" -%>
+				<%- text_desc_width = "w-45 lg-w-45 md-w-50 sm-w-100" if !banner.description.blank? && banner.description.length >= 130 -%>
+				<!-- start slider item -->
+				<% if banner.is_video? %>
+					<div class="swiper-slide">
+				<% else %>
+					<div class="swiper-slide banner-cover-background" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
+				<% end %>
+					<div class="container-xl h-100">
+						<div class="row h-100">
+							<div class="col-12 d-flex margin-150px-top justify-content-between flex-column">
+								<div>
+									<h1 class="text-uppercase font-weight-320 margin-35px-bottom sm-margin-15px-bottom w-100"><%= raw banner.title %></h3>
+								</div>
+								<div class="d-flex justify-content-between align-items-end align-items-md-start">
+									<span class="font-weight-320 alt-font text-uppercase prisma-text-rotate w-200px text-end text-md-start">prisma</span>
+									<div class="margin-five-bottom sm-margin-sixteen-bottom sm-fs-16 <%= text_desc_width %>">
+										<p><%= raw banner.description %></p>
+										<% banner.link_buttons.each do |link_button| %>
+											<%= render_link_text_url(link_button, "btn btn-medium #{@banner_btn_color} btn-rounded") %>
+										<% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%- if banner.is_video? -%>
+					<video class="htms-video video-js" poster="<%= url_for(banner.image) if banner.image.attached? %>" autoplay loop muted playsinline>
+						<source type="<%= banner.video.content_type %>" src="<%= url_for(banner.video) %>">
+					</video>
+					<%- end -%>
+				</div>
+				<!-- end slider item -->
+			<% end %>
+		</div>
+		<!-- start slider pagination -->
+		<div class="swiper-pagination swiper-pagination-01 swiper-pagination-white <%= swiper_color %>"></div>
+		<!-- end slider navigation -->
+	</div>
+</section>
+<!-- end slider section -->

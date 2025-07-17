@@ -1,0 +1,49 @@
+<%- text_color, btn_color = get_prisma_element_colors(bg_color) -%>
+
+<%- text_width = snippet.css_title unless snippet.css_title.blank? -%>
+
+<%- desc_width = 'w-100 sm-w-100' -%>
+<%- desc_width = snippet.css_desc unless snippet.css_desc.blank? -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<div class="container-xl">
+	<div class="row <%= text_color %>">
+		<% if snippet.orientation == "center" %>
+			<% unless snippet.title.blank? %>
+				<div class="col-12 wow animate__fadeIn">
+					<%= content_tag(header_tag.to_sym, snippet.title, class: "text-uppercase margin-50px-bottom sm-margin-15px-bottom #{text_width}") %>
+				</div>
+			<% end %>
+			<div class="col-12 wow animate__fadeIn">
+				<div class="row">
+					<div class="col-12 col-md-4 offset-md-3">
+						<div class="info_short_desc margin-30px-bottom sm-margin-15px-bottom">
+							<%= raw snippet.short_description %>
+						</div>
+					</div>
+					<div class="col-12 col-md-5 padding-five-lr">
+						<div class="info_desc margin-30px-bottom sm-margin-15px-bottom">
+							<%= raw snippet.description %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% else %>
+			<div class="col-12 col-md-6 wow animate__fadeInUp">
+				<% unless snippet.title.blank? %>
+					<%= content_tag(header_tag.to_sym, snippet.title, class: "text-uppercase #{text_width}") %>
+				<% end %>
+				<div class="info_short_desc <%= desc_width %> margin-30px-bottom sm-margin-15px-bottom">
+					<%= raw snippet.short_description %>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 padding-five-lr wow animate__fadeInUp">
+				<div class="info_desc <%= desc_width %> margin-30px-bottom sm-margin-15px-bottom">
+					<%= raw snippet.description %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

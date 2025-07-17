@@ -1,0 +1,72 @@
+<%- row_cols = "" -%>
+<%- cols = snippet.children.size -%>
+<%- case cols -%>
+<%- when 5 -%>
+<%- row_cols = "row-cols-2 row-cols-lg-5 row-cols-md-3" -%>
+<%- when 4 -%>
+<%- row_cols = "row-cols-2 row-cols-lg-4 row-cols-md-2" -%>
+<%- when 3 -%>
+<%- row_cols = "row-cols-1 row-cols-lg-3 row-cols-md-3" -%>
+<%- when 2 -%>
+<%- row_cols = "row-cols-2 row-cols-lg-2 row-cols-md-2" -%>
+<%- end -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<%- if snippet.title_rotate? -%>
+	<%- text_width = snippet.title.length >= 20 ? 'w-170px sm-w-100' : '' -%>
+	<%- content_cols = "col-md-11 " -%>
+	<%- content_cols += "offset-md-1" unless snippet.short_description.blank? -%>
+<%- end -%>
+
+<%- desc_width = 'w-70 sm-w-100' -%>
+<%- desc_width = snippet.css_desc unless snippet.css_desc.blank? -%>
+
+<%- padding_lr = "padding-ten-lr" -%>
+<%- padding_lr = snippet.css_class unless snippet.css_class.blank? -%>
+
+<div class="container-xl">
+	<div class="row">
+		<% if snippet.title_rotate? %>
+			<div class="col-12 col-md-1 d-md-flex">
+				<div class="text-rotate">
+					<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase text-flip #{text_width}") %>
+				</div>
+			</div>
+			<% unless snippet.short_description.blank? %>
+				<div class="col-12 col-md-11">
+					<div class="margin-50px-bottom sm-margin-30px-bottom <%= desc_width %>">
+						<%= raw snippet.short_description %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<div class="col-12 margin-30px-bottom sm-margin-30px-bottom">
+				<div class="row justify-content-start align-items-center">
+					<div class="col-6 col-lg-7">
+						<%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-320 text-uppercase mb-2") %>
+						<% unless snippet.short_description.blank? %>
+							<div class="<%= desc_width %>">
+								<%= raw snippet.short_description %>
+							</div>
+						<% end %>
+					</div>
+					<div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+						<% if link_button = snippet.link_buttons.first %>
+							<%= render_link_text_url(link_button, "btn btn-prisma btn-medium btn-rounded") %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<div class="col-12 <%= content_cols %>">
+			<div class="row justify-content-start justify-content-md-center <%= row_cols %>">
+				<% snippet.children.each_with_index do |sp, index| %>
+					<%- template = sp.template.blank? ? sp.name : sp.template -%>
+					<%= render template, snippet: sp, index: index, padding_lr: padding_lr %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

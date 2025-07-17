@@ -1,0 +1,151 @@
+<%- bg_color = "bg-dark-grey" if bg_color.blank? -%>
+<%- text_color, btn_color = get_prisma_element_colors(bg_color) -%>
+
+<%- size_buttons = snippet.link_buttons.size -%>
+<%- margin_bottom = '' -%>
+<%- if size_buttons > 0 -%>
+	<%- margin_bottom = 'margin-30px-bottom' -%>
+<%- end -%>
+
+<%- title_width = 'w-70 sm-w-100' -%>
+<%- title_width = snippet.css_title unless snippet.css_title.blank? -%>
+
+<%- desc_width = 'w-30 sm-w-100' -%>
+<%- desc_width = snippet.css_desc unless snippet.css_desc.blank? -%>
+
+<%- desc_height = 'h-400px sm-h-200px' -%>
+<%- desc_height = snippet.css_class unless snippet.css_class.blank? -%>
+
+<%- header_tag = "h1" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<%- short_description = snippet.short_description -%>
+<%- description = snippet.description -%>
+<%- if description.blank? -%>
+	<%- description = short_description -%>
+	<%- short_description = '' -%>
+<%- end -%>
+
+<% if snippet.orientation == 'full-width' %>
+	<div class="container-fluid">
+		<div class="row row-cols-1">
+			<!-- start features item -->
+			<div class="col no-padding-lr wow animate__fadeIn" data-wow-delay="0.2s">
+				<div class="cover-background <%= text_color %> padding-50px-all sm-padding-five-lr" style="background: transparent url('<%= url_for(snippet.image) if snippet.image.attached? %>')">
+					<div class="container-xl sm-no-padding-lr d-flex flex-column justify-content-between">
+						<div class="<%= desc_height %>">
+							<%= content_tag(header_tag.to_sym, snippet.title, class: "margin-10px-bottom d-inline-block #{title_width}") %>
+						</div>
+						<div class="d-flex flex-column flex-md-row gap-50 justify-content-end align-items-start">
+							<% unless short_description.blank? %>
+								<div class="<%= desc_width %>">
+									<div class="<%= margin_bottom %> last-paragraph-no-margin md-margin-30px-right">
+										<%= raw short_description %>
+									</div>
+								</div>
+							<% end %>
+							<div class="<%= desc_width %>">
+								<div class="<%= margin_bottom %> last-paragraph-no-margin">
+									<%= raw description %>
+								</div>
+								<% snippet.link_buttons.each do |link_button| %>
+									<%= render_link_text_url(link_button, "btn btn-medium #{btn_color} btn-rounded btn-border margin-10px-bottom d-block w-fit-content") %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end features item -->
+		</div>
+	</div>
+<% elsif snippet.orientation == 'right' %>
+	<div class="container-fluid">
+		<div class="row row-cols-1">
+			<!-- start features item -->
+			<div class="col no-padding-lr wow animate__fadeIn" data-wow-delay="0.2s">
+				<div class="cover-background <%= text_color %> padding-50px-all sm-padding-five-lr" style="background: transparent url('<%= url_for(snippet.image) if snippet.image.attached? %>')">
+					<div class="container-xl sm-no-padding-lr d-flex flex-column justify-content-between">
+						<div class="<%= desc_height %>">
+							<%= content_tag(header_tag.to_sym, snippet.title, class: "margin-10px-bottom d-inline-block #{title_width}") %>
+						</div>
+						<div class="d-flex flex-column flex-md-row gap-50 justify-content-end align-items-start">
+							<div class="<%= desc_width %>">
+								<div class="mb-3">
+									<%= raw short_description %>
+								</div>
+								<div class="margin-30px-bottom sm-margin-15px-bottom">
+									<% if link_button1 = snippet.link_buttons.first %>
+										<%= render_link_text_url(link_button1, "btn btn-medium #{btn_color} btn-rounded btn-border margin-10px-bottom d-block w-fit-content") %>
+									<% end %>
+								</div>
+								<div class="mb-3">
+									<%= raw description %>
+								</div>
+								<% if link_button2 = snippet.link_buttons.last %>
+									<%= render_link_text_url(link_button2, "btn btn-medium #{btn_color} btn-rounded btn-border margin-10px-bottom d-block w-fit-content") %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end features item -->
+<% elsif snippet.orientation == 'center' %>
+	<div class="container-fluid">
+		<div class="row row-cols-1">
+			<!-- start features item -->
+			<div class="col no-padding-lr wow animate__fadeIn" data-wow-delay="0.2s">
+				<div class="cover-background <%= text_color %> padding-ten-tb padding-five-lr" style="background: transparent url('<%= url_for(snippet.image) if snippet.image.attached? %>')">
+					<div class="container-xl sm-no-padding-lr d-flex flex-column justify-content-between">
+						<div class="text-center">
+							<%= content_tag(header_tag.to_sym, snippet.title, class: "mb-0 d-inline-block #{title_width}") %>
+						</div>
+						<div class="d-flex flex-column flex-md-row gap-50 justify-content-end align-items-start">
+							<% unless short_description.blank? %>
+								<div class="<%= desc_width %>">
+									<div class="<%= margin_bottom %> last-paragraph-no-margin md-margin-30px-right">
+										<%= raw short_description %>
+									</div>
+								</div>
+							<% end %>
+							<div class="<%= desc_width %>">
+								<div class="<%= margin_bottom %> last-paragraph-no-margin">
+									<%= raw description %>
+								</div>
+								<% snippet.link_buttons.each do |link_button| %>
+									<%= render_link_text_url(link_button, "btn btn-medium #{btn_color} btn-rounded btn-border margin-10px-bottom d-block w-fit-content") %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end features item -->
+		</div>
+	</div>
+<% else %>
+	<div class="container-xl">
+		<div class="row row-cols-1">
+			<!-- start features item -->
+			<div class="col margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.2s">
+				<div class="cover-background <%= text_color %> padding-50px-all sm-padding-five-lr border-radius-20" style="background: transparent url('<%= url_for(snippet.image) if snippet.image.attached? %>')">
+					<h1 class="margin-10px-bottom d-inline-block"><%= snippet.title %></h1>
+					<%- if link_button = snippet.link_buttons.first -%>
+						<%= render_link_text_url(link_button, "btn btn-transparent-prisma btn-rounded btn-border margin-30px-bottom ms-2 border-radius-50 border-width-2", true) %>
+					<%- end -%>
+					<div class="d-flex gap-50 flex-row align-items-end h-250px <%= snippet.css_class %>">
+						<div class="<%= desc_width %>">
+							<div class="margin-30px-bottom">
+								<%= raw snippet.short_description %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end features item -->
+		</div>
+	</div>
+<% end %>

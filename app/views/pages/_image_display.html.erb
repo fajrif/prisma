@@ -1,0 +1,16 @@
+<% if snippet.image.attached? %>
+	<% unless snippet.video_url.blank? %>
+		<div class="overflow-hidden position-relative w-100">
+			<a class="popup-youtube" href="<%= snippet.video_url %>">
+				<img src="<%= url_for(snippet.image) if snippet.image.attached? %>" class="w-100 border-radius-8" alt="Indonesia Energy Corporation video" />
+				<div class="icon-play">
+					<div class="absolute-middle-center w-80">
+						<%= image_tag("icon-play.png") %>
+					</div>
+				</div>
+			</a>
+		</div>
+	<% else %>
+		<%= image_tag(url_for(snippet.image), class: "border-radius-8") %>
+	<% end %>
+<% end %>

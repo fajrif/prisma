@@ -1,0 +1,23 @@
+<%- text_align = snippet.orientation == 'center' ? 'text-center' : 'text-start' -%>
+<%- description = snippet.short_description -%>
+<div class="container-xl">
+	<% unless snippet.title.blank? %>
+	<div class="row">
+		<div class="col-12 col-lg-10 <%= text_align %>">
+			<h3 class="font-weight-320 text-uppercase <%= description.blank? ? 'mb-4' : 'mb-2' %>"><%= snippet.title %></h3>
+			<% unless description.blank? %>
+				<div class="margin-30px-bottom sm-margin-10px-bottom">
+					<%= raw description %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+	<div class="row justify-content-center wow animate__fadeIn">
+		<div class="col-12 text-center d-flex align-items-center">
+			<div class="videowrapper">
+				<%= raw snippet.video_url %>
+			</div>
+		</div>
+	</div>
+</div>

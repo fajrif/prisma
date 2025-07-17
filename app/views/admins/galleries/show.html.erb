@@ -1,0 +1,46 @@
+<% title_page("Gallery details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @gallery.id %></td>
+					</tr>
+					<tr>
+						<td><b>Image</b></td>
+						<td>
+							<%= image_tag @gallery.image.variant(resize_to_limit: [100,100]) if @gallery.image.attached? %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Title</b></td>
+						<td><b><%= @gallery.title %></b></td>
+					</tr>
+					<tr>
+						<td><b>Caption</b></td>
+						<td><%= @gallery.caption %></td>
+					</tr>
+					<tr>
+						<td><b>Type</b></td>
+						<td><%= @gallery.type_label %></td>
+					</tr>
+					<tr>
+						<td><b>Video URL</b></td>
+						<td><%= @gallery.video_url %></td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @gallery.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_gallery_path(@gallery), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_gallery_path(@gallery), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_galleries_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

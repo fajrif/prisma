@@ -1,0 +1,11 @@
+<%= content_for :head do %>
+	<script src="https://www.google.com/recaptcha/api.js?render=<%= ENV['RECAPTCHA_V3_SITE_KEY'] %>"></script>
+<% end %>
+
+<div class="container tab-style3">
+	<div class="row">
+		<div id="investorInquiryForm" class="col-12">
+			<%= render "investor_inquiries/form" %>
+		</div>
+	</div>
+</div>

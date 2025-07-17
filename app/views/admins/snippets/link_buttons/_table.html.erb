@@ -1,0 +1,39 @@
+<% @snippet.link_buttons.each do |lb| %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td><h5>Link Button</h5></td>
+						<td>
+							<%= link_to 'Edit', edit_admins_snippet_link_button_path(@snippet,lb), remote: true %> |
+							<%= link_to 'Delete', admins_snippet_link_button_path(@snippet,lb), :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true %>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= lb.id %></td>
+					</tr>
+					<tr>
+						<td><b>Route Category</b></td>
+						<td><%= badge_route_category(lb.route_category) %></td>
+					</tr>
+					<tr>
+						<td><b>Link Text</b></td>
+						<td><%= lb.link_text %></td>
+					</tr>
+					<tr>
+						<td><b>Link URL</b></td>
+						<td><%= link_to get_link_from_link_button_object(lb), get_link_from_link_button_object(lb) %></td>
+					</tr>
+					<tr>
+						<td><b>Open link in new tab</b></td>
+						<td><%= badge_true_false_status(lb.open_new_tab, lb.open_new_tab_label) %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>

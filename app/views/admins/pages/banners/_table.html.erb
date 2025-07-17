@@ -1,0 +1,34 @@
+<div class="table-card">
+	<table class="table align-middle">
+		<thead class="table-light">
+			<tr>
+				<th class="text-center">Sort</th>
+				<th>Image</th>
+				<th>Title</th>
+				<th>Section</th>
+				<th class="text-center">Link Button</th>
+				<th class="text-center">Action</th>
+			</tr>
+		</thead>
+		<tbody id="contents" data-url="<%= sort_admins_page_banners_path(@page.id) %>">
+			<% for b in @page.banners %>
+				<%= content_tag :tr, id: dom_id(b) do %>
+					<td class="handle text-center">
+						<i class="ri-drag-move-2-line me-2"></i>
+					</td>
+					<td><%= image_tag b.image.variant(resize_to_limit: [100,100]) %></td>
+					<td><b><%= link_to b.title, admins_banner_path(b) %></b></td>
+					<td><%= b.banner_section.name_id_label %></td>
+					<td class="text-center"><%= badge_true_false_status b.has_link_button? %></td>
+					<td class="text-center">
+						<div data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
+							<%= link_to admins_page_banner_path(@page.id, b), :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'remove-item-btn' do %>
+								<i class="ri-delete-bin-fill align-bottom text-danger"></i>
+							<% end %>
+						</div>
+					</td>
+				<% end %>
+			<% end if @page.banners %>
+		</tbody>
+	</table>
+</div>

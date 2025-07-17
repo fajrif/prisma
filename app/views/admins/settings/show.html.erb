@@ -1,0 +1,36 @@
+<% title_page("Settings") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<% if @setting %>
+					<table class="table table-hover">
+						<tr>
+							<td style="width:15%;"><b>Name</b></td>
+							<td><b>App Setting</b></td>
+						</tr>
+						<tr>
+							<td><b>Admin Investor</b></td>
+							<td>
+								<%= @setting.admin_investor %>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Created At</b></td>
+							<td><%= @setting.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+						</tr>
+						<tr>
+							<td><b>Updated At</b></td>
+							<td><%= @setting.try(:updated_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+						</tr>
+					</table>
+					<div class="form-actions">
+						<%= link_to 'Edit', edit_admins_setting_path, :class => 'btn btn-secondary' %>
+					</div>
+				<% else %>
+						<%= link_to 'Add New', new_admins_setting_path, :class => 'btn btn-success' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

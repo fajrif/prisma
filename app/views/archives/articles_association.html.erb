@@ -1,0 +1,26 @@
+<%= render "shared/setting_banners" %>
+
+<!-- start post content section -->
+<section>
+	<div class="container">
+		<!-- filter -->
+		<%= form_tag page_path(@archive_type), { id: "index_search", method: :get } do %>
+			<div class="row justify-content-end margin-20px-bottom">
+				<div class="col-6 col-md-3 text-start text-md-end sm-margin-15px-bottom">
+					<%= select_tag :sort_by, options_for_select([["Newest", "desc"], ["Oldest", "asc"]], params[:sort_by]), :prompt => 'Select Order By', :class => "selectpicker filter_select mb-0" %>
+				</div>
+				<div class="col-6 col-md-3 text-start text-md-end sm-margin-15px-bottom">
+					<%= select_tag :year, options_for_select(get_latest_year_options, params[:year]), :prompt => 'Select Year', :class => "selectpicker filter_select mb-0" %>
+				</div>
+			</div>
+		<% end %>
+		<!-- end filter -->
+
+		<div class="row">
+			<div id="index_table" class="col-lg-9 offset-lg-3 archives">
+				<%= render "table" %>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end blog content section -->

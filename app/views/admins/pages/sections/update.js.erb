@@ -1,0 +1,21 @@
+$("#pageSectionsTable").html("<%= escape_javascript(render("table")) %>");
+$("#forFlashMessage").html("<%= escape_javascript(flash_message) %>");
+<% if @success == true %>
+	$("#myModal .modal-content").html("<%= escape_javascript(render("form")) %>");
+	$("#myModal").modal('hide');
+<% end %>
+<%- flash.discard -%>
+$("#contents").sortable({
+	handle: '.handle',
+	update: function(e, ui) {
+		$.ajax({
+				url: $(this).data("url"),
+				type: "PATCH",
+				data: $(this).sortable('serialize'),
+				dataType: 'script',
+				error: function() {
+						console.log('Unable to use jquery-ui sortable');
+				}
+		});
+	}
+});

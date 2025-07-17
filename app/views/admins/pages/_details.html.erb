@@ -1,0 +1,33 @@
+<table class="table table-hover">
+	<tr>
+		<td style="width:15%;"><b>ID</b></td>
+		<td><%= @page.id %></td>
+	</tr>
+	<tr>
+		<td style="width:15%;"><b>Slug</b></td>
+		<td><%= link_to "/#{@page.slug}", page_path(@page), target: :_blank %></td>
+	</tr>
+	<tr>
+		<td><b>Title</b></td>
+		<td><h5 class="fs-14 mb-0 text-body"><%= @page.title %></h5></td>
+	</tr>
+	<tr>
+		<td><b>Banner Section</b></td>
+		<td><b><%= link_to @page.banner_section.name_id_label, admins_banners_path(banner_section_id: @page.banner_section.id) if @page.banner_section %></b></td>
+	</tr>
+	<tr>
+		<td><b>Published At</b></td>
+		<td>
+			<h5 class="fs-14 mb-1"><%= @page.published_label %></h5>
+			<p class="text-muted mb-0">Date : <%= @page.published_date_label %></p>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Created At</b></td>
+		<td><%= @page.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+	</tr>
+	<tr>
+		<td><b>Decription</b></td>
+		<td><%= raw @page.content %></td>
+	</tr>
+</table>

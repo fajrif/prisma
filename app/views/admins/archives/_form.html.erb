@@ -1,0 +1,45 @@
+<%= simple_form_for [:admins, @archive] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :file, as: :file, input_html: { class: "mb-3", accept: 'application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword' } %>
+						<%= f.input :title, as: :string %>
+						<%= f.input :short_description, as: :string %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @archive.new_record? %>
+							<%= link_to "Cancel", admins_archive_path(@archive), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_archives_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @archive, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.association :archive_type, as: :select %>
+							<%= f.input :category_name, as: :select, collection: ['Annual', 'Extraordinary'] %>
+							<%= f.input :published_date, as: :string, input_html: { class: "datetimepicker", value: get_input_date_value(f.object.published_date) } %>
+							<%= f.input :status, as: :select, collection: get_published_status, value_method: :first, label_method: :last %>
+							<%= f.input :private, as: :select, collection: get_private_status, value_method: :first, label_method: :last %>
+							<%= f.input :read_only, as: :select, collection: get_read_only_status, value_method: :first, label_method: :last %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

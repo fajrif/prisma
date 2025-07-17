@@ -1,0 +1,9 @@
+cn:
+  simple_form:
+    "yes": '是的'
+    "no": '不'
+    required:
+      text: '必需的'
+      html: ''
+    error_notification:
+      default_message: "请检查以下问题："

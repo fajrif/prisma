@@ -1,0 +1,32 @@
+<%- default_row_cols = "row-cols-1" -%>
+<%- row_cols = "" -%>
+<%- cols = snippet.children.size -%>
+<%- case cols -%>
+<%- when 5 -%>
+<%- row_cols = "row-cols-lg-5 row-cols-md-3" -%>
+<%- when 4 -%>
+<%- row_cols = "row-cols-lg-4 row-cols-md-2" -%>
+<%- when 3 -%>
+<%- row_cols = "row-cols-lg-3 row-cols-md-3" -%>
+<%- when 2 -%>
+<%- row_cols = "row-cols-lg-2 row-cols-md-2" -%>
+<%- end -%>
+
+<div class="container-xl">
+	<% unless snippet.title.blank? %>
+	<div class="row align-items-start">
+		<div class="col-lg-10 wow animate__fadeIn">
+			<h3 class="font-weight-320 text-extra-dark-gray text-uppercase mb-4"><%= snippet.title %></h3>
+			<% unless snippet.short_description.blank? %>
+				<%= raw snippet.short_description %>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+	<div class="<%= "row #{default_row_cols} #{row_cols} #{snippet.css_class}" %>">
+		<% snippet.children.each_with_index do |sp, index| %>
+			<%- template = sp.template.blank? ? sp.name : sp.template -%>
+			<%= render template, snippet: sp, index: index %>
+		<% end %>
+	</div>
+</div>

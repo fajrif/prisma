@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h5 class="modal-title">Page Section</h5>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<%= simple_form_for @section, url: (@section.new_record? ? admins_page_sections_path(@page.id) : admins_page_section_path(@page.id, @section.id)), method: (@section.new_record? ? :post : :put), remote: true do |f| %>
+	<%= f.error_notification %>
+	<%= f.association :snippet, as: :select, collection: Snippet.where(parent_id: nil) %>
+	<% unless @section.new_record? %>
+		<%= f.input :bg_color, as: :select, collection: available_bg_colors, include_blank: true %>
+		<%= f.input :css_class %>
+	<% end %>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="hstack gap-2 justify-content-end">
+				<a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Close</a>
+				<%= f.button :submit, 'Save', :class => 'btn btn-secondary' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+</div>

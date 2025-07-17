@@ -1,0 +1,72 @@
+<%- member_types = MemberType.all -%>
+<div class="container-xl">
+	<div class="row">
+		<div class="col-md-12 text-center tab-style2">
+			<ul class="nav nav-tabs portfolio-filter justify-content-start font-weight-500 alt-font text-medium text-center margin-50px-bottom sm-margin-30px-bottom">
+				<% member_types.each_with_index do |mt, index| %>
+					<li class="nav <%= 'active' if index == 0 %>"><a href="javascript:void(0);" data-filter=".<%= mt.name_id %>" class="nav-link"><%= mt.name %></a></li>
+				<% end %>
+			</ul>
+			<!-- end filter navigation -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 filter-content overflow-hidden">
+			<ul class="hover-option6 portfolio-wrapper grid grid-loading grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-medium">
+				<li class="grid-sizer"></li>
+				<% member_types.each do |mt| %>
+					<% mt.members.each do |member| %>
+						<!-- start portfolio item -->
+						<li class="grid-item <%= member.member_type.name_id %> text-start border-radius-8 wow animate__zoomIn">
+							<figure>
+									<div class="portfolio-img bg-dark-grey position-relative text-center overflow-hidden">
+										<a class="popup-with-zoom-anim" href="<%= "#modal-member-#{member.id}" %>">
+											<%= image_tag url_for(member.photo), class: "w-100 border-radius-8", alt: member.full_name %>
+										</a>
+										<div class="portfolio-icon">
+											<div class="text-large font-weight-400 text-white-2 text-uppercase alt-font"><%= t('global.view_profile') %></div>
+										</div>
+									</div>
+									<figcaption class="bg-white">
+											<div class="portfolio-hover-main text-start">
+													<div class="portfolio-hover-box align-middle">
+															<div class="portfolio-hover-content position-relative">
+																	<a class="popup-with-zoom-anim" href="<%= "#modal-member-#{member.id}" %>"><span class="line-height-normal font-weight-600 text-large alt-font margin-5px-bottom text-uppercase d-block"><%= member.full_name %></span></a>
+																	<span class="text-medium"><%= member.job_title %></span>
+															</div>
+													</div>
+											</div>
+									</figcaption>
+							</figure>
+						</li>
+						<!-- end portfolio item -->
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<%= content_for :tail do %>
+	<% member_types.each do |mt| %>
+		<% mt.members.each_with_index do |member, index| %>
+			<!-- start modal pop-up -->
+			<div id="<%= "modal-member-#{member.id}" %>" class="col-12 col-lg-8 col-md-8 zoom-anim-dialog mfp-hide bg-white mx-auto modal-popup-main">
+				<div class="row mx-auto">
+					<div class="col-12 col-lg-6 no-padding-lr">
+						<%= image_tag(url_for(member.photo), class: "w-100") %>
+					</div>
+					<div class="col-12 col-lg-6 padding-40px-top padding-50px-lr sm-padding-20px-tb sm-padding-10px-lr">
+						<h5 class="text-extra-dark-gray text-uppercase alt-font font-weight-400 margin-15px-bottom d-block"><%= member.full_name %></h5>
+						<span><%= member.job_title %></span>
+						<div class="separator-line-horrizontal-full bg-white margin-three-tb sm-margin-20px-tb"></div>
+						<div class="max-h-300px sm-h-100 overflow-auto">
+							<%= raw member.description %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end modal pop-up -->
+		<% end %>
+	<% end %>
+<% end %>

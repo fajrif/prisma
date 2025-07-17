@@ -1,0 +1,6 @@
+$("#link-buttons-table").html("<%= escape_javascript(render("table")) %>");
+$("#forFlashMessage").html("<%= escape_javascript(flash_message) %>");
+<% if @success == true %>
+	$("#myModal").modal('hide');
+<% end %>
+<%- flash.discard -%>
