@@ -5,6 +5,8 @@ class BannerSection < ApplicationRecord
 
 	has_many :banners
 	has_many :pages
+	has_many :services
+	has_many :industries
 
 	def name_size_label
 		"#{self.name} (#{self.banners.size})"

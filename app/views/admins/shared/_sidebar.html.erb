@@ -26,26 +26,17 @@
 						<i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
 					</a>
 				</li>
-				<% if policy(:developer).index? %>
 				<li class="nav-item">
-					<a class="nav-link menu-link <%= 'active' if is_admins_articles_page? %>" href="<%= admins_articles_path %>">
-						<i class="ri-article-line"></i> <span data-key="t-dashboards">Articles</span>
+					<a class="nav-link menu-link <%= 'active' if is_admins_articles_page? %>" href="#sidebarArticles" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarArticles">
+						<i class="ri-article-line"></i> <span data-key="t-landing">Articles</span>
 					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link menu-link <%= 'active' if is_admins_archives_page? %>" href="#sidebarArchive" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarArchive">
-						<i class="ri-archive-drawer-line"></i> <span data-key="t-landing">Archives</span>
-					</a>
-					<div class="collapse menu-dropdown <%= 'show' if is_admins_archives_page? %>" id="sidebarArchive">
+					<div class="collapse menu-dropdown <%= 'show' if is_admins_articles_page? %>" id="sidebarArticles">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<a href="<%= admins_archives_path %>" class="nav-link <%= current_path?('archives') %>">Archives</a>
+								<a href="<%= admins_articles_path %>" class="nav-link <%= current_path?('articles') %>">Articles</a>
 							</li>
 							<li class="nav-item">
-								<a href="<%= admins_reports_path %>" class="nav-link <%= current_path?('reports') %>">Reports</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_authors_path %>" class="nav-link <%= current_path?('authors') %>">Authors</a>
+								<a href="<%= admins_categories_path %>" class="nav-link <%= current_path?('categories') %>">Categories</a>
 							</li>
 						</ul>
 					</div>
@@ -72,77 +63,64 @@
 					</div>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link menu-link <%= 'active' if is_admins_services_page? %>" href="#sidebarServices" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarServices">
+						<i class="ri-pencil-ruler-line"></i> <span data-key="t-landing">Services</span>
+					</a>
+					<div class="collapse menu-dropdown <%= 'show' if is_admins_services_page? %>" id="sidebarServices">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<a href="<%= admins_services_path %>" class="nav-link <%= current_path?('services') || current_path?('benefits') %>">Services</a>
+							</li>
+							<li class="nav-item">
+								<a href="<%= admins_industries_path %>" class="nav-link <%= current_path?('industries') %>">Industries</a>
+							</li>
+							<li class="nav-item">
+								<a href="<%= admins_portfolios_path %>" class="nav-link <%= current_path?('portfolios') %>">Portfolios</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link menu-link <%= 'active' if is_admins_others_page? %>" href="#sidebarOther" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarOther">
 						<i class="ri-image-line"></i> <span data-key="t-landing">Others</span>
 					</a>
 					<div class="collapse menu-dropdown <%= 'show' if is_admins_others_page? %>" id="sidebarOther">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<a href="<%= admins_members_path %>" class="nav-link <%= current_path?('members') %>">Members</a>
+								<a href="<%= admins_menus_path %>" class="nav-link <%= current_path?('menus') %>">Menus</a>
 							</li>
 							<li class="nav-item">
-								<a href="<%= admins_portfolios_path %>" class="nav-link <%= current_path?('portfolios') %>">Portfolios</a>
+								<a href="<%= admins_addresses_path %>" class="nav-link <%= current_path?('addresses') %>">Addresses</a>
 							</li>
 							<li class="nav-item">
-								<a href="<%= admins_galleries_path %>" class="nav-link <%= current_path?('galleries') %>">Gallery</a>
+								<a href="<%= admins_clients_path %>" class="nav-link <%= current_path?('clients') %>">Clients</a>
 							</li>
 							<li class="nav-item">
-								<a href="<%= admins_addresses_path %>" class="nav-link <%= current_path?('addresses') %>">Address</a>
+								<a href="<%= admins_testimonials_path %>" class="nav-link <%= current_path?('testimonials') %>">Testimonials</a>
+							</li>
+							<li class="nav-item">
+								<a href="<%= admins_careers_path %>" class="nav-link <%= current_path?('careers') %>">Careers</a>
 							</li>
 						</ul>
 					</div>
 				</li>
-				<% end %>
-				<% if policy(:investor).index? || policy(:media).index? || policy(:partner).index? %>
 				<li class="nav-item">
 					<a class="nav-link menu-link <%= 'active' if is_admins_contact_page? %>" href="#sidebarContact" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarContact">
 						<i class="ri-contacts-book-line"></i> <span data-key="t-landing">Contact</span>
 					</a>
 					<div class="collapse menu-dropdown <%= 'show' if is_admins_contact_page? %>" id="sidebarContact">
 						<ul class="nav nav-sm flex-column">
-							<% if policy(:investor).index? %>
 							<li class="nav-item">
-								<a href="<%= admins_investor_inquiries_path %>" class="nav-link <%= current_path?('investor_inquiries') %>">Investor Inquiries</a>
+								<a href="<%= admins_inquiries_path %>" class="nav-link <%= current_path?('inquiries') %>">Inquiries</a>
 							</li>
-							<% end %>
 						</ul>
 					</div>
 				</li>
-				<% end %>
-				<% if policy(:admin).index? %>
 				<li class="nav-item">
 					<a class="nav-link menu-link <%= 'active' if is_admins_users_page? %>" href="<%= admins_admins_path %>">
 						<i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Admins</span>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link menu-link <%= 'active' if is_admins_data_master_page? %>" href="#sidebarMaster" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaster">
-						<i class="ri-stack-line"></i> <span data-key="t-landing">Data Master</span>
-					</a>
-					<div class="collapse menu-dropdown <%= 'show' if is_admins_data_master_page? %>" id="sidebarMaster">
-						<ul class="nav nav-sm flex-column">
-							<li class="nav-item">
-								<a href="<%= admins_menus_path %>" class="nav-link <%= current_path?('menus') %>">Menus</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_categories_path %>" class="nav-link <%= current_path?('categories') %>">Categories</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_archive_types_path %>" class="nav-link <%= current_path?('archive_types') %>">Archive Types</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_report_types_path %>" class="nav-link <%= current_path?('report_types') %>">Report Types</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_member_types_path %>" class="nav-link <%= current_path?('member_types') %>">Member Types</a>
-							</li>
-							<li class="nav-item">
-								<a href="<%= admins_setting_path %>" class="nav-link <%= current_path?('settings') %>">Settings</a>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<% end %>
 			</ul>
 		</div>
 		<!-- Sidebar -->

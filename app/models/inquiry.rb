@@ -22,7 +22,7 @@ class Inquiry < ApplicationRecord
 	# 				puts e.backtrace.inspect
 	# 			end
 	# 			begin
-	# 				SystemMailer.investor_inquiry_notification(self.id, email, "#{self.name} [Investor Inquiry]").deliver
+	# 				SystemMailer.inquiry_notification(self.id, email, "#{self.name} [Inquiry]").deliver
 	# 			rescue Exception => e
 	# 				puts e.message
 	# 				puts e.backtrace.inspect

@@ -39,8 +39,12 @@ class Admins::AddressesController < Admins::BaseController
   end
 
   def destroy
-    @address.destroy
-    redirect_to admins_addresses_url, :notice => "Successfully destroyed address."
+    if Address.all.size > 1
+      @address.destroy
+      redirect_to admins_addresses_url, :notice => "Successfully destroyed address."
+    else
+      redirect_to admins_addresses_url, :alert => "Cannot delete address, need to have at least one address"
+    end
   end
 
 	def sort

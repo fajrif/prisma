@@ -1,0 +1,32 @@
+<% title_page("Client details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-actions text-end">
+					<%= link_to 'Edit', edit_admins_client_path(@client), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_client_path(@client), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_clients_path, :class => 'btn btn-light' %>
+				</div>
+				<div id="show-table">
+					<table class="table table-hover">
+						<tr>
+							<td style="width:15%;"><b>ID</b></td>
+							<td><%= @client.id %></td>
+						</tr>
+						<tr>
+							<td><b>Name</b></td>
+							<td><h5 class="fs-14 mb-0 text-body"><%= @client.company_name %></h5></td>
+						</tr>
+						<tr>
+							<td><b>Image</b></td>
+							<td>
+								<%= image_tag @client.image.variant(resize_to_limit: [100,100]) %>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   #get "up" => "rails/health#show", as: :rails_health_check
 
-	mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
-
   devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
-	scope "(:locale)", locale: /cn/ do
+	scope "(:locale)", locale: /id/ do
 		namespace :admins do
 			root :to => 'dashboard#index'
 			get "account/change_password" => "accounts#change_password", :as => :change_password
@@ -19,12 +17,23 @@ Rails.application.routes.draw do
 
 			get "link_buttons/objectable_types" => "link_buttons#objectable_types", :as => :link_button_objectable_types
 
+			resources :menus
+			resources :addresses do
+				collection do
+					patch :sort
+				end
+			end
+			resources :clients
+			resources :testimonials
+			resources :careers do
+				member do
+					delete "delete_attachment/:asset_id" => "careers#delete_attachment", :as => :delete_attachment
+				end
+			end
+			resources :banner_sections
 			resources :banners do
 				resources :link_buttons, :controller => "banners/link_buttons", :except => [:index, :show]
 			end
-			resources :menus
-			resource :setting
-			resources :banner_sections
 			resources :articles do
 				member do
 					delete "delete_attachment/:asset_id" => "articles#delete_attachment", :as => :delete_attachment
@@ -32,16 +41,17 @@ Rails.application.routes.draw do
 				end
 			end
 			resources :categories
-			resources :galleries
-			resources :members
-			resources :member_types
 			resources :portfolios
-			resources :reports
-			resources :report_types
+			resources :services do
+				resources :segments, :controller => "services/segments", :except => [:index] do
+					collection do
+						patch :sort
+					end
+				end
+        resources :benefits, :controller => "services/benefits", :except => [:index]
+      end
+			resources :industries
 			resources :inquiries, :only => [:index, :show, :destroy]
-			resources :authors
-			resources :archives
-			resources :archive_types
 			resources :pages do
 				resources :sections, :controller => "pages/sections", :except => [:index] do
 					collection do
@@ -60,11 +70,6 @@ Rails.application.routes.draw do
 					delete "delete_attachment/:asset_id" => "snippets#delete_attachment", :as => :delete_attachment
 				end
 			end
-			resources :addresses do
-				collection do
-					patch :sort
-				end
-			end
 		end
 
 		# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -72,8 +77,10 @@ Rails.application.routes.draw do
 
 		resources :inquiries, :only => [:create]
 		resources :articles, :only => [:index, :show]
+		resources :services, :only => [:index, :show]
+		resources :industries, :only => [:index, :show]
+		resources :careers, :only => [:index, :show]
 
-		match "/search", :to => 'search#index', via: :post, as: :search
 		# route to pages
 		match ":id", :to => 'pages#show', via: :get, as: :page
 		match "/404", to: "errors#not_found", via: :all

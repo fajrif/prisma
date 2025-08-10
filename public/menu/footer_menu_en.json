@@ -4,22 +4,10 @@
     "url": "/about-us"
   }, {
     "id": 2,
-    "label": "Portfolio",
-    "url": "/portfolio"
+    "label": "Careers",
+    "url": "/careers"
   }, {
     "id": 3,
-    "label": "Sustainability",
-    "url": "/sustainability"
-  }, {
-    "id": 5,
-    "label": "Investor Relations",
-    "url": "/investor-relations"
-  }, {
-    "id": 6,
-    "label": "News & Media",
-    "url": "/press-release"
-  }, {
-    "id": 4,
     "label": "Contact Us",
     "url": "/contact-us"
 }]

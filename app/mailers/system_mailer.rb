@@ -9,10 +9,10 @@ class SystemMailer < ApplicationMailer
 		end
 	end
 
-	def investor_inquiry_notification(inquiry_id, email, subject)
+	def inquiry_notification(inquiry_id, email, subject)
 		begin
 			@inquiry = InvestorInquiry.find(inquiry_id)
-			mail(:to => email, :subject => subject, :template_path => 'system_mailer', :template_name => 'investor_email_notification')
+			mail(:to => email, :subject => subject, :template_path => 'system_mailer', :template_name => 'email_notification')
 		rescue Exception => e
 			puts e.message
 			puts e.backtrace.inspect

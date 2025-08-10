@@ -1,0 +1,33 @@
+[{
+    "id": 1,
+    "label": "Home",
+    "url": "/id"
+  }, {
+    "id": 2,
+    "label": "About Us",
+    "url": "/id/about-us"
+  }, {
+    "id": 3,
+    "label": "Services",
+    "url": "/id/services"
+  }, {
+    "id": 4,
+    "label": "Clients",
+    "url": "/id/clients"
+  }, {
+    "id": 5,
+    "label": "Industries",
+    "url": "/id/industries"
+  }, {
+    "id": 6,
+    "label": "Blogs",
+    "url": "/id/blogs"
+  }, {
+    "id": 7,
+    "label": "Careers",
+    "url": "/id/careers"
+  }, {
+    "id": 8,
+    "label": "Contact Us",
+    "url": "/id/contact-us"
+}]

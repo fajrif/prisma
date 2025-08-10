@@ -105,6 +105,9 @@ module AdminHelper
 			"info_image",
 			"info_image2",
 			"info_image_left",
+      "info_bg",
+      "info_desc_bg",
+      "info_image_box",
 			"info_description"
 		]
 	end
@@ -260,13 +263,8 @@ module AdminHelper
 	end
 
   def is_admins_articles_page?
-		controller.controller_name == "articles"
-  end
-
-  def is_admins_archives_page?
-		controller.controller_name == "archives" ||
-		controller.controller_name == "reports" ||
-		controller.controller_name == "authors"
+		controller.controller_name == "articles" ||
+		controller.controller_name == "categories"
   end
 
   def is_admins_content_page?
@@ -276,11 +274,19 @@ module AdminHelper
 		controller.controller_name == "snippets"
   end
 
+  def is_admins_services_page?
+		controller.controller_name == "services" ||
+		controller.controller_name == "benefits" ||
+		controller.controller_name == "industries" ||
+		controller.controller_name == "portfolios"
+  end
+
 	def is_admins_others_page?
-		controller.controller_name == "members" ||
-		controller.controller_name == "portfolios" ||
+		controller.controller_name == "menus" ||
 		controller.controller_name == "addresses" ||
-		controller.controller_name == "galleries"
+		controller.controller_name == "clients" ||
+		controller.controller_name == "testimonials" ||
+		controller.controller_name == "careers"
 	end
 
 	def is_admins_users_page?
@@ -288,16 +294,7 @@ module AdminHelper
 	end
 
   def is_admins_contact_page?
-		controller.controller_name == "investor_inquiries"
-	end
-
-	def is_admins_data_master_page?
-		controller.controller_name == "menus" ||
-		controller.controller_name == "categories" ||
-		controller.controller_name == "archive_types" ||
-		controller.controller_name == "report_types" ||
-		controller.controller_name == "settings" ||
-		controller.controller_name == "member_types"
+		controller.controller_name == "inquiries"
 	end
 
 end

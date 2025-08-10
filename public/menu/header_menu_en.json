@@ -1,29 +1,33 @@
-{
-  "right": [{
+[{
     "id": 1,
+    "label": "Home",
+    "url": "/"
+  }, {
+    "id": 2,
     "label": "About Us",
     "url": "/about-us"
   }, {
-    "id": 2,
-    "label": "Portfolio",
-    "url": "/portfolio"
-  }, {
     "id": 3,
-    "label": "Sustainability",
-    "url": "/sustainability"
-  }],
-  "left": [{
-    "id": 5,
-    "label": "Investor Relations",
-    "url": "/investor-relations"
-  }, {
-    "id": 6,
-    "label": "News & Media",
-    "url": "/press-release"
+    "label": "Services",
+    "url": "/services"
   }, {
     "id": 4,
+    "label": "Clients",
+    "url": "/clients"
+  }, {
+    "id": 5,
+    "label": "Industries",
+    "url": "/industries"
+  }, {
+    "id": 6,
+    "label": "Blogs",
+    "url": "/blogs"
+  }, {
+    "id": 7,
+    "label": "Careers",
+    "url": "/careers"
+  }, {
+    "id": 8,
     "label": "Contact Us",
     "url": "/contact-us"
-  }],
-  "section": "header"
-}
+}]

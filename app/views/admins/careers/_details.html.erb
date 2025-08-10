@@ -1,0 +1,48 @@
+<table class="table table-hover">
+	<tr>
+		<td style="width:15%;"><b>ID</b></td>
+		<td><%= @career.id %></td>
+	</tr>
+	<tr>
+		<td><b>Title</b></td>
+		<td><h5 class="fs-14 mb-0 text-body"><%= @career.title %></h5></td>
+	</tr>
+	<tr>
+		<td><b>Slug</b></td>
+		<td><%= link_to career_path(@career), career_path(@career) %></td>
+	</tr>
+	<tr>
+		<td><b>Company Name</b></td>
+		<td><%= @career.company_name %></td>
+	</tr>
+	<tr>
+		<td><b>Location</b></td>
+		<td><%= @career.location %></td>
+	</tr>
+	<% if @career.file.attached? %>
+	<tr>
+		<td><b>File</b></td>
+		<td>
+			<%= link_to @career.file.filename, url_for(@career.file), target: :_blank %>
+			<%= link_to delete_attachment_admins_career_path(@career.id, @career.file.id), :class => "ms-2 btn btn-danger btn-sm", :data => { :confirm => 'Are You sure want to delete this file?' }, :method => :delete do %>
+				<i class="ri-delete-bin-fill"></i>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td><b>Status</b></td>
+		<td>
+			<h5 class="fs-14 mb-1"><%= @career.published_label %></h5>
+			<p class="text-muted mb-0">Date : <%= @career.published_date_label %></p>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Short Description</b></td>
+		<td><%= @career.short_description %></td>
+	</tr>
+	<tr>
+		<td><b>Content</b></td>
+		<td><%= raw @career.content %></td>
+	</tr>
+</table>

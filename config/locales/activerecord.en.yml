@@ -3,9 +3,9 @@
 en:
   activerecord:
     models:
-      investor_inquiry: "Investor Inquiry"
+      inquiry: "Inquiry"
     attributes:
-      investor_inquiry:
+      inquiry:
         name: "Name"
         company_name: "Company name"
         email: "Email"

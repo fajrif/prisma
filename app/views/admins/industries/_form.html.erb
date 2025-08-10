@@ -1,0 +1,55 @@
+<%= simple_form_for @industry, url: (@industry.new_record? ? admins_industries_path : admins_industry_path(@industry.id)), method: (@industry.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+          <fieldset>
+					<%= f.input :name, as: :string %>
+					<%= f.input :caption, as: :string %>
+          <%= f.input :description, input_html: { class: 'quill_container' } %>
+					</fieldset>
+					<%= f.error :base %>
+          <div class="form-actions">
+            <%= f.button :submit, :class => 'btn btn-secondary' %>
+            <% unless @industry.new_record? %>
+              <%= link_to "Cancel", admins_industry_path(@industry.id), :class => 'btn btn-light' %>
+            <% else %>
+              <%= link_to "Cancel", admins_industries_path, :class => 'btn btn-light' %>
+            <% end %>
+          </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @industry, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+              <label>Image</label>
+              <%= f.input :image, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <%= f.association :banner_section, as: :select %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+	<style>
+		.industry_description {
+			margin-bottom: 100px !important;
+		}
+    .form-control.industry_description-quill:not(.ql-container) {
+      display: none;
+    }
+	</style>
+<% end %>

@@ -1,0 +1,29 @@
+<%= simple_form_for [:admins, @client] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :company_name, as: :string %>
+						<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions" style="margin-top:10px;">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @client.new_record? %>
+							<%= link_to "Cancel", admins_client_path(@client), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_clients_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @client, col: 'col-lg-12' %>
+			</div>
+		</div>
+	</div>
+<% end %>

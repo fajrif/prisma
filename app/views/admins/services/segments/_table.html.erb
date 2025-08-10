@@ -1,0 +1,49 @@
+<div class="table-card">
+	<table class="table align-middle">
+		<thead class="table-light">
+			<tr>
+				<th class="text-center">Sort</th>
+				<th>Snippet Name</th>
+				<th>Template</th>
+				<th>Bg Color</th>
+				<th>Css Class</th>
+				<th class="text-center">Link Button</th>
+				<th class="text-center">Action</th>
+			</tr>
+		</thead>
+		<tbody id="contents1" data-url="<%= sort_admins_service_segments_path(@service.id) %>">
+			<% for s in @service.segments %>
+				<%= content_tag :tr, id: dom_id(s) do %>
+					<td class="handle text-center">
+						<i class="ri-drag-move-2-line me-2"></i>
+					</td>
+					<td><b><%= link_to_unless !s.try(:snippet), s.snippet.name_id_label, admins_snippet_path(s.snippet) %></b></td>
+					<td><%= s.try(:snippet).try(:template) %></td>
+					<td><%= s.bg_color %></td>
+					<td><%= s.css_class %></td>
+					<td class="text-center"><%= badge_true_false_status s.try(:snippet).try(:has_link_button?) %></td>
+					<td class="text-center">
+						<div class="dropdown">
+							<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="ri-more-fill"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li>
+									<%= link_to edit_admins_service_segment_path(@service.id, s), :remote => true, class: "dropdown-item edit-list" do %>
+										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+									<% end %>
+								</li>
+								<li class="dropdown-divider"></li>
+								<li>
+									<%= link_to admins_service_segment_path(@service.id, s), :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, class: "dropdown-item remove-list" do %>
+										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+									<% end %>
+								</li>
+							</ul>
+						</div>
+					</td>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>

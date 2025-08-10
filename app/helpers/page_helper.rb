@@ -117,8 +117,6 @@ module PageHelper
 	def load_header_menu
 		if data_menu = Menu.find_by(section: 1).try(:data)
 			@header_menu = JSON.parse(data_menu)
-			@right_menu = @header_menu["right"]
-			@left_menu = @header_menu["left"]
 		end
 	end
 

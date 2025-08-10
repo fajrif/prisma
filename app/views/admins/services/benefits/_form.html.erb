@@ -1,0 +1,18 @@
+<div class="modal-header">
+	<h5 class="modal-title">Service Benefit</h5>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<%= simple_form_for @benefit, url: (@benefit.new_record? ? admins_service_benefits_path(@service.id) : admins_service_benefit_path(@service.id, @benefit.id)), method: (@benefit.new_record? ? :post : :put), remote: true do |f| %>
+	<%= f.error_notification %>
+  <%= f.input :content, as: :string %>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="hstack gap-2 justify-content-end">
+				<a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Close</a>
+				<%= f.button :submit, 'Save', :class => 'btn btn-secondary' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+</div>

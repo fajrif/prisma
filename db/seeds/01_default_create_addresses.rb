@@ -3,24 +3,24 @@ puts "create addresses"
 
 addresses = [{
 	en: "Headquarters",
-	cn: "总部",
-	address: "GIESMART PLAZA<br/>Jl. Raya Pasar Minggu No.17A 7<br/>Jakarta, Indonesia<br/>12780",
-	email1: "info@indo-energy.com",
-	phone1: "(+62) 21 576 8888",
-	fax: "(+62) 21 576 1009"
-}, {
-	en: "US Office",
-	cn: "美国办事处",
-	address: "4115 Blackhawk Plaza<br/>CircleSuite 100Danville,<br/> CA 94506 USA"
+	id: "Kantor Pusat",
+  address: "GRAHA PRISMA<br/>Jl. Kedoya Duri Raya No.38,Kedoya Selatan,<br/>Jakarta Barat, 11520 - Indonesia",
+	email1: "sales@prisma-ads.com",
+	phone1: "+62 21 5835 6575",
+	phone2: "+62 21 5835 6570",
+	latitude: "-6.1837826477428885",
+	longitude: "106.76723740972922"
 }]
 
 addresses.each_with_index do |adr, i|
 	address = Address.new(name: adr[:en], complete_address: adr[:address], order_no: i+1)
 	address.email1 = adr[:email1] if adr[:email1]
 	address.phone1 = adr[:phone1] if adr[:phone1]
-	address.fax = adr[:fax] if adr[:fax]
-	Mobility.with_locale(:cn) {
-		address.name = adr[:cn]
+	address.phone2 = adr[:phone2] if adr[:phone2]
+	address.latitude = adr[:latitude] if adr[:latitude]
+	address.longitude = adr[:longitude] if adr[:longitude]
+	Mobility.with_locale(:id) {
+		address.name = adr[:id]
 	}
 	address.save
 	puts "Create address: #{address.name}"

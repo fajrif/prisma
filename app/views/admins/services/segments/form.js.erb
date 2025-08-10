@@ -1,0 +1,8 @@
+$("#myModal .modal-content").html("<%= escape_javascript(render("form")) %>");
+$("#myModal").modal('show');
+
+if($('.form-select').length > 0){
+	const choices = new Choices('.form-select', {
+		searchEnabled: true
+	});
+}

@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h5 class="modal-title">Service Segment</h5>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<%= simple_form_for @segment, url: (@segment.new_record? ? admins_service_segments_path(@service.id) : admins_service_segment_path(@service.id, @segment.id)), method: (@segment.new_record? ? :post : :put), remote: true do |f| %>
+	<%= f.error_notification %>
+	<%= f.association :snippet, as: :select, collection: Snippet.where(parent_id: nil) %>
+	<% unless @segment.new_record? %>
+		<%= f.input :bg_color, as: :select, collection: available_bg_colors, include_blank: true %>
+		<%= f.input :css_class %>
+	<% end %>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="hstack gap-2 justify-content-end">
+				<a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Close</a>
+				<%= f.button :submit, 'Save', :class => 'btn btn-secondary' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+</div>

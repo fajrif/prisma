@@ -1,7 +1,6 @@
 class CreateArticles < ActiveRecord::Migration[7.1]
   def change
     create_table :articles do |t|
-			t.string :name, null: false, default: ""
       t.jsonb :title, default: {}
       t.jsonb :short_description, default: {}
 			t.references :category
@@ -10,6 +9,6 @@ class CreateArticles < ActiveRecord::Migration[7.1]
 			t.string :video_url, null: false, default: ""
       t.timestamps null: false
     end
-    add_index :articles, :name, unique: true
+    add_index :articles, :title, unique: true
   end
 end

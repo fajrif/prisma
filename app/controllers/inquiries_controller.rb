@@ -7,14 +7,14 @@ class InquiriesController < ApplicationController
 		if @inquiry.valid?
 
 			unless @inquiry.use_v2.blank?
-				unless Prisma::Recaptcha.verify_recaptcha_v2?(params['g-recaptcha-response'], 'investor_inquiry')
+				unless Prisma::Recaptcha.verify_recaptcha_v2?(params['g-recaptcha-response'], 'inquiry')
 					flash[:alert] = t('global.recaptcha_failed')
 					@show_recaptcha_v2 = true
 				else
 					create_data
 				end
 			else
-				unless Prisma::Recaptcha.verify_recaptcha?(params[:recaptcha_token], 'investor_inquiry')
+				unless Prisma::Recaptcha.verify_recaptcha?(params[:recaptcha_token], 'inquiry')
 					flash[:alert] = t('global.recaptcha_failed')
 					@show_recaptcha_v2 = true
 				else

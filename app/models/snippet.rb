@@ -13,6 +13,9 @@ class Snippet < ApplicationRecord
   has_many :pages, through: :sections
 	has_many :link_buttons, as: :linkable
 
+	has_many :segments, dependent: :destroy
+  has_many :services, through: :segments
+
 	validates :image, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates :background, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
