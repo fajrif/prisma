@@ -5,7 +5,7 @@
 				<th class="text-center">ID</th>
 				<th>Name</th>
 				<th>Company Name</th>
-				<th>Page</th>
+				<th>Caption</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -13,9 +13,9 @@
 			<% for portfolio in @portfolios %>
 				<tr>
 					<td class="text-center"><%= portfolio.id %></td>
-					<td><h5 class="fs-14 mb-0"><%= link_to portfolio.name, admins_portfolio_path(portfolio), class: "text-primary" %></h5></td>
+					<td><h5 class="fs-14 mb-0"><%= link_to portfolio.name, admins_portfolio_path(portfolio.id), class: "text-primary" %></h5></td>
 					<td><%= portfolio.company_name %></td>
-					<td><%= link_to portfolio.page.title, admins_page_path(portfolio.page) if portfolio.page %></td>
+					<td><%= portfolio.caption %></td>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,18 +23,18 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
-									<%= link_to admins_portfolio_path(portfolio), class: "dropdown-item" do %>
+									<%= link_to admins_portfolio_path(portfolio.id), class: "dropdown-item" do %>
 										<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
 									<% end %>
 								</li>
 								<li>
-									<%= link_to edit_admins_portfolio_path(portfolio), class: "dropdown-item edit-list" do %>
+									<%= link_to edit_admins_portfolio_path(portfolio.id), class: "dropdown-item edit-list" do %>
 										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
 									<% end %>
 								</li>
 								<li class="dropdown-divider"></li>
 								<li>
-									<%= link_to admins_portfolio_path(portfolio), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
+									<%= link_to admins_portfolio_path(portfolio.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
 										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
 									<% end %>
 								</li>

@@ -1,30 +1,19 @@
-<div class="row">
-	<div class="col-12 col-lg-12">
-		<h4 class="font-weight-400"><%= t('contacts.title') %></h4>
-	</div>
-	<div class="col-12 col-lg-12">
-		<%= flash_message2 %>
-		<%= simple_form_for @inquiry || Inquiry.new, url: inquiries_path, method: :post, remote: true do |f| %>
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<%= f.input :name %>
-					<%= f.input :company_name %>
-					<%= f.input :email %>
-				</div>
-				<div class="col-12 col-md-6">
-					<%= f.input :phone %>
-					<%= f.input :message, as: :text, input_html: { rows: "8" }	%>
-					<% if @show_recaptcha_v2 %>
-						<input type="hidden" value="true" name="inquiry[use_v2]" id="inquiry_use_v2">
-						<%= raw Prisma::Recaptcha.recaptcha_v2_render %>
-					<% else %>
-						<%= raw Prisma::Recaptcha.recaptcha_execute('inquiry') %>
-					<% end %>
-					<div class="col-12 margin-30px-top">
-						<button type="submit" class="btn btn-large btn-prisma btn-rounded"><%= t('global.submit') %></button>
-					</div>
-				</div>
-			</div>
-		<% end %>
-	</div>
-</div>
+<%= flash_message2 %>
+<%= simple_form_for @inquiry || Inquiry.new, url: inquiries_path, method: :post, remote: true, wrapper: :contact_form do |f| %>
+  <div class="row">
+    <%= f.input :name, label: false, placeholder: t('inquiries.name') %>
+    <%= f.input :email, label: false, placeholder: t('inquiries.email') %>
+    <%= f.input :company_name, label: false, placeholder: t('inquiries.company_name') %>
+    <%= f.input :phone, label: false, placeholder: t('inquiries.phone') %>
+    <%= f.input :message, as: :text, wrapper: :contact_form_textarea, input_html: { rows: "4" }, label: false, placeholder: t('inquiries.message') %>
+  </div>
+  <div class="col-12 margin-10px-top">
+    <% if @show_recaptcha_v2 %>
+      <input type="hidden" value="true" name="inquiry[use_v2]" id="inquiry_use_v2">
+      <%= raw Prisma::Recaptcha.recaptcha_v2_render %>
+    <% else %>
+      <%= raw Prisma::Recaptcha.recaptcha_execute('inquiry') %>
+    <% end %>
+    <button type="submit" class="btn btn-large btn-transparent-prisma btn-rounded"><%= t('global.submit') %></button>
+  </div>
+<% end %>

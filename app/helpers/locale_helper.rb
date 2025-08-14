@@ -13,15 +13,14 @@ module LocaleHelper
 
 			content_tag(:li) do
 				content_tag(:a, href: en_path) do
-					content_tag(:i, nil, class: "icon-country usa") + "English"
+					"EN"
 				end
 			end +
 			content_tag(:li) do
 				content_tag(:a, href: id_path) do
-					content_tag(:i, nil, class: "icon-country indonesia") + "Indonesia"
+					"ID"
 				end
 			end
-
 		end
 	end
 

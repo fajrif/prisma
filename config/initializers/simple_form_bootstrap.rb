@@ -63,6 +63,34 @@ SimpleForm.setup do |config|
 		end
   end
 
+  config.wrappers :contact_form, class: 'col-12 col-md-6' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'form-label'
+    b.use :input, class: 'form-control input-prisma bg-transparent border-color-medium-white medium-input', error_class: 'is-invalid'
+    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
+    b.use :hint, wrap_with: { class: 'form-text' }
+  end
+
+  config.wrappers :contact_form_textarea, class: 'col-12' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'form-label'
+    b.use :input, class: 'form-control input-prisma bg-transparent border-color-medium-white medium-input', error_class: 'is-invalid'
+    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
+    b.use :hint, wrap_with: { class: 'form-text' }
+  end
+
   # vertical input for boolean
   config.wrappers :vertical_boolean, tag: 'fieldset', class: 'mb-3' do |b|
     b.use :html5

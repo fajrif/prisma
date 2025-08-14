@@ -79,9 +79,12 @@ Rails.application.routes.draw do
 		resources :articles, :only => [:index, :show]
 		resources :services, :only => [:index, :show]
 		resources :industries, :only => [:index, :show]
+		resources :portfolios, :only => [:index, :show]
 		resources :careers, :only => [:index, :show]
+		resources :locations, :only => [:index, :show]
 
 		# route to pages
+		match "contact-us", :to => 'inquiries#show', via: :get, as: :contact_us
 		match ":id", :to => 'pages#show', via: :get, as: :page
 		match "/404", to: "errors#not_found", via: :all
 		root :to => "pages#show", id: 'home'

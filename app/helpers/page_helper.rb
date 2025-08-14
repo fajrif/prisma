@@ -10,15 +10,7 @@ module PageHelper
 			_text = object.link_text
 			_text = get_text_from_object(_text, object)
 			_text = t("global.read_more") if _text.blank?
-			if only_arrow
-				_content_with_icon = raw("#{content_tag(:i, nil, class: 'fa-solid fa-arrow-right icon-very-small ms-0')}")
-			else
-				if object.link_text != "download_now"
-					_content_with_icon = raw("#{_text} #{content_tag(:i, nil, class: 'fa-solid fa-arrow-right icon-very-small')}")
-				else
-					_content_with_icon = _text
-				end
-			end
+      _content_with_icon = _text
 			link_to(get_link_from_link_button_object(object), class: class_name, target: _target) do
 				_content_with_icon
 			end
@@ -49,7 +41,7 @@ module PageHelper
 
 	def get_prisma_element_colors(bg_color)
 	 if bg_color == 'bg-green' or bg_color == 'bg-black' or bg_color == "bg-dark-grey" or bg_color == "bg-green-gradient"
-			return 'text-white-2', 'btn-prisma'
+			return 'text-white-2', 'btn-transparent-prisma'
 		elsif bg_color == 'bg-yellow' or bg_color == 'bg-grey'
 			return 'text-extra-dark-gray', 'btn-prisma btn-border'
 		else
@@ -147,7 +139,7 @@ module PageHelper
 	def generate_footer_link(data)
 		_menu = ""
 		data.each do |menu|
-			_menu += content_tag(:li, class: "d-inline-block margin-10px-right") do
+			_menu += content_tag(:li, class: "margin-10px-bottom") do
 				link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: "text-white-2")
 			end
 		end

@@ -29,21 +29,38 @@
 
 en:
   contacts:
-    title: "Contact Us"
-    short_description: "You can contact us if you have any questions or comments"
-    instructions: "Submit your inquiries through this form"
-    investor: "Investor"
+    title: "Let’s Build Your Next Great OOH Campaign"
+    short_description: "Whether you're planning billboard advertising in Jakarta, launching a DOOH campaign across Indonesia, or exploring new formats in out-of-home media, Prisma Advertising is ready to bring your brand to the streets — boldly, creatively, and with purpose."
+    instructions: "Get in touch with us today and let's shape real-world impact, together."
   inquiries:
+    name: "Name"
+    phone: "Phone"
+    email: "Email"
+    company_name: "Company Name"
+    message: "Message"
     success: "Thank You for your inquiry!"
     errors: "Oops sorry we are unable to submit your inquiry!"
-  sumatra_kruh:
-    key_point1: "Positive cash flow producing block."
-    key_point2: "Average total gross production of 330 barrels of oil per day from 4 wells in 2018"
-    key_point3: "Additional 5 prospects within Kruh Block provide significant upside potential in terms of reserves"
-  java_citarum:
-    key_point1: "De-risked exploration block with proven presence of hydrocarbon"
-    key_point2: "Located near the market where there’s a current deficit of natural gas supply"
-    key_point3: "Possibility to tap into the region’s existing pipeline infrastructure network"
+  locations:
+    jabodetabek:
+      desc: "Our Jakarta locations cover key business districts, transit hubs, and high-traffic urban zones, ideal for reaching diverse, on-the-move audiences in Indonesia’s capital."
+    bali:
+      desc: "Positioned in popular tourist areas, beach towns, and lifestyle hotspots, our Bali sites offer premium exposure to both local and international visitors in a vibrant, experience-driven setting."
+    bandung:
+      desc: "From growing cities to commuter corridors, our West Java locations connect your brand with emerging markets and daily travelers across the region."
+    explore: "Explore IDEAL Locations"
+  prisma:
+    advertising:
+      about: "Prisma Advertising: Your Partner in Powerful OOH Advertising"
+      desc: "Learn more about the industries we support, the services we offer, and the standout projects that make Prisma Advertising a leader in outdoor advertising."
+  footer:
+    title:
+      our_services: "Our Services"
+      company: "Company"
+      explore: "Explore"
+    explore:
+      client_projects: "Client Projects"
+      industries: "Industries"
+      blogs: "Blogs"
   errors:
     404_title: "Page Not Found"
     404_desc: "The page you were looking for could not be found."
@@ -54,33 +71,25 @@ en:
     500_title: "Page Error"
     500_desc: "We're sorry, but something went wrong."
   global:
+    dismiss: "Dismiss"
     read_more: "Read More"
     recaptcha_failed: "Recaptcha verification failed"
     view_profile: "View Profile"
     view_all: "View All"
-    view_locations: "See All Locations"
-    view_media: "See All Media"
     view: "View"
-    about_us: "About Us"
-    contact_us: "Contact Us"
-    press_release: "Press Release"
-    media_page: "Media"
-    sec_filings: "SEC Filings"
-    research_reports: "Research Reports"
-    corporate_governance: "Corporate Governance"
     back_to: "Back to %{object_name}"
-    back_to_news: "Back to News"
+    back_to_blogs: "Back to Blogs"
     others: "Other %{object_name}"
-    others_news: "More News & Media"
+    others_blogs: "Other Blogs"
     no_data_found: "No Data Found"
     download: "Download"
     download_now: "Download Now"
     apply_now: "Apply Now"
+    join_us_now: "Join Us Now"
     submit: "Submit"
     search_results: "Search Results"
     search_not_found: "Search not found: `%{search}`"
     articles: "Articles"
     pages: "Pages"
     max: "Max"
-    key_points: "Key Points"
     all: "All"

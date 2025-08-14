@@ -9,10 +9,42 @@
 						<td><%= @portfolio.id %></td>
 					</tr>
 					<tr>
+						<td><b>Logo</b></td>
+						<td>
+							<%= image_tag @portfolio.logo.variant(resize_to_limit: [100,100]) if @portfolio.logo.attached? %>
+						</td>
+					</tr>
+					<tr>
 						<td><b>Image</b></td>
 						<td>
 							<%= image_tag @portfolio.image.variant(resize_to_limit: [100,100]) if @portfolio.image.attached? %>
 						</td>
+					</tr>
+					<tr>
+						<td><b>Image 1</b></td>
+						<td>
+							<%= image_tag @portfolio.image1.variant(resize_to_limit: [100,100]) if @portfolio.image1.attached? %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Image 2</b></td>
+						<td>
+							<%= image_tag @portfolio.image2.variant(resize_to_limit: [100,100]) if @portfolio.image2.attached? %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Banner</b></td>
+						<td>
+							<%= image_tag @portfolio.banner.variant(resize_to_limit: [100,100]) if @portfolio.banner.attached? %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Caption</b></td>
+						<td><%= @portfolio.caption %></td>
+					</tr>
+					<tr>
+						<td><b>Video URL</b></td>
+						<td><%= @portfolio.video_url %></td>
 					</tr>
 					<tr>
 						<td><b>Name</b></td>
@@ -22,18 +54,50 @@
 						<td><b>Company Name</b></td>
 						<td><%= @portfolio.company_name %></td>
 					</tr>
+          <tr>
+            <td><b>Slug</b></td>
+            <td><%= link_to portfolio_path(@portfolio), portfolio_path(@portfolio) %></td>
+          </tr>
+          <tr>
+            <td><b>Service ID</b></td>
+            <td><%= link_to "#{@portfolio.service.name} [ID:#{@portfolio.service.id}]", admins_service_path(@portfolio.service.id) %></td>
+          </tr>
+          <tr>
+            <td><b>Industry ID</b></td>
+            <td><%= link_to "#{@portfolio.industry.name} [ID: #{@portfolio.industry.id}]", admins_industry_path(@portfolio.industry.id) %></td>
+          </tr>
 					<tr>
-						<td><b>Page</b></td>
-						<td><%= link_to @portfolio.page.title, admins_page_path(@portfolio.page) if @portfolio.page %></td>
+						<td><b>Media Used</b></td>
+						<td><%= @portfolio.media_used %></td>
+					</tr>
+					<tr>
+						<td><b>Collaborators</b></td>
+						<td><%= @portfolio.collaborators %></td>
+					</tr>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td><%= raw @portfolio.short_description %></td>
 					</tr>
 					<tr>
 						<td><b>Description</b></td>
 						<td><%= raw @portfolio.description %></td>
 					</tr>
+					<tr>
+						<td><b>About Campaign</b></td>
+						<td><%= raw @portfolio.about_campaign %></td>
+					</tr>
+					<tr>
+						<td><b>Area Coverage</b></td>
+						<td><%= raw @portfolio.area_coverage %></td>
+					</tr>
+					<tr>
+						<td><b>Creative Highlights</b></td>
+						<td><%= raw @portfolio.creative_highlights %></td>
+					</tr>
 				</table>
 				<div class="form-actions">
-					<%= link_to 'Edit', edit_admins_portfolio_path(@portfolio), :class => 'btn btn-secondary' %>
-					<%= link_to 'Destroy', admins_portfolio_path(@portfolio), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'Edit', edit_admins_portfolio_path(@portfolio.id), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_portfolio_path(@portfolio.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
 					<%= link_to 'View All', admins_portfolios_path, :class => 'btn btn-light' %>
 				</div>
 			</div>

@@ -20,7 +20,7 @@ Mobility.with_locale(:id) {
 puts "Create Service: #{@srv1.name}"
 
 # Digital Billboard Advertising
-@srv2 = Service.new(name: "Static Billboard Advertising", banner_section: @bs11, color: "#3473EE")
+@srv2 = Service.new(name: "Digital Billboard Advertising", banner_section: @bs11, color: "#3473EE")
 @srv2.caption = "Shine Brighter with Digital Billboard Advertising (DOOH)"
 @srv2.description = "Our vibrant LED billboards deliver real-time, dynamic visuals across Indonesia. With powerful DOOH advertising, your brand stays visible day and night in key urban spaces."
 @srv2.short_description = "Deliver dynamic, real-time messaging with striking digital displays. Ideal for campaigns that demand flexibility and immediacy."

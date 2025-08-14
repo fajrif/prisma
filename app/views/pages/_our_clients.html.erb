@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div class="logos">
+      <div class="logo_items">
+        <%- @clients = Client.all -%>
+        <% @clients.each do |client| %>
+          <%= image_tag(client.image) %>
+        <% end %>
+      </div>
+    </div>
+</div>

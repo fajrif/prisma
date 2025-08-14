@@ -1,5 +1,13 @@
 class InquiriesController < ApplicationController
 
+  def show
+		if @banner_section = BannerSection.find_by_name("Contact Us")
+			current_banner_section_style(@banner_section)
+			@banners = @banner_section.banners
+		end
+    @address = Address.first
+  end
+
   def create
 		@success = false
 		@inquiry = Inquiry.new(params_inquiry)

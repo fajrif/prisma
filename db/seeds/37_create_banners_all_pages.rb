@@ -1,5 +1,4 @@
 # Create Banners for All Pages
-
 Banner.delete_all
 
 # banner 1

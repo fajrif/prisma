@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
+    <div class="col-6 col-lg-7">
+      <h5 class="font-weight-600"><%= snippet.title %></h5>
+      <div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
+    </div>
+    <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+      <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
+        <%= t('global.view_all') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="swiper swiper-pagination-bottom blog-slider" data-slider-options='{ "slidesPerView": "1", "allowTouchMove":true, "loop":false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" }, "breakpoints": { "992": { "slidesPerView": 4 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".swiper-pagination-1", "clickable": true } }'>
+          <div class="swiper-wrapper">
+            <%- @services = Service.all -%>
+            <% @services.each_with_index do |service, index| %>
+              <!-- start testimonial item -->
+              <div class="swiper-slide">
+                <div class="margin-half-all bg-white box-shadow-light padding-eight-all sm-padding-30px-all border border-2px border-radius-8" style="border-color:<%= service.color %> !important">
+                  <% if service.image.attached? %>
+                    <img src="<%= url_for(service.image.variant(resize: "80x80")) %>" class="margin-25px-bottom md-margin-15px-bottom" alt="Prisma Services"/>
+                  <% end %>
+                  <h5 class="text-uppercase d-block font-weight-500 mb-3" style="color:<%= service.color %>"><%= service.name %></h5>
+                  <span class="d-block text-extra-dark-gray font-weight-500 mb-3"><%= service.caption %></span>
+                  <p><%= service.short_description %></p>
+                  <a href="<%= service_url(service) %>">Explore</a>
+                </div>
+              </div>
+              <!-- end testimonial item -->
+            <% end %>
+          </div>
+          <div class="swiper-pagination-1 text-center swiper-pagination-square"></div>
+      </div>
+    </div>
+  </div>
+</div>

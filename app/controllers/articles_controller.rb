@@ -1,35 +1,19 @@
 class ArticlesController < ApplicationController
-	before_action :set_data_page, only: [:index]
+	before_action :set_banner, only: [:index]
 
   def index
-		@categories = Category.all
-
-		begin
-			if @category = Category.friendly.find(params[:id])
-				criteria = @category.articles
-			end
-		rescue ActiveRecord::RecordNotFound
-			criteria = Article.all
-		end
-
-		unless params[:sort_by].blank?
-			criteria = criteria.unscope(:order).order("published_date " + params[:sort_by])
-		end
-
+    criteria = Article.all
 		@articles = criteria.page(params[:page]).per(12)
 
     respond_to do |format|
-      format.html {
-				@disclosure_informations = ArchiveType.get_disclosure_informations
-				render :index
-			}
+      format.html
       format.js
     end
   end
 
   def show
 		@article = Article.friendly.find(params[:id])
-		@category = @article.category
+    set_data_page
 		@meta_title = @article.meta_title unless @article.meta_title.blank?
 		@meta_desc = @article.meta_description unless @article.meta_description.blank?
 		@articles = Article.most_recent_articles(@article.id, 3)
@@ -37,16 +21,24 @@ class ArticlesController < ApplicationController
 
 	protected
 
-	def set_data_page
-		if @page = Page.friendly.find(params[:id])
-			@page_news = Page.where("title ->> :key ILIKE :value", key: :en, value: "News").first
-			@meta_title = @page.meta_title unless @page.meta_title.blank?
-			@meta_desc = @page.meta_description unless @page.meta_description.blank?
-			current_banner_section_style(@page.banner_section)
-			@banners = @page.banners
+	def set_banner
+		if @banner_section = BannerSection.find_by_name("Blog")
+			current_banner_section_style(@banner_section)
+			@banners = @banner_section.banners
 		end
+
+    set_data_page
+	rescue ActiveRecord::RecordNotFound
+		puts "No Banner Section Found"
+	end
+
+	def set_data_page
+    # if @page = Page.friendly.find("home")
+    #   @sections = Section.joins(:snippet)
+    #               .where(page_id: @page.id)
+    #               .where(snippets: { name: ['our_portfolios', 'our_industries'] })
+    # end
 	rescue ActiveRecord::RecordNotFound
 		puts "No Page Found"
 	end
-
 end

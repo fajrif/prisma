@@ -5,7 +5,7 @@ class Inquiry < ApplicationRecord
 	attr_accessor :use_v2
 
   # Validations
-  validates_presence_of :name, :email, :phone, :message
+  validates_presence_of :name, :email, :company_name, :phone, :message
 	validates :email, email: true
 	validates :message, length: { maximum: 250 }
 

@@ -1,11 +1,11 @@
 <%- text_color, btn_color = 'text-white-2', 'btn-prisma' -%>
 <%- link_buttons = snippet.link_buttons -%>
 <%- margin_button = 'margin-10px-right' if link_buttons.size > 1 -%>
-<div class="container-xl wow animate__fadeIn">
-	<div class="bg-green padding-50px-all sm-padding-20px-all border-radius-20 <%= text_color %>">
-		<div class="row">
+<div class="container wow animate__fadeIn">
+	<div class="cover-background padding-40px-all sm-padding-20px-all border-radius-8 <%= text_color %>" style="background-image:url('<%= image_url('bg-prisma-cta.png') %>');">
+		<div class="row transparent-box no-margin-lr">
 			<div class="col-md-8 last-paragraph-no-margin sm-margin-30px-bottom">
-				<h4 class="text-uppercase margin-10px-bottom"><%= snippet.title %></h4>
+				<h3 class="font-weight-600 margin-10px-bottom"><%= snippet.title %></h3>
 				<% unless snippet.short_description.blank? %>
 					<%= raw snippet.short_description %>
 				<% end %>
@@ -13,7 +13,7 @@
 			<div class="col-md-4 d-flex justify-content-start justify-content-md-end align-items-center sm-no-margin-bottom">
 				<div>
 					<% link_buttons.each_with_index do |link_button, index| %>
-						<%= render_link_text_url(link_button, "btn btn-large btn-rounded btn-border text-uppercase btn-white #{margin_button if index == 0}") %>
+						<%= render_link_text_url(link_button, "btn btn-large btn-rounded btn-border text-uppercase btn-transparent-prisma #{margin_button if index == 0}") %>
 					<% end %>
 				</div>
 			</div>

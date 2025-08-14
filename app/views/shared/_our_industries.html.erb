@@ -1,0 +1,37 @@
+<%- industries = Industry.all -%>
+<% unless industries.empty? %>
+  <section class="bg-image" style="background-image:url('<%= image_url('bg-industry.png') %>');">
+    <div class="container">
+      <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
+        <div class="col-6 col-lg-7">
+          <h5 class="text-white-2 font-weight-600">Industries We Serve</h5>
+          <div class="text-white-2 mb-3 d-none d-md-block">We have served clients from a broad spectrum of industries, successfully realizing each brand's vision through high-impact campaigns. No matter the sector, we have unmatched experience in making your message stand out.</div>
+        </div>
+        <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+          <%= link_to industries_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
+            <%= t('global.view_all') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 md-margin-70px-bottom sm-margin-50px-bottom wow animate__fadeIn">
+          <img src="<%= image_url('prism.png') %>" alt="Prisma Logo"/>
+        </div>
+        <div class="col-lg-8">
+          <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 m-0">
+            <% industries.each_with_index do |industry, index| %>
+              <!-- start features box item -->
+              <div class="col padding-10px-lr margin-10px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
+                <div class="transparent-box">
+                  <a href="<%= industry_path(industry) %>" class="d-inline-block text-black text-medium font-weight-600 mb-2"><%= industry.name %></a>
+                  <p class="d-inline-block text-medium w-90"><%= truncate(strip_tags(industry.description), length: 80) %></p>
+                </div>
+              </div>
+              <!-- end features box item -->
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

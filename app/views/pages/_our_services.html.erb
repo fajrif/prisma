@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-8 col-md-10 margin-five-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+      <h5 class="text-black text-uppercase font-weight-600"><%= snippet.title %></h5>
+      <p class="text-black margin-5px-bottom text-extra-large font-weight-300">
+        <%= snippet.short_description %>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col swiper blog-slider overflow-hidden sm-position-relative sm-padding-5px-lr" data-slider-options='{ "slidesPerView": 1, "loop": true, "allowTouchMove": true, "centeredSlides":true, "spaceBetween": 30, "preventClicks": true,"autoplay": { "delay": 3000, "disableOnInteraction": true }, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-01", "prevEl": ".swiper-button-prev-01" }, "pagination": { "el": ".swiper-pagination-01", "clickable": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 2 }, "768": { "slidesPerView": 2 } } }'>
+      <div class="swiper-wrapper">
+        <%- @services = Service.all -%>
+        <% @services.each_with_index do |service, index| %>
+          <!-- start item -->
+          <div class="swiper-slide">
+            <div class="blog-item padding-four-lr border-radius-top-20 cover-background" style="background-image:url('<%= service.image.attached? ? url_for(service.image) : "https://via.placeholder.com/350x350" %>');">
+              <div class="opacity-extra-medium bg-extra-dark-gray"></div>
+              <div class="d-flex flex-column justify-content-between align-items-start h-450px position-relative">
+                <span class="text-blue text-super-large margin-10px-tb"><%= (index+1).to_s.rjust(2, "0") %></span>
+                <a href="<%= services_url( anchor: service.name.gsub(' ','-').downcase ) %>">
+                  <h4 class="text-white-2 text-uppercase d-block font-weight-500 mb-3"><%= service.name %></h4>
+                  <p class="text-white-2 text-medium mb-3"><%= service.caption %></p>
+                </a>
+              </div>
+            </div>
+            <div class="bg-gradient-light-blue-light-blue text-white-2 text-medium padding-four-all border-radius-bottom-20 last-paragraph-no-margin">
+              <p class="text-medium font-weight-400 w-100 sm-w-100 line-height-20">
+                <%= service.short_description %>
+              </p>
+            </div>
+          </div>
+          <!-- end item -->
+        <% end %>
+      </div>
+      <div class="swiper-button-next-01 swiper-button-next light d-lg-none"><i class="ti-angle-right"></i></div>
+      <div class="swiper-button-prev-01 swiper-button-prev light d-lg-none"><i class="ti-angle-left"></i></div>
+    </div>
+  </div>
+</div>

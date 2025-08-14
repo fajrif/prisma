@@ -7,6 +7,8 @@ class Industry < ApplicationRecord
 	extend FriendlyId
   friendly_id :name, use: :slugged
 
+	default_scope { order(id: :asc) }
+
 	has_one_attached :image, dependent: :purge
 	belongs_to :banner_section, optional: true
 

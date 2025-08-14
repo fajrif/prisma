@@ -1,24 +1,80 @@
-<%= simple_form_for [:admins, @portfolio] do |f| %>
-	<%= f.error_notification %>
-	<fieldset>
-		<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
-		<%= f.input :name %>
-		<%= f.input :company_name %>
-		<%= f.association :page, as: :select %>
-		<%= f.input :description, input_html: { class: 'quill_container' } %>
-	</fieldset>
-	<%= f.error :base %>
-	<div class="form-actions" style="margin-top:100px;">
-		<%= f.button :submit, :class => 'btn btn-secondary' %>
-		<% unless @portfolio.new_record? %>
-			<%= link_to "Cancel", admins_portfolio_path(@portfolio), :class => 'btn btn-light' %>
-		<% else %>
-			<%= link_to "Cancel", admins_portfolios_path, :class => 'btn btn-light' %>
-		<% end %>
+<%= simple_form_for @portfolio, url: (@portfolio.new_record? ? admins_portfolios_path : admins_portfolio_path(@portfolio.id)), method: (@portfolio.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+          <fieldset>
+            <%= f.input :name, as: :string %>
+            <%= f.input :company_name, as: :string %>
+            <%= f.input :caption, as: :string %>
+            <%= f.input :media_used, as: :string %>
+            <%= f.input :collaborators, as: :string %>
+            <%= f.input :video_url, as: :string %>
+            <%= f.input :short_description, input_html: { class: 'quill_container' } %>
+            <%= f.input :description, input_html: { class: 'quill_container' } %>
+            <%= f.input :about_campaign, input_html: { class: 'quill_container' } %>
+            <%= f.input :area_coverage, input_html: { class: 'quill_container' } %>
+            <%= f.input :creative_highlights, input_html: { class: 'quill_container' } %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @portfolio.new_record? %>
+							<%= link_to "Cancel", admins_portfolio_path(@portfolio.id), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_portfolios_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @portfolio, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Options</h5>
+						</div>
+						<div class="card-body">
+              <label>Logo</label>
+              <%= f.input :logo, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <label>Image</label>
+              <%= f.input :image, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <label>Image 1</label>
+              <%= f.input :image1, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <label>Image 2</label>
+              <%= f.input :image2, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <label>Banner</label>
+              <%= f.input :banner, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <%= f.association :service, as: :select %>
+              <%= f.association :industry, as: :select %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <% end %>
 
 <%= content_for :tail do %>
 	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
 	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+	<style>
+		.portfolio_short_description,
+		.portfolio_description,
+		.portfolio_about_campaign,
+		.portfolio_area_coverage,
+		.portfolio_creative_highlights {
+			margin-bottom: 100px !important;
+		}
+    .form-control.portfolio_short_description-quill:not(.ql-container),
+    .form-control.portfolio_description-quill:not(.ql-container),
+    .form-control.portfolio_about_campaign-quill:not(.ql-container),
+    .form-control.portfolio_area_coverage-quill:not(.ql-container),
+    .form-control.portfolio_creative_highlights-quill:not(.ql-container) {
+      display: none;
+    }
+	</style>
 <% end %>

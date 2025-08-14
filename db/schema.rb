@@ -267,13 +267,25 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_10_144012) do
   end
 
   create_table "portfolios", force: :cascade do |t|
-    t.jsonb "name", default: {}
+    t.string "name", default: "", null: false
     t.string "company_name", default: "", null: false
+    t.jsonb "caption", default: {}
+    t.jsonb "short_description", default: {}
     t.jsonb "description", default: {}
+    t.string "media_used", default: "", null: false
+    t.string "collaborators", default: "", null: false
     t.integer "featured", default: 0, null: false
+    t.integer "service_id"
+    t.integer "industry_id"
+    t.jsonb "about_campaign", default: {}
+    t.jsonb "area_coverage", default: {}
+    t.jsonb "creative_highlights", default: {}
+    t.string "video_url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", default: ""
     t.index ["name"], name: "index_portfolios_on_name", unique: true
+    t.index ["slug"], name: "index_portfolios_on_slug", unique: true
   end
 
   create_table "report_types", force: :cascade do |t|

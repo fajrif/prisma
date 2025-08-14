@@ -1,14 +1,15 @@
 <!-- start page single banner -->
-<section class="wow animate__fadeIn parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@article.image) %>');">
-		<div class="opacity-medium bg-black"></div>
-		<div class="container position-relative">
-			<div class="row align-items-center">
-				<div class="col-12 d-flex flex-column justify-content-center text-start extra-small-screen page-title-large">
-					<h1 class="text-white-2 text-uppercase font-weight-400 letter-spacing-minus-1 margin-10px-bottom"><%= @article.title %></h1>
-					<span class="text-very-light-gray text-uppercase"><%= @article.try(:category).try(:name) %></span>
+<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@article.image) %>');">
+	<div class="full-screen text-white-2">
+		<div class="container position-relative h-100">
+			<div class="row h-100 align-items-center">
+				<div class="col-xl-10 col-md-10">
+					<span class="d-block mb-2">Blog</span>
+					<h1 class="font-weight-600 text-white-2 alt-font w-90"><%= @article.title %></h1>
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
 <!-- end page single banner -->
 <!-- start blog content section -->
@@ -16,8 +17,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 margin-50px-bottom">
-				<span class="post-author text-medium text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
-				<h5 class="font-weight-400 text-extra-dark-gray text-uppercase"><%= @article.title %></h5>
+				<span class="post-author text-medium d-block margin-10px-bottom sm-margin-5px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
+				<h5 class="font-weight-400 "><%= @article.title %></h5>
 				<div class="line-height-26">
 					<%= raw @article.content %>
 				</div>
@@ -27,13 +28,10 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="col-12 text-center">
-				<%= link_to :back, class: "btn btn-medium btn-rounded btn-prisma" do %>
-					<i class="fa-solid fa-arrow-left icon-very-small m-switch" aria-hidden="true"></i>&nbsp;<%= t('global.back_to_news') %>
-				<% end %>
-			</div>
 		</div>
 	</div>
 </section>
 <!-- end blog content section -->
-<%= render "most_recent" %>
+<%= render "shared/prisma_adv" %>
+<%= render "shared/our_portfolios" %>
+<%= render "shared/our_industries" %>

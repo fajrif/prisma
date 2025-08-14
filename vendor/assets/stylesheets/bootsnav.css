@@ -210,7 +210,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{left: -280px;}
     nav.navbar.bootsnav .navbar-header{ float:none;display:block;text-align:center;padding-left:30px;padding-right:30px; }
     nav.navbar.bootsnav .navbar-toggler{ display:inline-block;float:right;margin-right:0;margin-top:0px;padding: 0; }
     nav.navbar.bootsnav .navbar-collapse{ border:none;margin-bottom:0; }
-    nav.navbar.bootsnav.no-full .navbar-collapse{ max-height:335px;overflow-y:auto !important; }
+    nav.navbar.bootsnav.no-full .navbar-collapse{ /*max-height:335px;*/overflow-y:auto !important; }
     nav.navbar.bootsnav .navbar-collapse.collapse{ display:none !important; }
     nav.navbar.bootsnav .navbar-collapse.collapse.in, nav.navbar.bootsnav .navbar-collapse.collapse.show{ display:block !important; }
     nav.navbar.bootsnav .navbar-nav{ float:none !important;padding-left:30px;padding-right:30px;margin:0px -15px; }

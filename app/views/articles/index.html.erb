@@ -1,39 +1,36 @@
 <%= render "shared/setting_banners" %>
 
-<!-- start blog content section -->
-<section style="overflow:visible;">
-	<div class="container-xl">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="row">
-					<div class="col-md-8 text-center tab-style3">
-						<!-- start tab navigation -->
-						<ul class="nav nav-tabs margin-30px-bottom sm-margin-30px-bottom text-uppercase alt-font text-medium font-weight-500 justify-content-start">
-							<li class="nav-item"><a href="<%= page_path(@page_news) %>" class="nav-link text-medium-gray <%= 'active' if @page.id == @page_news.id %>"><%= t('global.all') %></a></li>
-							<% @categories.each do |cat| %>
-								<li class="nav-item"><a href="<%= page_path(cat) %>" class="nav-link text-medium-gray <%= 'active' if @category && @category == cat %>"><%= cat.name %></a></li>
-							<% end %>
-						</ul>
-						<!-- end tab navigation -->
-					</div>
-					<div class="col-8 col-md-4 text-start text-lg-end padding-30px-right sm-margin-15px-bottom">
-						<!-- filter -->
-						<%= form_tag (@category ? page_path(@category) : page_path(@page_news)), { id: "index_search", method: :get } do %>
-							<%= select_tag :sort_by, options_for_select([["Newest", "desc"], ["Oldest", "asc"]], params[:sort_by]), :prompt => 'Select Order By', :class => "selectpicker filter_select mb-0" %>
-						<% end %>
-						<!-- end filter -->
-					</div>
-				</div>
-				<div class="row">
-					<div id="index_table" class="col-12 blog-content">
-						<%= render "table" %>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<%= render "disclosure_informations" unless @disclosure_informations.empty? %>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- end blog content section -->
+<% unless @articles.empty? %>
+  <section id="articles-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 blog-content no-padding-lr">
+          <ul class="blog-classic blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
+            <li class="grid-sizer"></li>
+            <% @articles.each do |article| %>
+              <!-- start post item -->
+              <li class="grid-item last-paragraph-no-margin wow animate__fadeInUp">
+                <div class="blog-post blog-post-style1 text-start">
+                  <div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
+                    <a href="<%= article_path(article) %>">
+                      <%= image_tag article.image, alt: article.title %>
+                    </a>
+                  </div>
+                  <div class="post-details margin-20px-bottom w-95">
+                    <span class="btn btn-medium btn-rounded btn-border btn-prisma mb-4"><%= article.try(:category).try(:name) %></span>
+                    <a href="<%= article_path(article) %>" class="post-title font-weight-600 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.title %></a>
+                    <span class="post-author text-extra-dark-gray d-block margin-15px-bottom"><%= article.short_description %></span>
+                  </div>
+                </div>
+              </li>
+              <!-- end post item -->
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+<%= render "shared/prisma_adv" %>
+<%= render "shared/our_portfolios" %>
+<%= render "shared/our_industries" %>
