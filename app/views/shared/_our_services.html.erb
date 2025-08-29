@@ -1,0 +1,25 @@
+<%- services = Service.all %>
+<% unless services.empty? %>
+  <section class="bg-grey">
+    <div class="container">
+      <div class="row">
+        <% services.each do |service| %>
+        <!-- start features box item -->
+        <div class="col-12 col-md-4 margin-30px-bottom sm-margin-15px-bottom">
+            <div class="d-flex flex-column justify-content-between border border-width-2 border-radius-8 padding-five-all position-relative h-250px">
+              <div>
+                <div class="d-flex align-items-center gap-4 mb-4">
+                  <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
+                  <div class="text-large margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
+                </div>
+                <p><%= service.short_description %></p>
+              </div>
+              <a href="<%= service_url(service) %>">Explore</a>
+            </div>
+        </div>
+        <!-- end features box item -->
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

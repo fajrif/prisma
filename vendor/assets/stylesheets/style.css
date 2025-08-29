@@ -78,7 +78,7 @@ body {
   font-family: "Montserrat", 'arial';
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--black-color);
   font-weight: 300;
   line-height: 22px;
@@ -2071,7 +2071,7 @@ textarea.input-bg {
   border-width: 1px;
 }
 .border-width-2 {
-  border-width: 2px;
+  border-width: 2px !important;
 }
 .border-width-3 {
   border-width: 3px;
@@ -8622,7 +8622,7 @@ header.sticky nav .brand-logo {
 header.sticky nav.navbar.navbar-default.navbar-top ul.nav > li > button,
 header.sticky nav.navbar.navbar-default.navbar-fixed-top ul.nav > li > a,
 header.sticky nav.navbar.navbar-default.navbar-top ul.nav > li > a {
-  padding: 35px 0 35px;
+  padding: 25px 0 25px;
 }
 
 /* mega menu */
@@ -12874,6 +12874,9 @@ figure {
 .banner-style3 figure:hover .banner-image img,
 .banner-style1 figure:hover .banner-image {
   opacity: 0.3;
+}
+.banner-style1 figure:hover {
+  background-color: var(--black-color);
 }
 
 /* pricing box */

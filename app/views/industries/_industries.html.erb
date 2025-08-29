@@ -1,0 +1,31 @@
+<%- industries = Industry.all -%>
+<% unless industries.empty? %>
+<section class="half-section wow animate__fadeIn">
+    <div class="container">
+        <div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
+          <div class="col-6 col-lg-7">
+            <h5 class="text-black font-weight-600"><%= t('industries.index.title') %></h5>
+            <div class="mb-3 d-none d-md-block w-600px"><%= t('industries.index.desc') %></div>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2 row-cols-sm-2 align-items-center">
+            <% industries.each_with_index do |industry, index| %>
+            <!-- start work item -->
+            <div class="col banner-style1 margin-20px-bottom xs-margin-15px-bottom wow animate__fadeInUp" data-wow-delay="0.<%= index + 1 %>s">
+              <a href="<%= industry_path(industry) %>">
+                <figure class="">
+                  <div class="banner-image h-250px cover-background" style="background-image:url('<%= url_for(industry.image) %>');"></div>
+                  <figcaption>
+                    <div class="d-flex flex-column justify-content-center align-items-center text-center h-100 lg-margin-30px-bottom">
+                      <span class="text-white-2 font-weight-500"><%= industry.name %></span>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+            <!-- end work item -->
+            <% end %>
+        </div>
+    </div>
+</section>
+<% end %>

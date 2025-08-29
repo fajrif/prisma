@@ -52,6 +52,13 @@ en:
     advertising:
       about: "Prisma Advertising: Your Partner in Powerful OOH Advertising"
       desc: "Learn more about the industries we support, the services we offer, and the standout projects that make Prisma Advertising a leader in outdoor advertising."
+  industries:
+    index:
+      title: "Sectors We Support"
+      desc: "Explore the different industries we support with tailored out-of-home solutions that drive visibility, relevance, and results."
+    why_industry:
+      title: "Why Industries-Specific Solutions Matters?"
+      list: ["Industry-specific marketing enables you to target the right audience.", "Craft messages based on sector-specific behaviors.", "Align with real consumer environments through industry-specific solutions.", "Apply insights from industry-specific marketing solutions.", "Improve relevance with content tailored by industry.", "Boost efficiency with focused, industry-specific strategies.", "Drive stronger engagement with informed campaign planning.", "Maximize OOH impact through industry-specific execution."]
   footer:
     title:
       our_services: "Our Services"
