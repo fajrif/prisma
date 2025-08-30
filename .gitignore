@@ -33,12 +33,6 @@ app-prod.yaml
 
 .DS_STORE
 
-/public/.git
-/public/.gitignore
-/public/assets
-/public/reports
-/public/images
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
