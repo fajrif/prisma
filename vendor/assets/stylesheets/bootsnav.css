@@ -115,10 +115,10 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{left: -280px;}
 @media (min-width: 1024px) {
     /* general navbar */
     nav.navbar.bootsnav ul.nav > li > a {padding: 30px 15px;}
-    nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{font-family: 'FontAwesome'; content: "\f0d7"; margin-left: 5px; margin-top: 2px;}    
-    nav.navbar.bootsnav li.dropdown ul.dropdown-menu{-moz-border-radius: 0px;-webkit-border-radius: 0px;-o-border-radius: 0px; border-radius: 0px; border: none;} 
-    nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover,
-    nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li:last-child > a{border-bottom: none;}
+    nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{font-family: 'FontAwesome'; content: "\f0d7"; margin-left: 5px; margin-top: 2px;}
+    nav.navbar.bootsnav li.dropdown ul.dropdown-menu{-moz-border-radius: 0px;-webkit-border-radius: 0px;-o-border-radius: 0px; border-radius: 0px; border: none;}
+    /*nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover,*/
+    /*nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li:last-child > a{border-bottom: none;}*/
     nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu li a{text-align: right;}
     nav.navbar.bootsnav ul.dropdown-menu.megamenu-content.tabbed{padding: 0;}
     nav.navbar.bootsnav ul.dropdown-menu.megamenu-content.tabbed > li{padding: 0;}

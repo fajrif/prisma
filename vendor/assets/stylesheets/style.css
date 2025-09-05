@@ -39,8 +39,8 @@ Table of contents:
 
 /* base color variable*/
 :root {
-	--base-color: #CD68B9;
-	--black-color: #252525;
+	--base-color: #DC5EBD;
+	--black-color: #000;
 	--prisma-yellow-color: #FCDC02;
 	--prisma-grey-color: #F8F8F8;
 	--prisma-dark-grey-color: #555555;
@@ -8132,7 +8132,7 @@ header a.logo {
   vertical-align: middle;
 }
 header a.logo img {
-  max-height: 46px;
+  max-height: 74px;
 }
 header .left-nav .sidebar-part1 a.logo img {
   max-height: inherit;
@@ -8231,30 +8231,17 @@ header.sticky.header-appear .navbar-scroll-top {
 }
 
 /* navigation */
-header.header-appear
-  nav.bootsnav.header-light-transparent
-  .navbar-nav
-  > li
-  > a:hover,
+header.header-appear nav.bootsnav.header-light-transparent .navbar-nav > li > a:hover,
 header.header-appear nav.bootsnav.header-light .navbar-nav > li > a:hover,
 header.header-appear nav.header-light-transparent .header-social-icon a:hover,
 header.header-appear nav.header-light .header-social-icon a:hover,
 header.header-appear nav.header-light.white-link .header-social-icon a:hover,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .header-social-icon
-  a:hover,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .heder-menu-button
-  a:hover,
+header.header-appear nav.header-light-transparent.white-link .header-social-icon a:hover,
+header.header-appear nav.header-light-transparent.white-link .heder-menu-button a:hover,
 header.header-appear nav.header-light-transparent .header-searchbar a:hover,
 header.header-appear nav.header-light .header-searchbar a:hover,
 header.header-appear nav.header-light.white-link .header-searchbar a:hover,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .header-searchbar
-  a:hover,
+header.header-appear nav.header-light-transparent.white-link .header-searchbar a:hover,
 header nav.navbar .navbar-nav > li > a:hover,
 nav.navbar.bootsnav ul.nav > li > a:hover,
 .header-search-form:hover,
@@ -8394,7 +8381,7 @@ header.header-appear nav.header-dark-transparent .navbar-nav > li > a.active,
 header.header-appear nav.header-dark .navbar-nav > li > a.active,
 header.sticky nav.header-dark .navbar-nav > li > a.active,
 header.sticky nav.header-dark-transparent .navbar-nav > li > a.active {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255);
 }
 header.sticky
   nav.navbar-fixed-top.header-light-transparent.white-link
@@ -8411,7 +8398,7 @@ header.sticky
 
 header.sticky nav.navbar.white-link .navbar-nav > li > a.active,
 header.sticky nav.navbar.bootsnav.white-link ul.nav > li > a.active {
-  color: rgba(0, 0, 0, 0.6);
+  /*color: rgba(0, 0, 0, 0.6);*/
 }
 header.sticky nav.navbar.header-dark.white-link .navbar-nav > li > a.active,
 header.sticky
@@ -8435,42 +8422,22 @@ nav.navbar.bootsnav ul.nav > li.dropdown.on > a {
 header nav.navbar.white-link .navbar-nav > li.dropdown.on > a,
 nav.navbar.bootsnav.white-link ul.nav > li.dropdown.on > a,
 header nav.navbar.bootsnav ul.nav.white-link > li.dropdown.on > a,
-header.header-appear
-  nav.header-dark-transparent
-  .navbar-nav
-  > li.dropdown.on
-  > a,
+header.header-appear nav.header-dark-transparent .navbar-nav > li.dropdown.on > a,
 header.header-appear nav.header-dark .navbar-nav > li.dropdown.on > a,
 header.sticky nav.header-dark .navbar-nav > li.dropdown.on > a,
 header.sticky nav.header-dark-transparent .navbar-nav > li.dropdown.on > a {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--base-color);
 }
-header.sticky
-  nav.navbar-fixed-top.header-light-transparent.white-link
-  .navbar-nav
-  > li.dropdown.on
-  > a,
-header.sticky
-  nav.navbar-fixed-top.header-light.white-link
-  .navbar-nav
-  > li.dropdown.on
-  > a {
-  color: rgba(0, 0, 0, 0.6);
-}
-header.sticky nav.navbar.white-link .navbar-nav > li.dropdown.on > a,
-header.sticky nav.navbar.bootsnav.white-link ul.nav > li.dropdown.on > a {
-  color: rgba(0, 0, 0, 0.6);
-}
-header.sticky
-  nav.navbar.header-dark.white-link
-  .navbar-nav
-  > li.dropdown.on
-  > a,
-header.sticky
-  nav.navbar.bootsnav.header-dark.white-link
-  ul.nav
-  > li.dropdown.on
-  > a {
+/*header.sticky nav.navbar-fixed-top.header-light-transparent.white-link .navbar-nav > li.dropdown.on > a,*/
+/*header.sticky nav.navbar-fixed-top.header-light.white-link .navbar-nav > li.dropdown.on > a {*/
+  /*color: rgba(0, 0, 0, 0.6);*/
+/*}*/
+/*header.sticky nav.navbar.white-link .navbar-nav > li.dropdown.on > a,*/
+/*header.sticky nav.navbar.bootsnav.white-link ul.nav > li.dropdown.on > a {*/
+  /*color: rgba(0, 0, 0, 0.6);*/
+/*}*/
+header.sticky nav.navbar.header-dark.white-link .navbar-nav > li.dropdown.on > a,
+header.sticky nav.navbar.bootsnav.header-dark.white-link ul.nav > li.dropdown.on > a {
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -8622,7 +8589,7 @@ header.sticky nav .brand-logo {
 header.sticky nav.navbar.navbar-default.navbar-top ul.nav > li > button,
 header.sticky nav.navbar.navbar-default.navbar-fixed-top ul.nav > li > a,
 header.sticky nav.navbar.navbar-default.navbar-top ul.nav > li > a {
-  padding: 25px 0 25px;
+  /*padding: 25px 0 25px;*/
 }
 
 /* mega menu */
@@ -8859,27 +8826,28 @@ nav.navbar.bootsnav.menu-center ul.nav.navbar-center {
 .simple-dropdown .dropdown-menu {
   position: absolute;
   left: 0;
-  background: rgba(35, 35, 35, 1);
-  min-width: 220px;
+  background: rgba(0, 0, 0, .85);
+  min-width: unset;
+  width: max-content;
   padding: 13px 0 15px;
   box-shadow: none;
 }
 nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li {
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 .simple-dropdown .dropdown-menu > li > a {
-  font-size: 12px;
-  color: #9d9d9d;
+  font-size: 16px;
+  color: #fff;
 }
 .simple-dropdown .dropdown-menu > li a {
-  padding: 9px 0 7px;
+  padding: 9px 6px 7px 6px;
   overflow: hidden;
   position: relative;
   left: 0;
   font-weight: 500;
   display: block;
-  line-height: 1.42857143;
+  /*line-height: 1.42857143;*/
 }
 .simple-dropdown .dropdown-menu > li a:hover {
   background-color: #000;
@@ -8888,61 +8856,48 @@ nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li {
 .simple-dropdown .dropdown-menu > li > a.dropdown-toggle .fas,
 nav.navbar.bootsnav.sidebar-nav .nav.navbar-left-sidebar li.dropdown > a > .fas,
 .simple-dropdown .dropdown-menu > li > a.dropdown-toggle .fa-solid,
-nav.navbar.bootsnav.sidebar-nav
-  .nav.navbar-left-sidebar
-  li.dropdown
-  > a
-  > .fa-solid {
-  position: absolute;
-  right: 0;
-  font-size: 10px;
-  margin-top: 0;
+nav.navbar.bootsnav.sidebar-nav .nav.navbar-left-sidebar li.dropdown > a > .fa-solid {
+  /*position: absolute;*/
+  /*right: 0;*/
+  font-size: 14px;
+  margin-left: 10px;
   height: 20px;
   width: 20px;
   line-height: 20px;
   text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
+  /*top: 50%;*/
+  /*transform: translateY(-50%);*/
+  /*-webkit-transform: translateY(-50%);*/
+  /*-moz-transform: translateY(-50%);*/
+  /*-o-transform: translateY(-50%);*/
+  /*-ms-transform: translateY(-50%);*/
 }
 nav.navbar.bootsnav.sidebar-nav .nav.navbar-left-sidebar li a .fas,
 nav.navbar.bootsnav.sidebar-nav .nav.navbar-left-sidebar li a .fa-solid {
   font-size: 16px;
 }
 nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul,
-nav.navbar.bootsnav
-  .simple-dropdown
-  .dropdown-menu
-  > li.dropdown
-  > ul
-  > li.dropdown
-  > ul {
-  background: rgba(35, 35, 35, 1);
+nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul > li.dropdown > ul {
+  background: rgba(0, 0, 0, .85);
   display: none;
-  left: 220px;
   margin: -13px 0 0 1px;
-  min-width: 220px;
+  min-width: unset;
+  width: max-content;
   white-space: nowrap;
-  position: absolute;
-  top: 0;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 220px;*/
   padding: 13px 0;
   font-weight: 500;
   text-transform: capitalize;
 }
 .simple-dropdown .dropdown-menu > li.dropdown > ul li a {
-  color: #9d9d9d;
-  font-size: 12px;
-  line-height: 18px;
-  font-weight: 500;
+  /*color: blue;*/
+  /*font-size: 12px;*/
+  /*line-height: 18px;*/
+  /*font-weight: 500;*/
 }
-nav.navbar.bootsnav.navbar-default
-  li.dropdown.simple-dropdown
-  > ul.dropdown-menu
-  > li.active
-  > a {
+nav.navbar.bootsnav.navbar-default li.dropdown.simple-dropdown > ul.dropdown-menu > li.active > a {
   color: #fff;
 }
 
@@ -8953,82 +8908,45 @@ header.sticky nav.navbar-scroll-fixed-top.header-light-transparent {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
 }
-header.header-appear
-  nav.header-light-transparent
-  .separator-line-verticle-small,
+header.header-appear nav.header-light-transparent .separator-line-verticle-small,
 header.header-appear nav.header-light .separator-line-verticle-small {
   background: rgba(0, 0, 0, 0.4);
 }
 header.header-appear nav.header-light-transparent .header-social-icon a,
 header.header-appear nav.header-light .header-social-icon a,
 header.header-appear nav.header-light.white-link .header-social-icon a,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .header-social-icon
-  a,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .heder-menu-button
-  a,
+header.header-appear nav.header-light-transparent.white-link .header-social-icon a,
+header.header-appear nav.header-light-transparent.white-link .heder-menu-button a,
 header.header-appear nav.header-light-transparent .header-searchbar a,
 header.header-appear nav.header-light .header-searchbar a,
 header.header-appear nav.header-light.white-link .header-searchbar a,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .header-searchbar
-  a {
+header.header-appear nav.header-light-transparent.white-link .header-searchbar a {
   color: var(--prisma-dark-grey-color);
 }
 header.header-appear nav.bootsnav.header-light .navbar-nav > li > button,
 header.header-appear nav.bootsnav.header-light-transparent .navbar-nav > li > a,
 header.header-appear nav.bootsnav.header-light .navbar-nav > li > a {
-  color: var(--prisma-dark-grey-color);
+  color: #fff;
 }
 header.header-appear nav.header-light-transparent .header-searchbar,
 header.header-appear.header-light-transparent .header-social-icon,
 header.header-appear nav.header-light .header-searchbar,
-header.header-appear
-  nav.header-light-transparent.white-link
-  .header-social-icon,
+header.header-appear nav.header-light-transparent.white-link .header-social-icon,
 header.sticky nav.header-light-transparent .header-searchbar,
 header.sticky nav.header-light-transparent .header-social-icon,
 header.sticky nav.header-light .header-searchbar,
 header.sticky nav.header-light .header-social-icon {
   border-left: 1px solid rgba(0, 0, 0, 0.25);
 }
-header.header-appear
-  nav.nav-fixed-top.header-light-transparent.white-link
-  .navbar-nav
-  > li
-  > a,
-header.header-appear
-  nav.nav-fixed-top.header-light-transparent.white-link
-  .header-social-icon
-  a,
-header.header-appear
-  nav.nav-fixed-top.header-light-transparent.white-link
-  .header-searchbar
-  a,
-header.header-appear
-  nav.nav-scroll-fixed-top.header-light-transparent.white-link
-  .navbar-nav
-  > li
-  > a,
-header.header-appear
-  nav.nav-scroll-fixed-top.header-light-transparent.white-link
-  .header-social-icon
-  a,
-header.header-appear
-  nav.nav-scroll-fixed-top.header-light-transparent.white-link
-  .header-searchbar
-  a {
+header.header-appear nav.nav-fixed-top.header-light-transparent.white-link .navbar-nav > li > a,
+header.header-appear nav.nav-fixed-top.header-light-transparent.white-link .header-social-icon a,
+header.header-appear nav.nav-fixed-top.header-light-transparent.white-link .header-searchbar a,
+header.header-appear nav.nav-scroll-fixed-top.header-light-transparent.white-link .navbar-nav > li > a,
+header.header-appear nav.nav-scroll-fixed-top.header-light-transparent.white-link .header-social-icon a,
+header.header-appear nav.nav-scroll-fixed-top.header-light-transparent.white-link .header-searchbar a {
   color: var(--prisma-dark-grey-color);
 }
-header.sticky
-  nav.header-light-transparent
-  .heder-menu-button
-  .mobile-toggle
-  span,
+header.sticky nav.header-light-transparent .heder-menu-button .mobile-toggle span,
 header.sticky nav.header-light .heder-menu-button .mobile-toggle span {
   background: var(--prisma-dark-grey-color);
 }
@@ -9656,7 +9574,7 @@ header nav.nav-box-width {
 /* dropdown menu */
 nav.navbar.navbar-default ul.nav > li > button,
 nav.navbar.navbar-default ul.nav > li > a {
-  padding: 30px 0;
+  padding: 5px 0;
   background: transparent;
   border-color: transparent;
   font-weight: 600;
@@ -9675,9 +9593,9 @@ nav.navbar.navbar-default ul li.dropdown ul.dropdown-menu > li:last-child {
   border-bottom: 0;
 }
 nav.navbar.navbar-default ul li.dropdown .dropdown-menu li > a:hover {
-  color: #000;
+  /*color: #000;*/
   background: transparent;
-  left: 5px;
+  /*left: 5px;*/
 }
 nav.navbar.navbar-default ul li.dropdown .dropdown-menu li.active > a {
   color: #000;

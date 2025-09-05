@@ -141,7 +141,7 @@ nav.navbar.bootsnav.white-link ul.nav > li > a:hover,
 header.sticky nav.navbar.header-dark.white-link .navbar-nav > li > a:hover,
 header.sticky nav.navbar.bootsnav.header-dark.white-link ul.nav > li > a:hover,
 header.sticky nav.header-dark .header-social-icon a:hover {
-	color: var(--base-color);
+	color: var(--base-color) !important;
 }
 header.header-appear nav.header-light .navbar-nav > li > button:hover,
 header.sticky nav.header-light .navbar-nav > li > button:hover,
@@ -166,17 +166,56 @@ nav.navbar.navbar-default ul.nav > li > button {
   cursor: pointer;
 }
 
+nav.navbar.navbar-default .local-link > a,
 nav.navbar.navbar-default ul.nav > li > button,
 nav.navbar.navbar-default ul.nav > li > a {
 	font-weight: 500;
-	text-transform: uppercase;
 }
+
+/*nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover, nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li:last-child > a {*/
+  /*border-bottom: 2px solid;*/
+/*}*/
+
+nav.navbar.navbar-default ul li.dropdown .dropdown-menu li > a {
+  border: 2px solid; /* thickness of border */
+  border-color: transparent;
+}
+nav.navbar.navbar-default ul li.dropdown .dropdown-menu li > a:hover {
+  border-image: linear-gradient(to right, #6759E1, #DC5EBD) 1;
+}
+nav.navbar.navbar-default ul.nav > li > a.active {
+  border-bottom: 2px solid; /* thickness of border */
+  border-image: linear-gradient(to right, #6759E1, #DC5EBD) 1;
+}
+
 header nav .navbar-nav.text-normal > li > button,
 header nav .navbar-nav.text-normal > li > a {
-	font-size: 14px;
+	font-size: 16px;
 }
+
+nav.navbar.navbar-default .local-link > a {
+	font-size: 14px;
+  color: #fff;
+}
+nav.navbar.navbar-default .local-link > a.active {
+  font-weight: 700;
+}
+nav.navbar.navbar-default .local-link > a:hover {
+  color: var(--base-color);
+}
+nav.navbar.navbar-default .local-link > a {
+  padding: 0 5px;
+}
+nav.navbar.navbar-default .local-link a:last-child {
+  border-left: 1px solid rgba(255, 255, 255, .5);
+}
+
 .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
 	opacity: 1;
+}
+
+nav.navbar.bootsnav li.dropdown ul.dropdown-menu {
+  border-radius: 6px;
 }
 
 .padding-10px-lr-important {

@@ -249,8 +249,32 @@ module AdminHelper
 	end
 
   def is_home_page?
-    controller.controller_name == "home" && controller.action_name == "index"
+    controller.controller_name == "pages"
   end
+
+  def is_about_page?
+    controller.controller_name == "pages"
+  end
+
+  def is_services_page?
+    controller.controller_name == "services"
+  end
+
+  def is_industries_page?
+    controller.controller_name == "industries"
+  end
+
+  def is_blogs_page?
+    controller.controller_name == "articles"
+  end
+
+  def is_careers_page?
+    controller.controller_name == "careers"
+  end
+
+  def is_contact_page?
+		controller.controller_name == "inquiries" && controller.action_name == "show"
+	end
 
   def is_dark_page?
     (controller.controller_name == "home" && controller.action_name == "index") ||
@@ -295,10 +319,6 @@ module AdminHelper
 
   def is_admins_contact_page?
 		controller.controller_name == "inquiries"
-	end
-
-  def is_contact_page?
-		controller.controller_name == "inquiries" && controller.action_name == "show"
 	end
 
 end

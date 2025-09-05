@@ -1,33 +1,101 @@
 [{
     "id": 1,
     "label": "Home",
-    "url": "/"
+    "url": "/",
+    "active_path": "home"
   }, {
     "id": 2,
     "label": "About Us",
-    "url": "/about-us"
+    "url": "/about-us",
+    "active_path": "about"
   }, {
     "id": 3,
     "label": "Services",
-    "url": "/services"
+    "url": "/services",
+    "active_path": "services",
+    "menu": [{
+       "label": "Static Billboard Advertising",
+       "url": "/services/static-billboard-advertising"
+    }, {
+       "label": "Digital Billboard Advertising",
+       "url": "/services/digital-billboard-advertising",
+       "menu": [{
+           "label": "Locations",
+           "menu": [{
+               "label": "Jabodetabek",
+               "url": "/locations/jabodetabek"
+           }, {
+               "label": "Bali",
+               "url": "/locations/bali"
+           }, {
+               "label": "Bandung",
+               "url": "/locations/bandung"
+           }]
+       }, {
+           "label": "Innovations",
+            "url": "/innovations"
+       }]
+    }, {
+       "label": "Creative OOH Branding",
+       "url": "/services/creative-ooh-branding"
+    }, {
+       "label": "Transit Advertising",
+       "url": "/services/transit-advertising"
+    }, {
+       "label": "OOH Dashboard",
+       "url": "/services/ooh-dashboard"
+    }, {
+       "label": "PiX Creative Mindworks",
+       "url": "/services/pix-creative-mindworks"
+    }]
   }, {
     "id": 4,
     "label": "Clients",
-    "url": "/clients"
+    "url": "/clients",
+    "active_path": "clients"
   }, {
     "id": 5,
     "label": "Industries",
-    "url": "/industries"
+    "url": "/industries",
+    "active_path": "industries",
+    "menu": [{
+       "label": "FMCG",
+       "url": "/industries/fmcg"
+    }, {
+       "label": "E-Commerce",
+       "url": "/industries/e-commerce"
+    }, {
+       "label": "Telecommunications",
+       "url": "/industries/telecommunications"
+    }, {
+       "label": "Automotive",
+       "url": "/industries/automotive"
+    }, {
+       "label": "Technology & Electronics",
+       "url": "/industries/technology-electronics"
+    }, {
+       "label": "Entertainment & Streaming",
+       "url": "/industries/entertainment-streaming"
+    }, {
+       "label": "Transportation & Superapp",
+       "url": "/industries/transportation-superapp"
+    }, {
+       "label": "Financial Services & Fintech",
+       "url": "/industries/financial-services-fintech"
+    }]
   }, {
     "id": 6,
     "label": "Blogs",
-    "url": "/articles"
+    "url": "/articles",
+    "active_path": "articles"
   }, {
     "id": 7,
     "label": "Careers",
-    "url": "/careers"
+    "url": "/careers",
+    "active_path": "careers"
   }, {
     "id": 8,
     "label": "Contact Us",
-    "url": "/contact-us"
+    "url": "/contact-us",
+    "active_path": "contact-us"
 }]

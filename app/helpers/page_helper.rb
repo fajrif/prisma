@@ -118,23 +118,64 @@ module PageHelper
 		end
 	end
 
+	def generate_dropdown_menu(data)
+		_menu = ""
+		if data
+      _dropdown = ""
+			data.each do |menu|
+				if menu["menu"]
+          _submenu = menu["label"] + content_tag(:i, nil, class: "fa-solid fa-angle-right")
+          _dropdown += content_tag(:li, class: "dropdown") do
+            link_to(menu["url"] ? menu["url"] : "#", class: "dropdown-toggle", "data-bs-toggle": "dropdown") do
+              raw(_submenu)
+            end + generate_dropdown_menu(menu["menu"])
+          end
+        else
+          _dropdown += content_tag(:li) do
+            link_to(menu["label"], menu["url"] ? menu["url"] : "#")
+          end
+        end
+			end
+      _menu = content_tag(:ul, class: "dropdown-menu", role: "menu") do
+        raw(_dropdown)
+      end
+		end
+		return _menu
+	end
+
 	def generate_navbar_menu(data)
 		_menu = ""
 		if data
 			data.each do |menu|
+        active_class = set_active_class_menu(menu["active_path"])
 				if menu["menu"]
-					_menu += content_tag(:li) do
-						content_tag(:button, menu["label"], type: "button", class: "open-wrap-menu", type: "button", "data-menu-id": "menu-content-#{menu['id']}")
-					end
+          _submenu = link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: active_class) +
+              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle", "data-bs-toggle": "dropdown", "aria-hidden": "true") +
+              generate_dropdown_menu(menu["menu"])
+					_menu += content_tag(:li, class: "dropdown simple-dropdown") do
+            raw(_submenu)
+          end
 				else
 					_menu += content_tag(:li) do
-						link_to(menu["label"], menu["url"] ? menu["url"] : "#")
+						link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: active_class)
 					end
 				end
 			end
 		end
 		return _menu
 	end
+
+	def set_active_class_menu(path)
+    active_class = ""
+    active_class = "active" if is_home_page? && path == "home"
+    active_class = "active" if is_about_page? && path == "about"
+    active_class = "active" if is_services_page? && path == "services"
+    active_class = "active" if is_industries_page? && path == "industries"
+    active_class = "active" if is_blogs_page? && path == "articles"
+    active_class = "active" if is_careers_page? && path == "careers"
+    active_class = "active" if is_contact_page? && path == "contact-us"
+    return active_class
+  end
 
 	def generate_footer_link(data)
 		_menu = ""
