@@ -994,3 +994,94 @@ video:focus { outline:none; }
   padding: 20px 20px;
   border-radius: 8px;
 }
+.border-top-radius-8 {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.border-bottom-radius-8 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.bg-prisma-color-1 {
+  background: url("prisma-color-1.png");
+}
+.bg-prisma-color-2 {
+  background: url("prisma-color-2.png");
+}
+.bg-prisma-color-3 {
+  background: url("prisma-color-3.png");
+}
+
+.blog-card {
+  overflow: hidden;
+  border: none;
+  transition: all 0.4s ease;
+}
+
+/* Image */
+.blog-card .card-img-container {
+  overflow: hidden;
+}
+
+.blog-card img {
+  width: 100%;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+/* Body setup: stack title + snippet */
+.blog-card .card-body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Title */
+.blog-card .card-title {
+  transition: transform 0.4s ease;
+  margin: 0;
+}
+
+.blog-card .card-title img {
+ width: auto;
+ max-height: 50px;
+}
+
+.blog-card .card-title img:not(.except) {
+ filter: brightness(0) invert(1);
+}
+
+.blog-card .card-title a:hover {
+  color: #e8e8e8;
+}
+
+/* Snippet hidden below initially */
+.blog-card .snippet {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(100%); /* start below */
+  transition: all 0.4s ease;
+  margin: 0;
+}
+
+/* Hover effects */
+.blog-card:hover img {
+  transform: scale(0.9);
+  border-radius: 0.5rem;
+}
+/*.blog-card:hover .card-body {*/
+  /*margin: 0 20px;*/
+/*}*/
+
+.blog-card:hover .snippet {
+  max-height: 200px; /* adjust for content */
+  opacity: 1;
+  transform: translateY(0); /* slide up */
+  margin-top: 0.5rem;
+}
+
+.blog-card:hover .card-title {
+  transform: translateY(-10px); /* pushed upward */
+}
+

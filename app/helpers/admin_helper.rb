@@ -249,11 +249,11 @@ module AdminHelper
 	end
 
   def is_home_page?
-    controller.controller_name == "pages"
+    controller.controller_name == "pages" && (params[:id] == "home" || params[:id] == "id")
   end
 
   def is_about_page?
-    controller.controller_name == "pages"
+    controller.controller_name == "pages" && params[:id] == "about-us"
   end
 
   def is_services_page?

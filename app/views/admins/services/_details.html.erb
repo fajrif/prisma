@@ -13,6 +13,14 @@
       <%= image_tag @service.image.variant(resize_to_limit: [50,50]) %>
     </td>
   </tr>
+  <% if @service.image1.attached? %>
+  <tr>
+    <td><b>Image 1</b></td>
+    <td>
+      <%= image_tag @service.image1 %>
+    </td>
+  </tr>
+  <% end %>
 	<tr>
 		<td><b>Name</b></td>
 		<td><h5 class="fs-14 mb-0 text-body"><%= @service.name %></h5></td>

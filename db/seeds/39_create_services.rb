@@ -8,6 +8,7 @@ Service.delete_all
 @srv1.benefit_title = "Benefits of Static Billboards"
 @srv1.benefit_description = "Static billboards offer a strong combination of reach, repetition, and permanence. Here’s what makes them effective:"
 @srv1.image.attach(io: Rails.root.join("public/services/static-billboard.png").open, filename: "static-billboard.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image1.png").open, filename: "image1.png")
 Mobility.with_locale(:id) {
   @srv1.name = "Papan Reklame Statis"
   @srv1.caption = "Tingkatkan Eksposur Brand dengan Billboard Statis Berimpact Tinggi"
@@ -27,6 +28,7 @@ puts "Create Service: #{@srv1.name}"
 @srv2.benefit_title = "Benefits of Digital Billboards"
 @srv2.benefit_description = "Digital billboards offer the agility and innovation today’s brands need to stay relevant and bold in a fast-moving world. Here’s why advertisers choose this format:"
 @srv2.image.attach(io: Rails.root.join("public/services/digital-billboard.png").open, filename: "digital-billboard.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image3.png").open, filename: "image3.png")
 Mobility.with_locale(:id) {
   @srv2.name = "Papan Reklame Digital"
   @srv2.caption = "Tampil Lebih Terang dengan Billboard Digital (DOOH)"
@@ -46,6 +48,7 @@ puts "Create Service: #{@srv2.name}"
 @srv3.benefit_title = "Benefits of Creative OOH Branding"
 @srv3.benefit_description = "Creative OOH advertising transforms static billboards into sculptural brand statements. Here’s why advertisers choose this format:"
 @srv3.image.attach(io: Rails.root.join("public/services/creative-ooh.png").open, filename: "creative-ooh.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image6.png").open, filename: "image6.png")
 Mobility.with_locale(:id) {
   @srv3.name = "Branding OOH Kreatif"
   @srv3.caption = "Buat Brand Anda Tak Terlupakan dengan Iklan OOH Kreatif"
@@ -64,7 +67,8 @@ puts "Create Service: #{@srv3.name}"
 @srv4.short_description = "Capture attention on the move with strategic placements across public transportation with the help of BoostAD. Extend your reach across urban and commuter routes."
 @srv4.benefit_title = "Benefits of Transit Advertising powered by BoostAD"
 @srv4.benefit_description = "Benefits of Transit Advertising Powered by BoostAD Transit media delivers your message with:"
-@srv4.image.attach(io: Rails.root.join("public/services/transit-advertising.png").open, filename: "transit-advertising.png")
+@srv4.image.attach(io: Rails.root.join("public/services/boostad-logo.png").open, filename: "boostad-logo.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image2.png").open, filename: "image2.png")
 Mobility.with_locale(:id) {
   @srv4.name = "Media Transit"
   @srv4.caption = "Gerakkan Brand Anda Lewat Iklan Transportasi"
@@ -84,6 +88,7 @@ puts "Create Service: #{@srv4.name}"
 @srv5.benefit_title = "Benefits of OOH Dashboard"
 @srv5.benefit_description = "Gain full control and visibility over your out-of-home advertising strategy with our integrated campaign tools:"
 @srv5.image.attach(io: Rails.root.join("public/services/ooh-media-dashboard.png").open, filename: "ooh-media-dashboard.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image5.png").open, filename: "image5.png")
 Mobility.with_locale(:id) {
   @srv5.name = "Dashboard OOH"
   @srv5.caption = "Rencanakan Iklan Lebih Cerdas dengan Dashboard OOH Kami"
@@ -101,6 +106,7 @@ puts "Create Service: #{@srv5.name}"
 @srv6.description = "Formerly known as PiX Animation, PiX Creative Mindworks pushes creative boundaries with high-impact CGI, 3D, and 4D animation content for digital billboard campaigns and interactive LED displays. As a leading animation studio, we create stunning digital animation and motion graphics that light up screens and captivate audiences in the OOH space."
 @srv6.short_description = "Bring your vision to life with our in-house animation and motion design studio. Tailored creative solutions that enhance your OOH impact."
 @srv6.image.attach(io: Rails.root.join("public/services/pix-creative-mindworks.png").open, filename: "pix-creative-mindworks.png")
+@srv1.image1.attach(io: Rails.root.join("public/services/image4.png").open, filename: "image4.png")
 Mobility.with_locale(:id) {
   @srv6.name = "PiX Creative Mindworks"
   @srv6.caption = "Animasi Digital yang Mendorong Batas Kreativitas OOH"

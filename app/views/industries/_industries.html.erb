@@ -13,8 +13,8 @@
             <!-- start work item -->
             <div class="col banner-style1 margin-20px-bottom xs-margin-15px-bottom wow animate__fadeInUp" data-wow-delay="0.<%= index + 1 %>s">
               <a href="<%= industry_path(industry) %>">
-                <figure class="">
-                  <div class="banner-image h-250px cover-background" style="background-image:url('<%= url_for(industry.image) %>');"></div>
+                <figure>
+                  <%= image_tag(industry.image, class: "banner-image") %>
                   <figcaption>
                     <div class="d-flex flex-column justify-content-center align-items-center text-center h-100 lg-margin-30px-bottom">
                       <span class="text-white-2 font-weight-500"><%= industry.name %></span>
