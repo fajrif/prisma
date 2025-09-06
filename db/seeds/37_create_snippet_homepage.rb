@@ -24,23 +24,27 @@ Mobility.with_locale(:id) {
 }
 billboard_locations.save
 
-Section.create(page_id: @home_page.id, snippet_id: billboard_locations.id, bg_color: "bg-black", order_no: 2)
+Section.create(page_id: @home_page.id, snippet_id: billboard_locations.id, css_class: "half-section", order_no: 2)
 puts "create Snippet: #{billboard_locations.name}"
 
 ## create innovative_solutions
 innovative_solutions = Snippet.new(name: "innovative_solutions")
 innovative_solutions.title = "Innovative Digital OOH Solutions"
 innovative_solutions.short_description = "Browse through our range of DOOH Innovations and find the best one that fits your campaign."
-innovative_solutions.template = "info_image_left"
-innovative_solutions.image.attach(io: Rails.root.join("public/images/innovative-solutions.png").open, filename: "innovative-solutions.png")
-innovative_solutions.background.attach(io: Rails.root.join("public/background/bg-info-1.png").open, filename: "bg-info-1.png")
+innovative_solutions.image.attach(io: Rails.root.join("public/services/logo-ooh.png").open, filename: "logo-ooh.png")
+innovative_solutions.background.attach(io: Rails.root.join("public/services/bg-ooh.png").open, filename: "bg-ooh.png")
 Mobility.with_locale(:id) {
   innovative_solutions.title = "Solusi Inovatif OOH Digital"
   innovative_solutions.short_description = "Pelajari berbagai jenis media DOOH yang kami tawarkan dan temukan yang terbaik untuk brand Anda."
 }
 innovative_solutions.save
 
-Section.create(page_id: @home_page.id, snippet_id: innovative_solutions.id, bg_color: "bg-black", css_class: "pt-0", order_no: 3)
+link_button = innovative_solutions.link_buttons.build
+link_button.route_category = 1
+link_button.link_text = "read_more"
+link_button.save
+
+Section.create(page_id: @home_page.id, snippet_id: innovative_solutions.id, order_no: 3)
 puts "create Snippet: #{innovative_solutions.name}"
 
 ## create our_portfolios

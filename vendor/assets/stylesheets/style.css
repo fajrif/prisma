@@ -1923,7 +1923,7 @@ textarea.input-bg {
 .btn.btn-prisma:focus {
   background: var(--base-color);
 	border-color: var(--base-color);
-  color: var(--dark-grey-color);
+  color: #fff;
 }
 .btn.btn-transparent-prisma {
   background: transparent;
@@ -15900,4 +15900,8 @@ footer .instafeed-grid.gutter-extra-large {
 }
 .form-control.is-invalid, .was-validated .form-control:invalid {
   margin-bottom: 10px;
+}
+
+.text-white-hover:hover {
+  color: #e8e8e8 !important;
 }

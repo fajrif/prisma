@@ -1,66 +1,54 @@
-<%- bg_color ||= '' -%>
-<%- text_color, btn_color = get_prisma_element_colors('bg-green') -%>
-
 <div class="container">
-	<div class="row justify-content-start align-items-center <%= text_color %> margin-40px-bottom wow animate__fadeIn">
-		<div class="col-6 col-lg-7">
-      <h5 class="font-weight-600"><%= snippet.title %></h5>
-			<div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
-		</div>
-		<div class="col-6 col-lg-5 no-padding-lr text-start text-end">
-      <%= link_to portfolios_path, class: "btn btn-medium btn-rounded btn-border btn-prisma #{btn_color}" do %>
-        <%= t('locations.explore') %>
-      <% end %>
-		</div>
-	</div>
-	<div class="row row-cols-1 row-cols-lg-3 row-cols-md-3 ">
-    <!-- start features item -->
-    <div class="col margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.2s">
-      <div class="cover-background padding-30px-all sm-padding-five-lr d-flex flex-column justify-content-between h-100 border-radius-8" style="background: transparent url('<%= image_url('bg1.png') %>')">
-        <a href="<%= location_path('jabodetabek') %>" class="transparent-box">
-          <h4 class="font-weight-900 text-green margin-10px-bottom d-inline-block w-100">Jabodetabek</h4>
-          <div class="d-flex flex-row justify-content-start justify-content-start align-items-end h-200px">
-            <div class="text-green font-weight-500 last-paragraph-no-margin w-100">
-              <div class="desc">
-                <p><%= t('locations.jabodetabek.desc') %></p>
+    <div class="row">
+      <div class="col-lg-4 text-center text-lg-start md-margin-30px-bottom md-padding-80px-lr sm-padding-15px-lr wow animate__fadeIn">
+        <h5 class="font-weight-600"><%= snippet.title %></h5>
+        <div class="margin-40px-bottom sm-margin-20px-bottom w-90 sm-w-100"><%= raw snippet.short_description %></div>
+        <%= link_to locations_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
+          <%= t('locations.explore') %>
+        <% end %>
+      </div>
+      <div class="col-lg-8">
+        <div class="row">
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg1.png') %>')">
+              <div class="bg-white">
+                <%= image_tag('locations/jabodetabek.png', class: "border-top-radius-8") %>
+              </div>
+              <div class="padding-20px-all">
+                <a href="<%= locations_path('jabodetabek') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Jabodetabek</a>
+                <p class="font-weight-500"><%= t('locations.jabodetabek.desc') %></p>
               </div>
             </div>
           </div>
-        </a>
-      </div>
-    </div>
-    <!-- end features item -->
-    <!-- start features item -->
-    <div class="col margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.3s">
-      <div class="cover-background padding-30px-all sm-padding-five-lr d-flex flex-column justify-content-between h-100 border-radius-8" style="background: transparent url('<%= image_url('bg2.png') %>')">
-        <a href="<%= location_path('bali') %>" class="transparent-box">
-          <h4 class="font-weight-900 text-gold margin-10px-bottom d-inline-block w-100">Bali</h4>
-          <div class="d-flex flex-row justify-content-start justify-content-start align-items-end h-200px">
-            <div class="text-gold font-weight-500 last-paragraph-no-margin w-100">
-              <div class="desc">
-                <p><%= t('locations.bali.desc') %></p>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.2s">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg2.png') %>')">
+              <div class="bg-white">
+                <%= image_tag('locations/bali.png', class: "border-top-radius-8") %>
+              </div>
+              <div class="padding-20px-all">
+                <a href="<%= locations_path('bali') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bali</a>
+                <p class="font-weight-500"><%= t('locations.bali.desc') %></p>
               </div>
             </div>
           </div>
-        </a>
-      </div>
-    </div>
-    <!-- end features item -->
-    <!-- start features item -->
-    <div class="col margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.4s">
-      <div class="cover-background padding-30px-all sm-padding-five-lr d-flex flex-column justify-content-between h-100 border-radius-8" style="background: transparent url('<%= image_url('bg3.png') %>')">
-        <a href="<%= location_path('bandung') %>" class="transparent-box">
-          <h4 class="font-weight-900 text-white-2 margin-10px-bottom d-inline-block w-100">Bandung</h4>
-          <div class="d-flex flex-row justify-content-start justify-content-start align-items-end h-200px">
-            <div class="text-white-2 font-weight-500 last-paragraph-no-margin w-100">
-              <div class="desc">
-                <p><%= t('locations.bandung.desc') %></p>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.4s">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg3.png') %>')">
+              <div class="bg-white">
+                <%= image_tag('locations/bandung.png', class: "border-top-radius-8") %>
+              </div>
+              <div class="padding-20px-all">
+                <a href="<%= locations_path('bandung') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bandung</a>
+                <p class="font-weight-500"><%= t('locations.bandung.desc') %></p>
               </div>
             </div>
           </div>
-        </a>
+          <!-- end features box item -->
+        </div>
       </div>
     </div>
-    <!-- end features item -->
-	</div>
 </div>

@@ -16,8 +16,8 @@
       <%- @services = Service.get_service_glance -%>
       <%- arr = [1, 2, 3, 2, 1, 3] %>
       <% @services.each_with_index do |service, index| %>
-        <div class="col-12 <%= [2,4].include?(index+1) ? 'col-lg-6' : 'col-lg-3' %> margin-25px-bottom">
-          <div class="card blog-card h-100 cover-background bg-prisma-color-<%= arr[index] %>">
+        <div class="col-12 <%= [2,4].include?(index+1) ? 'col-lg-6' : 'col-lg-3' %> margin-15px-bottom">
+          <div class="card service-card h-100 cover-background bg-prisma-color-<%= arr[index] %>">
             <div class="card-img-container">
               <%= image_tag(service.image1, class: "card-img-top w-100") %>
             </div>
@@ -30,11 +30,11 @@
                   <a href="<%= service_url(service) %>" class="text-extra-large text-white-2 font-weight-600 d-block w-100"><%= service.name %></a>
                 </div>
                 <div class="bg-white separator-line-horrizontal-full d-inline-block margin-10px-bottom"></div>
-                <span class="font-weight-600 margin-15px-bottom d-inline-block"><%= service.caption %></span>
+                <span class="font-weight-600 margin-10px-bottom d-inline-block"><%= service.caption %></span>
               </div>
               <div class="card-text snippet">
                 <p class="desc font-weight-500"><%= service.short_description %></p>
-                <a href="<%= service_url(service) %>" class="btn btn-medium btn-transparent-prisma btn-rounded d-block w-fit-content"><%= t('global.read_more') %></a>
+                <a href="<%= service_url(service) %>" class="btn btn-small btn-transparent-prisma btn-rounded d-block w-fit-content"><%= t('global.read_more') %></a>
               </div>
             </div>
           </div>
