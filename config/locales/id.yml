@@ -57,6 +57,24 @@ id:
     recommendation:
       title: "Recommended Advertising Solutions"
       desc: "Explore our tailored out-of-home services designed to meet the specific marketing needs of E-commerce advertising."
+    why_choose_prisma:
+      title: "Why Choose Prisma Ads?"
+      desc: "Our prime OOH advertising locations and seamless coordination allows your brand to get the recognition they deserve. With competitive prices thats hard to beat, our premium service is your ideal choice to help you execute your campaign across Indonesia."
+    strategic_visibility:
+      title: "Strategic Visibility Across the Nation"
+      desc: "With years of experience, our network of OOH advertising spans across high-traffic locations, ensuring your campaign gets maximum visibility and recognition."
+    digital_ooh:
+      title: "Your Solution for Digital Out-of-Home Advertisement"
+      desc: "Want your brand to standout? We are adept in developing captivating animated billboards that are guaranteed to stop traffic and leave a mark. With our animation studio, PiX animation, we can help translate your ideas into dynamic motion graphic that captures the attention of onlookers."
+    campaign_development:
+      title: "Expert Team Focused on End-to-End Campaign Development & Execution"
+      desc: "Our dedicated team of creative specialists work hand in hand to bring every campaign to life. With deep industry knowledge and a passion for bold storytelling, we craft strategies that drive real results."
+    production_installation:
+      title: "Offering Production and Installation Support Services"
+      desc: "Our production and installation team ensures every asset is delivered on time, on spec, and with flawless execution across all formats. Whether it’s static or digital, we’ve got the expertise to get it up and looking its best."
+    brand_impact:
+      title: "Track Your Brand's Impact in Real Time"
+      desc: "With our OOH Dashboard, you will be able to keep track of your campaigns and gain real-time insights that show exactly how your brand is performing. From live updates to audience reach, we can give you full visibility at every stage by providing you with actionable data that helps you optimize your impact."
   industries:
     caption: "Industri yang kami layani"
     index:
