@@ -1164,6 +1164,16 @@ a.text-very-light-gray-hover:hover {
     #ff214f
   );
 }
+.bg-gradient-green {
+  background-image: linear-gradient(
+    to right,
+    #DDE25E 0%,
+    #44DC51 28%,
+    #3EE2F3 50%,
+    #A6EEAB 75%,
+    #82E235 100%
+  );
+}
 .bg-gradient-light-red-light-white {
   background-image: linear-gradient(50deg, var(--light-red-color) 0%, #ffffff 100%);
 }
@@ -1231,9 +1241,10 @@ label {
 
 /* input */
 .input-border-bottom {
-  /*background: transparent;*/
+  background: transparent;
   border: 0;
-  border-bottom: 1px solid var(--prisma-dark-grey-color);
+  border-bottom: 1px solid #fff;
+  color: #fff;
   padding: 10px 0;
   margin-bottom: 30px;
   font-size: 16px;
@@ -1245,19 +1256,40 @@ label {
 .input-border-bottom:focus {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid #929292;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.input-border-bottom::placeholder {
+  color: #fff;
+  font-weight: 300;
+  font-size: 16px;
 }
 .input-border-bottom::-webkit-input-placeholder {
+  color: #fff;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 16px;
+}
+.input-border-bottom:-moz-placeholder {
+  color: #fff;
+  font-weight: 300;
+  font-size: 16px;
+  opacity: 1;
 }
 .input-border-bottom::-moz-placeholder {
+  color: #fff;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 16px;
+  opacity: 1;
 }
 .input-border-bottom:-ms-input-placeholder {
+  color: #fff;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 16px;
+}
+.input-border-bottom::-ms-input-placeholder {
+  color: #fff;
+  font-weight: 300;
+  font-size: 16px;
 }
 
 .extra-big-input,
@@ -1366,27 +1398,27 @@ label {
   border: 1px solid var(--red-color) !important;
 }
 
-.input-border-white .input-border-bottom {
-  border-bottom: 1px solid #ffffff;
-  color: #fff;
-  border-top: transparent !important;
-  border-left: transparent !important;
-  border-right: transparent !important;
-}
-.input-border-white .input-border-bottom:focus {
-  background: transparent;
-  border-bottom: 1px solid #ffffff;
-  color: #fff;
-}
-.input-border-white .input-border-bottom::-webkit-input-placeholder {
-  color: #fff;
-}
-.input-border-white .input-border-bottom::-moz-placeholder {
-  color: #fff;
-}
-.input-border-white .input-border-bottom:-ms-input-placeholder {
-  color: #fff;
-}
+/*.input-border-white .input-border-bottom {*/
+  /*border-bottom: 1px solid #ffffff;*/
+  /*color: #fff;*/
+  /*border-top: transparent !important;*/
+  /*border-left: transparent !important;*/
+  /*border-right: transparent !important;*/
+/*}*/
+/*.input-border-white .input-border-bottom:focus {*/
+  /*background: transparent;*/
+  /*border-bottom: 1px solid #ffffff;*/
+  /*color: #fff;*/
+/*}*/
+/*.input-border-white .input-border-bottom::-webkit-input-placeholder {*/
+  /*color: #fff;*/
+/*}*/
+/*.input-border-white .input-border-bottom::-moz-placeholder {*/
+  /*color: #fff;*/
+/*}*/
+/*.input-border-white .input-border-bottom:-ms-input-placeholder {*/
+  /*color: #fff;*/
+/*}*/
 
 .input-prisma {
   color: #fff;
@@ -2066,6 +2098,31 @@ textarea.input-bg {
   border: 1px solid #ededed;
 }
 
+/* boder align */
+.border-top {
+  border-top: 1px solid !important;
+	border-color: var(--dark-grey-color);
+}
+.border-bottom {
+  border-bottom: 1px solid !important;
+	border-color: var(--dark-grey-color);
+}
+.border-left {
+  border-left: 1px solid;
+}
+.border-right {
+  border-right: 1px solid;
+}
+.border-lr {
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+.border-tb {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+	border-color: var(--dark-grey-color);
+}
+
 /* boder width */
 .border-width-1 {
   border-width: 1px;
@@ -2099,31 +2156,6 @@ textarea.input-bg {
 }
 .border-width-20 {
   border-width: 20px;
-}
-
-/* boder align */
-.border-top {
-  border-top: 1px solid !important;
-	border-color: var(--dark-grey-color);
-}
-.border-bottom {
-  border-bottom: 1px solid !important;
-	border-color: var(--dark-grey-color);
-}
-.border-left {
-  border-left: 1px solid;
-}
-.border-right {
-  border-right: 1px solid;
-}
-.border-lr {
-  border-left: 1px solid;
-  border-right: 1px solid;
-}
-.border-tb {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-	border-color: var(--dark-grey-color);
 }
 
 /* border color */
@@ -15893,7 +15925,8 @@ footer .instafeed-grid.gutter-extra-large {
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 14px !important;
-  color: #fff !important;
+  font-weight: 500;
+  /*color: #fff !important;*/
 }
 .form-control:focus {
   color: #fff !important;

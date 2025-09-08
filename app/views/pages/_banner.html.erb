@@ -4,11 +4,12 @@
 <% else %>
 <section id="<%= banner.section_id %>" class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
 <% end %>
+  <div class="opacity-medium bg-transparent-black z-index-0"></div>
 	<div class="full-screen <%= @banner_text_color %>">
 		<div class="container position-relative h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-lg-7 col-md-10">
-					<h1 class="font-weight-600 text-white-2 alt-font margin-20px-bottom sm-margin-10px-bottom"><%= raw banner.title %></h1>
+					<h2 class="font-weight-600 text-white-2 alt-font margin-20px-bottom sm-margin-10px-bottom"><%= raw banner.title %></h2>
 					<div><%= raw banner.description %></div>
 					<% banner.link_buttons.each do |link_button| %>
 						<%= render_link_text_url(link_button, "btn btn-medium #{@banner_btn_color} btn-rounded margin-20px-top") %>

@@ -5,10 +5,10 @@
         <h5 class="font-weight-700 text-white-2"><%= t('industries.why_industry.title') %></h5>
       </div>
       <div class="col-lg-8">
-        <div class="row row-cols-1 row-cols-lg-2 row-cols-sm-2 m-0">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-sm-2 g-4">
           <% t('industries.why_industry.list').each_with_index do |text, index| %>
             <!-- start features box item -->
-            <div class="col padding-10px-lr margin-10px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
+            <div class="col text-center text-md-start last-paragraph-no-margin wow animate__fadeInUp" data-wow-delay="0.<%= index + 1 %>s">
               <div class="transparent-box">
                 <span class="d-inline-block font-weight-500 text-medium text-white-2 w-90"><%= text %></span>
               </div>

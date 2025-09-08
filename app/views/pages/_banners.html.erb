@@ -7,15 +7,16 @@
 				<%- text_desc_width = "w-25 lg-w-30 md-w-50 sm-w-100" -%>
 				<%- text_desc_width = "w-45 lg-w-45 md-w-50 sm-w-100" if !banner.description.blank? && banner.description.length >= 130 -%>
 				<!-- start slider item -->
-				<% if banner.is_video? %>
-					<div class="swiper-slide">
-				<% else %>
-					<div class="swiper-slide banner-cover-background" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
-				<% end %>
+          <% if banner.is_video? %>
+            <div class="swiper-slide">
+          <% else %>
+            <div class="swiper-slide banner-cover-background" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
+            <div class="opacity-medium bg-transparent-black z-index-0"></div>
+          <% end %>
 					<div class="container h-100">
 						<div class="row h-100">
               <div class="col-12 d-flex justify-content-center flex-column text-center text-md-start">
-                <h1 class="alt-font font-weight-700 w-55 margin-30px-bottom lg-w-60 md-w-70 lg-line-height-auto sm-w-100 sm-margin-15px-bottom"><%= raw banner.title %></h1>
+                <h2 class="alt-font font-weight-700 w-55 margin-30px-bottom lg-w-60 md-w-70 lg-line-height-auto sm-w-100 sm-margin-15px-bottom"><%= raw banner.title %></h2>
                 <p class="text-large margin-four-bottom w-40 lg-w-50 md-w-60 sm-w-100 sm-margin-15px-bottom"><%= raw banner.description %></p>
                 <% if banner.link_buttons.size > 0 %>
                 <div class="btn-dual">

@@ -301,9 +301,9 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'col-12 col-lg-1'
-    b.wrapper :grid_wrapper, class: 'col-12 col-lg-11' do |ba|
-      ba.use :input, class: 'input-border-bottom form-control', error_class: 'is-invalid'
+    b.use :label, class: 'col-12 col-lg-12'
+    b.wrapper :grid_wrapper, class: '' do |ba|
+      ba.use :input, class: 'input-border-bottom', error_class: 'is-invalid'
 			ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
 			ba.use :hint, wrap_with: { class: 'form-text' }
     end

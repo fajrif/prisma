@@ -985,7 +985,11 @@ video:focus { outline:none; }
 .logo_items img {
   margin: 8px 30px;
   height: 150px;
-  /*opacity: .5;*/
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+.logo_items img:hover {
+  filter: none;
 }
 
 /* white with 20% opacity */
@@ -994,12 +998,23 @@ video:focus { outline:none; }
   padding: 20px 20px;
   border-radius: 8px;
 }
+.bg-transparent-box {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 .border-top-radius-8 {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 .border-bottom-radius-8 {
   border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.border-left-radius-8 {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.border-right-radius-8 {
+  border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
@@ -1089,3 +1104,8 @@ video:focus { outline:none; }
   padding-left: 7px;
 }
 
+.locations-list .location-image > a:hover > img {
+  opacity: 0.5;
+  transform: scale(1.2, 1.2);
+  transition: all 0.3s ease 0s;
+}

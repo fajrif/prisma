@@ -19,8 +19,8 @@
               <%- @industries = Industry.all -%>
               <% @industries.each_with_index do |industry, index| %>
                 <!-- start features box item -->
-                <div class="col padding-10px-lr margin-10px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
-                  <div class="transparent-box">
+                <div class="col d-flex padding-10px-lr margin-10px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
+                  <div class="h-100 w-100 transparent-box">
                     <a href="<%= industry_path(industry) %>" class="d-inline-block text-black text-medium font-weight-600 mb-2"><%= industry.name %></a>
                     <p class="d-inline-block text-medium w-90"><%= truncate(strip_tags(industry.description), length: 80) %></p>
                   </div>
