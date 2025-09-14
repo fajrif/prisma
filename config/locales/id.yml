@@ -76,6 +76,8 @@ id:
       title: "Track Your Brand's Impact in Real Time"
       desc: "With our OOH Dashboard, you will be able to keep track of your campaigns and gain real-time insights that show exactly how your brand is performing. From live updates to audience reach, we can give you full visibility at every stage by providing you with actionable data that helps you optimize your impact."
   industries:
+    title: "Industries We Serve"
+    desc: "We have served clients from a broad spectrum of industries, successfully realizing each brand's vision through high-impact campaigns. No matter the sector, we have unmatched experience in making your message stand out."
     caption: "Industri yang kami layani"
     index:
       title: "Sectors We Support"
@@ -83,6 +85,9 @@ id:
     why_industry:
       title: "Why Industries-Specific Solutions Matters?"
       list: ["Industry-specific marketing enables you to target the right audience.", "Craft messages based on sector-specific behaviors.", "Align with real consumer environments through industry-specific solutions.", "Apply insights from industry-specific marketing solutions.", "Improve relevance with content tailored by industry.", "Boost efficiency with focused, industry-specific strategies.", "Drive stronger engagement with informed campaign planning.", "Maximize OOH impact through industry-specific execution."]
+  testimonial:
+    title: "Testimonial"
+    desc: "Hear from our partners and see how Prisma has helped them achieve real results with OOH advertising across Indonesia."
   footer:
     title:
       our_services: "Layanan Kami"
