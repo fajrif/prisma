@@ -17,7 +17,7 @@ Mobility.with_locale(:id) {
   @srv1.benefit_title = "Manfaat dari Billboard Statis"
   @srv1.benefit_description = "Berikut adalah alasan mengapa billboard statis masih menjadi salah satu jenis-jenis reklame paling efektif:"
 }
-@srv1.save
+@srv1.save!
 puts "Create Service: #{@srv1.name}"
 
 # Digital Billboard Advertising
@@ -28,7 +28,7 @@ puts "Create Service: #{@srv1.name}"
 @srv2.benefit_title = "Benefits of Digital Billboards"
 @srv2.benefit_description = "Digital billboards offer the agility and innovation today’s brands need to stay relevant and bold in a fast-moving world. Here’s why advertisers choose this format:"
 @srv2.image.attach(io: Rails.root.join("public/services/digital-billboard.png").open, filename: "digital-billboard.png")
-@srv1.image1.attach(io: Rails.root.join("public/services/image3.png").open, filename: "image3.png")
+@srv2.image1.attach(io: Rails.root.join("public/services/image3.png").open, filename: "image3.png")
 Mobility.with_locale(:id) {
   @srv2.name = "Papan Reklame Digital"
   @srv2.caption = "Tampil Lebih Terang dengan Billboard Digital (DOOH)"
@@ -37,7 +37,7 @@ Mobility.with_locale(:id) {
   @srv2.benefit_title = "Manfaat dari Billboard Digital"
   @srv2.benefit_description = "Billboard digital memberikan fleksibilitas dan inovasi yang dibutuhkan brand masa kini untuk tetap relevan dan berani di tengah dunia yang terus bergerak cepat. Berikut alasan mengapa banyak pengiklan memilih format ini:"
 }
-@srv2.save
+@srv2.save!
 puts "Create Service: #{@srv2.name}"
 
 # Creative OOH Branding
@@ -48,7 +48,7 @@ puts "Create Service: #{@srv2.name}"
 @srv3.benefit_title = "Benefits of Creative OOH Branding"
 @srv3.benefit_description = "Creative OOH advertising transforms static billboards into sculptural brand statements. Here’s why advertisers choose this format:"
 @srv3.image.attach(io: Rails.root.join("public/services/creative-ooh.png").open, filename: "creative-ooh.png")
-@srv1.image1.attach(io: Rails.root.join("public/services/image6.png").open, filename: "image6.png")
+@srv3.image1.attach(io: Rails.root.join("public/services/image6.png").open, filename: "image6.png")
 Mobility.with_locale(:id) {
   @srv3.name = "Branding OOH Kreatif"
   @srv3.caption = "Buat Brand Anda Tak Terlupakan dengan Iklan OOH Kreatif"
@@ -57,7 +57,7 @@ Mobility.with_locale(:id) {
   @srv3.benefit_title = "Manfaat dari Branding OOH Kreatif"
   @srv3.benefit_description = "Branding OOH kreatif memberikan dampak tinggi dengan menjangkau audiens dalam konteks kehidupan sehari-hari. Inilah keunggulannya:"
 }
-@srv3.save
+@srv3.save!
 puts "Create Service: #{@srv3.name}"
 
 # Transit Media
@@ -68,7 +68,7 @@ puts "Create Service: #{@srv3.name}"
 @srv4.benefit_title = "Benefits of Transit Advertising powered by BoostAD"
 @srv4.benefit_description = "Benefits of Transit Advertising Powered by BoostAD Transit media delivers your message with:"
 @srv4.image.attach(io: Rails.root.join("public/services/boostad-logo.png").open, filename: "boostad-logo.png")
-@srv1.image1.attach(io: Rails.root.join("public/services/image2.png").open, filename: "image2.png")
+@srv4.image1.attach(io: Rails.root.join("public/services/image2.png").open, filename: "image2.png")
 Mobility.with_locale(:id) {
   @srv4.name = "Media Transit"
   @srv4.caption = "Gerakkan Brand Anda Lewat Iklan Transportasi"
@@ -77,7 +77,7 @@ Mobility.with_locale(:id) {
   @srv4.benefit_title = "Manfaat dari Iklan Transit Bersama BoostAD"
   @srv4.benefit_description = "Mengapa brand memilih iklan transportasi umum?"
 }
-@srv4.save
+@srv4.save!
 puts "Create Service: #{@srv4.name}"
 
 # OOH Media Dashboard Access
@@ -88,7 +88,7 @@ puts "Create Service: #{@srv4.name}"
 @srv5.benefit_title = "Benefits of OOH Dashboard"
 @srv5.benefit_description = "Gain full control and visibility over your out-of-home advertising strategy with our integrated campaign tools:"
 @srv5.image.attach(io: Rails.root.join("public/services/ooh-media-dashboard.png").open, filename: "ooh-media-dashboard.png")
-@srv1.image1.attach(io: Rails.root.join("public/services/image5.png").open, filename: "image5.png")
+@srv5.image1.attach(io: Rails.root.join("public/services/image5.png").open, filename: "image5.png")
 Mobility.with_locale(:id) {
   @srv5.name = "Dashboard OOH"
   @srv5.caption = "Rencanakan Iklan Lebih Cerdas dengan Dashboard OOH Kami"
@@ -97,7 +97,7 @@ Mobility.with_locale(:id) {
   @srv5.benefit_title = "Manfaat dari Dashboard Iklan OOH"
   @srv5.benefit_description = "Kelola strategi media luar ruang Anda dengan lebih efisien melalui sistem terintegrasi:"
 }
-@srv5.save
+@srv5.save!
 puts "Create Service: #{@srv5.name}"
 
 # PiX Creative Mindworks
@@ -106,12 +106,12 @@ puts "Create Service: #{@srv5.name}"
 @srv6.description = "Formerly known as PiX Animation, PiX Creative Mindworks pushes creative boundaries with high-impact CGI, 3D, and 4D animation content for digital billboard campaigns and interactive LED displays. As a leading animation studio, we create stunning digital animation and motion graphics that light up screens and captivate audiences in the OOH space."
 @srv6.short_description = "Bring your vision to life with our in-house animation and motion design studio. Tailored creative solutions that enhance your OOH impact."
 @srv6.image.attach(io: Rails.root.join("public/services/pix-creative-mindworks.png").open, filename: "pix-creative-mindworks.png")
-@srv1.image1.attach(io: Rails.root.join("public/services/image4.png").open, filename: "image4.png")
+@srv6.image1.attach(io: Rails.root.join("public/services/image4.png").open, filename: "image4.png")
 Mobility.with_locale(:id) {
   @srv6.name = "PiX Creative Mindworks"
   @srv6.caption = "Animasi Digital yang Mendorong Batas Kreativitas OOH"
   @srv6.description = "Sebelumnya dikenal sebagai PiX Animation, kini PiX Creative Mindworks menghadirkan animasi 3D, CGI animation, dan visual 4D berkualitas tinggi untuk digital billboard dan kampanye digital out-of-home advertising. PiX siap menjadikan ide Anda tampil menonjol di ruang publik."
   @srv6.short_description = "Bawa visi kreatif Anda menjadi hidup dengan animasi dari studio motion design milik kami. Solusi inovatif  yang dirancang khusus untuk memaksimalkan dampak iklan OOH Anda."
 }
-@srv6.save
+@srv6.save!
 puts "Create Service: #{@srv6.name}"
