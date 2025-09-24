@@ -1100,3 +1100,10 @@ video:focus { outline:none; }
   transform: scale(1.2, 1.2);
   transition: all 0.3s ease 0s;
 }
+
+.swiper-pagination-bullet {
+  background: #fff;
+}
+.swiper-pagination-bullet-active {
+  background: #eee;
+}

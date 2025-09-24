@@ -42,7 +42,7 @@ Table of contents:
 	--base-color: #DC5EBD;
 	--black-color: #000;
 	--prisma-yellow-color: #FCDC02;
-	--prisma-grey-color: #F8F8F8;
+	--prisma-grey-color: #e8e8e8;
 	--prisma-dark-grey-color: #555555;
 	--dark-grey-color: #000;
 	--red-color: #FF6635;
@@ -1186,6 +1186,14 @@ a.text-very-light-gray-hover:hover {
     #82E235 100%
   );
 }
+.bg-gradient-purple {
+  background-image: linear-gradient(
+    to right,
+    #E526F6 0%,
+    #FA665D 50%,
+    #A22BE6 100%
+  );
+}
 .bg-gradient-light-red-light-white {
   background-image: linear-gradient(50deg, var(--light-red-color) 0%, #ffffff 100%);
 }
@@ -2190,7 +2198,7 @@ textarea.input-bg {
   border-color: #dbdbdb !important;
 }
 .border-color-medium-gray {
-  border-color: #e4e4e4 !important;
+  border-color: #aeaeae !important;
 }
 .border-color-extra-light-gray {
   border-color: #ededed !important;
