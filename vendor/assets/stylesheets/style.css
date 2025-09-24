@@ -91,7 +91,7 @@ html {
 a,
 a:active,
 a:focus {
-  color: var(--prisma-dark-grey-color);
+  color: var(--black-color);
   text-decoration: none;
 }
 a:hover,
@@ -457,6 +457,18 @@ h6 {
 }
 .text-red {
 	color: var(--bs-form-invalid-color);
+}
+.text-pink {
+  color: #DC5EBD;
+}
+.text-purple {
+  color: #6F53E9;
+}
+.text-blue {
+  color: #2A71F6;
+}
+.text-teal {
+  color: #6EB7B8;
 }
 
 /* dropcap */
@@ -2528,9 +2540,19 @@ textarea.input-bg {
 
 /* white with 20% opacity */
 .transparent-box {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   padding: 20px 20px;
   border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.transparent-box-solid {
+  background-color: rgba(255, 255, 255, 0.63);
+  padding: 20px 20px;
+  border-radius: 8px;
+  border: .8px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .bg-transparent-box {
   background-color: rgba(255, 255, 255, 0.2);

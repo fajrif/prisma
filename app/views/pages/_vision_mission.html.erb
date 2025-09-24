@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
+    <div class="col-6 col-lg-7">
+      <h5 class="font-weight-600"><%= snippet.title %></h5>
+      <div class="mb-3 d-none d-md-block"><%= raw snippet.short_description %></div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 md-margin-50px-bottom sm-margin-30px-bottom wow animate__fadeIn">
+      <h5 class="font-weight-600"><%= t('vision_mission.vision.title') %></h5>
+      <div class="mb-3"><%= t('vision_mission.vision.desc') %></div>
+    </div>
+    <div class="col-lg-6 md-margin-50px-bottom sm-margin-30px-bottom wow animate__fadeIn">
+      <h5 class="font-weight-600"><%= t('vision_mission.mission.title') %></h5>
+      <div class="mb-3"><%= raw t('vision_mission.mission.desc') %></div>
+    </div>
+  </div>
+</div>

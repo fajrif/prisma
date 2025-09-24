@@ -30,8 +30,8 @@
 id:
   contacts:
     title: "Hubungi Kami"
-    short_description: "Tertarik bekerja sama dengan kami? Jangan ragu untuk menghubungi kami dan pelajari layanan kami lebih lanjut."
-    instructions: ""
+    short_description: "Baik Anda berencana memasang iklan papan reklame di Jakarta, meluncurkan kampanye DOOH di seluruh Indonesia, atau menjajaki format baru dalam media luar ruang, Prisma Advertising siap menghadirkan merek Anda ke jalanan — dengan berani, kreatif, dan penuh tujuan."
+    instructions: "Tertarik bekerja sama dengan kami? Jangan ragu untuk menghubungi kami dan pelajari layanan kami lebih lanjut."
   inquiries:
     name: "Nama"
     phone: "No.Telp"
@@ -50,44 +50,57 @@ id:
     explore: "Cari lokasi ideal"
   prisma:
     advertising:
-      about: "Prisma Advertising: Your Partner in Powerful OOH Advertising"
-      desc: "Learn more about the industries we support, the services we offer, and the standout projects that make Prisma Advertising a leader in outdoor advertising."
+      about: "Prisma Advertising: Partner Iklan OOH Terbaik Anda"
+      desc: "Pelajari lebih lanjut mengenai industri yang kami dukung, jasa yang kami tawarkan, dan proyek iklan terbaik yang membuat Prisma Advertising menjadi perusahaan iklan luar ruang terdepan."
+  vision_mission:
+    vision:
+      title: "Visi"
+      desc: "Prisma berkomitmen untuk menjadi pilihan utama bagi para klien sebagai perusahaan periklanan yang mengedepankan inovasi, kreativitas, dan layanan terbaik."
+    mission:
+      title: "Misi"
+      desc: "<ul><li>Membangun kepercayaan sebagai dasar setiap kerja sama</li><li>Memulai setiap langkah dengan keyakinan, ide yang kuat, dan kerja keras</li><li>Melaksanakan pekerjaan secara cepat, teliti, dengan biaya yang efisien</li><li>Memberikan hasil terbaik dengan kualitas maksimal untuk memenuhi kebutuhan periklanan Anda</li></ul>"
   services:
     caption: "Services We Serve"
     recommendation:
-      title: "Recommended Advertising Solutions"
-      desc: "Explore our tailored out-of-home services designed to meet the specific marketing needs of E-commerce advertising."
+      title: "Layanan Kami"
+      desc: "Jelajahi daftar layanan kami dan temukan solusi iklan OOH terbaik untuk brand Anda."
     why_choose_prisma:
-      title: "Why Choose Prisma Ads?"
-      desc: "Our prime OOH advertising locations and seamless coordination allows your brand to get the recognition they deserve. With competitive prices thats hard to beat, our premium service is your ideal choice to help you execute your campaign across Indonesia."
+      title: "Kenapa Memilih Prisma Ads?"
+      desc: "Lokasi iklan luar ruang (OOH) unggulan kami serta koordinasi yang terintegrasi memungkinkan brand Anda mendapatkan perhatian terbaik. Dengan harga sangat kompetitif, layanan premium kami adalah pilihan tepat untuk menyalurkan iklan Anda di seluruh Indonesia."
     strategic_visibility:
-      title: "Strategic Visibility Across the Nation"
-      desc: "With years of experience, our network of OOH advertising spans across high-traffic locations, ensuring your campaign gets maximum visibility and recognition."
+      title: "Jangkauan Strategis di Seluruh Indonesia"
+      desc: "Dengan pengalaman selama bertahun-tahun, jangkauan iklan OOH kami mencakup lokasi dengan keramaian tinggi, memastikan iklan Anda mendapatkan visibilitas yang maksimal."
     digital_ooh:
-      title: "Your Solution for Digital Out-of-Home Advertisement"
-      desc: "Want your brand to standout? We are adept in developing captivating animated billboards that are guaranteed to stop traffic and leave a mark. With our animation studio, PiX animation, we can help translate your ideas into dynamic motion graphic that captures the attention of onlookers."
+      title: "Solusi Anda untuk Periklanan Luar Ruang Digital"
+      desc: "Ingin brand Anda tampil menojol? Kami ahli dalam membuat billboard animasi yang menarik dan berkesan. Melalui studio animasi kami, PiX Animation, kami membantu membentuk ide Anda menjadi motion graphic dinamis yang mencuri perhatian siapa pun yang melihat."
     campaign_development:
-      title: "Expert Team Focused on End-to-End Campaign Development & Execution"
-      desc: "Our dedicated team of creative specialists work hand in hand to bring every campaign to life. With deep industry knowledge and a passion for bold storytelling, we craft strategies that drive real results."
+      title: "Tim Ahli yang Fokus pada Pengembangan dan Eksekusi Iklan Secara Menyeluruh"
+      desc: "Dedikasi dari tim kreatif kami bekerjasama dalam menghidupkan setiap iklan. Dengan pengetahuan yang mendalam dan semangat tinggi di dunia periklanan, kami merancang strategi yang menghasilkan dampak nyata."
     production_installation:
-      title: "Offering Production and Installation Support Services"
-      desc: "Our production and installation team ensures every asset is delivered on time, on spec, and with flawless execution across all formats. Whether it’s static or digital, we’ve got the expertise to get it up and looking its best."
+      title: "Menyediakan Layanan Produksi dan Instalasi Pendukung"
+      desc: "Tim produksi dan instalasi kami memastikan semua aset disalurkan tepat waktu, sesuai spesifikasi, dengan implementasi yang sempurna di semua format, baik itu iklan statis maupun digital. Kami memiliki keahlian untuk menayangkan setiap iklan dengan hasil terbaik."
     brand_impact:
-      title: "Track Your Brand's Impact in Real Time"
-      desc: "With our OOH Dashboard, you will be able to keep track of your campaigns and gain real-time insights that show exactly how your brand is performing. From live updates to audience reach, we can give you full visibility at every stage by providing you with actionable data that helps you optimize your impact."
+      title: "Pantau Dampak Brand Anda Secara Langsung"
+      desc: "Melalui Dashboard OOH kami, Anda bisa memantau setiap iklan dan mendapatkan informasi mengenai performa iklan Anda secara langsung. Mulai dari perkembangan terbaru hingga jangkauan audiens, kami mampu memberikan visibilitas penuh di setiap tahap dan menyediakan data yang bisa digunakan untuk mengoptimalkan dampak iklan Anda."
   industries:
-    title: "Industries We Serve"
-    desc: "We have served clients from a broad spectrum of industries, successfully realizing each brand's vision through high-impact campaigns. No matter the sector, we have unmatched experience in making your message stand out."
+    title: "Industri yang Kami Layani"
+    desc: "Kami sudah bekerjasama dengan klien dari berbagai industri dan berhasil mendukung visi mereka dengan menyalurkan pesan yang memikat melalui iklan yang berdampak."
     caption: "Industri yang kami layani"
     index:
-      title: "Sectors We Support"
-      desc: "Explore the different industries we support with tailored out-of-home solutions that drive visibility, relevance, and results."
+      title: "Sektor yang Kami Dukung"
+      desc: "Jelajahi berbagai industri yang kami dukung melalui solusi out-of-home yang disesuaikan untuk meningkatkan visibilitas, relevansi, dan hasil."
     why_industry:
-      title: "Why Industries-Specific Solutions Matters?"
-      list: ["Industry-specific marketing enables you to target the right audience.", "Craft messages based on sector-specific behaviors.", "Align with real consumer environments through industry-specific solutions.", "Apply insights from industry-specific marketing solutions.", "Improve relevance with content tailored by industry.", "Boost efficiency with focused, industry-specific strategies.", "Drive stronger engagement with informed campaign planning.", "Maximize OOH impact through industry-specific execution."]
+      title: "Mengapa Solusi yang Spesifik untuk Industri Itu Penting?"
+      list: ["Pemasaran berbasis industri memungkinkan Anda menjangkau audiens yang tepat.", "Buat narasi iklan yang relevan berdasarkan perilaku tiap sektor.", "Selaraskan iklan dengan situasi nyata konsumen melalui solusi khusus industri.", "Manfaatkan wawasan dari pendekatan pemasaran yang fokus pada sektor tertentu.", "Tingkatkan relevansi dengan konten yang disesuaikan menurut tiap industri.", "Mendorong efisiensi melalui strategi terfokus sesuai karakter industri.", "Bangun keterlibatan lebih kuat dengan perencanaan iklan yang terarah.", "Maksimalkan dampak OOH melalui eksekusi yang spesifik untuk tiap industri."]
   testimonial:
-    title: "Testimonial"
-    desc: "Hear from our partners and see how Prisma has helped them achieve real results with OOH advertising across Indonesia."
+    title: "Testimoni"
+    desc: "Dapatkan kesan dari brand yang sudah mempercayai kami."
+  portfolios:
+    title: "Portofolio Kampanye Kami"
+    desc: "Temukan bagaimana kampanye dari berbagai brand ternama menjadi hidup melalui layanan iklan OOH premium dari kami."
+  blog:
+    title: "Blog"
+    desc: "Jelajahi kumpulan artikel, tren industri, dan sudut pandang para ahli seputar dunia periklanan luar ruang (OOH)."
   footer:
     title:
       our_services: "Layanan Kami"

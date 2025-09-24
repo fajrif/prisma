@@ -4,8 +4,8 @@
 <div class="container cover-background border-radius-8" style="background-image:url('<%= url_for(snippet.background) %>');">
   <div class="transparent-box margin-20px-all">
     <div class="row row-cols-1 row-cols-lg-2">
-      <div class="col padding-six-lr padding-three-tb lg-padding-four-lr md-padding-three-all sm-padding-15px-lr">
-        <%= image_tag(snippet.image, class: "margin-30px-top sm-margin-10px-top") %>
+      <div class="col d-flex align-items-center padding-three-lr padding-three-tb lg-padding-four-lr md-padding-three-all sm-padding-15px-lr">
+        <%= image_tag(snippet.image, class: "w-100") %>
       </div>
       <div class="col text-white-2 padding-six-lr padding-three-tb lg-padding-four-lr md-padding-three-all sm-padding-15px-lr">
         <h3 class="font-weight-600"><%= snippet.title %></h3>

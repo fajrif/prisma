@@ -1,36 +1,6 @@
-<!-- start page single banner -->
-<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@article.image) %>');">
-	<div class="full-screen text-white-2">
-		<div class="container position-relative h-100">
-			<div class="row h-100 align-items-center">
-				<div class="col-xl-10 col-md-10">
-					<span class="d-block mb-2">Blog</span>
-					<h1 class="font-weight-600 text-white-2 alt-font w-90"><%= @article.title %></h1>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- end page single banner -->
-<!-- start blog content section -->
-<section class="half-section wow animate__fadeIn">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 margin-50px-bottom">
-				<span class="post-author text-medium d-block margin-10px-bottom sm-margin-5px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
-				<h5 class="font-weight-400 "><%= @article.title %></h5>
-				<div class="line-height-26">
-					<%= raw @article.content %>
-				</div>
-				<% if @article.file.attached? %>
-					<div class="margin-50px-top">
-						<%= render_link_download_file(@article, "btn btn-medium btn-prisma btn-rounded") %>
-					</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- end blog content section -->
-<%= render "shared/prisma_adv" %>
-<%= render "pages/sections", sections: @sections %>
+<%= render "shared/setting_banners" %>
+<%= render "shared/our_portfolios" %>
+<%= render "shared/blogs" %>
+<%= render "shared/our_industries" %>
+<%= render "shared/testimonials" %>
+<%= render "shared/our_services_second" %>

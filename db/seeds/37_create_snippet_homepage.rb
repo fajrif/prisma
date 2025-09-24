@@ -75,7 +75,7 @@ our_industries.save
 Section.create(page_id: @home_page.id, snippet_id: our_industries.id, bg_color: "bg-image", css_class: "half-section", order_no: 5)
 puts "create Snippet: #{our_industries.name}"
 
-## create our_industries
+## create our_clients
 our_clients = Snippet.new(name: "our_clients")
 our_clients.save
 

@@ -105,6 +105,8 @@ module AdminHelper
 			"info_image",
 			"info_image2",
 			"info_image_left",
+			"info_text_box",
+      "our_clients",
       "info_bg",
       "info_desc_bg",
       "info_image_box",

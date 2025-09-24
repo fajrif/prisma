@@ -1,0 +1,44 @@
+<%- bg_color ||= '' -%>
+<%- text_color, btn_color = get_prisma_element_colors(bg_color) -%>
+
+<%- col1 = 'col-md-6' -%>
+<%- text_align = 'text-center' -%>
+
+<%- text_width = "w-100" -%>
+<%- text_width = snippet.css_title unless snippet.css_title.blank? -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<div class="container">
+	<div class="row <%= "align-items-start #{text_color}" %>">
+    <div class="<%= "#{col1} #{text_align}" %> d-flex justify-content-center align-items-center sm-margin-30px-bottom wow animate__fadeInLeft" data-wow-delay="0.2s">
+      <div class="position-relative">
+        <%= render "image_display", snippet: snippet %>
+        <div class="position-absolute bottom-0">
+          <%= content_tag(header_tag.to_sym, snippet.title, class: "text-white-2 ms-4 font-weight-800") unless snippet.title.blank? %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center align-items-center padding-three-lr wow animate__fadeInRight" data-wow-delay="0.4s">
+      <div>
+        <div class="w-95 sm-w-100">
+          <% unless snippet.short_description.blank? %>
+            <div class="info_short_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+              <%= raw snippet.short_description %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+	</div>
+	<div class="row <%= "align-items-center #{text_color}" %>">
+    <div class="col-md-10 wow animate__fadeIn" data-wow-delay="0.6s">
+      <% unless snippet.description.blank? %>
+        <div class="info_desc last-paragraph-no-margin margin-30px-left sm-no-margin-left">
+          <%= raw snippet.description %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,20 @@
-<div class="container-fluid">
-    <div class="logos">
-      <div class="logo_items">
-        <%- @clients = Client.all -%>
-        <% @clients.each do |client| %>
-          <%= image_tag(client.image) %>
-        <% end %>
-      </div>
+<% unless snippet.title.blank? %>
+<div class="container">
+  <div class="row justify-content-start align-items-center wow animate__fadeIn">
+    <div class="col-6 col-lg-7">
+      <h5 class="font-weight-600"><%= snippet.title %></h5>
+      <div class="mb-3 d-none d-md-block"><%= raw snippet.short_description %></div>
     </div>
+  </div>
+</div>
+<% end %>
+<div class="container-fluid">
+  <div class="logos">
+    <div class="logo_items">
+      <%- @clients = Client.all -%>
+      <% @clients.each do |client| %>
+        <%= image_tag(client.image) %>
+      <% end %>
+    </div>
+  </div>
 </div>

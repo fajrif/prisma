@@ -52,10 +52,17 @@ en:
     advertising:
       about: "Prisma Advertising: Your Partner in Powerful OOH Advertising"
       desc: "Learn more about the industries we support, the services we offer, and the standout projects that make Prisma Advertising a leader in outdoor advertising."
+  vision_mission:
+    vision:
+      title: "Vision"
+      desc: "Prisma aims to be on top of Our Client’s minds as an Advertising Company. Who provides the best in Innovation, Creativity and Excellent services"
+    mission:
+      title: "Mission"
+      desc: "<ul><li>Based on the Trust that we are given</li><li>Start with faith, idea & hardwork</li><li>Do with fast, detail, cost-efficient</li><li>Becoming the best, perfect, with maximum quality for your advertising needs</li></ul>"
   services:
     caption: "Services We Serve"
     recommendation:
-      title: "Recommended Advertising Solutions"
+      title: "Our Services"
       desc: "Explore our tailored out-of-home services designed to meet the specific marketing needs of E-commerce advertising."
     why_choose_prisma:
       title: "Why Choose Prisma Ads?"
@@ -87,7 +94,13 @@ en:
       list: ["Industry-specific marketing enables you to target the right audience.", "Craft messages based on sector-specific behaviors.", "Align with real consumer environments through industry-specific solutions.", "Apply insights from industry-specific marketing solutions.", "Improve relevance with content tailored by industry.", "Boost efficiency with focused, industry-specific strategies.", "Drive stronger engagement with informed campaign planning.", "Maximize OOH impact through industry-specific execution."]
   testimonial:
     title: "Testimonial"
-    desc: "Hear from our partners and see how Prisma has helped them achieve real results with OOH advertising across Indonesia."
+    desc: "Get insights from brands who trust us to deliver."
+  portfolios:
+    title: "Our Campaign Portfolio"
+    desc: "Discover how leading brands have brought their campaigns to life through our premium OOH advertising services."
+  blog:
+    title: "Blog"
+    desc: "Browse through our collection of editorial insights, industry trends, and expert perspectives on OOH advertising."
   footer:
     title:
       our_services: "Our Services"

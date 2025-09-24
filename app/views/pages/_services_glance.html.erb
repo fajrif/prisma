@@ -25,7 +25,7 @@
               <div class="card-title">
                 <div class="d-flex justify-content-start align-items-center gap-4 margin-15px-bottom">
                   <% if service.image.attached? %>
-                    <%= image_tag(service.image.variant(resize: "100x100"), class: "#{'except' if [2,4].include?(index+1)}") %>
+                    <%= image_tag(service.image.variant(resize: "100x100")) %>
                   <% end %>
                   <a href="<%= service_url(service) %>" class="text-extra-large text-white-2 font-weight-600 d-block w-100"><%= service.name %></a>
                 </div>
@@ -33,7 +33,7 @@
                 <span class="font-weight-600 margin-10px-bottom d-inline-block"><%= service.caption %></span>
               </div>
               <div class="card-text snippet">
-                <p class="desc font-weight-500"><%= service.short_description %></p>
+                <p class="desc line-height-normal font-weight-400"><%= service.short_description %></p>
                 <a href="<%= service_url(service) %>" class="btn btn-small btn-transparent-prisma btn-rounded d-block w-fit-content"><%= t('global.read_more') %></a>
               </div>
             </div>
