@@ -9,7 +9,7 @@
       <!-- start section -->
       <% if bg_color == 'bg-image' %>
         <% if snippet.background.attached? %>
-          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>" style="background-image:url('<%= url_for(snippet.background) %>');">
+          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %> parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(snippet.background) %>');">
         <% end %>
       <% else %>
         <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>">

@@ -2554,6 +2554,7 @@ textarea.input-bg {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
 .transparent-box-solid {
   background-color: rgba(255, 255, 255, 0.63);
   padding: 20px 20px;
@@ -2562,6 +2563,14 @@ textarea.input-bg {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
+.box-embroided {
+  box-shadow:
+    inset 0 0 5px rgba(0,0,0,0.2),
+    0 2px 3px rgba(0,0,0,0.3),
+    0 4px 6px rgba(0,0,0,0.1);
+}
+
 .bg-transparent-box {
   background-color: rgba(255, 255, 255, 0.2);
 }
