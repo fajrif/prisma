@@ -1,5 +1,5 @@
 <%= flash_message2 %>
-<div class="border border-white border-radius-8 padding-six-all lg-padding-five-all sm-margin-30px-all">
+<div class="transparent-box padding-six-all lg-padding-five-all sm-margin-30px-all">
   <%= simple_form_for @inquiry || Inquiry.new, url: inquiries_path, method: :post, remote: true, wrapper: :form_border do |f| %>
     <div class="row">
       <%= f.input :name, label: false, placeholder: t('inquiries.name'), grid_wrapper_html: { class: "col-12 col-lg-6" } %>

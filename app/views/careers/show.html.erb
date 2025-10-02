@@ -1,0 +1,16 @@
+<%= render "shared/setting_banners" %>
+<!-- start blog content section -->
+<section class="half-section wow animate__fadeIn">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h5 class="font-weight-400 "><%= @career.title %></h5>
+				<div class="line-height-26">
+					<%= raw @career.content %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end blog content section -->
+<%= render "apply_section" %>

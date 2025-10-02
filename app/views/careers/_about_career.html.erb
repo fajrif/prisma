@@ -1,0 +1,15 @@
+<section id="about-career-section">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 no-margin-lr">
+      <div class="col padding-40px-all text-white-2 bg-gradient-purple border-left-radius-8">
+        <%= content_tag(:h4, t('career.about.title'), class: "font-weight-500 w-80 sm-w-100") %>
+        <div class="w-95 sm-w-100">
+          <div class="info_short_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+            <%= raw t('career.about.desc') %>
+          </div>
+        </div>
+      </div>
+      <div class="col cover-background border-right-radius-8" style="background-image:url('<%= image_url('innovative-solutions.png') %>');"></div>
+    </div>
+  </div>
+</section>

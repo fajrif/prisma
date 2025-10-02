@@ -12,6 +12,7 @@ class ServicesController < ApplicationController
 
   def show
 		@service = Service.friendly.find(params[:id])
+    @sections = @service.segments
     set_banner_individual
   end
 

@@ -52,6 +52,16 @@ id:
     advertising:
       about: "Prisma Advertising: Partner Iklan OOH Terbaik Anda"
       desc: "Pelajari lebih lanjut mengenai industri yang kami dukung, jasa yang kami tawarkan, dan proyek iklan terbaik yang membuat Prisma Advertising menjadi perusahaan iklan luar ruang terdepan."
+  career:
+    about:
+      title: "Karya yang Bermakna, Budaya yang Bertumbuh"
+      desc: "Kami percaya bahwa pekerjaan yang luar biasa dimulai dari lingkungan yang mendukung. Disini, Anda akan menemukan budaya yang dibangun di atas kolaborasi, keingintahuan, dan kepemilikan, didukung oleh kesempatan untuk menumbuhkan bakat dan meninggalkan kesan atas proyek dengan visibilitas tinggi, yang membentuk kota dan cerita di dalamnya."
+    table:
+      title: "Jelajahi Lowongan Terkini dan Temukan yang Sesuai"
+      desc: "Temukan posisi di berbagai bagian, baik kreatif, strategi, operasional, dan lainnya. Setiap posisi menawarkan kesempatan untuk berkembang di dalam lingkungan yang gesit dan berorientasi pada dampak."
+    apply:
+      title: "Tertarik Untuk Bergabung dengan Prisma Advertising?"
+      desc: "Kami selalu terbuka untuk bertemu dengan individu yang memiliki semangat dan kemampuan yang tinggi. Isi formulir aplikasi umum dan kirimkan CV Anda. Kami akan menghubungi Anda saat kesempatan yang tepat tersedia."
   vision_mission:
     vision:
       title: "Visi"

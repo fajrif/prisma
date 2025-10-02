@@ -1,11 +1,11 @@
-<div class="w-95 sm-w-100">
+<div class="w-100 sm-w-100">
 	<% unless snippet.short_description.blank? %>
-		<div class="info_short_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+		<div class="info_short_desc last-paragraph-no-margin">
 			<%= raw snippet.short_description %>
 		</div>
 	<% end %>
 	<% unless snippet.description.blank? %>
-		<div class="info_desc last-paragraph-no-margin margin-30px-bottom sm-margin-15px-bottom">
+		<div class="info_desc last-paragraph-no-margin">
 			<%= raw snippet.description %>
 		</div>
 	<% end %>

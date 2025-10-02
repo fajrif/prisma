@@ -5,7 +5,7 @@
       <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
         <div class="col-6 col-lg-7 text-white-2">
           <h5 class="font-weight-600"><%= t('services.recommendation.title') %></h5>
-          <div class="mb-3 d-none d-md-block w-600px"><%= t('services.recommendation.desc') %></div>
+          <div class="font-weight-500 mb-3 d-none d-md-block w-600px"><%= t('services.recommendation.desc') %></div>
         </div>
         <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
           <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
@@ -22,15 +22,15 @@
                 <% services.each do |service| %>
                   <!-- start testimonial item -->
                   <div class="swiper-slide">
-                    <div class="d-flex flex-column justify-content-between transparent-box-solid border border-white border-radius-8 padding-five-all position-relative h-250px">
+                    <div class="d-flex flex-column justify-content-between transparent-box-solid text-white-2 border border-white border-radius-8 padding-five-all position-relative h-250px">
                       <div>
                         <div class="d-flex align-items-center gap-4 mb-4">
                           <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
-                          <div class="text-large margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
+                          <div class="text-large text-white-2 margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
                         </div>
-                        <p><%= service.short_description %></p>
+                        <p class="font-weight-500"><%= service.short_description %></p>
                       </div>
-                      <a href="<%= service_url(service) %>">Explore</a>
+                      <a class="text-white-2 font-weight-500" href="<%= service_url(service) %>">Explore</a>
                     </div>
                   </div>
                   <!-- end testimonial item -->

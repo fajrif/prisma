@@ -52,6 +52,16 @@ en:
     advertising:
       about: "Prisma Advertising: Your Partner in Powerful OOH Advertising"
       desc: "Learn more about the industries we support, the services we offer, and the standout projects that make Prisma Advertising a leader in outdoor advertising."
+  career:
+    about:
+      title: "Work That Matters, Culture That Grows"
+      desc: "We believe great work starts with a great environment. Here, you’ll find a culture built on collaboration, curiosity, and ownership, backed by opportunities to grow your skills and make your mark on high-visibility projects that shape cities and stories."
+    table:
+      title: "Explore Current Openings and Find the Right Fit"
+      desc: "Discover roles across creative, strategy, operations, and more. Each offering a chance to grow within a fast-moving, impact-driven team."
+    apply:
+      title: "Interested in Joining Prisma Advertising?"
+      desc: "We’re always open to meeting passionate, talented individuals. Fill in the general application form and share your resume. We’ll be in touch when the right opportunity comes along."
   vision_mission:
     vision:
       title: "Vision"
