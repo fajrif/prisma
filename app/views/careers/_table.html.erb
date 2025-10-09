@@ -18,11 +18,11 @@
                         <a class="accordion-toggle" data-bs-toggle="collapse" data-bs-parent="#accordion-design" href="#design<%= index + 1 %>" aria-expanded="false">
                           <div class="panel-title font-weight-500 text-black text-uppercase">
                             <span><%= career.title %></span>
-                            <i class="text-black <%= index == 0 ? 'ti-minus' : 'ti-black' %>"></i>
+                            <i class="text-black <%= index == 0 ? 'ti-minus' : 'ti-plus' %>"></i>
                           </div>
                         </a>
                       </div>
-                      <div id="design<%= index + 1 %>" class="panel-collapse collapse show" data-bs-parent="#accordion-design" aria-expanded="false" role="tablist">
+                      <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-design" aria-expanded="false" role="tablist">
                         <div class="panel-body">
                           <p><%= career.short_description %></p>
                           <%= link_to t('global.read_more'), career_path(career), class: "text-pink" %>
