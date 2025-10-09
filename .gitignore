@@ -23,6 +23,8 @@ app-prod.yaml
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+/public/assets
+/public/assets/.sprockets-manifest-*.json
 
 # Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*

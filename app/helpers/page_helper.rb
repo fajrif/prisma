@@ -45,7 +45,7 @@ module PageHelper
 		elsif bg_color == 'bg-yellow' or bg_color == 'bg-grey'
 			return 'text-extra-dark-gray', 'btn-prisma btn-border'
 		else
-			return 'text-extra-dark-gray', 'btn-prisma'
+			return 'text-extra-dark-gray', 'btn-prisma btn-border'
 		end
 	end
 
