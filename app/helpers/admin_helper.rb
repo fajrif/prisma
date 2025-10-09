@@ -275,6 +275,10 @@ module AdminHelper
     controller.controller_name == "careers"
   end
 
+  def is_errors_page?
+    controller.controller_name == "errors"
+  end
+
   def is_contact_page?
 		controller.controller_name == "inquiries" && controller.action_name == "show"
 	end

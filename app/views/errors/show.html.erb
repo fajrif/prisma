@@ -1,14 +1,14 @@
 <!-- start error page section -->
-<section id="home" class="parallax p-0 mobile-height wow animate__fadeIn" data-parallax-background-ratio="0.5" style="background-image:url('<%= image_url("banners/banner-indo-energy.png") %>');">
+<section id="home" class="parallax p-0 mobile-height wow animate__fadeIn" data-parallax-background-ratio="0.5" style="background-image:url('<%= image_url("bg-prisma-ooh.png") %>');">
 		<div class="opacity-full bg-extra-dark-gray"></div>
 		<div class="container position-relative full-screen">
 				<div class="row h-100 align-items-center">
 						<div class="col-12 text-center">
-								<div class="bg-black-opacity-light margin-50px-top w-50 mx-auto md-w-80 xs-w-95">
+								<div class="transparent-box margin-50px-top w-50 mx-auto md-w-80 xs-w-95">
 										<div class="padding-fifteen-all sm-padding-twelve-all xs-padding-25px-all">
 											<span class="title-extra-large text-white-2 font-weight-600 d-block margin-30px-bottom sm-margin-10px-bottom"><%= @status_code %></span>
 											<h6 class="text-uppercase text-white-2 font-weight-320 alt-font d-block margin-5px-bottom"><%= t("errors.#{@status_code}_title") %></h6>
-											<span class="text-medium-gray mb-5 w-60 d-block mx-auto text-large md-w-100"><%= t("errors.#{@status_code}_desc") %></span>
+											<span class="text-white-2 mb-5 w-60 d-block mx-auto text-large md-w-100"><%= t("errors.#{@status_code}_desc") %></span>
 											<a href="<%= root_url %>" class="btn btn-transparent-prisma btn-large btn-rounded"><i class="prisma-icon-left margin-5px-right ms-0" aria-hidden="true"></i> <%= t('global.back_to', object_name: "Homepage") %></a>
 										</div>
 								</div>

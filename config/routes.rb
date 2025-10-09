@@ -86,7 +86,8 @@ Rails.application.routes.draw do
 		# route to pages
 		match "contact-us", :to => 'inquiries#show', via: :get, as: :contact_us
 		match ":id", :to => 'pages#show', via: :get, as: :page
-		match "/404", to: "errors#not_found", via: :all
+		match "/404", to: "errors#show", code: 404, via: :all
+		match "/500", to: "errors#show", code: 500, via: :all
 		root :to => "pages#show", id: 'home'
   end
 end

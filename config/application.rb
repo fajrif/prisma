@@ -35,11 +35,6 @@ module Prisma
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.active_storage.variant_processor = :mini_magick
 
-		# handle error pages
-		config.exceptions_app = ->(env) {
-      ErrorsController.action(:show).call(env)
-    }
-
 		# Configuration i18n
 		config.i18n.default_locale = :en
 		config.i18n.available_locales = %i[en id]
