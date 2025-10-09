@@ -1,0 +1,31 @@
+<%- bg_color ||= '' -%>
+<%- text_color, btn_color = get_prisma_element_colors('bg-green') -%>
+
+<%- header_tag = "h4" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<%- css_content = "" -%>
+<%- css_content = snippet.css_class unless snippet.title_tag.blank? -%>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-lg-2 no-margin-lr cover-background border-radius-20" style="background-image:url('<%= url_for(snippet.background) %>');">
+    <div class="col padding-60px-all text-white-2">
+      <div class="transparent-box <%= css_content %>">
+        <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-700") %>
+        <% unless snippet.short_description.blank? %>
+          <div class="info_short_desc <%= snippet.css_desc %> last-paragraph-no-margin font-weight-400">
+            <%= raw snippet.short_description %>
+          </div>
+        <% end %>
+        <% snippet.link_buttons.each do |link_button| %>
+          <div class="margin-40px-top">
+            <%= render_link_text_url(link_button, "btn btn-medium #{btn_color} btn-rounded margin-20px-bottom d-block w-fit-content") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center align-items-center">
+      <%= image_tag(url_for(snippet.image)) %>
+    </div>
+  </div>
+</div>

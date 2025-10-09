@@ -111,6 +111,8 @@ module AdminHelper
       "info_bg",
       "info_desc_bg",
       "info_image_box",
+      "info_image_box_2",
+      "benefit_list",
 			"info_description"
 		]
 	end

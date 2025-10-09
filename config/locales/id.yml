@@ -120,6 +120,9 @@ id:
       client_projects: "Proyek Klien"
       industries: "Industri"
       blogs: "Blogs"
+  boostad_services:
+    title: ["Iklan Transit", "Iklan Street Furniture", "Creative Branding", "Iklan Digital Luar Ruang (DOOH)"]
+    list: [ "Promosikan brand Anda di perjalanan dengan iklan bus TransJakarta dan media transportasi lainnya. Mulai dari balutan penuh di bus hingga iklan di terminal dan stasiun, jangkau ribuan komuter setiap hari dengan visibilitas tinggi.", "Ubah fasilitas publik seperti bangku, halte, dan kios menjadi media iklan yang menarik. Dengan desain kreatif, brand Anda hadir langsung di jalanan kota dan mudah dikenali.", "Tingkatkan kehadiran brand di mal, perkantoran, dan area gaya hidup. Kami merancang branding OOH kreatif yang sesuai dengan lokasi, sehingga brand Anda tampil menonjol dalam keseharian audiens.", "Gunakan LED billboard dan layar digital untuk menyampaikan iklan yang dinamis dan mencuri perhatian. Mulai dari animasi 3D hingga LED interaktif, DOOH memberi fleksibilitas dan dampak besar di area urban." ]
   errors:
     404_title: "Halaman Tidak Ditemukan"
     404_desc: "Halaman yang Anda cari tidak dapat ditemukan."
@@ -140,6 +143,7 @@ id:
     back_to_blogs: "Kembali ke Blog"
     others: "%{object_name}"
     others_blogs: "Blog Lainnya"
+    explore_ideal_locations: "Jelajahi Lokasi Ideal"
     no_data_found: "Data Tidak Ditemukan"
     download: "Unduh"
     download_now: "Unduh File"

@@ -8109,7 +8109,6 @@ nav.navbar.bootsnav ul.nav > li > a {
 header nav.navbar.white-link .navbar-nav > li > button,
 nav.navbar.bootsnav.white-link ul.nav > li > button,
 header nav.navbar.white-link .navbar-nav > li > a,
-nav.navbar.bootsnav.white-link ul.nav > li > a,
 header nav.navbar.white-link .header-social-icon a,
 nav.navbar.bootsnav.white-link .header-social-icon a,
 header nav.navbar.white-link .header-searchbar a,
@@ -8117,6 +8116,10 @@ nav.navbar.bootsnav.white-link .header-searchbar a,
 header nav.navbar.bootsnav ul.nav.white-link > li > a,
 nav.navbar.white-link .heder-menu-button a {
   color: #fff;
+}
+
+nav.navbar.bootsnav.white-link ul.nav > li:last-child > a {
+  font-weight: 700;
 }
 
 header.sticky

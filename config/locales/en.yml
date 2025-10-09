@@ -120,6 +120,9 @@ en:
       client_projects: "Client Projects"
       industries: "Industries"
       blogs: "Blogs"
+  boostad_services:
+    title: ["Transit Advertising", "Street Furniture Advertising", "Creative Branding", "Digital Out-of-Home (DOOH) Advertising"]
+    list: ["Promote your brand on the move with TransJakarta bus advertising and transit media. From full bus wraps to ads in terminals and platforms, reach thousands of daily commuters with high visibility.", "Turn public facilities like benches, shelters, and kiosks into unique advertising spaces. With creative designs, your brand becomes part of the city streets and stays top of mind.", "Boost your brand presence in malls, offices, and lifestyle spots. We design creative OOH branding that fits each space, helping your brand stand out in everyday environments.", "Use LED billboards and digital screens to deliver bold, dynamic ads. From 3D animation to interactive LED content, DOOH gives your brand flexibility and impact in key urban areas."]
   errors:
     404_title: "Page Not Found"
     404_desc: "The page you were looking for could not be found."
@@ -140,6 +143,7 @@ en:
     back_to_blogs: "Back to Blogs"
     others: "Other %{object_name}"
     others_blogs: "Other Blogs"
+    explore_ideal_locations: "Explore Ideal Locations"
     no_data_found: "No Data Found"
     download: "Download"
     download_now: "Download Now"
