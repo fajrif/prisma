@@ -69,3 +69,44 @@
 		</div>
 	</div>
 </div>
+<%= content_for :tail do %>
+	<%= javascript_include_tag "jquery-ui/widget" %>
+	<%= javascript_include_tag "jquery-ui/widgets/sortable" %>
+	<script>
+		$(document).on('ready page:load', function () {
+			$("#contents").sortable({
+				handle: '.handle',
+				update: function(e, ui) {
+					$.ajax({
+							url: $(this).data("url"),
+							type: "PATCH",
+							data: $(this).sortable('serialize'),
+							dataType: 'script',
+							error: function() {
+									console.log('Unable to use jquery-ui sortable');
+							}
+					});
+				}
+			});
+			$("#contents1").sortable({
+				handle: '.handle',
+				update: function(e, ui) {
+					$.ajax({
+							url: $(this).data("url"),
+							type: "PATCH",
+							data: $(this).sortable('serialize'),
+							dataType: 'script',
+							error: function() {
+									console.log('Unable to use jquery-ui sortable');
+							}
+					});
+				}
+			});
+		});
+	</script>
+	<style>
+		.ui-sortable-handle{
+			cursor: pointer;
+		}
+	</style>
+<% end %>
