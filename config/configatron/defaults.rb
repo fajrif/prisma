@@ -18,7 +18,7 @@ configatron.social_youtube_url = "https://www.youtube.com/channel/UCg0kpAkiDh4C2
 configatron.social_tiktok_url = "https://vt.tiktok.com/ZGJANjYpy/"
 
 configatron.default_banner = "banners/banner.png"
-configatron.company_address = "GRAHA PRISMA<br/>Jl. Kedoya Duri Raya No.38, Kedoya Selatan<br/>Jakarta Barat, 11520<br/>Indonesia"
+configatron.company_address = "GRAHA PRISMA<br/>Jl. Kedoya Duri Raya No.38<br/>Kedoya Selatan<br/>Jakarta Barat 11520<br/>Indonesia"
 configatron.admin_email = "info@prisma-ads.com"
 configatron.no_reply_email = "no-reply@prisma-ads.com"
 configatron.info_email = "info@prisma-ads.com"

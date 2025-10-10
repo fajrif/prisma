@@ -1008,6 +1008,14 @@ video:focus { outline:none; }
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+.border-left-radius-20 {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+.border-right-radius-20 {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
 
 .bg-prisma-color-1 {
   background: url("prisma-color-1.png");
@@ -1106,4 +1114,16 @@ video:focus { outline:none; }
 }
 .swiper-pagination-bullet-active {
   background: #eee;
+}
+
+#static_billboard_benefits,
+#creative_ooh_benefits,
+#transit_media_benefits,
+#ooh_dashboard_benefits {
+  border-top: 1px solid #2A71F6;
+  border-bottom: 1px solid #2A71F6;
+}
+#digital_billboard_benefits {
+  border-top: 1px solid #DC5EBD;
+  border-bottom: 1px solid #DC5EBD;
 }
