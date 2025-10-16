@@ -1,0 +1,38 @@
+<% title_page("Award details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @award.id %></td>
+					</tr>
+					<tr>
+						<td><b>Image</b></td>
+						<td>
+							<%= image_tag(@award.image.attached? ? @award.image.variant(resize_to_limit: [100,100]) : "awards-tmp.png") %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><h5 class="fs-14 mb-0 text-body"><%= @award.name %></h5></td>
+					</tr>
+					<tr>
+						<td><b>Description</b></td>
+						<td><%= raw @award.description %></td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @award.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_award_path(@award), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_award_path(@award), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_awards_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,7 +1,9 @@
+<%- header_tag = "h5" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
 <div class="container">
   <div class="row justify-content-center align-items-center">
     <div class="col-lg-3 md-margin-40px-bottom sm-margin-30px-bottom wow animate__fadeIn">
-      <h5 class="font-weight-700 text-white-2"><%= snippet.title %></h5>
+      <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-700 text-white-2") unless snippet.title.blank? %>
     </div>
     <div class="col-lg-9 d-flex flex-column justify-content-center align-items-start last-paragraph-no-margin text-white-2 sm-margin-30px-bottom md-h-450px sm-h-350px padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr wow animate__fadeIn" data-wow-delay="0.2s">
       <div class="transparent-box box-embroided padding-six-all">

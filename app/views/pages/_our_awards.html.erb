@@ -1,0 +1,40 @@
+<%- awards = Award.all %>
+<% unless awards.empty? %>
+<div class="container">
+	<div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
+		<div class="col-6 col-lg-7">
+      <h5 class="text-black font-weight-600"><%= snippet.title %></h5>
+			<div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 blog-content no-padding-lr">
+			<ul class="blog-classic blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
+				<li class="grid-sizer"></li>
+        <!-- start post item -->
+        <li class="grid-item text-center wow animate__fadeIn">
+          <%= image_tag "cipar" %>
+        </li>
+        <!-- end post item -->
+				<% awards.each do |award| %>
+					<!-- start post item -->
+					<li class="grid-item last-paragraph-no-margin wow animate__fadeInUp">
+						<div class="blog-post blog-post-style1 awards-style-1 text-start">
+							<div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
+                <%= image_tag award.image, alt: award.name %>
+							</div>
+							<div class="post-details margin-20px-bottom w-95">
+								<span class="post-title font-weight-700 text-large text-black d-inline-block margin-10px-bottom sm-margin-5px-bottom"><%= award.name %></span>
+                <div class="awards-desc">
+                  <%= raw award.description %>
+                </div>
+							</div>
+						</div>
+					</li>
+					<!-- end post item -->
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+<% end %>

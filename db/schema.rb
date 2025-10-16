@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_10_144012) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_16_110102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -125,6 +125,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_10_144012) do
     t.string "company_name", default: "", null: false
     t.string "phone", default: "", null: false
     t.string "email", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.jsonb "name", default: {}
+    t.jsonb "description", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

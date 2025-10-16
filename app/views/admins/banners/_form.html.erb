@@ -11,7 +11,7 @@
 						<%= f.input :description, input_html: { class: 'quill_container' } %>
 					</fieldset>
 					<%= f.error :base %>
-					<div class="form-actions" style="margin-top:100px;">
+					<div class="form-actions">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>
 						<% unless @banner.new_record? %>
 							<%= link_to "Cancel", admins_banner_path(@banner), :class => 'btn btn-light' %>
@@ -45,4 +45,12 @@
 <%= content_for :tail do %>
 	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
 	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+	<style>
+		.banner_description {
+			margin-bottom: 100px !important;
+		}
+    .form-control.banner_description-quill:not(.ql-container) {
+      display: none;
+    }
+	</style>
 <% end %>

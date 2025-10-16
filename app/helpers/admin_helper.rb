@@ -137,6 +137,7 @@ module AdminHelper
 			"bg-grey",
 			"bg-dark-grey",
 			"bg-very-dark-grey",
+      "bg-gradient-purple",
 			"bg-black",
 			"bg-image"
 		]
@@ -319,6 +320,7 @@ module AdminHelper
 		controller.controller_name == "addresses" ||
 		controller.controller_name == "clients" ||
 		controller.controller_name == "testimonials" ||
+		controller.controller_name == "awards" ||
 		controller.controller_name == "careers"
 	end
 

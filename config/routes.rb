@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 			end
 			resources :categories
 			resources :portfolios
+			resources :awards
 			resources :services do
 				resources :segments, :controller => "services/segments", :except => [:index] do
 					collection do

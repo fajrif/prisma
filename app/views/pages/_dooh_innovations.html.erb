@@ -1,0 +1,31 @@
+<%- bg_color = 'bg-green' -%>
+<%- text_color, btn_color = get_prisma_element_colors(bg_color) -%>
+
+<%- text_width = "w-100" -%>
+<%- text_width = snippet.css_title unless snippet.css_title.blank? -%>
+
+<%- header_tag = "h3" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-3 <%= text_color %> md-margin-70px-bottom sm-margin-50px-bottom wow animate__fadeIn">
+          <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600 #{text_width}") unless snippet.title.blank? %>
+          <%= render "pages/info_image_desc", snippet: snippet, btn_color: btn_color %>
+        </div>
+        <div class="col-lg-9">
+            <div class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 m-0">
+              <%- innovations = t('dooh_innovations.title') -%>
+              <% innovations.each_with_index do |innovation, index| %>
+                <!-- start features box item -->
+                <div class="col padding-10px-lr margin-20px-bottom text-center wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
+                  <div class="h-100 w-100 transparent-box-solid">
+                    <span class="d-inline-block <%= text_color %> text-medium font-weight-600"><%= innovation %></span>
+                  </div>
+                </div>
+                <!-- end features box item -->
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>

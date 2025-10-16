@@ -384,11 +384,11 @@ h6 {
   line-height: 26px;
 }
 .title-small {
-  font-size: 30px;
+  font-size: 30px !important;
   line-height: 32px;
 }
 .title-medium {
-  font-size: 40px;
+  font-size: 40px !important;
   line-height: 40px;
 }
 .title-extra-medium {
@@ -428,7 +428,7 @@ h6 {
 }
 .text-dark-gray,
 .btn.text-dark-gray {
-  color: var(--dark-grey-color);
+  color: var(--prisma-dark-grey-color);
 }
 .text-gray,
 .btn.text-gray {
@@ -2589,6 +2589,14 @@ textarea.input-bg {
 
 .bg-transparent-box {
   /*background-color: rgba(255, 255, 255, 0.2);*/
+}
+
+.transparent-white-box {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 20px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /*==============================
@@ -9128,7 +9136,7 @@ header.sticky
   .navbar-default.header-dark-transparent
   .navbar-toggler
   .icon-bar {
-  background: #fff;
+  background: #fff !important;
 }
 
 /* hamburger menu */
@@ -14215,7 +14223,7 @@ figure {
   box-shadow: none;
   margin-top: 0 !important;
 }
-.accordion-style1.panel-group .panel-heading {
+.accordion-style1.panel-group .panel:not(:last-child) .panel-heading {
   border: 0px;
   border-bottom: 1px solid #e4e4e4;
 }
@@ -14234,6 +14242,15 @@ figure {
 }
 
 /* accordion style 2 */
+.accordion-style2.panel-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.accordion-style2.panel-group .panel {
+  width: 50%;
+  box-sizing: border-box;
+}
+
 .accordion-style2 .panel {
   background: transparent;
   border: none;
@@ -14245,19 +14262,30 @@ figure {
   border: none;
 }
 .accordion-style2 .panel .panel-heading {
-  background: #fff;
-  border-radius: 0;
+  border-radius: 8px;
   padding: 18px 28px 19px;
   position: relative;
+  margin: 0 10px;
 }
 .accordion-style2 .panel-body {
   padding: 35px 28px 25px;
-  border-top: 1px solid #ddd;
+  border-top: none !important;
 }
 .accordion-style2 .panel-heading i {
   font-size: 21px;
   margin: 0;
   right: 28px;
+}
+.accordion-style2 .panel-heading img {
+  position: absolute;
+  width: 50px;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 .accordion-style2 .panel-title {
   padding: 0;
