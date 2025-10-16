@@ -5,7 +5,7 @@
       <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
         <div class="col-6 col-lg-7 text-white-2">
           <h5 class="font-weight-600"><%= t('services.recommendation.title') %></h5>
-          <div class="font-weight-500 mb-3 d-none d-md-block w-600px"><%= t('services.recommendation.desc') %></div>
+          <div class="font-weight-400 mb-3 d-none d-md-block w-600px"><%= t('services.recommendation.desc') %></div>
         </div>
         <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
           <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
@@ -28,9 +28,9 @@
                           <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
                           <div class="text-large text-white-2 margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
                         </div>
-                        <p class="font-weight-500"><%= service.short_description %></p>
+                        <p class="font-weight-400"><%= service.short_description %></p>
                       </div>
-                      <a class="text-white-2 font-weight-500" href="<%= service_url(service) %>">Explore</a>
+                      <a class="text-white-2 font-weight-400" href="<%= service_url(service) %>">Explore</a>
                     </div>
                   </div>
                   <!-- end testimonial item -->

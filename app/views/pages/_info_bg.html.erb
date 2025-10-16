@@ -1,11 +1,15 @@
+<%- header_tag = "h4" -%>
+<%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
+
 <div class="container-fluid">
   <div class="row justify-content-center align-items-center">
     <div class="col-lg-8 wow animate__fadeIn">
       <div class="transparent-box box-embroided font-weight-500 text-medium text-white-2 text-center last-paragraph-no-margin">
         <div class="padding-four-tb padding-eight-lr">
-          <h4 class="font-weight-700 text-white-2 line-height-normal"><%= snippet.title %></h4>
-          <p class="font-weight-700"><%= snippet.short_description %></p>
-          <p><%= snippet.description %></p>
+          <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-700 text-white-2 line-height-normal") %>
+          <span class="text-extra-large text-uppercase font-weight-700 d-inline-block mb-4"><%= snippet.caption %></span>
+          <div class="font-weight-700"><%= raw snippet.short_description %></div>
+          <div><%= raw snippet.description %></div>
         </div>
       </div>
     </div>

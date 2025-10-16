@@ -1062,7 +1062,7 @@ video:focus { outline:none; }
 }
 
 .service-card .card-title img:not(.except) {
- filter: brightness(0) invert(1);
+ /*filter: brightness(0) invert(1);*/
 }
 
 .service-card .card-title a:hover {
