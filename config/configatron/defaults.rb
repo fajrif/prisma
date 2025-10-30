@@ -27,3 +27,8 @@ configatron.hrd_email = "hrd.recruitment@prisma-ads.com"
 
 configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"
+
+configatron.recaptcha_v3_secret_key = "6LfW3vsrAAAAADqz9s5BDdF1dQmPR3990aqPp1pv"
+configatron.recaptcha_v3_site_key = "6LfW3vsrAAAAAFFNauE_HMDdARsTmtUARYsG_S8j"
+configatron.recaptcha_v2_secret_key = "6Lfz3vsrAAAAAN1LZ3LBUVKT4jJ9lLdVqeL2m8js"
+configatron.recaptcha_v2_site_key = "6Lfz3vsrAAAAADwt6eF_4UUrbSAAY7MvXLwLPJ6P"

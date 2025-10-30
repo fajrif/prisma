@@ -134,8 +134,8 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'col-12 col-lg-1'
-    b.wrapper :grid_wrapper, class: 'col-12 col-lg-11' do |ba|
+    b.use :label, class: 'col-12 col-lg-12'
+    b.wrapper :grid_wrapper, class: 'col-12 col-lg-12' do |ba|
 			ba.use :input, class: 'input-border-bottom form-control', error_class: 'is-invalid'
 			ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
 			ba.use :hint, wrap_with: { class: 'form-text' }
@@ -143,7 +143,7 @@ SimpleForm.setup do |config|
   end
 
   # vertical select input
-  config.wrappers :vertical_select, class: 'mb-3' do |b|
+  config.wrappers :vertical_select do |b|
     b.use :html5
     b.optional :readonly
     b.use :label, class: 'form-label'

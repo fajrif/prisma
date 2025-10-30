@@ -1,0 +1,36 @@
+<table class="table table-hover">
+	<tr>
+		<td style="width:15%;"><b>ID</b></td>
+		<td><%= @application.id %></td>
+	</tr>
+	<tr>
+		<td><b>Name</b></td>
+		<td><h5 class="fs-14 mb-0 text-body"><%= @application.name %></h5></td>
+	</tr>
+	<tr>
+		<td><b>Email Address</b></td>
+    <td><%= link_to @application.email, "mailto:#{@application.email}" %></td>
+	</tr>
+	<tr>
+		<td><b>Phone</b></td>
+		<td><%= @application.phone %></td>
+	</tr>
+	<tr>
+		<td><b>Applied For</b></td>
+		<td><%= @application.try(:career).try(:title) %></td>
+	</tr>
+	<tr>
+		<td><b>CV / Resume</b></td>
+		<td>
+			<%= link_to(@application.file.filename, url_for(@application.file), target: :_blank) if @application.file.attached? %>
+		</td>
+	</tr>
+  <tr>
+    <td><b>Created At</b></td>
+    <td><%= @application.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+  </tr>
+  <tr>
+    <td><b>Updated At</b></td>
+    <td><%= @application.updated_at.strftime('%d/%m/%Y %H:%M') %></td>
+  </tr>
+</table>

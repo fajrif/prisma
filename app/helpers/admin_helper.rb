@@ -321,7 +321,8 @@ module AdminHelper
 		controller.controller_name == "clients" ||
 		controller.controller_name == "testimonials" ||
 		controller.controller_name == "awards" ||
-		controller.controller_name == "careers"
+		controller.controller_name == "careers" ||
+		controller.controller_name == "applications"
 	end
 
 	def is_admins_users_page?

@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
-      <div class="col-6 col-lg-7">
+      <div class="col-12 col-lg-7">
         <h5 class="text-white-2 font-weight-600"><%= snippet.title %></h5>
-        <div class="text-silver font-weight-400 mb-3 d-none d-md-block"><%= raw snippet.short_description %></div>
+        <div class="text-silver font-weight-400 mb-3"><%= raw snippet.short_description %></div>
       </div>
-      <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+      <div class="col-12 col-lg-5 text-start text-md-end">
         <%= link_to industries_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
           <%= t('global.view_all') %>
         <% end %>
       </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-lg-3 md-margin-70px-bottom sm-margin-50px-bottom wow animate__fadeIn">
+        <div class="col-lg-3 md-margin-70px-bottom sm-margin-50px-bottom d-none d-md-block wow animate__fadeIn">
           <img src="<%= url_for(snippet.image) %>" alt="Prisma Logo"/>
         </div>
         <div class="col-lg-9">

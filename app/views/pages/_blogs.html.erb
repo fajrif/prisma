@@ -1,7 +1,7 @@
 <%- articles = Article.first(3) %>
 <% unless articles.empty? %>
 <div class="container">
-	<div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
+	<div class="row justify-content-start align-items-center margin-40px-bottom sm-margin-20px-bottom wow animate__fadeIn">
 		<div class="col-6 col-lg-7">
       <h5 class="text-black font-weight-600"><%= snippet.title %></h5>
 			<div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 blog-content no-padding-lr">
+		<div class="col-12 blog-content">
 			<ul class="blog-classic blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
 				<li class="grid-sizer"></li>
 				<% articles.each do |article| %>

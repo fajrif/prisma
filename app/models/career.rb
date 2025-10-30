@@ -14,6 +14,8 @@ class Career < ApplicationRecord
 	has_one_attached :file, dependent: :purge
 	has_one :action_text_rich_text, class_name: 'ActionText::RichText', as: :record
 
+  has_many :applications
+
 	# => File
 	validates :file, content_type: ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'],
 										size: { less_than: 50.megabytes, message: 'File maximum 50MB' }

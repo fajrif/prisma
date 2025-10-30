@@ -40,6 +40,15 @@ id:
     message: "Pesan"
     success: "Terima kasih pesan dan data anda telah terkirim!"
     errors: "Maaf sistem tidak dapat memproses data anda!"
+  applications:
+    name: "Nama"
+    phone: "No.Telp"
+    email: "Email"
+    position: "Posisi"
+    select_position: "Silahkan pilih posisi yang dilamar"
+    file: "CV / Resume"
+    success: "Terima kasih aplikasi dan data anda telah terkirim!"
+    errors: "Maaf sistem tidak dapat memproses data aplikasi anda!"
   locations:
     jabodetabek:
       desc: "Our Jakarta locations cover key business districts, transit hubs, and high-traffic urban zones, ideal for reaching diverse, on-the-move audiences in Indonesia’s capital."

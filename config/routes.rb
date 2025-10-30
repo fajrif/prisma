@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 					delete "delete_attachment/:asset_id" => "careers#delete_attachment", :as => :delete_attachment
 				end
 			end
+			resources :applications, :only => [:index, :show, :destroy]
 			resources :banner_sections
 			resources :banners do
 				resources :link_buttons, :controller => "banners/link_buttons", :except => [:index, :show]
@@ -81,7 +82,7 @@ Rails.application.routes.draw do
 		resources :services, :only => [:index, :show]
 		resources :industries, :only => [:index, :show]
 		resources :portfolios, :only => [:index, :show]
-		resources :careers, :only => [:index, :show]
+		resources :careers, :only => [:index, :show, :create]
 		resources :locations, :only => [:index, :show]
 
 		# route to pages

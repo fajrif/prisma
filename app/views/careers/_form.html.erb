@@ -1,0 +1,23 @@
+<%= flash_message2 %>
+<div class="transparent-box padding-six-all lg-padding-five-all sm-margin-30px-all">
+  <%= simple_form_for @application || Application.new, url: careers_path, method: :post, remote: true, wrapper: :form_border do |f| %>
+    <div class="row">
+      <%= f.input :name, label: false, placeholder: t('applications.name') %>
+      <%= f.input :email, label: false, placeholder: t('applications.email'), grid_wrapper_html: { class: "col-12 col-lg-6" } %>
+      <%= f.input :phone, label: false, placeholder: t('applications.phone'), grid_wrapper_html: { class: "col-12 col-lg-6" } %>
+      <%= f.association :career, label: false, prompt: t('applications.select_position'), input_html: { class: "input-border-bottom required" } %>
+      <%= f.input :file, as: :file, label: false %>
+    </div>
+    <div class="row">
+      <div class="col-12 margin-10px-top">
+        <% if @show_recaptcha_v2 %>
+          <input type="hidden" value="true" name="application[use_v2]" id="application_use_v2">
+          <%= raw Prisma::Recaptcha.recaptcha_v2_render %>
+        <% else %>
+          <%= raw Prisma::Recaptcha.recaptcha_execute('application') %>
+        <% end %>
+        <button type="submit" class="btn btn-medium btn-transparent-prisma btn-rounded"><%= t('global.submit') %></button>
+      </div>
+    </div>
+  <% end %>
+</div>

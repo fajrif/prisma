@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-3 md-margin-70px-bottom sm-margin-50px-bottom wow animate__fadeIn">
+    <div class="col-lg-3 md-margin-70px-bottom sm-margin-20px-bottom wow animate__fadeIn">
       <div class="margin-30px-bottom">
         <h5 class="text-white-2 font-weight-600"><%= snippet.title %></h5>
-        <div class="text-white-2 mb-3 d-none d-md-block font-weight-400"><%= snippet.short_description %></div>
+        <div class="text-white-2 mb-3 font-weight-400"><%= snippet.short_description %></div>
       </div>
       <% if snippet.image.attached? %>
-        <img src="<%= url_for(snippet.image) %>" alt="Prisma Logo"/>
+        <img src="<%= url_for(snippet.image) %>" class="d-none d-md-block" alt="Prisma Logo"/>
       <% end %>
     </div>
     <div class="col-lg-9">
       <div class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 m-0">
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom">P</span>
+              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">P</span>
               <div>
                 <h6 class="font-weight-700 text-pink line-height-normal mb-2">Productivity</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">We are able to finish our project efficiently, fast, detail and provide you our maximum result.</p>
@@ -23,9 +23,9 @@
           </div>
           <!-- end features box item -->
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-purple title-extra-medium font-weight-700 margin-50px-bottom">R</span>
+              <span class="d-inline-block text-purple title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">R</span>
               <div>
                 <h6 class="font-weight-700 text-purple line-height-normal mb-2">Responsibility</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">We are always fulfill our responsibilities with care, awareness, pro-active, and innovative actions</p>
@@ -34,9 +34,9 @@
           </div>
           <!-- end features box item -->
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom">I</span>
+              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">I</span>
               <div>
                 <h6 class="font-weight-700 text-pink line-height-normal mb-2">Integrity</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">Honesty and sincerity in togetherness combined with loyalty to provide only the best.</p>
@@ -45,9 +45,9 @@
           </div>
           <!-- end features box item -->
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-blue title-extra-medium font-weight-700 margin-50px-bottom">S</span>
+              <span class="d-inline-block text-blue title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">S</span>
               <div>
                 <h6 class="font-weight-700 text-blue line-height-normal mb-2">Sense</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">Having the sensibilities, of consciousness and insight, will be a sense of belonging the readiness and responsibility</p>
@@ -56,9 +56,9 @@
           </div>
           <!-- end features box item -->
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom">M</span>
+              <span class="d-inline-block text-pink title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">M</span>
               <div>
                 <h6 class="font-weight-700 text-pink line-height-normal mb-2">Manage</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">Leadership & consistency has become our work culture, we work the plan not only plan the work.</p>
@@ -67,9 +67,9 @@
           </div>
           <!-- end features box item -->
           <!-- start features box item -->
-          <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
+          <div class="col d-flex padding-10px-lr margin-20px-bottom wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.1s">
             <div class="h-100 w-100 d-flex flex-column justify-content-between gap-4 transparent-box-solid">
-              <span class="d-inline-block text-purple title-extra-medium font-weight-700 margin-50px-bottom">A</span>
+              <span class="d-inline-block text-purple title-extra-medium font-weight-700 margin-50px-bottom sm-margin-25px-bottom">A</span>
               <div>
                 <h6 class="font-weight-700 text-purple line-height-normal mb-2">Attitude</h6>
                 <p class="d-inline-block text-white-2 font-weight-400">We start with high respect to the good attitude and discipline, we are moving forward in togetherness.</p>

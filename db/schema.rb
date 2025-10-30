@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_16_110102) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_28_144853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_16_110102) do
     t.datetime "updated_at", null: false
     t.integer "role_id", default: 0, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.bigint "career_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["career_id"], name: "index_applications_on_career_id"
   end
 
   create_table "archive_types", force: :cascade do |t|

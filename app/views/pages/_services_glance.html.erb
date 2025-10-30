@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
-    <div class="col-6 col-lg-7">
+  <div class="row d-inline d-md-flex align-items-center margin-40px-bottom sm-margin-30px-bottom wow animate__fadeIn">
+    <div class="col-12 col-lg-7">
       <h5 class="font-weight-600"><%= snippet.title %></h5>
       <div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
     </div>
-    <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+    <div class="col-12 col-lg-5 text-start text-md-end">
       <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
         <%= t('global.view_all') %>
       <% end %>
