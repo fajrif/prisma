@@ -1126,43 +1126,43 @@ a.text-very-light-gray-hover:hover {
 .bg-transparent-black {
   background-color: rgba(0, 0, 0, 0);
   background: -moz-linear-gradient(
-    left,
+    top,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 37%,
     rgba(0, 0, 0, 1) 96%,
     rgba(0, 0, 0, 1) 100%
   );
   background: -webkit-gradient(
-    left top,
-    right top,
+    top,
+    top,
     color-stop(0%, rgba(0, 0, 0, 0)),
     color-stop(37%, rgba(0, 0, 0, 0)),
     color-stop(96%, rgba(0, 0, 0, 1)),
     color-stop(100%, rgba(0, 0, 0, 1))
   );
   background: -webkit-linear-gradient(
-    left,
+    top,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 37%,
     rgba(0, 0, 0, 1) 96%,
     rgba(0, 0, 0, 1) 100%
   );
   background: -o-linear-gradient(
-    left,
+    top,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 37%,
     rgba(0, 0, 0, 1) 96%,
     rgba(0, 0, 0, 1) 100%
   );
   background: -ms-linear-gradient(
-    left,
+    top,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 37%,
     rgba(0, 0, 0, 1) 96%,
     rgba(0, 0, 0, 1) 100%
   );
   background: linear-gradient(
-    to right,
+    to top,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 37%,
     rgba(0, 0, 0, 1) 96%,

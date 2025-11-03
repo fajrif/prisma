@@ -8,14 +8,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 blog-content no-padding-lr">
-			<ul class="blog-classic blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
+		<div class="col-12 col-lg-3 text-center">
+      <%= image_tag "cipar.png" %>
+    </div>
+		<div class="col-12 col-lg-9 blog-content no-padding-lr">
+			<ul class="blog-classic blog-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
 				<li class="grid-sizer"></li>
-        <!-- start post item -->
-        <li class="grid-item text-center wow animate__fadeIn">
-          <%= image_tag "cipar.png" %>
-        </li>
-        <!-- end post item -->
 				<% awards.each do |award| %>
 					<!-- start post item -->
 					<li class="grid-item last-paragraph-no-margin wow animate__fadeInUp">
