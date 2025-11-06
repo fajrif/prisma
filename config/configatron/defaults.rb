@@ -24,6 +24,7 @@ configatron.no_reply_email = "no-reply@prisma-ads.com"
 configatron.info_email = "info@prisma-ads.com"
 configatron.sales_email = "sales@prisma-ads.com"
 configatron.hrd_email = "hrd.recruitment@prisma-ads.com"
+configatron.whatsapp_number = "628111306888"
 
 configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"

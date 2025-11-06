@@ -1,7 +1,7 @@
 <%- swiper_color = @banner_text_color == "text-white-2" ? "bullet-white" : "" -%>
 <!-- start slider section -->
 <section class="p-0 bg-black multiple-banner main-slider">
-	<div class="swiper full-screen <%= @banner_text_color %> md-landscape-h-580px" data-slider-options='{ "loop": true, "slidesPerView": "1", "effect": "fade", "allowTouchMove": true, "fadeEffect": { "crossFade": true }, "autoplay": { "delay": 11000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "pagination": { "el": ".swiper-pagination-01", "clickable": true } }'>
+	<div class="swiper full-screen <%= @banner_text_color %> md-landscape-h-580px" data-slider-options='{ "loop": true, "slidesPerView": "1", "effect": "fade", "allowTouchMove": true, "fadeEffect": { "crossFade": true }, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "pagination": { "el": ".swiper-pagination-01", "clickable": true } }'>
 		<div class="swiper-wrapper">
 			<% @banners.reverse.each do |banner| %>
 				<%- text_desc_width = "w-25 lg-w-30 md-w-50 sm-w-100" -%>
@@ -13,7 +13,7 @@
             <div class="swiper-slide banner-cover-background" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
             <div class="opacity-medium bg-transparent-black z-index-0"></div>
           <% end %>
-					<div class="container h-100">
+					<div class="container position-relative h-100">
             <div class="row h-90p align-items-end">
               <div class="col-lg-12 col-md-12">
                 <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">

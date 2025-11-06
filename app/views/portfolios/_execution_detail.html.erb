@@ -1,0 +1,38 @@
+<section class="half-section wow animate__fadeIn">
+  <div class="container">
+    <div class="row justify-content-start margin-25px-bottom">
+      <div class="col-lg-7 margin-30px-bottom sm-margin-30px-bottom">
+        <h5 class="text-black font-weight-600"><%= t('portfolios.execution.title') %></h5>
+        <p class="text-black mb-0 text-extra-large font-weight-300">
+          <%= t('portfolios.execution.desc') %>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-start">
+      <div class="col-12 col-lg-6 sm-margin-30px-bottom wow animate__fadeIn">
+        <%= image_tag(@portfolio.image1, class: "w-100 h-100 border-radius-8") if @portfolio.image1.attached? %>
+      </div>
+      <div class="col-12 col-lg-6 sm-margin-30px-bottom wow animate__fadeIn">
+        <%= image_tag(@portfolio.image2, class: "w-100 h-100 border-radius-8") if @portfolio.image2.attached? %>
+      </div>
+    </div>
+
+    <% unless @portfolio.video_url.blank? %>
+    <div class="row">
+      <div class="col-12 col-lg-12 d-flex justify-content-center text-center padding-five-top wow animate__fadeIn">
+        <div class="video-wrapper2">
+          <!-- start youtube video -->
+          <iframe
+            src="<%= @portfolio.video_url %>"
+            title="<%= @portfolio.name %>"
+            frameborder="0"
+            allowfullscreen
+            ></iframe>
+          <!-- end youtube video -->
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</section>

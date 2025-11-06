@@ -1,23 +1,15 @@
-<%- portfolios = Portfolio.first(3) %>
-<% unless portfolios.empty? %>
-  <section>
+<% if banner = @banners.first %>
+  <%= render partial: "pages/single_banner", locals: { banner: banner } %>
+<% end %>
+
+<% unless @portfolios.empty? %>
+  <section id="portfolios-section">
     <div class="container">
-      <div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
-        <div class="col-12 col-lg-7">
-          <h5 class="text-black font-weight-600"><%= t('portfolios.title') %></h5>
-          <div class="mb-3 d-none d-md-block w-600px"><%= t('portfolios.desc') %></div>
-        </div>
-        <div class="col-12 col-lg-5 text-start text-md-end">
-          <%= link_to portfolios_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
-            <%= t('global.view_all') %>
-          <% end %>
-        </div>
-      </div>
       <div class="row">
         <div class="col-12 blog-content">
           <ul class="blog-classic blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
             <li class="grid-sizer"></li>
-            <% portfolios.each do |portfolio| %>
+            <% @portfolios.each do |portfolio| %>
               <!-- start post item -->
               <li class="grid-item last-paragraph-no-margin wow animate__fadeInUp">
                 <div class="blog-post blog-post-style1 text-start">
@@ -43,8 +35,17 @@
               <!-- end post item -->
             <% end %>
           </ul>
+          <!-- pagination -->
+          <div class="text-center margin-50px-tb sm-margin-30px-tb">
+            <%= paginate @portfolios, theme: :pofo %>
+          </div>
+          <!-- end pagination -->
         </div>
       </div>
     </div>
   </section>
 <% end %>
+<%= render "shared/our_services_second" %>
+<%= render "shared/blogs" %>
+<%= render "shared/testimonials" %>
+<%= render "shared/our_industries" %>

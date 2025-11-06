@@ -1,0 +1,32 @@
+<% unless @portfolio.about_campaign.blank? %>
+<section class="p-0 wow animate__fadeIn">
+  <div class="container">
+    <div class="cover-background padding-two-all sm-padding-20px-all border-radius-20" style="background-image:url('<%= image_url('bg-image-6.png') %>');">
+      <% unless @portfolio.about_campaign.blank? %>
+      <div class="row justify-content-center align-items-start">
+        <div class="col-lg-3 padding-three-all sm-margin-20px-tb wow animate__fadeIn">
+          <h6 class="font-weight-600 text-white-2 text-center text-md-start mb-0"><%= t('portfolios.about_campaign') %></h6>
+        </div>
+        <div class="col-lg-9 d-flex flex-column justify-content-center align-items-start last-paragraph-no-margin text-white-2 margin-30px-bottom padding-three-lr sm-padding-15px-lr wow animate__fadeIn" data-wow-delay="0.2s">
+          <div class="transparent-box box-embroided padding-six-all">
+            <div class="text-large font-weight-400"><%= raw @portfolio.about_campaign %></div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% unless @portfolio.area_coverage.blank? %>
+      <div class="row justify-content-center align-items-start">
+        <div class="col-lg-3 padding-three-all sm-margin-20px-tb wow animate__fadeIn">
+          <h6 class="font-weight-600 text-white-2 text-center text-md-start mb-0"><%= t('portfolios.area_coverage') %></h6>
+        </div>
+        <div class="col-lg-9 d-flex flex-column justify-content-center align-items-start last-paragraph-no-margin text-white-2 padding-three-lr sm-padding-15px-lr wow animate__fadeIn" data-wow-delay="0.3s">
+          <div class="transparent-box box-embroided padding-six-all">
+            <div class="text-large font-weight-400"><%= raw @portfolio.area_coverage %></div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% end %>

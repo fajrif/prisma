@@ -117,6 +117,11 @@ en:
   portfolios:
     title: "Our Campaign Portfolio"
     desc: "Discover how leading brands have brought their campaigns to life through our premium OOH advertising services."
+    caption: "Campaign Portfolio"
+    creative_highlights: "Creative Highlights"
+    execution:
+      title: "Execution Details"
+      desc: "Insight into the formats, placements, and processes behind the campaign."
   blog:
     title: "Blog"
     desc: "Browse through our collection of editorial insights, industry trends, and expert perspectives on OOH advertising."

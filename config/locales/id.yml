@@ -117,6 +117,11 @@ id:
   portfolios:
     title: "Portofolio Kampanye Kami"
     desc: "Temukan bagaimana kampanye dari berbagai brand ternama menjadi hidup melalui layanan iklan OOH premium dari kami."
+    caption: "Portofolio Kampanye"
+    creative_highlights: "Sorotan Kreatif"
+    execution:
+      title: "Detail Eksekusi"
+      desc: "Wawasan tentang format, penempatan, dan proses di balik kampanye."
   blog:
     title: "Blog"
     desc: "Jelajahi kumpulan artikel, tren industri, dan sudut pandang para ahli seputar dunia periklanan luar ruang (OOH)."

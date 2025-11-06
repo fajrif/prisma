@@ -27,8 +27,12 @@
 							</div>
 							<div class="post-details margin-20px-bottom w-95">
                 <div class="mb-4">
-                  <span class="btn btn-medium btn-rounded btn-border btn-prisma sm-margin-10px-bottom"><%= portfolio.try(:service).try(:name) %></span>
-                  <span class="btn btn-medium btn-rounded btn-border btn-prisma"><%= portfolio.try(:industry).try(:name) %></span>
+                  <% if portfolio.service %>
+                    <span class="btn btn-medium btn-rounded btn-border btn-prisma sm-margin-10px-bottom"><%= portfolio.try(:service).try(:name) %></span>
+                  <% end %>
+                  <% if portfolio.industry %>
+                    <span class="btn btn-medium btn-rounded btn-border btn-prisma"><%= portfolio.try(:industry).try(:name) %></span>
+                  <% end %>
                 </div>
 								<a href="<%= portfolio_path(portfolio) %>" class="post-title font-weight-600 text-extra-large text-black text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= portfolio.name %></a>
 								<span class="post-author text-black d-block margin-15px-bottom"><%= portfolio.short_description %></span>
