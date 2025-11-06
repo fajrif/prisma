@@ -22,7 +22,7 @@
 						<div class="blog-post blog-post-style1 text-start">
 							<div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
 								<a href="<%= article_path(article) %>">
-									<%= image_tag article.image, alt: article.title %>
+									<%= image_tag article.image, alt: article.title if article.image.attached? %>
 								</a>
 							</div>
 							<div class="post-details margin-20px-bottom w-95">
