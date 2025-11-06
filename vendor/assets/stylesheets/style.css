@@ -532,14 +532,14 @@ blockquote {
 }
 blockquote p {
   font-size: 18px;
-  line-height: 30px;
+  line-height: 24px;
   margin-bottom: 17px !important;
   font-weight: 300;
 }
 blockquote {
   border-left: 2px solid;
   padding: 15px 40px;
-  margin: 45px 0;
+  margin: 25px 0;
 }
 blockquote footer {
   color: var(--grey-color);
@@ -2213,7 +2213,7 @@ textarea.input-bg {
 .border-color-light-pink {
   border-color: #862237 !important;
 }
-.border-color-yellow {
+.border-color-pink {
   border-color: var(--base-color) !important;
 }
 .border-color-transparent-pink {
@@ -8507,6 +8507,7 @@ header.sticky
 header.sticky nav.navbar.white-link .navbar-nav > li > a.active,
 header.sticky nav.navbar.bootsnav.white-link ul.nav > li > a.active {
   /*color: rgba(0, 0, 0, 0.6);*/
+  color: #fff;
 }
 header.sticky nav.navbar.header-dark.white-link .navbar-nav > li > a.active,
 header.sticky
@@ -11091,6 +11092,29 @@ header.sticky nav.navbar.brand-center ul.nav > li > a {
   background: #fff;
 	/*width: 50px !important;*/
   transform: scale(1.5);
+	border-radius: 10px !important;
+}
+.swiper-pagination-square-bottom.swiper-pagination-bullets {
+  bottom: -50px;
+}
+
+/* secondary dot pagination white */
+.swiper-pagination-black .swiper-pagination-bullet {
+  background: var(--medium-grey-color);
+}
+.swiper-pagination-black.bullet-white .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+  background: #fff;
+}
+/* square pagination */
+.swiper-pagination-square .swiper-pagination-bullet {
+  height: 4px;
+  width: 30px;
+  border-radius: 0;
+}
+.swiper-pagination-black .swiper-pagination-bullet-active {
+  background: var(--prisma-dark-grey-color);
+	/*width: 50px !important;*/
+  /*transform: scale(1.5);*/
 	border-radius: 10px !important;
 }
 .swiper-pagination-square-bottom.swiper-pagination-bullets {

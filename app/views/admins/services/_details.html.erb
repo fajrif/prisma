@@ -8,14 +8,22 @@
 		<td><%= link_to "/#{@service.slug}", service_path(@service), target: :_blank %></td>
 	</tr>
   <tr>
-    <td><b>Image</b></td>
+    <td><b>Logo</b></td>
     <td>
       <%= image_tag @service.image.variant(resize_to_limit: [50,50]) %>
     </td>
   </tr>
+  <% if @service.image_white.attached? %>
+  <tr>
+    <td><b>Logo White</b></td>
+    <td>
+      <%= image_tag(@service.image_white, class: "bg-black") if @service.image_white.attached? %>
+    </td>
+  </tr>
+  <% end %>
   <% if @service.image1.attached? %>
   <tr>
-    <td><b>Image 1</b></td>
+    <td><b>Image</b></td>
     <td>
       <%= image_tag @service.image1 %>
     </td>

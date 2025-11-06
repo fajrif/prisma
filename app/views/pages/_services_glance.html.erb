@@ -24,8 +24,8 @@
             <div class="card-body text-white-2">
               <div class="card-title">
                 <div class="d-flex justify-content-start align-items-center gap-4 margin-15px-bottom">
-                  <% if service.image.attached? %>
-                    <%= image_tag(service.image.variant(resize: "100x100")) %>
+                  <% if service.image_white.attached? %>
+                    <%= image_tag(service.image_white.variant(resize: "100x100")) %>
                   <% end %>
                   <a href="<%= service_url(service) %>" class="text-extra-large text-white-2 font-weight-600 d-block w-100"><%= service.name %></a>
                 </div>

@@ -3,7 +3,7 @@
 		<thead class="table-light">
 			<tr>
 				<th class="text-center">ID</th>
-				<th>Image</th>
+				<th>Logo</th>
 				<th>Title</th>
 				<th>Slug</th>
 				<th>Banner Section</th>
@@ -14,7 +14,7 @@
 			<% for service in @services %>
 				<tr>
 					<td class="text-center"><%= service.id %></td>
-					<td><%= image_tag service.image.variant(resize_to_limit: [50,50]) %></td>
+					<td class="text-center"><%= image_tag service.image.variant(resize_to_limit: [50,50]) %></td>
 					<td><h5 class="fs-14 mb-0"><%= link_to service.name, admins_service_path(service.id), class: "text-primary" %></h5></td>
 					<td><%= link_to "/#{service.slug}", service_path(service), target: :_blank %></td>
 					<td><b><%= service.try(:banner_section).try(:name_id_label) %></b></td>

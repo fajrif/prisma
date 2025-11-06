@@ -8,6 +8,7 @@ class Service < ApplicationRecord
 	default_scope { order(id: :asc) }
 
 	has_one_attached :image, dependent: :purge
+	has_one_attached :image_white, dependent: :purge
 	has_one_attached :image1, dependent: :purge
   has_many :benefits
 	belongs_to :banner_section, optional: true
@@ -19,6 +20,8 @@ class Service < ApplicationRecord
 	validates_uniqueness_of :name
 
 	validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
+	validates :image_white, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates :image1, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }

@@ -35,8 +35,10 @@
 						<div class="card-body">
               <label>Image</label>
               <%= f.input :image, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
-              <label>Image 1</label>
+              <label>Logo</label>
               <%= f.input :image1, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+              <label>Logo White</label>
+              <%= f.input :image_white, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
               <%= f.association :banner_section, as: :select %>
               <%= f.input :color, as: :string %>
 						</div>

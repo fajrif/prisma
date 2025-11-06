@@ -20,7 +20,7 @@ class Article < ApplicationRecord
 	validates :file, content_type: ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'],
 										size: { less_than: 50.megabytes, message: 'File maximum 50MB' }
 
-	validates :image, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+  validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates_presence_of :title
 	validates_uniqueness_of :title
