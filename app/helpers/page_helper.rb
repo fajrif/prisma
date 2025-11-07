@@ -150,7 +150,7 @@ module PageHelper
         active_class = set_active_class_menu(menu["active_path"])
 				if menu["menu"]
           _submenu = link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: active_class) +
-              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle") +
+              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle", "data-bs-toggle": "dropdown") +
               generate_dropdown_menu(menu["menu"])
 					_menu += content_tag(:li, class: "dropdown simple-dropdown") do
             raw(_submenu)
