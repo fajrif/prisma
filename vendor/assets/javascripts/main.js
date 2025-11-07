@@ -407,7 +407,7 @@
         $blog_filter.imagesLoaded(function () {
             $blog_filter.removeClass('grid-loading');
             $blog_filter.isotope({
-                layoutMode: 'masonry',
+                layoutMode: 'fitRows',
                 itemSelector: '.grid-item',
                 percentPosition: true,
                 masonry: {
