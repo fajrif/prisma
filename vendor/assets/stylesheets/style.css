@@ -8967,7 +8967,7 @@ nav.navbar.bootsnav.sidebar-nav .nav.navbar-left-sidebar li a .fa-solid {
 }
 nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul,
 nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul > li.dropdown > ul {
-  background: rgba(0, 0, 0, .85);
+  /*background: rgba(0, 0, 0, .85);*/
   display: none;
   margin: -13px 0 0 1px;
   min-width: unset;
@@ -8981,8 +8981,8 @@ nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul > li.drop
   text-transform: capitalize;
 }
 .simple-dropdown .dropdown-menu > li.dropdown > ul li a {
-  /*color: blue;*/
-  /*font-size: 12px;*/
+  color: #fff !important;
+  font-size: 14px;
   /*line-height: 18px;*/
   /*font-weight: 500;*/
 }

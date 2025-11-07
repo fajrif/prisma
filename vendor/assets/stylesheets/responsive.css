@@ -2758,7 +2758,7 @@
     nav.navbar.bootsnav li.dropdown .mega-menu-full > ul > li {border-bottom: none; margin-bottom: 10px}
     nav.navbar.bootsnav li.dropdown.open .mega-menu-full {padding-top: 10px;}
     nav.navbar.bootsnav li.dropdown .mega-menu-full > ul > li:last-child {margin-bottom: 0}
-    nav.navbar.bootsnav .navbar-nav li, nav.navbar.bootsnav li.dropdown ul.mega-menu-full li.dropdown-header { display: block; clear: both; border-bottom: 1px solid rgba(255, 255, 255, 0.06); border-top: 0; }
+    nav.navbar.bootsnav .navbar-nav li, nav.navbar.bootsnav li.dropdown ul.mega-menu-full li.dropdown-header { display: block; clear: both; /*border-bottom: 1px solid rgba(255, 255, 255, 0.06);*/ border-top: 0; }
     .navbar-nav li > a, nav.navbar.navbar-default ul.nav > li > a, nav.navbar-brand-top.navbar.navbar-default ul.nav > li > a, header .navbar-nav li > a, header nav.navbar-fixed-top.header-light-transparent.white-link .navbar-nav > li > a, header nav.navbar-fixed-top.header-light.white-link .navbar-nav > li > a , nav.navbar.bootsnav li.dropdown ul.mega-menu-full li > a,header.sticky nav.navbar.navbar-default.navbar-fixed-top ul.nav > li > a, header.sticky nav.navbar.navbar-default.navbar-top ul.nav > li > a, nav.navbar.bootsnav li.dropdown ul.mega-menu-full li.dropdown-header{ margin: 0; padding: 12px 40px 11px; color: #fff; display: block; line-height: normal;}
     .navbar-nav li > a, nav.navbar.navbar-default ul.nav > li > a, header .navbar-nav li > a, header nav.navbar-fixed-top.header-light-transparent.white-link .navbar-nav > li > a,header.sticky nav.navbar.navbar-default.navbar-fixed-top ul.nav > li > a, header.header-appear nav.bootsnav.header-light-transparent .navbar-nav > li > a, header.header-appear nav.bootsnav.header-light .navbar-nav > li > a { color: #fff; }
     nav.navbar.bootsnav ul.nav > li.dropdown > ul.dropdown-menu  li a, nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu.mega-menu li a, nav.navbar.bootsnav li.dropdown ul.mega-menu-full li.dropdown-header { padding-left: 0; padding-right: 0;}
@@ -2778,8 +2778,8 @@
     nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu > li > a{ border: 0; padding: 10px 0}
     nav.navbar.bootsnav ul.nav li.dropdown.simple-dropdown ul.dropdown-menu > li > a{padding: 7px 0; left: 0}
     .dropdown.simple-dropdown.open .dropdown-menu .dropdown .dropdown-menu {display: block !important; opacity: 1 !important}
-    nav.navbar.bootsnav ul.nav li.dropdown.simple-dropdown.open ul.dropdown-menu li > a.dropdown-toggle {border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #fff;}
-    nav.navbar.bootsnav ul.nav .simple-dropdown ul.dropdown-menu li.dropdown ul.dropdown-menu {padding-left: 0 !important}
+    nav.navbar.bootsnav ul.nav li.dropdown.simple-dropdown.open ul.dropdown-menu li > a.dropdown-toggle {/*border-bottom: 1px solid rgba(255, 255, 255, 0.06);*/ color: #fff;}
+    nav.navbar.bootsnav ul.nav .simple-dropdown ul.dropdown-menu li.dropdown ul.dropdown-menu {padding-left: 10px !important}
     nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul, nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul > li.dropdown > ul {left : 0;}
 
     .simple-dropdown .dropdown-menu > li > a.dropdown-toggle .fas, .simple-dropdown .dropdown-menu > li > a.dropdown-toggle .fa-solid {display:none}
