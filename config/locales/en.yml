@@ -50,6 +50,8 @@ en:
     success: "Thank You for your application!"
     errors: "Oops sorry we are unable to submit your application!"
   locations:
+    title: "Digital Billboard Locations"
+    desc: "Our digital billboards offer optimal placement in high-traffic areas all around Jakarta and beyond. Each location delivers powerful reach and engagement, ensuring maximum visibility for your campaigns."
     jabodetabek:
       desc: "Our Jakarta locations cover key business districts, transit hubs, and high-traffic urban zones, ideal for reaching diverse, on-the-move audiences in Indonesia’s capital."
     bali:
@@ -131,7 +133,7 @@ en:
       company: "Company"
       explore: "Explore"
     explore:
-      client_projects: "Client Projects"
+      client_projects: "Campaign Portfolio"
       industries: "Industries"
       blogs: "Blogs"
   boostad_services:
@@ -151,6 +153,9 @@ en:
     500_desc: "We're sorry, but something went wrong."
   global:
     dismiss: "Dismiss"
+    coming_soon:
+      title: "Coming Soon"
+      desc: "We'll be here soon with our new awesome feature"
     read_more: "Read More"
     explore_more: "Explore More"
     recaptcha_failed: "Recaptcha verification failed"

@@ -1,21 +1,8 @@
 class LocationsController < ApplicationController
+	before_action :set_banner, only: [:index]
+	before_action :set_banner_coming_soon, only: [:show]
 
   def index
-		#@categories = Category.all
-
-		#begin
-			#if @category = Category.friendly.find(params[:id])
-				#criteria = @category.articles
-			#end
-		#rescue ActiveRecord::RecordNotFound
-			#criteria = Article.all
-		#end
-
-		#unless params[:sort_by].blank?
-			#criteria = criteria.unscope(:order).order("published_date " + params[:sort_by])
-		#end
-
-		#@articles = criteria.page(params[:page]).per(12)
 
     respond_to do |format|
       format.html {
@@ -26,11 +13,25 @@ class LocationsController < ApplicationController
   end
 
   def show
-		#@article = Article.friendly.find(params[:id])
-		#@category = @article.category
-		#@meta_title = @article.meta_title unless @article.meta_title.blank?
-		#@meta_desc = @article.meta_description unless @article.meta_description.blank?
-		#@articles = Article.most_recent_articles(@article.id, 3)
   end
 
+	protected
+
+	def set_banner
+		if @banner_section = BannerSection.find_by_name("Locations")
+			current_banner_section_style(@banner_section)
+			@banners = @banner_section.banners
+		end
+	rescue ActiveRecord::RecordNotFound
+		puts "No Banner Section Found"
+	end
+
+	def set_banner_coming_soon
+		if @banner_section = BannerSection.find_by_name("Coming Soon")
+			current_banner_section_style(@banner_section)
+			@banners = @banner_section.banners
+		end
+	rescue ActiveRecord::RecordNotFound
+		puts "No Banner Section Found"
+	end
 end

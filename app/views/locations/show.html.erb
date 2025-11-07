@@ -1,0 +1,18 @@
+<% if banner = @banners.first %>
+<!-- start page single banner -->
+<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
+  <div class="opacity-medium bg-transparent-black z-index-0"></div>
+	<div class="full-screen text-white-2">
+		<div class="container position-relative h-100">
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-md-12 text-center">
+          <span class="d-block mb-2"><%= t('locations.title') %></span>
+					<h2 class="font-weight-600 text-white-2 alt-font"><%= t('global.coming_soon.title') %></h2>
+          <h6 class="text-center w-30 mx-auto"><%= t('global.coming_soon.desc') %></h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end page single banner -->
+<% end %>

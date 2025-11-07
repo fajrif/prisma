@@ -1,5 +1,5 @@
 <% if banner = @banners.first %>
-  <%= render partial: "pages/single_banner", locals: { banner: banner } %>
+  <%= render partial: "pages/single_banner", locals: { banner: banner, caption: t('portfolios.title') } %>
 <% end %>
 
 <% unless @portfolios.empty? %>

@@ -36,7 +36,7 @@
                       <% end %>
                     </div>
                     <a href="<%= portfolio_path(portfolio) %>" class="post-title font-weight-600 text-extra-large text-black text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= portfolio.name %></a>
-                    <span class="post-author text-black d-block margin-15px-bottom"><%= portfolio.short_description %></span>
+                    <span class="post-author text-black d-block margin-15px-bottom"><%= raw portfolio.short_description %></span>
                   </div>
                 </div>
               </li>

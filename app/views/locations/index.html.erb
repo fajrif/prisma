@@ -1,0 +1,9 @@
+<% if banner = @banners.first %>
+  <%= render partial: "pages/single_banner", locals: { banner: banner, caption: t('locations.title') } %>
+<% end %>
+<%= render "billboard_locations" %>
+<%= render "shared/our_portfolios" %>
+<%= render "shared/blogs" %>
+<%= render "shared/our_industries" %>
+<%= render "shared/testimonials" %>
+<%= render "shared/our_services_second" %>

@@ -1,0 +1,65 @@
+<section class="half-section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center text-lg-start md-margin-30px-bottom md-padding-80px-lr sm-padding-15px-lr wow animate__fadeIn">
+        <h5 class="font-weight-600"><%= t('locations.title') %></h5>
+        <div class="margin-40px-bottom sm-margin-20px-bottom w-90 sm-w-100"><%= t('locations.desc') %></div>
+      </div>
+      <div class="col-lg-8 locations-list">
+        <div class="row">
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg1.png') %>')">
+              <div class="bg-white">
+                <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                  <a href="<%= location_path(id: 'jabodetabek') %>">
+                    <%= image_tag('locations/jabodetabek.png') %>
+                  </a>
+                </div>
+              </div>
+              <div class="padding-20px-all border-top border-width-2">
+                <a href="<%= location_path(id: 'jabodetabek') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Jabodetabek</a>
+                <p class="font-weight-500"><%= t('locations.jabodetabek.desc') %></p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.2s">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg2.png') %>')">
+              <div class="bg-white">
+                <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                  <a href="<%= location_path(id: 'bali') %>">
+                    <%= image_tag('locations/bali.png') %>
+                  </a>
+                </div>
+              </div>
+              <div class="padding-20px-all border-top border-width-2">
+                <a href="<%= location_path(id: 'bali') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bali</a>
+                <p class="font-weight-500"><%= t('locations.bali.desc') %></p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.4s">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg3.png') %>')">
+              <div class="bg-white">
+                <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                  <a href="<%= location_path(id: 'bandung') %>">
+                    <%= image_tag('locations/bandung.png') %>
+                  </a>
+                </div>
+              </div>
+              <div class="padding-20px-all border-top border-width-2">
+                <a href="<%= location_path(id: 'bandung') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bandung</a>
+                <p class="font-weight-500"><%= t('locations.bandung.desc') %></p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

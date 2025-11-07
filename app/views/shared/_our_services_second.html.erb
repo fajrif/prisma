@@ -25,7 +25,7 @@
                     <div class="d-flex flex-column justify-content-between transparent-box-solid text-white-2 border border-white border-radius-8 padding-five-all position-relative h-250px">
                       <div>
                         <div class="d-flex align-items-center gap-4 mb-4">
-                          <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
+                          <%= image_tag service.image_white, style: "max-height:50px;", alt: service.name if service.image_white.attached? %>
                           <div class="text-large text-white-2 margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
                         </div>
                         <p class="font-weight-400"><%= service.short_description %></p>

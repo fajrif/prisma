@@ -6,7 +6,7 @@
 		<%= f.input :size, as: :select, collection: get_banner_sizes, label_method: :second, value_method: :first %>
 	</fieldset>
 	<%= f.error :base %>
-	<div class="form-actions">
+	<div class="form-actions" style="margin-top:20px;">
 		<%= f.button :submit, :class => 'btn btn-secondary' %>
 		<% unless @banner_section.new_record? %>
 			<%= link_to "Cancel", admins_banner_section_path(@banner_section), :class => 'btn btn-light' %>
