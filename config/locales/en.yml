@@ -126,6 +126,8 @@ en:
     title: "Our Campaign Portfolio"
     desc: "Discover how leading brands have brought their campaigns to life through our premium OOH advertising services."
     caption: "Campaign Portfolio"
+    about_campaign: "About Campaign"
+    area_coverage: "Area Coverage"
     creative_highlights: "Creative Highlights"
     execution:
       title: "Execution Details"

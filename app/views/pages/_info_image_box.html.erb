@@ -8,8 +8,8 @@
 <%- css_content = snippet.css_class unless snippet.title_tag.blank? -%>
 
 <div class="container">
-  <div class="row row-cols-1 row-cols-lg-2 no-margin-lr">
-    <div class="col padding-40px-all text-white-2 cover-background border-left-radius-20" style="background-image:url('<%= url_for(snippet.background) %>');">
+  <div class="row row-cols-1 row-cols-lg-2">
+    <div class="col padding-40px-all sm-padding-20px-lr text-white-2 cover-background border-left-radius-20 order-2 order-md-1" style="background-image:url('<%= url_for(snippet.background) %>');">
       <div class="transparent-box <%= css_content %>">
         <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600") %>
         <% unless snippet.short_description.blank? %>
@@ -22,6 +22,6 @@
         <% end %>
       </div>
     </div>
-    <div class="col cover-background border-right-radius-20" style="background-image:url('<%= url_for(snippet.image) %>');"></div>
+    <div class="col cover-background border-right-radius-20 sm-h-350px order-1 order-md-2" style="background-image:url('<%= url_for(snippet.image) %>');"></div>
   </div>
 </div>

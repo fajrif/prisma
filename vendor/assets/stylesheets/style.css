@@ -54,6 +54,7 @@ Table of contents:
 	--light-gold-color: #FFEF93;
 	--very-light-gold-color: #FFF8C5;
 	--green-color: #5B8A00;
+	--dark-green-color: #043904;
 	--medium-green-color: #139D4F;
 	--light-green-color: #D6EF9A;
 	--very-light-green-color: #EBF7CD;
@@ -452,6 +453,9 @@ h6 {
 }
 .text-green {
   color: var(--green-color);
+}
+.text-dark-green {
+  color: var(--dark-green-color);
 }
 .text-gold {
   color: var(--gold-color);
@@ -2479,13 +2483,13 @@ textarea.input-bg {
   background-attachment: inherit;
 }
 .background-position-left {
-  background-position: left center;
+  background-position: left center !important;
 }
 .background-position-left-bottom {
-  background-position: left bottom;
+  background-position: left bottom !important;
 }
 .background-position-right {
-  background-position: right center;
+  background-position: right center !important;
 }
 .background-position-top {
   background-position: center top !important;
@@ -2544,6 +2548,9 @@ textarea.input-bg {
   border-radius: 2rem;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
               inset 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+.transparent-box-whiter {
+  background: rgba(255, 255, 255, 0.5) !important;
 }
 
 .transparent-box::after,

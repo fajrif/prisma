@@ -1,14 +1,14 @@
 <% unless @portfolio.creative_highlights.blank? %>
-<section class="cover-background wow animate__fadeIn" style="background-image:url('<%= image_url('bg-image-7.png') %>');">
+<section class="small-section cover-background background-position-left wow animate__fadeIn" style="background-image:url('<%= image_url('bg-image-7.png') %>');">
   <div class="container">
-    <div class="padding-two-all sm-padding-20px-all">
+    <div class="padding-two-all sm-padding-20px-tb">
       <div class="row justify-content-center align-items-start">
-        <div class="col-lg-3 padding-three-all sm-margin-20px-tb wow animate__fadeIn">
-          <h6 class="font-weight-600 text-center text-md-start mb-0"><%= t('portfolios.creative_highlights') %></h6>
+        <div class="col-lg-3 padding-three-all sm-padding-20px-bottom wow animate__fadeIn">
+          <h5 class="text-dark-green font-weight-600 text-center text-md-start mb-0"><%= t('portfolios.creative_highlights') %></h5>
         </div>
         <div class="col-lg-9 d-flex flex-column justify-content-center align-items-start last-paragraph-no-margin padding-three-lr sm-padding-15px-lr wow animate__fadeIn" data-wow-delay="0.2s">
-          <div class="transparent-box box-embroided padding-six-all">
-            <div class="text-large font-weight-400"><%= raw @portfolio.creative_highlights %></div>
+          <div class="transparent-box transparent-box-whiter box-embroided padding-six-all">
+            <div class="text-dark-green font-weight-500"><%= raw @portfolio.creative_highlights %></div>
           </div>
         </div>
       </div>

@@ -1108,7 +1108,7 @@ video:focus { outline:none; }
   transform: translateY(-10px); /* pushed upward */
 }
 
-#services_glance .row > * {
+#services_glance .container.services .row > * {
   padding-right: 7px;
   padding-left: 7px;
 }
