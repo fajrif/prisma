@@ -2711,7 +2711,7 @@
 @media (max-width: 1050px) {
     /* sidebar navigation */
     .sidebar-wrapper .container {width: 100%; max-width: 100%;}
-    .parallax {background-attachment: inherit !important }
+    .parallax {background-attachment: inherit; }
     .feature-box.feature-box-17 .box .content {top: 50px;}
 
     .sidebar-nav .logo-holder { min-height: 60px; }
