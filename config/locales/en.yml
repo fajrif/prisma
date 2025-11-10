@@ -32,6 +32,12 @@ en:
     title: "Let’s Build Your Next Great OOH Campaign"
     short_description: "Whether you're planning billboard advertising in Jakarta, launching a DOOH campaign across Indonesia, or exploring new formats in out-of-home media, Prisma Advertising is ready to bring your brand to the streets — boldly, creatively, and with purpose."
     instructions: "Get in touch with us today and let's shape real-world impact, together."
+    sales:
+      title: "Latest Services & Special Offers"
+    info:
+      title: "Cooperation & Quality of Service"
+    hrd:
+      title: "Job vacancy"
   inquiries:
     name: "Name"
     phone: "Phone"

@@ -2,11 +2,13 @@
 <section id="apply-form-section" class="pt-0 wow animate__fadeIn">
   <div class="container cover-background border-radius-20" style="background-image:url('<%= image_url('bg-image-5.png') %>');background-position:top left !important;">
     <div class="row row-cols-1 row-cols-lg-2">
-      <div class="col last-paragraph-no-margin md-h-450px sm-h-100 text-white-2 padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr">
-        <h3 class="font-weight-600"><%= t('career.apply.title') %></h3>
-        <p><%= t('career.apply.desc') %></p>
+      <div class="col d-flex justify-content-center align-items-center md-h-450px sm-h-100 text-white-2 padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr">
+        <div class="last-paragraph-no-margin text-center text-md-start">
+          <h4 class="font-weight-600 mb-4"><%= t('career.apply.title') %></h4>
+          <p><%= t('career.apply.desc') %></p>
+        </div>
       </div>
-      <div id="careerForm" class="col padding-three-all lg-padding-two-all sm-padding-15px-all">
+      <div id="careerForm" class="col padding-three-all lg-padding-two-all sm-padding-15px-all sm-margin-30px-bottom">
         <%= render "careers/form" %>
       </div>
     </div>

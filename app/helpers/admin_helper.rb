@@ -274,6 +274,10 @@ module AdminHelper
     controller.controller_name == "articles"
   end
 
+  def is_campaigns_page?
+    controller.controller_name == "portfolios"
+  end
+
   def is_careers_page?
     controller.controller_name == "careers"
   end

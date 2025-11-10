@@ -1,12 +1,12 @@
 <%- articles = Article.first(3) %>
 <% unless articles.empty? %>
 <div class="container">
-	<div class="row justify-content-start align-items-center margin-40px-bottom sm-margin-20px-bottom wow animate__fadeIn">
-		<div class="col-6 col-lg-7">
+	<div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
+		<div class="col-12 col-lg-7">
       <h5 class="text-black font-weight-600"><%= snippet.title %></h5>
-			<div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
+			<div class="mb-3 w-80 sm-w-100"><%= raw snippet.short_description %></div>
 		</div>
-		<div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+		<div class="col-12 col-lg-5 text-start text-md-end">
       <%= link_to articles_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
         <%= t('global.view_all') %>
       <% end %>
@@ -29,7 +29,7 @@
                 <% if article.category %>
                   <span class="btn btn-medium btn-rounded btn-border btn-prisma mb-4"><%= article.try(:category).try(:name) %></span>
                 <% end %>
-								<a href="<%= article_path(article) %>" class="post-title font-weight-600 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.title %></a>
+								<a href="<%= article_path(article) %>" class="post-title font-weight-600 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom"><%= article.title %></a>
 								<span class="post-author text-extra-dark-gray d-block margin-15px-bottom"><%= article.short_description %></span>
 							</div>
 						</div>

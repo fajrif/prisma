@@ -2,16 +2,16 @@
 <% unless awards.empty? %>
 <div class="container">
 	<div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
-		<div class="col-6 col-lg-7">
+		<div class="col-12 col-lg-7">
       <h5 class="text-black font-weight-600"><%= snippet.title %></h5>
-			<div class="mb-3 d-none d-md-block w-600px"><%= raw snippet.short_description %></div>
+			<div class="mb-3 w-80 sm-w-100"><%= raw snippet.short_description %></div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-lg-3 text-center">
+		<div class="col-12 col-lg-3 text-start text-md-center">
       <%= image_tag "cipar.png" %>
     </div>
-		<div class="col-12 col-lg-9 blog-content no-padding-lr">
+		<div class="col-12 col-lg-9 blog-content">
 			<ul class="blog-classic blog-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">
 				<li class="grid-sizer"></li>
 				<% awards.each do |award| %>

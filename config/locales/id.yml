@@ -32,6 +32,12 @@ id:
     title: "Hubungi Kami"
     short_description: "Baik Anda berencana memasang iklan papan reklame di Jakarta, meluncurkan kampanye DOOH di seluruh Indonesia, atau menjajaki format baru dalam media luar ruang, Prisma Advertising siap menghadirkan merek Anda ke jalanan — dengan berani, kreatif, dan penuh tujuan."
     instructions: "Tertarik bekerja sama dengan kami? Jangan ragu untuk menghubungi kami dan pelajari layanan kami lebih lanjut."
+    sales:
+      title: "Layanan Terbaru & Penawaran Khusus"
+    info:
+      title: "Kerjasama & Kualitas Layanan"
+    hrd:
+      title: "Lowongan Pekerjaan"
   inquiries:
     name: "Nama"
     phone: "No.Telp"

@@ -172,6 +172,7 @@ module PageHelper
     active_class = "active" if is_services_page? && path == "services"
     active_class = "active" if is_industries_page? && path == "industries"
     active_class = "active" if is_blogs_page? && path == "articles"
+    active_class = "active" if is_campaigns_page? && path == "campaigns"
     active_class = "active" if is_careers_page? && path == "careers"
     active_class = "active" if is_contact_page? && path == "contact-us"
     return active_class

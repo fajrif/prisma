@@ -2,12 +2,12 @@
 <% unless services.empty? %>
   <section class="bg-gradient-purple">
     <div class="container">
-      <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
-        <div class="col-6 col-lg-7 text-white-2">
+      <div class="row justify-content-start align-items-center text-center text-md-start margin-40px-bottom wow animate__fadeIn">
+        <div class="col-12 col-lg-7 text-white-2">
           <h5 class="font-weight-600"><%= t('services.recommendation.title') %></h5>
-          <div class="font-weight-400 mb-3 d-none d-md-block w-600px"><%= t('services.recommendation.desc') %></div>
+          <div class="mb-3 w-80 sm-w-100"><%= t('services.recommendation.desc') %></div>
         </div>
-        <div class="col-6 col-lg-5 no-padding-lr text-start text-end">
+        <div class="col-12 col-lg-5 text-center text-md-end">
           <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
             <%= t('global.view_all') %>
           <% end %>
@@ -26,7 +26,7 @@
                       <div>
                         <div class="d-flex align-items-center gap-4 mb-4">
                           <%= image_tag service.image_white, style: "max-height:50px;", alt: service.name if service.image_white.attached? %>
-                          <div class="text-large text-white-2 margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
+                          <div class="text-large text-black margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
                         </div>
                         <p class="font-weight-400"><%= service.short_description %></p>
                       </div>

@@ -3,14 +3,14 @@
   <div class="opacity-medium bg-transparent-black z-index-0"></div>
 	<div class="full-screen text-white-2">
 		<div class="container position-relative h-100">
-			<div class="row h-100 align-items-center">
-				<div class="col-xl-10 col-md-10">
+      <div class="row h-100 align-items-end">
+				<div class="col-xl-10 col-md-10 margin-30px-bottom">
           <span class="d-block mb-2"><%= t('portfolios.caption') %></span>
 					<h2 class="font-weight-600 text-white-2 alt-font w-90"><%= @portfolio.name %></h2>
-          <div class="text-start w-50 sm-w-100"><%= @portfolio.caption %></div>
-          <div class="mt-4">
+          <div class="text-start w-40 sm-w-100"><%= @portfolio.caption %></div>
+          <div class="d-flex gap-2 mt-4">
             <% if @portfolio.service %>
-              <span class="btn btn-medium btn-rounded btn-border btn-transparent-prisma sm-margin-10px-bottom me-1"><%= @portfolio.try(:service).try(:name) %></span>
+              <span class="btn btn-medium btn-rounded btn-border btn-transparent-prisma"><%= @portfolio.try(:service).try(:name) %></span>
             <% end %>
             <% if @portfolio.industry %>
               <span class="btn btn-medium btn-rounded btn-border btn-transparent-prisma"><%= @portfolio.try(:industry).try(:name) %></span>

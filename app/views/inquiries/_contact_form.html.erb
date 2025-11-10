@@ -2,12 +2,14 @@
 <section id="contact-form-section" class="wow animate__fadeIn">
   <div class="container cover-background border-radius-20" style="background-image:url('<%= image_url('bg-contact.png') %>');background-position:top left !important;">
     <div class="row row-cols-1 row-cols-lg-2">
-      <div class="col last-paragraph-no-margin sm-margin-30px-bottom md-h-450px sm-h-350px text-white-2 padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr">
-        <h3 class="font-weight-600"><%= t('contacts.title') %></h3>
-        <p><%= t('contacts.short_description') %></p>
-        <p><%= t('contacts.instructions') %></p>
+      <div class="col sm-margin-30px-bottom d-flex justify-content-center align-items-center md-h-450px sm-h-100 text-white-2 padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr sm-no-padding-bottom">
+        <div class="last-paragraph-no-margin text-center text-md-start">
+          <h4 class="font-weight-600 mb-4"><%= t('contacts.title') %></h4>
+          <p><%= t('contacts.short_description') %></p>
+          <p><%= t('contacts.instructions') %></p>
+        </div>
       </div>
-      <div id="inquiryForm" class="col padding-three-all lg-padding-two-all sm-padding-15px-all">
+      <div id="inquiryForm" class="col padding-three-all lg-padding-two-all sm-padding-15px-all sm-margin-30px-bottom">
         <%= render "inquiries/form" %>
       </div>
     </div>
