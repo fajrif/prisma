@@ -6,11 +6,11 @@
     <div class="col-lg-8 wow animate__fadeIn">
       <div class="transparent-box box-embroided font-weight-500 text-medium text-white-2 text-center last-paragraph-no-margin">
         <div class="padding-four-tb padding-ten-lr sm-no-padding-lr">
-          <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-700 text-white-2 line-height-normal") %>
+          <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600 text-white-2 line-height-normal") %>
           <% unless snippet.caption.blank? %>
-            <span class="text-extra-large text-uppercase font-weight-700 d-inline-block mb-4"><%= snippet.caption %></span>
+            <span class="text-extra-large text-uppercase font-weight-600 d-inline-block mb-4"><%= snippet.caption %></span>
           <% end %>
-          <div class="font-weight-700 mb-2"><%= raw snippet.short_description %></div>
+          <div class="mb-2"><%= raw snippet.short_description %></div>
           <div><%= raw snippet.description %></div>
         </div>
       </div>
