@@ -10,7 +10,7 @@
               <div>
                 <div class="d-flex align-items-center gap-4 mb-4">
                   <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
-                  <div class="text-extra-large text-uppercase margin-5px-bottom alt-font font-weight-600 w-60"><%= service.name %></div>
+                  <a class="text-extra-large text-uppercase margin-5px-bottom alt-font font-weight-600 w-60" href="<%= service_url(service) %>"><%= service.name %></a>
                 </div>
                 <p class="text-medium w-95"><%= service.short_description %></p>
               </div>

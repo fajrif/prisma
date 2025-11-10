@@ -2,7 +2,7 @@
     <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
       <div class="col-12 col-lg-7 text-center text-md-start">
         <h5 class="text-white-2 font-weight-600"><%= snippet.title %></h5>
-        <div class="text-silver font-weight-400 mb-3"><%= raw snippet.short_description %></div>
+        <div class="text-white-2 font-weight-400 mb-3"><%= raw snippet.short_description %></div>
       </div>
       <div class="col-12 col-lg-5 text-center text-md-end">
         <%= link_to industries_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
@@ -22,7 +22,7 @@
                 <div class="col d-flex padding-10px-lr margin-20px-bottom text-center text-lg-start wow animate__fadeInUp last-paragraph-no-margin" data-wow-delay="0.<%= index + 1 %>s">
                   <div class="h-100 w-100 transparent-box-solid">
                     <a href="<%= industry_path(industry) %>" class="d-inline-block text-black text-medium font-weight-600 mb-2"><%= industry.name %></a>
-                    <p class="d-inline-block text-medium text-silver font-weight-400"><%= truncate(strip_tags(industry.description), length: 80) %></p>
+                    <p class="d-inline-block text-medium text-white-2 font-weight-400"><%= truncate(strip_tags(industry.description), length: 80) %></p>
                   </div>
                 </div>
                 <!-- end features box item -->
