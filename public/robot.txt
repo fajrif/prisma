@@ -1,0 +1,6 @@
+# public/robots.txt
+User-agent: *
+Disallow: /admins/
+Allow: /
+
+Sitemap: https://prisma-ads.com/sitemap.xml
