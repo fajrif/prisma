@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-	default from: configatron.admin_email
+	default from: configatron.no_reply_email
   layout "mailer"
 end

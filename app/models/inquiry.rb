@@ -9,26 +9,24 @@ class Inquiry < ApplicationRecord
 	validates :email, email: true
 	validates :message, length: { maximum: 250 }
 
-	# after_create :send_notification_email
+  after_create :send_notification_email
 
-	# def send_notification_email
-	# 	if setting = Setting.first
-	# 		email = setting.admin_investor
-	# 		unless email.blank?
-	# 			begin
-	# 				SystemMailer.user_inquiry_notification(self.email, "Thank You For Your Inquiry").deliver
-	# 			rescue Exception => e
-	# 				puts e.message
-	# 				puts e.backtrace.inspect
-	# 			end
-	# 			begin
-	# 				SystemMailer.inquiry_notification(self.id, email, "#{self.name} [Inquiry]").deliver
-	# 			rescue Exception => e
-	# 				puts e.message
-	# 				puts e.backtrace.inspect
-	# 			end
-	# 		end
-	# 	end
-	# end
+  def send_notification_email
+    receiver = [configatron.info_email, configatron.marketing_email]
+               .compact
+               .map { |x| x.to_s.split(/[;, ]+/) }
+               .flatten
+               .uniq
+               .join(";")
+
+    return if receiver.blank?
+
+    begin
+      SystemMailer.inquiry_notification(self.id, receiver, "#{self.name} [Inquiry]").deliver
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
+    end
+  end
 
 end

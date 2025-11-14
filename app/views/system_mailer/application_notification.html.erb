@@ -1,0 +1,33 @@
+<h4 style="text-decoration:underline;">Application / CV Details:</h4>
+<table style="border:none;">
+	<tr>
+		<td style="font-size:15px;width:150px;"><strong>ID</strong></td>
+		<td><%= @application.id %></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>Name</strong></td>
+		<td><%= @application.name %></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>Email</strong></td>
+		<td><%= @application.email %> <<%= link_to @application.email, "mailto:#{@application.email}" %>></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>Phone</strong></td>
+		<td><%= @application.phone %></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>Applied Date</strong></td>
+		<td><%= @application.applied_date_label %></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>Applied For</strong></td>
+		<td><%= @application.try(:career).try(:title) %></td>
+	</tr>
+	<tr>
+		<td style="font-size:15px;"><strong>CV / Resume</strong></td>
+		<td>
+			<%= link_to(@application.file.filename, url_for(@application.file), target: :_blank) if @application.file.attached? %>
+		</td>
+	</tr>
+</table>

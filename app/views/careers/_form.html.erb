@@ -16,7 +16,7 @@
         <% else %>
           <%= raw Prisma::Recaptcha.recaptcha_execute('application') %>
         <% end %>
-        <button type="submit" class="btn btn-medium btn-transparent-prisma btn-rounded"><%= t('global.submit') %></button>
+        <button type="submit" class="btn btn-medium btn-transparent-prisma btn-rounded mt-2"><%= t('global.submit') %></button>
       </div>
     </div>
   <% end %>
