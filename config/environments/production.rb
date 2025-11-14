@@ -88,7 +88,7 @@ Rails.application.configure do
 		:authentication => :plain,
 		:enable_starttls_auto => true,
 		:user_name      => "apikey",
-		:password       => ENV["SENDGRID_SECRET_KEY"],
+		:password       => "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",
 		:domain         => "prisma-ads.com"
   }
 

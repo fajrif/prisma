@@ -1,4 +1,5 @@
 class Application < ApplicationRecord
+	default_scope { order(created_at: :desc) }
 
 	attr_accessor :use_v2
 
@@ -15,4 +16,24 @@ class Application < ApplicationRecord
 		_format = use_time ? '%d/%m/%Y %H:%M' : '%d/%m/%Y'
 		self.try(:created_at).try(:strftime, _format)
 	end
+
+  after_commit :send_notification_email
+
+  def send_notification_email
+    receiver = [configatron.hrd_email, configatron.marketing_email]
+               .compact
+               .map { |x| x.to_s.split(/[;, ]+/) }
+               .flatten
+               .uniq
+               .join(";")
+
+    return if receiver.blank?
+
+    begin
+      SystemMailer.application_notification(self.id, receiver, "#{self.name} [CV]").deliver
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
+    end
+  end
 end
