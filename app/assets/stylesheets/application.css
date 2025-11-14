@@ -106,3 +106,12 @@
   font-size: small;
   border-radius: 8px;
 }
+
+.trix-content a {
+  color: revert;
+  font-weight: 400;
+}
+
+.trix-content a:hover {
+  color: revert;
+}
