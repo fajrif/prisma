@@ -43,3 +43,7 @@
 .select .invalid-feedback {
 	display: block;
 }
+
+.choices:last-child {
+  margin-bottom: 20px;
+}

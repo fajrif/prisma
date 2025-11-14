@@ -18,15 +18,15 @@ class Portfolio < ApplicationRecord
 	validates_presence_of :name, :company_name, :short_description, :description, :about_campaign, :area_coverage
 	validates_uniqueness_of :name
 
-	validates :logo, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :logo, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :image1, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :image1, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :image2, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :image2, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :banner, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :banner, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
   protected

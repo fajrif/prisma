@@ -10,7 +10,7 @@ class Banner < ApplicationRecord
 	has_one_attached :video, dependent: :purge
 	has_many :link_buttons, as: :linkable
 
-	validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates :video, content_type: ['video/mp4', 'video/webm', 'video/quicktime'],
 										size: { less_than: 50.megabytes, message: 'File maximum 50MB' }

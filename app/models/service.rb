@@ -19,11 +19,11 @@ class Service < ApplicationRecord
 	validates_presence_of :name, :caption, :short_description, :description, :color
 	validates_uniqueness_of :name
 
-	validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+	validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :image_white, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+	validates :image_white, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :image1, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+	validates :image1, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
 	def should_generate_new_friendly_id?

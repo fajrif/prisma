@@ -9,7 +9,7 @@ class Member < ApplicationRecord
 	has_one_attached :photo, dependent: :purge
 	belongs_to :member_type
 
-	validates :photo, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+	validates :photo, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 10.megabytes, message: 'Image maximum 10MB' }
 	validates_presence_of :full_name, :job_title
 

@@ -16,9 +16,9 @@ class Snippet < ApplicationRecord
 	has_many :segments, dependent: :destroy
   has_many :services, through: :segments
 
-	validates :image, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :image, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates :background, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'],
+	validates :background, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
 	acts_as_tree order: :id

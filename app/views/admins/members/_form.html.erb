@@ -5,7 +5,7 @@
 				<div class="card-body">
 					<%= f.error_notification %>
 					<fieldset>
-						<%= f.input :photo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :photo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
 						<div class="row mb-3">
 							<%= f.input :full_name, wrapper: false, input_wrapper_html: { class: "col-md-6" } %>
 							<%= f.input :job_title, as: :string, wrapper: false, input_wrapper_html: { class: "col-md-6" } %>
