@@ -17,7 +17,7 @@
   <tr>
     <td><b>Logo White</b></td>
     <td>
-      <%= image_tag(@service.image_white, class: "bg-black") if @service.image_white.attached? %>
+      <%= image_tag @service.image_white.variant(resize_to_limit: [50,50]), class: "bg-black" %>
     </td>
   </tr>
   <% end %>
@@ -25,7 +25,7 @@
   <tr>
     <td><b>Image</b></td>
     <td>
-      <%= image_tag @service.image1 %>
+      <%= image_tag @service.image1.variant(resize_to_limit: [250,250]) %>
     </td>
   </tr>
   <% end %>
