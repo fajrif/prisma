@@ -17,17 +17,17 @@
 </section>
 <!-- end page single banner -->
 <!-- start blog content section -->
-<section class="half-section wow animate__fadeIn">
+<section class="half-section pb-0 wow animate__fadeIn">
 	<div class="container">
-		<div class="row">
-			<div class="col-12 margin-50px-bottom">
-				<span class="post-author text-medium d-block margin-10px-bottom sm-margin-5px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
-				<h5 class="font-weight-400 "><%= @article.title %></h5>
-				<div class="line-height-26">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-10">
+				<span class="post-author text-medium d-block margin-10px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
+				<h5 class="font-weight-500 line-height-normal"><%= @article.title %></h5>
+				<div class="line-height-26 text-large">
 					<%= raw @article.content %>
 				</div>
 				<% if @article.file.attached? %>
-					<div class="margin-50px-top">
+					<div class="margin-30px-top">
 						<%= render_link_download_file(@article, "btn btn-medium btn-prisma btn-rounded") %>
 					</div>
 				<% end %>
