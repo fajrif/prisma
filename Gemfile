@@ -55,6 +55,7 @@ gem 'quilljs-rails', :git => 'https://github.com/abhinavmathur/quilljs-rails.git
 
 gem 'file_exists', '~> 0.2.0'
 gem 'pdfjs_viewer-rails'
+gem 'sib-api-v3-sdk'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -27,6 +27,11 @@ configatron.hrd_email = "hrd.recruitment@prisma-ads.com"
 configatron.marketing_email = "marketing@prisma-ads.com"
 configatron.whatsapp_number = "628111306888"
 
+configatron.email_name = "Prisma Advertising"
+configatron.hrd_name = "HRD Recruitment Prisma Ads"
+configatron.marketing_name = "Marketing Agent Prisma Ads"
+configatron.sales_name = "Sales Team Prisma Ads"
+
 configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"
 
@@ -34,3 +39,4 @@ configatron.recaptcha_v3_secret_key = "6LfW3vsrAAAAADqz9s5BDdF1dQmPR3990aqPp1pv"
 configatron.recaptcha_v3_site_key = "6LfW3vsrAAAAAFFNauE_HMDdARsTmtUARYsG_S8j"
 configatron.recaptcha_v2_secret_key = "6Lfz3vsrAAAAAN1LZ3LBUVKT4jJ9lLdVqeL2m8js"
 configatron.recaptcha_v2_site_key = "6Lfz3vsrAAAAADwt6eF_4UUrbSAAY7MvXLwLPJ6P"
+configatron.brevo_api_key = "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"
