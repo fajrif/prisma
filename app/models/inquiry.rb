@@ -9,20 +9,11 @@ class Inquiry < ApplicationRecord
 	validates :email, email: true
 	validates :message, length: { maximum: 250 }
 
-  after_create :send_notification_email
+  after_commit :send_notification_email
 
   def send_notification_email
-    receiver = [configatron.info_email, configatron.marketing_email]
-               .compact
-               .map { |x| x.to_s.split(/[;, ]+/) }
-               .flatten
-               .uniq
-               .join(";")
-
-    return if receiver.blank?
-
     begin
-      SystemMailer.inquiry_notification(self.id, receiver, "#{self.name} [Inquiry]").deliver
+      SystemMailer.new.inquiry_notification(self.id, "Inquiry - #{self.name}")
     rescue Exception => e
       puts e.message
       puts e.backtrace.inspect

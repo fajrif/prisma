@@ -20,17 +20,8 @@ class Application < ApplicationRecord
   after_commit :send_notification_email
 
   def send_notification_email
-    receiver = [configatron.hrd_email, configatron.marketing_email]
-               .compact
-               .map { |x| x.to_s.split(/[;, ]+/) }
-               .flatten
-               .uniq
-               .join(";")
-
-    return if receiver.blank?
-
     begin
-      SystemMailer.application_notification(self.id, receiver, "#{self.name} [CV]").deliver
+      SystemMailer.new.application_notification(self.id, "Application Submission - #{self.name}")
     rescue Exception => e
       puts e.message
       puts e.backtrace.inspect

@@ -77,20 +77,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "prisma_production"
 
 	config.action_mailer.default_url_options = { host: 'https://prisma-ads.com/' }
-	config.action_mailer.perform_deliveries = true
+	# config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-	config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-		:address        => "smtp.sendgrid.net",
-		:port           => 587,
-		:authentication => :plain,
-		:enable_starttls_auto => true,
-		:user_name      => "apikey",
-		:password       => ENV["SENDGRID_SECRET_KEY"],
-		:domain         => "prisma-ads.com"
-  }
+  #config.action_mailer.raise_delivery_errors = false
+	#config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+		#:address        => "smtp.sendgrid.net",
+		#:port           => 587,
+		#:authentication => :plain,
+		#:enable_starttls_auto => true,
+		#:user_name      => "apikey",
+		#:password       => ENV["SENDGRID_SECRET_KEY"],
+		#:domain         => "prisma-ads.com"
+  #}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

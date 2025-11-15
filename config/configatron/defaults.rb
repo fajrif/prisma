@@ -27,6 +27,11 @@ configatron.hrd_email = "hrd.recruitment@prisma-ads.com"
 configatron.marketing_email = "marketing@prisma-ads.com"
 configatron.whatsapp_number = "628111306888"
 
+configatron.email_name = "Prisma Advertising"
+configatron.hrd_name = "HRD Recruitment Prisma Ads"
+configatron.marketing_name = "Marketing Agent Prisma Ads"
+configatron.sales_name = "Sales Team Prisma Ads"
+
 configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"
 
