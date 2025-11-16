@@ -57,6 +57,7 @@ class SystemMailer < ApplicationMailer
 
   def send_email_brevo(subject, emails, html_content)
     Rails.logger.debug html_content
+    Rails.logger.info("BREVO_API_KEY: #{ENV['BREVO_API_KEY']&.slice(0,4)}******")
 
     sib_api = SibApiV3Sdk::TransactionalEmailsApi.new
     api_key = SibApiV3Sdk.configure.api_key['api-key'] = ENV["BREVO_API_KEY"]
