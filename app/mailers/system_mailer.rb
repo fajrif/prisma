@@ -59,7 +59,7 @@ class SystemMailer < ApplicationMailer
     Rails.logger.debug html_content
 
     sib_api = SibApiV3Sdk::TransactionalEmailsApi.new
-    api_key = SibApiV3Sdk.configure.api_key['api-key'] = configatron.brevo_api_key
+    api_key = SibApiV3Sdk.configure.api_key['api-key'] = ENV["BREVO_API_KEY"]
 
     email = SibApiV3Sdk::SendSmtpEmail.new(
       subject: subject,
