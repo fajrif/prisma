@@ -82,7 +82,7 @@ Rails.application.routes.draw do
 		resources :services, :only => [:show]
 		resources :industries, :only => [:index, :show]
 		resources :portfolios, :only => [:index, :show], path: "campaigns"
-		resources :careers, :only => [:index, :show, :create]
+		resources :careers, :only => [:show, :create]
 		resources :locations, :only => [:index, :show]
 
 		# route to pages

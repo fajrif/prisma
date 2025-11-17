@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-lg-2 no-margin-lr">
     <div class="col padding-40px-all sm-padding-20px-all text-white-2 cover-background border-left-radius-20 sm-border-radius-8" style="background-image:url('<%= url_for(snippet.background) %>');">
-      <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-500 w-80 sm-w-100") unless snippet.title.blank? %>
+      <%= content_tag(header_tag.to_sym, raw(snippet.title), class: "font-weight-500 w-80 sm-w-100") unless snippet.title.blank? %>
       <div class="w-95 sm-w-100">
         <% unless snippet.short_description.blank? %>
           <div class="info_short_desc <%= snippet.css_desc %> last-paragraph-no-margin margin-30px-bottom">

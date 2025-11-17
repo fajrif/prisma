@@ -1,0 +1,13 @@
+<div class="container cover-background border-radius-20 sm-no-border-radius" style="background-image:url('<%= url_for(snippet.background) %>');background-position: center !important;">
+  <div class="row row-cols-1 row-cols-lg-2">
+    <div class="col d-flex justify-content-center align-items-center md-h-450px sm-h-100 text-white-2 padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr">
+      <div class="last-paragraph-no-margin text-center text-md-start">
+        <h4 class="font-weight-600 mb-4"><%= raw snippet.title %></h4>
+        <p><%= raw snippet.short_description %></p>
+      </div>
+    </div>
+    <div id="careerForm" class="col padding-three-all lg-padding-two-all sm-padding-15px-all sm-margin-30px-bottom">
+      <%= render "careers/form" %>
+    </div>
+  </div>
+</div>

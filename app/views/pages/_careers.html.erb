@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-start align-items-center margin-40px-bottom wow animate__fadeIn">
+      <div class="col-12 col-lg-7">
+        <h5 class="font-weight-600"><%= raw snippet.title %></h5>
+        <div class="mb-0"><%= raw snippet.short_description %></div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <!-- start accordion -->
+            <div class="panel-group accordion-event accordion-style1" id="accordion-design" data-active-icon="ti-minus" data-inactive-icon="ti-plus">
+              <%- @careers = Career.all -%>
+              <% @careers.each_with_index do |career, index| %>
+                <!-- start accordion item -->
+                <div class="panel">
+                  <div class="panel-heading">
+                    <a class="accordion-toggle" data-bs-toggle="collapse" data-bs-parent="#accordion-design" href="#design<%= index + 1 %>" aria-expanded="false">
+                      <div class="panel-title font-weight-500 text-black text-uppercase">
+                        <span><%= career.title %></span>
+                        <i class="text-black <%= index == 0 ? 'ti-minus' : 'ti-plus' %>"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-design" aria-expanded="false" role="tablist">
+                    <div class="panel-body">
+                      <p><%= career.short_description %></p>
+                      <%= link_to t('global.read_more'), career_path(career), class: "text-pink" %>
+                    </div>
+                  </div>
+                </div>
+                <!-- end accordion item -->
+              <% end %>
+            </div>
+            <!-- end accordion -->
+        </div>
+    </div>
+</div>
