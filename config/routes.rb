@@ -79,7 +79,7 @@ Rails.application.routes.draw do
 
 		resources :inquiries, :only => [:create]
 		resources :articles, :only => [:index, :show]
-		resources :services, :only => [:index, :show]
+		resources :services, :only => [:show]
 		resources :industries, :only => [:index, :show]
 		resources :portfolios, :only => [:index, :show], path: "campaigns"
 		resources :careers, :only => [:index, :show, :create]
