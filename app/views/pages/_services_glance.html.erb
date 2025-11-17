@@ -5,7 +5,7 @@
       <div class="mb-3 w-80 sm-w-100"><%= raw snippet.short_description %></div>
     </div>
     <div class="col-12 col-lg-5 text-start text-md-end">
-      <%= link_to services_path, class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
+      <%= link_to page_path(id: "services"), class: "btn btn-medium btn-rounded btn-border btn-prisma" do %>
         <%= t('global.view_all') %>
       <% end %>
     </div>

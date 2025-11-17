@@ -3,4 +3,5 @@ User-agent: *
 Disallow: /admins/
 Disallow: /home/
 Disallow: /id/home/
+Disallow: /rails/active_storage/
 Sitemap: https://prisma-ads.com/sitemap.xml
