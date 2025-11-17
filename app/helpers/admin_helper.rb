@@ -112,6 +112,7 @@ module AdminHelper
       "info_desc_bg",
       "info_image_box",
       "info_image_box_2",
+      "info_image_double",
       "benefit_list",
 			"info_description"
 		]
@@ -139,7 +140,8 @@ module AdminHelper
 			"bg-very-dark-grey",
       "bg-gradient-purple",
 			"bg-black",
-			"bg-image"
+			"bg-image",
+			"bg-image-no-parallax"
 		]
 	end
 

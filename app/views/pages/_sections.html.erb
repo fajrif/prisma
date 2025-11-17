@@ -7,9 +7,9 @@
     <% template = snippet.template %>
     <% if template.blank? %>
       <!-- start section -->
-      <% if bg_color == 'bg-image' %>
+      <% if bg_color.start_with?('bg-image') %>
         <% if snippet.background.attached? %>
-          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %> parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(snippet.background) %>');">
+          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %> <%= 'parallax' if bg_color == 'bg-image' %>" <%= "data-parallax-background-ratio='0.5'" if bg_color == 'bg-image' %> style="background-image:url('<%= url_for(snippet.background) %>');">
         <% end %>
       <% else %>
         <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>">
@@ -19,9 +19,9 @@
       <!-- end section -->
     <% else %>
       <!-- start section -->
-      <% if bg_color == 'bg-image' %>
+      <% if bg_color.start_with?('bg-image') %>
         <% if snippet.background.attached? %>
-          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %> parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(snippet.background) %>');">
+          <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %> <%= 'parallax' if bg_color == 'bg-image' %>" <%= "data-parallax-background-ratio='0.5'" if bg_color == 'bg-image' %> style="background-image:url('<%= url_for(snippet.background) %>');">
         <% end %>
       <% else %>
         <section id="<%= snippet.name %>" class="<%= "#{section_id} #{bg_color} #{css_class}".strip %>">

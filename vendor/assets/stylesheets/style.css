@@ -2455,6 +2455,7 @@ textarea.input-bg {
   transition-timing-function: ease-in;
 }
 .bg-image,
+.bg-image-no-parallax,
 .cover-background {
   position: relative !important;
   background-size: cover !important;

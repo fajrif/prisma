@@ -3,10 +3,11 @@
 <div class="container">
   <div class="row justify-content-center align-items-center">
     <div class="col-lg-3 md-margin-40px-bottom sm-margin-40px-tb wow animate__fadeIn">
-      <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600 text-white-2 text-center text-md-start mb-0") unless snippet.title.blank? %>
+      <%= content_tag(header_tag.to_sym, raw(snippet.title), class: "font-weight-600 text-white-2 text-center text-md-start mb-0") unless snippet.title.blank? %>
     </div>
     <div class="col-lg-9 d-flex flex-column justify-content-center align-items-start last-paragraph-no-margin text-white-2 sm-margin-30px-bottom padding-six-lr padding-five-half-tb lg-padding-four-lr md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr sm-no-padding-top wow animate__fadeIn" data-wow-delay="0.2s">
       <div class="transparent-box box-embroided padding-six-all">
+        <%= content_tag(header_tag.to_sym, raw(snippet.caption), class: "font-weight-600") unless snippet.caption.blank? %>
         <div class="text-center text-md-start font-weight-500"><%= raw snippet.short_description %></div>
       </div>
     </div>
