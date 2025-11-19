@@ -281,7 +281,8 @@ module AdminHelper
   end
 
   def is_careers_page?
-    controller.controller_name == "careers"
+    controller.controller_name == "careers" ||
+    controller.controller_name == "pages" && params[:id] == "careers"
   end
 
   def is_errors_page?
