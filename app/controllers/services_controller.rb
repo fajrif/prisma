@@ -13,6 +13,10 @@ class ServicesController < ApplicationController
   def show
 		@service = Service.friendly.find(params[:id])
     @sections = @service.segments
+
+		@meta_title = @service.meta_title unless @service.meta_title.blank?
+		@meta_desc = @service.meta_description unless @service.meta_description.blank?
+
     set_banner_individual
   end
 

@@ -52,7 +52,7 @@ class Admins::ServicesController < Admins::BaseController
   private
 
   def params_service
-    params.require(:service).permit(:image, :image_white, :image1, :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :color, :banner_section_id)
+    params.require(:service).permit(:image, :image_white, :image1, :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :color, :banner_section_id, :meta_title, :meta_description)
   end
 
   def set_service

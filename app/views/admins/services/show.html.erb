@@ -10,6 +10,11 @@
 						</a>
 					</li>
 					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#metatags" role="tab" aria-selected="false" tabindex="-1">
+								Meta Tags
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
 						<a class="nav-link" data-bs-toggle="tab" href="#benefits" role="tab" aria-selected="false" tabindex="-1">
 							<%= "Benefits (#{ @service.benefits.size })" %>
 						</a>
@@ -23,6 +28,9 @@
 				<div class="tab-content">
 					<div class="tab-pane active show" id="details" role="tabpanel">
 						<%= render "details" %>
+					</div>
+					<div class="tab-pane" id="metatags" role="tabpanel">
+						<%= render "meta_tags" %>
 					</div>
 					<div class="tab-pane" id="benefits" role="tabpanel">
 						<div class="row">

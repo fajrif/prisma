@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <tr>
+    <td style="width:15%;"><b>ID</b></td>
+    <td><%= @industry.id %></td>
+  </tr>
+  <tr>
+    <td style="width:15%;"><b>Slug</b></td>
+    <td><%= link_to "/#{@industry.slug}", industry_path(@industry), target: :_blank %></td>
+  </tr>
+  <tr>
+    <td><b>Image</b></td>
+    <td>
+      <%= image_tag @industry.image.variant(resize_to_limit: [100,100]) %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Name</b></td>
+    <td><h5 class="fs-14 mb-0 text-body"><%= @industry.name %></h5></td>
+  </tr>
+  <tr>
+    <td><b>Banner Section</b></td>
+    <td><b><%= link_to @industry.banner_section.name_id_label, admins_banners_path(banner_section_id: @industry.banner_section.id) if @industry.banner_section %></b></td>
+  </tr>
+  <tr>
+    <td><b>Caption</b></td>
+    <td><%= @industry.caption %></td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><%= raw @industry.description %></td>
+  </tr>
+</table>

@@ -1,6 +1,6 @@
 class Service < ApplicationRecord
 	extend Mobility
-  translates :name, :caption, :short_description, :description, :benefit_title, :benefit_description
+  translates :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :meta_title, :meta_description
 
 	extend FriendlyId
   friendly_id :name, use: :slugged

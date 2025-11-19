@@ -1,6 +1,6 @@
 class Industry < ApplicationRecord
 	extend Mobility
-  translates :name, :caption, :description
+  translates :name, :caption, :description, :meta_title, :meta_description
 
 	include QuilleditorExtension
 

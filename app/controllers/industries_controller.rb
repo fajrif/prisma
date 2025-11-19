@@ -7,6 +7,8 @@ class IndustriesController < ApplicationController
 
   def show
 		@industry = Industry.friendly.find(params[:id])
+		@meta_title = @industry.meta_title unless @industry.meta_title.blank?
+		@meta_desc = @industry.meta_description unless @industry.meta_description.blank?
     set_banner_section
   end
 
