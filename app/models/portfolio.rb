@@ -7,6 +7,8 @@ class Portfolio < ApplicationRecord
 
 	include QuilleditorExtension
 
+  default_scope { order(created_at: :desc) }
+
 	has_one_attached :logo, dependent: :purge
 	has_one_attached :image, dependent: :purge
 	has_one_attached :image1, dependent: :purge
