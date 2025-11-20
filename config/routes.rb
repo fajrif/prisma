@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 			resources :categories
 			resources :portfolios
 			resources :awards
+			resources :award_categories
 			resources :services do
 				resources :segments, :controller => "services/segments", :except => [:index] do
 					collection do

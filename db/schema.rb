@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_19_074504) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_20_093528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -139,11 +139,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_19_074504) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "award_categories", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "description", default: "", null: false
+  end
+
   create_table "awards", force: :cascade do |t|
     t.jsonb "name", default: {}
     t.jsonb "description", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "award_category_id"
   end
 
   create_table "banner_sections", force: :cascade do |t|

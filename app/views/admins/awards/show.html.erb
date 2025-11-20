@@ -19,6 +19,10 @@
 						<td><h5 class="fs-14 mb-0 text-body"><%= @award.name %></h5></td>
 					</tr>
 					<tr>
+						<td><b>Category</b></td>
+						<td><%= link_to(@award.try(:award_category).try(:name), admins_award_category_path(@award.try(:award_category))) if @award.award_category %></h5></td>
+					</tr>
+					<tr>
 						<td><b>Description</b></td>
 						<td><%= raw @award.description %></td>
 					</tr>

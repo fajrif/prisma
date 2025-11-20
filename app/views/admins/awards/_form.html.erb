@@ -2,6 +2,7 @@
 	<%= f.error_notification %>
 	<fieldset>
 		<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg, image/webp" } %>
+		<%= f.association :award_category, as: :select %>
 		<%= f.input :name, as: :string %>
     <%= f.input :description, input_html: { class: 'quill_container' } %>
 	</fieldset>

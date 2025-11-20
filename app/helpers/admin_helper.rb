@@ -328,6 +328,7 @@ module AdminHelper
 		controller.controller_name == "clients" ||
 		controller.controller_name == "testimonials" ||
 		controller.controller_name == "awards" ||
+		controller.controller_name == "award_categories" ||
 		controller.controller_name == "careers" ||
 		controller.controller_name == "applications"
 	end

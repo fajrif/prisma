@@ -2,22 +2,18 @@
 	<table class="table table-hover table-striped align-middle mb-0">
 		<thead class="table-light">
 			<tr>
-				<th class="text-center">ID</th>
-				<th>Image</th>
+				<th class="text-center" style="width:10%;">ID</th>
 				<th>Name</th>
-				<th>Category</th>
-				<th>Created At</th>
+				<th class="text-center">Awards</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% for award in @awards %>
+			<% for award_category in @award_categories %>
 				<tr>
-					<td class="text-center"><%= award.id %></td>
-					<td><%= image_tag( award.image.attached? ? award.image.variant(resize_to_limit: [100,100]) : "awards-tmp.png" ) %></td>
-					<td><h5 class="fs-14 mb-0"><%= link_to award.name, admins_award_path(award), class: "text-body" %></h5></td>
-					<td><%= link_to(award.try(:award_category).try(:name), admins_award_category_path(award.try(:award_category))) if award.award_category %></td>
-					<td><%= award.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+					<td class="text-center"><%= award_category.id %></td>
+					<td><h5 class="fs-14 mb-0"><%= link_to award_category.name, admins_award_category_path(award_category.id), class: "text-body" %></h5></td>
+					<td class="text-center"><%= award_category.awards.size %></td>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,18 +21,18 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
-									<%= link_to admins_award_path(award), class: "dropdown-item" do %>
+									<%= link_to admins_award_category_path(award_category.id), class: "dropdown-item" do %>
 										<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
 									<% end %>
 								</li>
 								<li>
-									<%= link_to edit_admins_award_path(award), class: "dropdown-item edit-list" do %>
+									<%= link_to edit_admins_award_category_path(award_category.id), class: "dropdown-item edit-list" do %>
 										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
 									<% end %>
 								</li>
 								<li class="dropdown-divider"></li>
 								<li>
-									<%= link_to admins_award_path(award), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
+									<%= link_to admins_award_category_path(award_category.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
 										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
 									<% end %>
 								</li>
@@ -49,4 +45,4 @@
 	</table>
 </div>
 <!-- pagination -->
-<%= paginate @awards %>
+<%= paginate @award_categories %>
