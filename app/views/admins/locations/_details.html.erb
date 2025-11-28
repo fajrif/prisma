@@ -1,0 +1,34 @@
+<table class="table table-hover">
+  <tr>
+    <td style="width:15%;"><b>ID</b></td>
+    <td><%= @location.id %></td>
+  </tr>
+  <tr>
+    <td><b>Image</b></td>
+    <td>
+      <%= image_tag @location.image.variant(resize_to_limit: [100,100]) if @location.image.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Banner</b></td>
+    <td>
+      <%= image_tag @location.banner.variant(resize_to_limit: [100,100]) if @location.banner.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Name</b></td>
+    <td><b><%= @location.name %></b></td>
+  </tr>
+  <tr>
+    <td><b>Slug</b></td>
+    <td><%= link_to location_path(@location), location_path(@location) %></td>
+  </tr>
+  <tr>
+    <td><b>Products</b></td>
+    <td><%= @location.products.size %></td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><%= @location.description %></td>
+  </tr>
+</table>

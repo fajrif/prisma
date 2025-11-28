@@ -1,0 +1,78 @@
+<table class="table table-hover">
+  <tr>
+    <td style="width:15%;"><b>ID</b></td>
+    <td><%= @product.id %></td>
+  </tr>
+  <tr>
+    <td><b>Name</b></td>
+    <td><b><%= @product.name %></b></td>
+  </tr>
+  <tr>
+    <td><b>Slug</b></td>
+    <td><%= link_to product_path(@product), product_path(@product) %></td>
+  </tr>
+  <tr>
+    <td><b>Image</b></td>
+    <td>
+      <%= image_tag @product.image.variant(resize_to_limit: [100,100]) if @product.image.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Image 1</b></td>
+    <td>
+      <%= image_tag @product.image1.variant(resize_to_limit: [100,100]) if @product.image1.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Image 2</b></td>
+    <td>
+      <%= image_tag @product.image2.variant(resize_to_limit: [100,100]) if @product.image2.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Banner</b></td>
+    <td>
+      <%= image_tag @product.banner.variant(resize_to_limit: [100,100]) if @product.banner.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><%= @product.description %></td>
+  </tr>
+  <tr>
+    <td><b>Location ID</b></td>
+    <td><%= link_to "#{@product.location.name} [ID:#{@product.location.id}]", admins_location_path(@product.location.id) if @product.location %></td>
+  </tr>
+  <tr>
+    <td><b>Product Category ID</b></td>
+    <td><%= link_to "#{@product.product_category.name} [ID: #{@product.product_category.id}]", admins_product_category_path(@product.product_category.id) if @product.product_category %></td>
+  </tr>
+  <tr>
+    <td><b>Video URL</b></td>
+    <td><%= @product.video_url %></td>
+  </tr>
+  <tr>
+    <td><b>Specification</b></td>
+    <td><%= @product.specification %></td>
+  </tr>
+  <tr>
+    <td><b>Est. Impression</b></td>
+    <td><%= @product.est_impression %></td>
+  </tr>
+  <tr>
+    <td><b>Interest</b></td>
+    <td><%= @product.interest %></td>
+  </tr>
+  <tr>
+    <td><b>Longitude</b></td>
+    <td><%= @product.longitude %></td>
+  </tr>
+  <tr>
+    <td><b>Latitude</b></td>
+    <td><%= @product.latitude %></td>
+  </tr>
+  <tr>
+    <td><b>Address</b></td>
+    <td><%= @product.address %></td>
+  </tr>
+</table>

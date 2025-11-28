@@ -43,8 +43,12 @@ Rails.application.routes.draw do
 			end
 			resources :categories
 			resources :portfolios
+			resources :locations
+			resources :products
+			resources :product_categories
 			resources :awards
 			resources :award_categories
+			resources :pix_services
 			resources :services do
 				resources :segments, :controller => "services/segments", :except => [:index] do
 					collection do
@@ -85,6 +89,7 @@ Rails.application.routes.draw do
 		resources :portfolios, :only => [:index, :show], path: "campaigns"
 		resources :careers, :only => [:show, :create]
 		resources :locations, :only => [:index, :show]
+		resources :products, :only => [:show]
 
 		# route to pages
 		match "contact-us", :to => 'inquiries#show', via: :get, as: :contact_us

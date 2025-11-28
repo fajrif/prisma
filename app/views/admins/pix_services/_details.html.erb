@@ -1,0 +1,19 @@
+<table class="table table-hover">
+	<tr>
+		<td style="width:15%;"><b>ID</b></td>
+		<td><%= @pix_service.id %></td>
+	</tr>
+	<tr>
+		<td><b>Title</b></td>
+		<td><h5 class="fs-14 mb-0 text-body"><%= @pix_service.name %></h5></td>
+	</tr>
+	<tr>
+		<td><b>Description</b></td>
+		<td><%= @pix_service.description %></td>
+	</tr>
+</table>
+<div class="form-actions">
+  <%= link_to 'Edit', edit_admins_pix_service_path(@pix_service.id), :class => 'btn btn-secondary' %>
+  <%= link_to 'Destroy', admins_pix_service_path(@pix_service.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+  <%= link_to 'View All', admins_pix_services_path, :class => 'btn btn-light' %>
+</div>

@@ -1,0 +1,26 @@
+<% title_page("Product details") %>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card card-box">
+			<div class="card-body">
+				<ul class="nav nav-tabs mb-3" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" data-bs-toggle="tab" href="#details" role="tab" aria-selected="true">
+								Details
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active show" id="details" role="tabpanel">
+						<%= render "details" %>
+					</div>
+				</div>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_product_path(@product.id), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_product_path(@product.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_products_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

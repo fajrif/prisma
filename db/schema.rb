@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_20_093528) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_28_071455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -256,6 +256,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_20_093528) do
     t.index ["objectable_type", "objectable_id"], name: "index_link_buttons_on_objectable"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.jsonb "description", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug", default: ""
+    t.index ["name"], name: "index_locations_on_name", unique: true
+    t.index ["slug"], name: "index_locations_on_slug", unique: true
+  end
+
   create_table "member_types", force: :cascade do |t|
     t.jsonb "name", default: {}
   end
@@ -291,6 +301,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_20_093528) do
     t.index ["title"], name: "index_pages_on_title", unique: true
   end
 
+  create_table "pix_services", force: :cascade do |t|
+    t.jsonb "title", default: {}
+    t.jsonb "description", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "company_name", default: "", null: false
@@ -313,6 +330,31 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_20_093528) do
     t.jsonb "meta_description", default: {}
     t.index ["name"], name: "index_portfolios_on_name", unique: true
     t.index ["slug"], name: "index_portfolios_on_slug", unique: true
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.jsonb "description", default: {}
+    t.string "specification", default: "", null: false
+    t.string "est_impression", default: "", null: false
+    t.string "longitude", default: "", null: false
+    t.string "latitude", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "interest", default: "", null: false
+    t.integer "location_id"
+    t.integer "product_category_id"
+    t.string "video_url", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug", default: ""
+    t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "report_types", force: :cascade do |t|

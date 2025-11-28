@@ -1,0 +1,29 @@
+<%= simple_form_for @pix_service, url: (@pix_service.new_record? ? admins_pix_services_path : admins_pix_service_path(@pix_service.id)), method: (@pix_service.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+          <fieldset>
+					<%= f.input :title, as: :string %>
+					<%= f.input :description, as: :text %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @pix_service.new_record? %>
+							<%= link_to "Cancel", admins_pix_service_path(@pix_service.id), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_pix_services_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @pix_service, col: 'col-lg-12' %>
+			</div>
+		</div>
+	</div>
+<% end %>

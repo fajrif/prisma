@@ -1,0 +1,15 @@
+<%= simple_form_for @product_category, url: (@product_category.new_record? ? admins_product_categories_path : admins_product_category_path(@product_category.id)), method: (@product_category.new_record? ? :post : :put) do |f| %>
+	<%= f.error_notification %>
+	<fieldset>
+		<%= f.input :name, as: :string %>
+	</fieldset>
+	<%= f.error :base %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn btn-secondary' %>
+		<% unless @product_category.new_record? %>
+			<%= link_to "Cancel", admins_product_category_path(@product_category.id), :class => 'btn btn-light' %>
+		<% else %>
+			<%= link_to "Cancel", admins_product_categories_path, :class => 'btn btn-light' %>
+		<% end %>
+	</div>
+<% end %>

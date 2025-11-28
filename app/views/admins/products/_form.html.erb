@@ -1,0 +1,55 @@
+<%= simple_form_for @product, url: (@product.new_record? ? admins_products_path : admins_product_path(@product.id)), method: (@product.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+          <fieldset>
+            <%= f.input :name, as: :string %>
+            <%= f.input :description, as: :text %>
+            <%= f.input :specification, as: :string %>
+            <%= f.input :est_impression, as: :string %>
+            <%= f.input :address, as: :text %>
+            <%= f.input :interest, as: :string %>
+            <%= f.input :video_url, as: :string %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @product.new_record? %>
+							<%= link_to "Cancel", admins_product_path(@product.id), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_products_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @product, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Options</h5>
+						</div>
+						<div class="card-body">
+              <label>Image</label>
+              <%= f.input :image, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
+              <label>Image 1</label>
+              <%= f.input :image1, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
+              <label>Image 2</label>
+              <%= f.input :image2, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
+              <label>Banner</label>
+              <%= f.input :banner, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
+              <%= f.association :location, as: :select %>
+              <%= f.association :product_category, as: :select %>
+              <%= f.input :longitude, as: :string %>
+              <%= f.input :latitude, as: :string %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
