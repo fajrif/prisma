@@ -11298,15 +11298,15 @@ div.dtr-modal div.dtr-modal-close:hover {
 }
 .choices {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 .choices:focus {
   outline: none;
 }
-.choices:last-child {
-  margin-bottom: 0;
-}
+/*.choices:last-child {*/
+  /*margin-bottom: 0;*/
+/*}*/
 .choices.is-disabled .choices__inner,
 .choices.is-disabled .choices__input {
   background-color: rgba(var(--vz-light-rgb), 0.75);

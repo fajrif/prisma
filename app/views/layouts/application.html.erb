@@ -42,6 +42,7 @@
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
 	<%= stylesheet_link_tag 'application', media: 'all' %>
+  <% if Rails.env.production? %>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -49,13 +50,16 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5FH33RFZ');</script>
   <!-- End Google Tag Manager -->
+  <% end %>
 	<%= yield :head %>
 </head>
 <body class="w-100">
+  <% if Rails.env.production? %>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FH33RFZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) →
+  <% end %>
 	<%= render "shared/header" %>
 	<%= yield %>
 	<%= render "shared/footer" %>

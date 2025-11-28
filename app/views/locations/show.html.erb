@@ -1,18 +1,79 @@
-<% if banner = @banners.first %>
-<!-- start page single banner -->
-<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
-  <div class="opacity-medium bg-transparent-black z-index-0"></div>
-	<div class="full-screen text-white-2">
-		<div class="container position-relative h-100">
-			<div class="row h-100 justify-content-center align-items-center">
-				<div class="col-md-12 text-center">
-          <span class="d-block mb-2"><%= t('locations.title') %></span>
-					<h2 class="font-weight-600 text-white-2 alt-font"><%= t('global.coming_soon.title') %></h2>
-          <h6 class="text-center w-30 mx-auto"><%= t('global.coming_soon.desc') %></h6>
-				</div>
-			</div>
-		</div>
-	</div>
+<%= render "shared/setting_banners" %>
+
+<!-- app/views/locations/show.html.erb -->
+<section class="half-section">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-12">
+        <h2><%= @location.name %></h2>
+        <div class="mb-3">
+          <label for="location-select" class="form-label">Select Location:</label>
+          <select id="location-select" class="form-select" style="max-width: 300px;">
+            <% @locations.each do |location| %>
+              <option value="<%= location.slug %>" <%= 'selected' if location.id == @location.id %>>
+                <%= location.name %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Left Panel: Product List -->
+      <div class="col-md-4">
+        <div id="product-list" class="list-group">
+          <% @products.each do |product| %>
+            <div class="list-group-item product-item"
+              data-product-id="<%= product.id %>"
+              data-lat="<%= product.latitude %>"
+              data-lng="<%= product.longitude %>">
+              <h5 class="mb-1"><%= product.name %></h5>
+              <% if product.image_url_thumb.present? %>
+                <img src="<%= product.image_url_thumb %>" alt="<%= product.name %>" class="img-thumbnail mb-2" style="max-width: 100px;">
+              <% end %>
+              <p class="mb-1 text-muted"><%= product.est_impression %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Right Panel: Google Map -->
+      <div class="col-md-8">
+        <div id="map" style="height: 600px; width: 100%;"></div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- end page single banner -->
+
+<!-- Hidden data for JavaScript -->
+<div id="map-data"
+     data-products='<%= raw @products.to_json(only: [:id, :name, :latitude, :longitude, :est_impression], methods: [:image_url_thumb]) %>'
+     data-center-lat="<%= @products.first&.latitude || -6.2088 %>"
+     data-center-lng="<%= @products.first&.longitude || 106.8456 %>">
+</div>
+
+<%= content_for :tail do %>
+  <%= javascript_include_tag "locations" %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['PRISMA_GOOGLE_API_KEY']}&callback=initMap&loading=async", async: true, defer: true %>
+
+  <style>
+    .product-item {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .product-item.selected {
+      background-color: #cfe2ff !important;
+      border-color: #0d6efd;
+    }
+
+    .gm-style-iw {
+      max-width: 250px;
+    }
+  </style>
 <% end %>

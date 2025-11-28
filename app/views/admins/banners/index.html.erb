@@ -12,7 +12,7 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<%= select_tag :banner_section_id, options_from_collection_for_select(BannerSection.all, :id, :name, params[:banner_section_id]), :prompt => 'Select Banner Section', :class => "form-select", :onchange => "this.form.submit();" %>
+						<%= select_tag :banner_section_id, options_from_collection_for_select(BannerSection.all, :id, :name, params[:banner_section_id]), :prompt => 'Select Banner Section', :class => "form-select mb-0", :onchange => "this.form.submit();" %>
 					</div>
 					<div class="col-sm-auto ms-auto">
 						<div class="hstack gap-2">

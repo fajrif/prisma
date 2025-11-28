@@ -19,8 +19,10 @@ class Location < ApplicationRecord
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
 	has_many :products
+  belongs_to :banner_section
 
 	def should_generate_new_friendly_id?
 		self.name_changed?
 	end
+
 end

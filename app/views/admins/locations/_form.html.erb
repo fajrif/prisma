@@ -6,7 +6,6 @@
 					<%= f.error_notification %>
           <fieldset>
             <%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
-            <%= f.input :banner, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
             <%= f.input :name, as: :string %>
             <%= f.input :description, as: :text %>
 					</fieldset>
@@ -25,6 +24,16 @@
 		<div class="col-lg-4">
 			<div class="row">
 				<%= render "admins/shared/error_messages", :target => @location, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.association :banner_section, as: :select %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

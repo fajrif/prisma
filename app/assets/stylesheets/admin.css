@@ -44,6 +44,6 @@
 	display: block;
 }
 
-.choices:last-child {
-  margin-bottom: 20px;
+#index_search .choices {
+  margin-bottom: 0;
 }

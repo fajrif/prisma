@@ -47,7 +47,7 @@ class Admins::LocationsController < Admins::BaseController
   private
 
   def params_location
-    params.require(:location).permit(:name, :description, :image, :banner)
+    params.require(:location).permit(:name, :description, :image, :banner_section_id)
   end
 
   def set_location

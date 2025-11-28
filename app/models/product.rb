@@ -30,4 +30,9 @@ class Product < ApplicationRecord
 		self.name_changed?
 	end
 
+  def image_url_thumb
+    return unless image.attached?
+
+    Rails.application.routes.url_helpers.url_for(image.variant(resize_to_limit: [100, 100]))
+  end
 end
