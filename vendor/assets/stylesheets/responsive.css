@@ -4165,7 +4165,7 @@
     .md-no-border { border: 0 !important}
 
     /* parallax */
-    .parallax {background-position: center;}
+    .parallax {background-position: center; background-attachment: inherit !important;}
     .portfolio-filter-tab-1 li {margin: 10px 20px;}
     .portfolio-filter-tab-2 li.nav-item a.nav-link {padding: 7px 18px;}
 

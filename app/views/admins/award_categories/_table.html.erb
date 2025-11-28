@@ -3,6 +3,7 @@
 		<thead class="table-light">
 			<tr>
 				<th class="text-center" style="width:10%;">ID</th>
+				<th>Image</th>
 				<th>Name</th>
 				<th class="text-center">Awards</th>
 				<th>Action</th>
@@ -12,6 +13,7 @@
 			<% for award_category in @award_categories %>
 				<tr>
 					<td class="text-center"><%= award_category.id %></td>
+					<td><%= image_tag( award_category.image.attached? ? award_category.image.variant(resize_to_limit: [100,100]) : "awards-tmp.png" ) %></td>
 					<td><h5 class="fs-14 mb-0"><%= link_to award_category.name, admins_award_category_path(award_category.id), class: "text-body" %></h5></td>
 					<td class="text-center"><%= award_category.awards.size %></td>
 					<td>
