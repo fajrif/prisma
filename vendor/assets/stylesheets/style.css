@@ -14085,7 +14085,7 @@ figure {
   display: block;
 }
 .panel-group {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 .panel-group .panel-heading + .panel-collapse > .list-group,
 .panel-group .panel-heading + .panel-collapse > .panel-body {
@@ -14250,7 +14250,7 @@ figure {
 .accordion-style1.panel-group .panel-heading + .panel-collapse > .list-group,
 .accordion-style1.panel-group .panel-heading + .panel-collapse > .panel-body {
   border-top: 0;
-  padding: 25px 0;
+  padding: 0 0 25px 0;
 }
 
 /* accordion style 2 */

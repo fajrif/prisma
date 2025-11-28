@@ -1,26 +1,26 @@
+<% innovations = PixService.all %>
+<% unless innovations.empty? %>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <!-- start accordion -->
             <div class="panel-group accordion-event accordion-style1" id="accordion-pix-services" data-active-icon="ti-minus" data-inactive-icon="ti-plus">
-              <% innovations = t('dooh_innovations.title') %>
-              <% list = t('dooh_innovations.list') %>
               <% i = 1 %>
-              <% innovations.each_with_index do |title, index| %>
+              <% innovations.each_with_index do |inno, index| %>
                 <% i = 1 if i >= 4 %>
                 <!-- start accordion item -->
                 <div class="panel">
                   <div class="panel-heading">
                     <a class="accordion-toggle" data-bs-toggle="collapse" data-bs-parent="#accordion-pix-services" href="#design<%= index + 1 %>" aria-expanded="false">
                       <div class="panel-title font-weight-700 title-small text-dark-gray text-uppercase">
-                        <span><%= title %></span>
+                        <span><%= inno.title %></span>
                         <i class="title-small <%= "gradient-icon-#{i}" %> font-weight-900 <%= index == 0 ? 'ti-minus' : 'ti-plus' %>"></i>
                       </div>
                     </a>
                   </div>
                   <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-pix-services" aria-expanded="false" role="tablist">
                     <div class="panel-body w-75 sm-w-100">
-                      <p class="mb-0"><%= list[index] %></p>
+                      <p class="mb-0"><%= inno.description %></p>
                     </div>
                   </div>
                 </div>
@@ -32,3 +32,4 @@
         </div>
     </div>
 </div>
+<% end %>

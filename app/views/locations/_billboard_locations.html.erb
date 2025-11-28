@@ -7,57 +7,26 @@
       </div>
       <div class="col-lg-8 locations-list">
         <div class="row">
+          <% locations = Location.all %>
+          <% locations.each_with_index do |location, index| %>
           <!-- start features box item -->
-          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp">
-            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg1.png') %>')">
+          <div class="col-12 col-lg-4 sm-margin-15px-bottom wow animate__fadeInUp" data-wow-delay="0.<%= index + 2 %>s">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index+1}.png") %>')">
               <div class="bg-white">
                 <div class="bg-black overflow-hidden location-image border-top-radius-8">
-                  <a href="<%= location_path(id: 'jabodetabek') %>">
-                    <%= image_tag('locations/jabodetabek.png') %>
+                  <a href="<%= location_path(location) %>">
+                    <%= image_tag(location.image.variant(resize_to_limit: [488,310])) %>
                   </a>
                 </div>
               </div>
               <div class="padding-20px-all border-top border-width-2">
-                <a href="<%= location_path(id: 'jabodetabek') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Jabodetabek</a>
-                <p class="font-weight-500"><%= t('locations.jabodetabek.desc') %></p>
+                <a href="<%= location_path(location) %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block"><%= location.name %></a>
+                <p class="font-weight-500"><%= location.description %></p>
               </div>
             </div>
           </div>
           <!-- end features box item -->
-          <!-- start features box item -->
-          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.2s">
-            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg2.png') %>')">
-              <div class="bg-white">
-                <div class="bg-black overflow-hidden location-image border-top-radius-8">
-                  <a href="<%= location_path(id: 'bali') %>">
-                    <%= image_tag('locations/bali.png') %>
-                  </a>
-                </div>
-              </div>
-              <div class="padding-20px-all border-top border-width-2">
-                <a href="<%= location_path(id: 'bali') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bali</a>
-                <p class="font-weight-500"><%= t('locations.bali.desc') %></p>
-              </div>
-            </div>
-          </div>
-          <!-- end features box item -->
-          <!-- start features box item -->
-          <div class="col-12 col-lg-4 md-margin-30px-bottom wow animate__fadeInUp" data-wow-delay="0.4s">
-            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url('bg3.png') %>')">
-              <div class="bg-white">
-                <div class="bg-black overflow-hidden location-image border-top-radius-8">
-                  <a href="<%= location_path(id: 'bandung') %>">
-                    <%= image_tag('locations/bandung.png') %>
-                  </a>
-                </div>
-              </div>
-              <div class="padding-20px-all border-top border-width-2">
-                <a href="<%= location_path(id: 'bandung') %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block">Bandung</a>
-                <p class="font-weight-500"><%= t('locations.bandung.desc') %></p>
-              </div>
-            </div>
-          </div>
-          <!-- end features box item -->
+          <% end %>
         </div>
       </div>
     </div>
