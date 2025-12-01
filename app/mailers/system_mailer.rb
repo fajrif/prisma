@@ -33,10 +33,10 @@ class SystemMailer < ApplicationMailer
 
   def application_notification(application_id, subject)
     if @application = Application.find(application_id)
-      # Render the HTML template as a string
+      # Render HTML
       html_content = render_to_string(
-        template: 'system_mailer/application_notification',
-        layout: 'mailer',
+        template: "system_mailer/application_notification",
+        layout: "mailer",
         formats: [:html],
         locals: { application: @application }
       )
@@ -46,30 +46,50 @@ class SystemMailer < ApplicationMailer
         { email: configatron.marketing_email, name: configatron.marketing_name }
       ]
 
-      send_email_brevo(subject, emails, html_content)
+      send_email_brevo(subject, emails, html_content, @application)
     end
-  rescue Exception => e
-    puts e.message
-    puts e.backtrace.inspect
+  rescue => e
+    Rails.logger.error e.full_message
   end
 
   protected
 
-  def send_email_brevo(subject, emails, html_content)
+  def send_email_brevo(subject, emails, html_content, application)
     Rails.logger.debug html_content
     Rails.logger.info("BREVO_API_KEY: #{ENV['BREVO_API_KEY']&.slice(0,4)}******")
 
     sib_api = SibApiV3Sdk::TransactionalEmailsApi.new
-    api_key = SibApiV3Sdk.configure.api_key['api-key'] = ENV["BREVO_API_KEY"]
+    SibApiV3Sdk.configure.api_key['api-key'] = ENV["BREVO_API_KEY"]
+
+    # -------------------------------------------------------------------
+    # 🔥 Build attachments from ActiveStorage
+    # -------------------------------------------------------------------
+    brevo_attachments = []
+    if application.file.attached?
+      blob = application.file
+
+      file_binary = blob.download
+      file_name   = blob.filename.to_s
+
+      brevo_attachments << {
+        name: file_name,
+        content: Base64.strict_encode64(file_binary)
+      }
+    end
 
     email = SibApiV3Sdk::SendSmtpEmail.new(
       subject: subject,
-      sender: { email: configatron.no_reply_email, name: configatron.email_name },
+      sender: {
+        email: configatron.no_reply_email,
+        name:  configatron.email_name
+      },
       to: emails,
-      htmlContent: html_content
+      htmlContent: html_content,
+      attachment: brevo_attachments
     )
 
     sib_api.send_transac_email(email)
+
   rescue SibApiV3Sdk::ApiError => e
     Rails.logger.error "Brevo API Mail Error: #{e.response_body}"
   end
