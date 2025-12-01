@@ -8,7 +8,7 @@ class Application < ApplicationRecord
 
 	# => File
 	validates :file, attached: true, content_type: ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'],
-										size: { less_than: 50.megabytes, message: 'File maximum 50MB' }
+										size: { less_than: 20.megabytes, message: 'File maximum 20MB' }
 
   validates_presence_of :name, :email, :phone
 
@@ -17,10 +17,12 @@ class Application < ApplicationRecord
 		self.try(:created_at).try(:strftime, _format)
 	end
 
-  after_commit :send_notification_email
+  after_commit :send_notification_email, on: :create
 
   def send_notification_email
     begin
+      return unless file.attached?
+
       SystemMailer.new.application_notification(self.id, "Application Submission - #{self.name}")
     rescue Exception => e
       puts e.message
