@@ -1,57 +1,50 @@
 <%= render "shared/setting_banners" %>
 
-<!-- app/views/locations/show.html.erb -->
+<!-- start post content section -->
 <section class="half-section">
-  <div class="container">
-    <div class="row mb-3">
-      <div class="col-12">
-        <h2><%= @location.name %></h2>
-        <div class="mb-3">
-          <label for="location-select" class="form-label">Select Location:</label>
-          <select id="location-select" class="form-select" style="max-width: 300px;">
-            <% @locations.each do |location| %>
-              <option value="<%= location.slug %>" <%= 'selected' if location.id == @location.id %>>
-                <%= location.name %>
-              </option>
-            <% end %>
-          </select>
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-3">
+            <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600"><span><%= "#{t('locations.title')}: #{@location.name}" %></span></div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- Left Panel: Product List -->
-      <div class="col-md-4">
-        <div id="product-list" class="list-group">
-          <% @products.each do |product| %>
-            <div class="list-group-item product-item"
-              data-product-id="<%= product.id %>"
-              data-lat="<%= product.latitude %>"
-              data-lng="<%= product.longitude %>">
-              <h5 class="mb-1"><%= product.name %></h5>
-              <% if product.image_url_thumb.present? %>
-                <img src="<%= product.image_url_thumb %>" alt="<%= product.name %>" class="img-thumbnail mb-2" style="max-width: 100px;">
-              <% end %>
-              <p class="mb-1 text-muted"><%= product.est_impression %></p>
-            </div>
-          <% end %>
+        <div class="row flex-nowrap h-600px">
+            <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
+                <div class="flex-grow-1 overflow-auto">
+                  <ul id="product-list" class="latest-post position-relative">
+                    <% @products.each do |product| %>
+                      <li class="media d-flex gap-2 product-item border border-radius-8"
+                        data-product-id="<%= product.id %>"
+                        data-lat="<%= product.latitude %>"
+                        data-lng="<%= product.longitude %>"
+                        >
+                        <figure class="flex-shrink-0 border border-radius-8">
+                          <% if product.image_url_thumb.present? %>
+                            <img src="<%= product.image_url_thumb %>" class="border-radius-8" alt="<%= product.name %>">
+                          <% end %>
+                        </figure>
+                        <div class="media-body flex-grow-1 text-medium">
+                          <span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span>
+                          <span class="d-block text-extra-dark-gray text-small"><%= product.est_impression %></span>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+            </aside>
+            <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">
+              <div id="map" class="w-100 h-100"></div>
+              <!-- Hidden data for JavaScript -->
+              <div id="map-data"
+                   data-products='<%= raw @products.to_json(only: [:id, :name, :latitude, :longitude, :est_impression], methods: [:image_url_thumb]) %>'
+                   data-center-lat="<%= @products.first&.latitude || -6.2088 %>"
+                   data-center-lng="<%= @products.first&.longitude || 106.8456 %>">
+              </div>
+            </article>
         </div>
-      </div>
-
-      <!-- Right Panel: Google Map -->
-      <div class="col-md-8">
-        <div id="map" style="height: 600px; width: 100%;"></div>
-      </div>
     </div>
-  </div>
 </section>
-
-<!-- Hidden data for JavaScript -->
-<div id="map-data"
-     data-products='<%= raw @products.to_json(only: [:id, :name, :latitude, :longitude, :est_impression], methods: [:image_url_thumb]) %>'
-     data-center-lat="<%= @products.first&.latitude || -6.2088 %>"
-     data-center-lng="<%= @products.first&.longitude || 106.8456 %>">
-</div>
+<!-- end blog content section -->
 
 <%= content_for :tail do %>
   <%= javascript_include_tag "locations" %>
@@ -68,12 +61,87 @@
     }
 
     .product-item.selected {
-      background-color: #cfe2ff !important;
-      border-color: #0d6efd;
+      background-color: #2c3e50 !important;
+      border-color: var(--base-color) !important;
+    }
+
+    .product-item.selected .media-body span {
+      color: #fff !important;
     }
 
     .gm-style-iw {
       max-width: 250px;
+    }
+  </style>
+  <!-- app/views/locations/show.html.erb -->
+  <style>
+    /* Target the InfoWindow container */
+    .gm-style .gm-style-iw-c {
+      background-color: #2c3e50 !important;
+      padding: 0 !important;
+      border: 1px solid;
+      border-radius: 12px !important;
+      border-color: var(--base-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    }
+
+    /* Target the InfoWindow content wrapper */
+    .gm-style .gm-style-iw-d {
+      overflow: auto !important;
+      max-height: none !important;
+    }
+
+    /* Remove default padding */
+    .gm-style .gm-style-iw-t::after {
+      background: #2c3e50 !important;
+    }
+
+    /* Style the close button */
+    .gm-style-iw button {
+      background-color: transparent !important;
+      filter: brightness(0) invert(1); /* Make close button white */
+      /*top: 8px !important;
+      right: 8px !important;*/
+    }
+
+    .gm-style-iw button img {
+    }
+
+    .gm-style .gm-style-iw-tc::after {
+      background-color: #2c3e50;
+    }
+
+    /* Custom content styling */
+    .info-window-content {
+      background-color: #2c3e50;
+      color: #ffffff;
+      padding: 0 15px 15px;
+      border-radius: 12px;
+      min-width: 200px;
+    }
+
+    .info-window-content h6 {
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .info-window-content p {
+      color: #ecf0f1;
+      margin-bottom: 8px;
+    }
+
+    .info-window-content img {
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .info-window-content strong {
+      color: #3498db;
+    }
+
+    .info-window-content small {
+      color: #bdc3c7;
     }
   </style>
 <% end %>

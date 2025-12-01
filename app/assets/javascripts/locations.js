@@ -17,7 +17,7 @@ async function initMap() {
   // Initialize map
   map = new Map(document.getElementById('map'), {
     center: { lat: centerLat, lng: centerLng },
-    zoom: 12,
+    zoom: 15,
     mapId: '3a496c8aa14f954cb04a4a27' // Required for AdvancedMarkerElement
   });
 
@@ -42,8 +42,8 @@ async function initMap() {
 
     const infoWindowContent = `
       <div class="info-window-content">
-        ${product.image_url_thumb ? `<img src="${product.image_url_thumb}" alt="${product.name}" style="max-width: 200px; margin-bottom: 10px;">` : ''}
-        <h6>${product.name}</h6>
+        ${product.image_url_thumb ? `<img src="${product.image_url_thumb}" alt="${product.name}" class="border w-100" style="max-width: 200px; margin-bottom: 10px;">` : ''}
+        <h6 class="fw-semibold mb-2">${product.name}</h6>
         <p style="font-size: 0.9em;">${product.est_impression || ''}</p>
       </div>
     `;
