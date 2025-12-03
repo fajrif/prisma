@@ -9,6 +9,7 @@
           </div>
         </div>
         <div class="row flex-nowrap h-600px">
+          <% unless @products.any? %>
             <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
                 <div class="flex-grow-1 overflow-auto">
                   <ul id="product-list" class="latest-post position-relative">
@@ -41,6 +42,9 @@
                    data-center-lng="<%= @products.first&.longitude || 106.8456 %>">
               </div>
             </article>
+          <% else %>
+            <span id="no-data-message" class="text-center text-medium padding-15px">No products available for this location.</span>
+          <% end %>
         </div>
     </div>
 </section>

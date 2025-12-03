@@ -1,0 +1,29 @@
+<table class="table table-hover">
+	<tr>
+		<td style="width:15%;"><b>ID</b></td>
+		<td><%= @boostad_service.id %></td>
+	</tr>
+	<tr>
+		<td><b>Title</b></td>
+		<td><h5 class="fs-14 mb-0 text-body"><%= @boostad_service.name %></h5></td>
+	</tr>
+	<tr>
+		<td><b>Description</b></td>
+		<td><%= @boostad_service.description %></td>
+	</tr>
+	<tr>
+		<td><b>Image</b></td>
+		<td>
+			<% if @boostad_service.image.attached? %>
+				<%= image_tag @boostad_service.image, style: "max-width: 400px; height: auto;" %>
+			<% else %>
+				<span class="text-muted">No image</span>
+			<% end %>
+		</td>
+	</tr>
+</table>
+<div class="form-actions">
+  <%= link_to 'Edit', edit_admins_boostad_service_path(@boostad_service.id), :class => 'btn btn-secondary' %>
+  <%= link_to 'Destroy', admins_boostad_service_path(@boostad_service.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+  <%= link_to 'View All', admins_boostad_services_path, :class => 'btn btn-light' %>
+</div>

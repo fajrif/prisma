@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_28_164659) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_03_082413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -173,6 +173,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_28_164659) do
     t.bigint "service_id"
     t.jsonb "content", default: {}
     t.index ["service_id"], name: "index_benefits_on_service_id"
+  end
+
+  create_table "boostad_services", force: :cascade do |t|
+    t.jsonb "title", default: {}
+    t.jsonb "description", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "careers", force: :cascade do |t|
