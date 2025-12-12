@@ -26,7 +26,6 @@
 #     en:
 #       "yes": yup
 #       enabled: "ON"
-
 en:
   contacts:
     title: "Let’s Build Your Next Great OOH Campaign"
@@ -46,6 +45,12 @@ en:
     message: "Message"
     success: "Thank You for your inquiry!"
     errors: "Oops sorry we are unable to submit your inquiry!"
+  products:
+    category: "Category"
+    specification: "Specification"
+    est_impression: "Est. Impression"
+    address: "Address"
+    interest: "Point of Interest"
   applications:
     name: "Name"
     phone: "Phone"

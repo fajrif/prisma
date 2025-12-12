@@ -32,7 +32,7 @@ class Service < ApplicationRecord
 
   def self.get_service_glance
     # Assume you have a Post model and a list of desired IDs
-    desired_order_ids = [1, 4, 2, 6, 5, 3]
+    desired_order_ids = [4, 1, 6, 2, 5, 3]
 
     # Build the CASE statement for ordering
     order_clause = "CASE id "

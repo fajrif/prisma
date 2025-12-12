@@ -46,6 +46,12 @@ id:
     message: "Pesan"
     success: "Terima kasih pesan dan data anda telah terkirim!"
     errors: "Maaf sistem tidak dapat memproses data anda!"
+  products:
+    category: "Kategori"
+    specification: "Spesifikasi"
+    est_impression: "Est. Impression"
+    address: "Alamat"
+    interest: "Point of Interest"
   applications:
     name: "Nama"
     phone: "No.Telp"

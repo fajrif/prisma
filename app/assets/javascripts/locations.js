@@ -43,7 +43,7 @@ async function initMap() {
     const infoWindowContent = `
       <div class="info-window-content">
         ${product.image_url_thumb ? `<img src="${product.image_url_thumb}" alt="${product.name}" class="border w-100" style="max-width: 200px; margin-bottom: 10px;">` : ''}
-        <h6 class="fw-semibold mb-2">${product.name}</h6>
+        <h6 class="fw-semibold mb-2"><a class="text-white-2 text-hover" href="${product.product_url_path}">${product.name}</a></h6>
         <p style="font-size: 0.9em;">${product.est_impression || ''}</p>
       </div>
     `;

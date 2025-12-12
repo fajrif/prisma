@@ -421,7 +421,7 @@ h6 {
 /* text color */
 .text-white-2,
 .btn.text-white-2 {
-  color: #fff;
+  color: #fff !important;
 }
 .text-black,
 .btn.text-black {
@@ -1162,7 +1162,7 @@ a.text-very-light-gray-hover:hover {
     #ff6343,
     #ff4848,
     #ff214f
-  );
+  ) !important;
 }
 .bg-gradient-green {
   background-image: linear-gradient(
@@ -1172,7 +1172,7 @@ a.text-very-light-gray-hover:hover {
     #3EE2F3 50%,
     #A6EEAB 75%,
     #82E235 100%
-  );
+  ) !important;
 }
 .bg-gradient-purple {
   background-image: linear-gradient(
@@ -1180,7 +1180,7 @@ a.text-very-light-gray-hover:hover {
     #E526F6 0%,
     #FA665D 50%,
     #A22BE6 100%
-  );
+  ) !important;
 }
 .bg-gradient-light-red-light-white {
   background-image: linear-gradient(50deg, var(--light-red-color) 0%, #ffffff 100%);

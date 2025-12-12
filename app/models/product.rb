@@ -30,9 +30,21 @@ class Product < ApplicationRecord
 		self.name_changed?
 	end
 
+	def map_coordinate
+		"#{self.longitude}, #{self.latitude}"
+	end
+
   def image_url_thumb
     return unless image.attached?
 
     Rails.application.routes.url_helpers.url_for(image.variant(resize_to_limit: [100, 100]))
+  end
+
+  def product_url_path
+    options = { host: Rails.application.routes.default_url_options[:host] }
+    # only include locale if it's not default
+    options[:locale] = I18n.locale == I18n.default_locale ? nil : I18n.locale
+
+    Rails.application.routes.url_helpers.polymorphic_url(self, options)
   end
 end

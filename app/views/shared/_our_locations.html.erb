@@ -1,0 +1,37 @@
+<section class="half-section bg-black text-white-2 wow animate__fadeIn">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center text-lg-start margin-30px-bottom md-padding-80px-lr sm-padding-15px-lr wow animate__fadeIn">
+        <h5 class="font-weight-600"><%= t('locations.title') %></h5>
+        <div class="margin-40px-bottom sm-margin-20px-bottom w-90 sm-w-100"><%= t('locations.desc') %></div>
+        <%= link_to locations_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
+          <%= t('locations.explore') %>
+        <% end %>
+      </div>
+      <div class="col-lg-8 locations-list">
+        <div class="row">
+          <% locations = Location.all %>
+          <% locations.each_with_index do |location, index| %>
+            <!-- start features box item -->
+            <div class="col-12 col-lg-4 sm-margin-15px-bottom wow animate__fadeInUp" data-wow-delay="0.<%= index + 2 %>s">
+              <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index+1}.png") %>')">
+                <div class="bg-black">
+                  <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                    <a href="<%= location_path(location) %>">
+                      <%= image_tag(location.image.variant(resize_to_limit: [488,310])) %>
+                    </a>
+                  </div>
+                </div>
+                <div class="padding-20px-all border-top border-width-2">
+                  <a href="<%= location_path(location) %>" class="title-small alt-font text-white-2 text-white-hover font-weight-900 margin-25px-bottom d-inline-block"><%= location.name %></a>
+                  <p class="font-weight-500"><%= location.description %></p>
+                </div>
+              </div>
+            </div>
+            <!-- end features box item -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
