@@ -323,7 +323,8 @@ module AdminHelper
 		controller.controller_name == "locations" ||
 		controller.controller_name == "product_categories" ||
 		controller.controller_name == "products" ||
-		controller.controller_name == "pix_services"
+		controller.controller_name == "pix_services" ||
+		controller.controller_name == "boostad_services"
   end
 
 	def is_admins_others_page?
