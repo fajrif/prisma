@@ -19,7 +19,7 @@
 						<p class="text-muted mb-1">Email : <%= application.email %></p>
 						<p class="text-muted mb-0">Phone : <%= application.phone %></p>
 					</td>
-					<td><%= link_to application.try(:career).try(:title), admins_career_path(application.try(:career)) %></td>
+					<td><%= link_to application.try(:career).try(:title), admins_career_path(application.try(:career)) if application.career %></td>
           <td>
             <%= link_to(application.file.filename, url_for(application.file), target: :_blank) if application.file.attached? %>
           </td>
