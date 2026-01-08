@@ -54,7 +54,7 @@ class SystemMailer < ApplicationMailer
 
   protected
 
-  def send_email_brevo(subject, emails, html_content, application)
+  def send_email_brevo(subject, emails, html_content, application = nil)
     Rails.logger.debug html_content
     Rails.logger.info("BREVO_API_KEY: #{ENV['BREVO_API_KEY']&.slice(0,4)}******")
 
@@ -65,7 +65,7 @@ class SystemMailer < ApplicationMailer
     # 🔥 Build attachments from ActiveStorage
     # -------------------------------------------------------------------
     brevo_attachments = []
-    if application.file.attached?
+    if application.present? && application.file.attached?
       blob = application.file
 
       file_binary = blob.download
@@ -77,16 +77,20 @@ class SystemMailer < ApplicationMailer
       }
     end
 
-    email = SibApiV3Sdk::SendSmtpEmail.new(
+    email_params = {
       subject: subject,
       sender: {
         email: configatron.no_reply_email,
         name:  configatron.email_name
       },
       to: emails,
-      htmlContent: html_content,
-      attachment: brevo_attachments
-    )
+      htmlContent: html_content
+    }
+
+    # Only include attachment if there are any
+    email_params[:attachment] = brevo_attachments if brevo_attachments.any?
+
+    email = SibApiV3Sdk::SendSmtpEmail.new(email_params)
 
     sib_api.send_transac_email(email)
 
