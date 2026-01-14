@@ -12,6 +12,14 @@
     <td><%= link_to product_path(@product), product_path(@product) %></td>
   </tr>
   <tr>
+    <td><b>Billboard Type</b></td>
+    <td>
+      <span class="badge <%= @product.digital? ? 'bg-primary' : 'bg-success' %>">
+        <%= @product.billboard_type_label %>
+      </span>
+    </td>
+  </tr>
+  <tr>
     <td><b>Image</b></td>
     <td>
       <%= image_tag @product.image.variant(resize_to_limit: [100,100]) if @product.image.attached? %>

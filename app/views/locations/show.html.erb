@@ -3,9 +3,19 @@
 <!-- start post content section -->
 <section class="half-section">
     <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-3">
-            <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600"><span><%= "#{t('locations.title')}: #{@location.name}" %></span></div>
+        <div class="row align-items-center mb-4">
+          <div class="col-12 col-lg-3 col-md-3">
+            <div class="d-flex justify-content-lg-start align-items-center gap-2">
+              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Filter by Billboard Type:</label>
+              <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= @location.slug %>">
+                <option value="">All Types</option>
+                <option value="digital">Digital Billboard</option>
+                <option value="static">Static Billboard</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-lg-9 col-md-9 text-center mt-3 mt-lg-0">
+            <div class="text-extra-dark-gray alt-font text-uppercase font-weight-600"><span><%= "#{t('locations.name')}: #{@location.name}" %></span></div>
           </div>
         </div>
         <div class="row flex-nowrap h-600px">
@@ -13,34 +23,14 @@
             <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
                 <div class="flex-grow-1 overflow-auto">
                   <ul id="product-list" class="latest-post position-relative">
-                    <% @products.each do |product| %>
-                      <li class="media d-flex gap-2 product-item border border-radius-8"
-                        data-product-id="<%= product.id %>"
-                        data-lat="<%= product.latitude %>"
-                        data-lng="<%= product.longitude %>"
-                        >
-                        <figure class="flex-shrink-0 border border-radius-8">
-                          <% if product.image_url_thumb.present? %>
-                            <img src="<%= product.image_url_thumb %>" class="border-radius-8" alt="<%= product.name %>">
-                          <% end %>
-                        </figure>
-                        <div class="media-body flex-grow-1 text-medium">
-                          <span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span>
-                          <span class="d-block text-extra-dark-gray text-small"><%= product.est_impression %></span>
-                        </div>
-                      </li>
-                    <% end %>
+                    <%= render "products_list", products: @products %>
                   </ul>
                 </div>
             </aside>
             <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">
               <div id="map" class="w-100 h-100"></div>
               <!-- Hidden data for JavaScript -->
-              <div id="map-data"
-                   data-products='<%= raw @products.to_json(only: [:id, :name, :latitude, :longitude, :est_impression], methods: [:image_url_thumb, :product_url_path]) %>'
-                   data-center-lat="<%= @products.first&.latitude || -6.2088 %>"
-                   data-center-lng="<%= @products.first&.longitude || 106.8456 %>">
-              </div>
+              <%= render "map_data", products: @products %>
             </article>
           <% else %>
             <span id="no-data-message" class="text-center text-medium padding-15px">No products available for this location.</span>
@@ -86,8 +76,9 @@
   </style>
   <!-- app/views/locations/show.html.erb -->
   <style>
-    /* Target the InfoWindow container */
-    .gm-style .gm-style-iw-c {
+    /* Custom info window styling - only targets our custom markers */
+    /* These styles apply when the info window contains .custom-info-window wrapper */
+    .gm-style .gm-style-iw-c:has(.custom-info-window) {
       background-color: #000000 !important;
       padding: 0 !important;
       border: 2px solid;
@@ -96,34 +87,26 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
     }
 
-    /* Target the InfoWindow content wrapper */
-    .gm-style .gm-style-iw-d {
+    /* Target the InfoWindow content wrapper for custom info windows */
+    .gm-style .gm-style-iw-c:has(.custom-info-window) .gm-style-iw-d {
       overflow: auto !important;
       max-height: none !important;
     }
 
-    /* Remove default padding */
-    .gm-style .gm-style-iw-t::after {
+    /* Arrow styling for custom info windows */
+    .gm-style .gm-style-iw-tc:has(+ .gm-style-iw-c .custom-info-window)::after,
+    .gm-style .gm-style-iw-t:has(.custom-info-window)::after {
       background: #000000 !important;
     }
 
-    /* Style the close button */
-    .gm-style-iw button {
+    /* Style the close button for custom info windows */
+    .gm-style .gm-style-iw-c:has(.custom-info-window) button {
       background-color: transparent !important;
       filter: brightness(0) invert(1); /* Make close button white */
-      /*top: 8px !important;
-      right: 8px !important;*/
-    }
-
-    .gm-style-iw button img {
-    }
-
-    .gm-style .gm-style-iw-tc::after {
-      background-color: #000000;
     }
 
     /* Custom content styling */
-    .info-window-content {
+    .custom-info-window {
       background-color: #000000;
       color: #ffffff;
       padding: 0 15px 15px;
@@ -131,27 +114,27 @@
       min-width: 200px;
     }
 
-    .info-window-content h6 {
+    .custom-info-window h6 {
       color: #ffffff;
       margin-bottom: 10px;
       font-size: 1.1em;
     }
 
-    .info-window-content p {
+    .custom-info-window p {
       color: #ecf0f1;
       margin-bottom: 8px;
     }
 
-    .info-window-content img {
+    .custom-info-window img {
       border-radius: 8px;
       margin-bottom: 12px;
     }
 
-    .info-window-content strong {
+    .custom-info-window strong {
       color: #3498db;
     }
 
-    .info-window-content small {
+    .custom-info-window small {
       color: #bdc3c7;
     }
   </style>

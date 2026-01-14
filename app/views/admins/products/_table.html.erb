@@ -5,6 +5,7 @@
 				<th class="text-center">ID</th>
 				<th>Image</th>
 				<th>Name</th>
+				<th>Type</th>
 				<th>Location</th>
 				<th>Category</th>
 				<th>Action</th>
@@ -16,6 +17,11 @@
 					<td class="text-center"><%= product.id %></td>
 					<td><%= image_tag(product.image.variant(resize_to_limit: [100,100])) if product.image.attached? %></td>
 					<td><h5 class="fs-14 mb-0"><%= link_to product.name, admins_product_path(product.id), class: "text-primary" %></h5></td>
+					<td>
+						<span class="badge <%= product.digital? ? 'bg-primary' : 'bg-success' %>">
+							<%= product.billboard_type_label %>
+						</span>
+					</td>
 					<td><%= product.try(:location).try(:name) %></td>
 					<td><%= product.try(:product_category).try(:name) %></td>
 					<td>

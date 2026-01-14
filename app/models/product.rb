@@ -7,6 +7,9 @@ class Product < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  # Billboard types: 0 = Digital Billboard, 1 = Static Billboard
+  enum :billboard_type, { digital: 0, static: 1 }, default: :digital
+
 	has_one_attached :banner, dependent: :purge
 	has_one_attached :image, dependent: :purge
 	has_one_attached :image1, dependent: :purge
@@ -37,7 +40,11 @@ class Product < ApplicationRecord
   def image_url_thumb
     return unless image.attached?
 
-    Rails.application.routes.url_helpers.url_for(image.variant(resize_to_limit: [100, 100]))
+    Rails.application.routes.url_helpers.url_for(image.variant(resize_to_limit: [500, 500]))
+  end
+
+  def billboard_type_label
+    billboard_type == "digital" ? "Digital Billboard" : "Static Billboard"
   end
 
   def product_url_path
@@ -48,3 +55,4 @@ class Product < ApplicationRecord
     Rails.application.routes.url_helpers.polymorphic_url(self, options)
   end
 end
+

@@ -44,6 +44,7 @@
               <%= f.input :banner, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
               <%= f.association :location, as: :select %>
               <%= f.association :product_category, as: :select %>
+              <%= f.input :billboard_type, as: :select, collection: Product.billboard_types.keys.map { |k| [k.humanize.titleize + " Billboard", k] }, include_blank: false, label: "Billboard Type" %>
               <%= f.input :longitude, as: :string %>
               <%= f.input :latitude, as: :string %>
 						</div>

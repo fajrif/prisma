@@ -1,0 +1,5 @@
+<div id="map-data"
+     data-products='<%= raw products.to_json(only: [:id, :name, :latitude, :longitude, :est_impression], methods: [:image_url_thumb, :product_url_path]) %>'
+     data-center-lat="<%= products.first&.latitude || -6.2088 %>"
+     data-center-lng="<%= products.first&.longitude || 106.8456 %>">
+</div>

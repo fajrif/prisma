@@ -1,0 +1,17 @@
+<% products.each do |product| %>
+  <li class="media d-flex gap-2 product-item border border-radius-8"
+    data-product-id="<%= product.id %>"
+    data-lat="<%= product.latitude %>"
+    data-lng="<%= product.longitude %>"
+    >
+    <figure class="flex-shrink-0 border border-radius-8">
+      <% if product.image_url_thumb.present? %>
+        <img src="<%= product.image_url_thumb %>" class="border-radius-8" alt="<%= product.name %>">
+      <% end %>
+    </figure>
+    <div class="media-body flex-grow-1 text-medium">
+      <span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span>
+      <span class="d-block text-extra-dark-gray text-small"><%= product.est_impression %></span>
+    </div>
+  </li>
+<% end %>

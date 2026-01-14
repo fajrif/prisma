@@ -10,9 +10,15 @@ class LocationsController < ApplicationController
     @locations = Location.all # for the dropdown
     set_banner_show
     @products = @location.products.where.not(latitude: nil, longitude: nil)
+    
+    # Filter by billboard_type if provided
+    if params[:billboard_type].present?
+      @products = @products.where(billboard_type: params[:billboard_type])
+    end
 
     respond_to do |format|
       format.html
+      format.js   # show.js.erb for AJAX
       format.json { render json: @products }
     end
   end
