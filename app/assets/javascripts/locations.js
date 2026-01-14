@@ -90,24 +90,14 @@ function bindProductItemClicks() {
     const index = products.findIndex(p => p.id === productId);
 
     if (index !== -1) {
-      // Close all existing info windows first
+      // Close all existing info windows
       closeAllInfoWindows();
 
-      // Set zoom level
+      // Set zoom level and center on marker
       map.setZoom(15);
-
-      // Pan to marker position
       map.panTo(markers[index].position);
 
-      // Wait for map to finish panning before opening info window
-      google.maps.event.addListenerOnce(map, 'idle', function () {
-        // Open info window anchored to the marker after map is idle
-        infoWindows[index].open({
-          anchor: markers[index],
-          map: map
-        });
-      });
-
+      // Highlight the selected product in sidebar
       highlightProduct(productId);
     }
   });
