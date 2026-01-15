@@ -1206,14 +1206,16 @@ video:focus { outline:none; }
 }
 
 /* Articles page - equal size images */
-#articles-section .blog-post.blog-post-style1 .blog-post-images {
+#articles-section .blog-post.blog-post-style1 .blog-post-images,
+#blogs-section .blog-post.blog-post-style1 .blog-post-images {
   position: relative;
   width: 100%;
   padding-top: 62.5%; /* 16:10 aspect ratio */
   overflow: hidden;
 }
 
-#articles-section .blog-post.blog-post-style1 .blog-post-images img {
+#articles-section .blog-post.blog-post-style1 .blog-post-images img,
+#blogs-section .blog-post.blog-post-style1 .blog-post-images img {
   position: absolute;
   top: 0;
   left: 0;
