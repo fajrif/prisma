@@ -79,6 +79,9 @@ Mobility.configure do
     #
     # Or uncomment this line to enable fallbacks with a global default.
     # fallbacks { :pt => :en }
+    #
+    # Enable fallbacks between locales
+    fallbacks({ en: :id, id: :en })
 
     # Presence
     #
