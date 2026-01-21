@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 			resources :awards
 			resources :award_categories
 			resources :pix_services
+			resources :innovations
 			resources :boostad_services
 			resources :services do
 				resources :segments, :controller => "services/segments", :except => [:index] do

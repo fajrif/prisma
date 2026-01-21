@@ -3,8 +3,7 @@
 <%- header_tag = "h4" -%>
 <%- header_tag = snippet.title_tag unless snippet.title_tag.blank? -%>
 
-<% innovations = t('dooh_innovations.title') %>
-<% list = t('dooh_innovations.list') %>
+<% innovations = Innovation.all %>
 <div class="container">
 	<div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">
     <div class="col-12 col-lg-7 <%= text_color %>">
@@ -14,29 +13,123 @@
 	</div>
   <div class="row justify-content-center">
       <div class="col-lg-12">
-          <!-- start accordion -->
-          <div class="panel-group accordion-event accordion-style2" id="accordion-main">
-            <% innovations.each_with_index do |title, index| %>
-              <!-- start tab content -->
-              <div class="panel panel-default">
-                  <div class="panel-heading transparent-white-box">
-                      <a class="accordion-toggle" data-bs-toggle="collapse" data-bs-parent="#accordion-main" href="#innovation<%= index + 1 %>">
-                          <div class="panel-title">
-                              <span class="<%= text_color %> text-large font-weight-600 d-inline-block"><%= title %></span>
-                              <%= image_tag("icon-innovations/icon-#{index+1}.png") %>
-                          </div>
-                      </a>
+          <!-- start innovations grid -->
+          <div class="innovations-grid" id="innovations-grid">
+            <% innovations.each_with_index do |innovation, index| %>
+              <div class="innovation-item">
+                <div class="innovation-header transparent-white-box" data-toggle-innovation="<%= index + 1 %>">
+                  <div class="innovation-title">
+                    <span class="<%= text_color %> text-large font-weight-600 d-inline-block"><%= innovation.title %></span>
+                    <%= image_tag("icon-innovations/#{innovation.icon}") %>
                   </div>
-                  <div id="innovation<%= index + 1 %>" class="panel-collapse collapse" data-bs-parent="#accordion-main">
-                    <div class="panel-body <%= text_color %>">
-                      <%= list[index] %>
+                </div>
+                <div class="innovation-content <%= text_color %>" id="innovation-content-<%= index + 1 %>">
+                  <%= innovation.description %>
+                  <% if innovation.link.present? %>
+                    <div class="mt-3">
+                      <%= link_to t('global.read_more'), innovation.link, target: "_blank", class: "text-white" %>
                     </div>
-                  </div>
+                  <% end %>
+                </div>
               </div>
-              <!-- end tab content -->
             <% end %>
           </div>
-          <!-- end accordion -->
+          <!-- end innovations grid -->
       </div>
   </div>
 </div>
+
+<style>
+.innovations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.innovation-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.innovation-header {
+  border-radius: 8px;
+  padding: 10px 28px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.innovation-header:hover {
+  opacity: 0.9;
+}
+
+.innovation-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.innovation-title img {
+  width: 50px;
+  height: auto;
+}
+
+.innovation-content {
+  display: none;
+  padding: 20px 28px;
+  animation: fadeIn 0.3s ease;
+}
+
+.innovation-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 991px) {
+  .innovations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .innovation-header {
+    padding: 15px 18px;
+  }
+  
+  .innovation-title .text-large {
+    font-size: 16px !important;
+    line-height: 20px !important;
+  }
+  
+  .innovation-title img {
+    width: 35px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var headers = document.querySelectorAll('[data-toggle-innovation]');
+  
+  headers.forEach(function(header) {
+    header.addEventListener('click', function() {
+      var targetId = this.getAttribute('data-toggle-innovation');
+      var content = document.getElementById('innovation-content-' + targetId);
+      
+      // Toggle current content
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+      } else {
+        // Close all other contents
+        document.querySelectorAll('.innovation-content.active').forEach(function(openContent) {
+          openContent.classList.remove('active');
+        });
+        // Open clicked content
+        content.classList.add('active');
+      }
+    });
+  });
+});
+</script>

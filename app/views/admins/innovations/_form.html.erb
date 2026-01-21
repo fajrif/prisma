@@ -1,0 +1,76 @@
+<%
+  # Get list of available icons from the icon-innovations folder
+  icon_options = Dir.glob(Rails.root.join("vendor/assets/images/icon-innovations/*.png")).map do |path|
+    File.basename(path)
+  end.sort_by { |name| name[/\d+/].to_i }
+%>
+<%= simple_form_for @innovation, url: (@innovation.new_record? ? admins_innovations_path : admins_innovation_path(@innovation.id)), method: (@innovation.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+          <fieldset>
+					<%= f.input :title, as: :string %>
+					<%= f.input :description, as: :text %>
+					<%= f.input :icon, as: :select, collection: icon_options, include_blank: "Select an icon...", input_html: { class: "form-select", id: "innovation_icon_select" } %>
+					<%= f.input :link, as: :string, placeholder: "https://example.com (optional)", hint: "Leave blank if no 'Read More' link is needed" %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @innovation.new_record? %>
+							<%= link_to "Cancel", admins_innovation_path(@innovation.id), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_innovations_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @innovation, col: 'col-lg-12' %>
+				<div class="col-lg-12" id="icon_preview_container" style="<%= 'display:none;' unless @innovation.icon.present? %>">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Icon Preview</h5>
+						</div>
+						<div class="card-body text-center">
+							<%= image_tag("icon-innovations/#{@innovation.icon.present? ? @innovation.icon : 'icon-1.png'}", height: 80, style: "background-color:#8e8e8e", id: "icon_preview_image") %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var iconSelect = document.getElementById('innovation_icon_select');
+  var previewContainer = document.getElementById('icon_preview_container');
+  var previewImage = document.getElementById('icon_preview_image');
+
+  // Pre-generate all icon paths with their digested URLs
+  var iconPaths = {
+    <% Dir.glob(Rails.root.join("vendor/assets/images/icon-innovations/*.png")).each do |path| %>
+      <% filename = File.basename(path) %>
+      '<%= filename %>': '<%= asset_path("icon-innovations/#{filename}") %>',
+    <% end %>
+  };
+
+  if (iconSelect && previewContainer && previewImage) {
+    iconSelect.addEventListener('change', function() {
+      var selectedIcon = this.value;
+      if (selectedIcon && iconPaths[selectedIcon]) {
+        previewImage.src = iconPaths[selectedIcon];
+        previewContainer.style.display = 'block';
+      } else {
+        previewContainer.style.display = 'none';
+      }
+    });
+  }
+});
+</script>
+

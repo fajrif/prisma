@@ -24,6 +24,7 @@
 	nav.navbar.bootsnav .navbar-nav {
 		background-color: rgba(0, 0, 0, 0.95);
 	}
+
 	.center-logo {
 		padding: 10px 15px 10px 0;
 	}
@@ -46,6 +47,7 @@
 	--bs-alert-link-color: #fff;
 	margin-bottom: 2rem;
 }
+
 .alert-success {
 	--bs-alert-color: #fff;
 	--bs-alert-bg: var(--medium-green-color);
@@ -53,6 +55,7 @@
 	--bs-alert-link-color: #fff;
 	margin-bottom: 2rem;
 }
+
 .btn-close {
 	--bs-btn-close-color: #fff;
 	opacity: 1;
@@ -77,42 +80,43 @@
 }
 
 .pipe {
-  margin: 0 10px;
-  opacity: 0.6;
-  font-size: 48px;
+	margin: 0 10px;
+	opacity: 0.6;
+	font-size: 48px;
 }
 
 .scroll-box:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+	left: 0;
+	background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
 }
 
 .scroll-box:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+	right: 0;
+	background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255));
 }
 
-.scroll-box:before, .scroll-box:after {
-  position: absolute;
-  top: 0;
-  content: '';
-  width: 200px;
-  height: 100%;
-  z-index: 2;
+.scroll-box:before,
+.scroll-box:after {
+	position: absolute;
+	top: 0;
+	content: '';
+	width: 200px;
+	height: 100%;
+	z-index: 2;
 }
 
 .form-control::file-selector-button {
-  padding: .25rem .75rem;
-  margin: .25rem;
-  font-size: small;
-  border-radius: 8px;
+	padding: .25rem .75rem;
+	margin: .25rem;
+	font-size: small;
+	border-radius: 8px;
 }
 
 .trix-content a {
-  color: revert;
-  font-weight: 400;
+	color: revert;
+	font-weight: 400;
 }
 
 .trix-content a:hover {
-  color: revert;
+	color: revert;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_14_093936) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -236,6 +236,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_14_093936) do
     t.jsonb "meta_title", default: {}
     t.jsonb "meta_description", default: {}
     t.index ["slug"], name: "index_industries_on_slug", unique: true
+  end
+
+  create_table "innovations", force: :cascade do |t|
+    t.jsonb "title", default: {}
+    t.jsonb "description", default: {}
+    t.string "icon"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inquiries", force: :cascade do |t|

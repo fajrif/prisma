@@ -324,6 +324,7 @@ module AdminHelper
 		controller.controller_name == "product_categories" ||
 		controller.controller_name == "products" ||
 		controller.controller_name == "pix_services" ||
+		controller.controller_name == "innovations" ||
 		controller.controller_name == "boostad_services"
   end
 
