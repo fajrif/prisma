@@ -1207,6 +1207,7 @@ video:focus { outline:none; }
 
 /* Articles page - equal size images */
 #articles-section .blog-post.blog-post-style1 .blog-post-images,
+#blogs .blog-post.blog-post-style1 .blog-post-images,
 #blogs-section .blog-post.blog-post-style1 .blog-post-images {
   position: relative;
   width: 100%;
@@ -1215,6 +1216,7 @@ video:focus { outline:none; }
 }
 
 #articles-section .blog-post.blog-post-style1 .blog-post-images img,
+#blogs .blog-post.blog-post-style1 .blog-post-images img,
 #blogs-section .blog-post.blog-post-style1 .blog-post-images img {
   position: absolute;
   top: 0;
