@@ -45,15 +45,17 @@ class RedirectsController < ApplicationController
     slug = params[:slug].to_s.downcase.gsub(/[-_]/, '')
     
     # Map legacy slugs to new locations
+    # Using page_path for CMS pages since innovations is not a public resource
     redirect_map = {
-      'metaled' => innovations_path,
-      'perbedaanoohdooh' => about_us_path,
-      '3inovasippalingdiminati' => innovations_path,
+      'metaled' => '/innovations',
+      'perbedaanoohdooh' => '/about-us',
+      '3inovasippalingdiminati' => '/innovations',
       '3lokasistrategisooh' => locations_path,
-      'inovasikunciooh' => innovations_path,
-      'bringrandeled' => page_path('home'),
+      'inovasikunciooh' => '/innovations',
+      'bringrandeled' => root_path,
       'ledtekukumar' => locations_path,
-      'ledbraga' => locations_path
+      'ledbraga' => locations_path,
+      'billboard' => root_path
     }
     
     target = redirect_map[slug] || root_path
