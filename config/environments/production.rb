@@ -51,10 +51,10 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  config.force_ssl = true
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -77,6 +77,10 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "prisma_production"
 
 	config.action_mailer.default_url_options = { host: 'https://prisma-ads.com/' }
+  
+  # Force HTTPS for all URL helpers
+  config.action_controller.default_url_options = { protocol: 'https' }
+  Rails.application.routes.default_url_options[:protocol] = 'https'
 	# config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   # Don't care if the mailer can't send.

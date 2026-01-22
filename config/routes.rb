@@ -7,6 +7,32 @@ Rails.application.routes.draw do
 
   devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
+  # =====================================================
+  # Legacy URL Redirects (WordPress migration)
+  # These routes handle old URLs that return 500 errors
+  # =====================================================
+
+  # Legacy blog posts: /YYYY/MM/DD/slug/ -> /articles/:slug
+  get '/:year/:month/:day/*path', to: 'redirects#legacy_blog',
+      constraints: { year: /\d{4}/, month: /\d{2}/, day: /\d{2}/ }
+
+  # Legacy works pages: /works/:slug -> /campaigns/:slug
+  get '/works/*slug', to: 'redirects#legacy_works'
+
+  # Legacy WordPress uploads: /wp-content/* -> 410 Gone
+  get '/wp-content/*path', to: 'redirects#legacy_wp_content'
+
+  # Legacy specific pages that need redirects
+  get '/metaled', to: 'redirects#legacy_page', defaults: { slug: 'metaled' }
+  get '/perbedaan-ooh-dooh', to: 'redirects#legacy_page', defaults: { slug: 'perbedaanoohdooh' }
+  get '/3-inovasi-paling-diminati', to: 'redirects#legacy_page', defaults: { slug: '3inovasippalingdiminati' }
+  get '/3-lokasi-strategis-ooh', to: 'redirects#legacy_page', defaults: { slug: '3lokasistrategisooh' }
+  get '/inovasi-kunci-ooh', to: 'redirects#legacy_page', defaults: { slug: 'inovasikunciooh' }
+  get '/brin-grande-led', to: 'redirects#legacy_page', defaults: { slug: 'bringrandeled' }
+  get '/led-teuku-umar', to: 'redirects#legacy_page', defaults: { slug: 'ledtekukumar' }
+  get '/led-braga', to: 'redirects#legacy_page', defaults: { slug: 'ledbraga' }
+  get '/billboard-jakarta-capai-jutaan-penglihatan-bersama-prisma-advertising', to: 'redirects#legacy_page', defaults: { slug: 'billboard' }
+
 	scope "(:locale)", locale: /id/ do
 		namespace :admins do
 			root :to => 'dashboard#index'

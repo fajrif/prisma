@@ -13,6 +13,10 @@
 	<meta name="revisit-after" content="1 days">
 	<meta name="author" content="Galo Solutions ">
 
+	<!-- Canonical URL for SEO -->
+	<link rel="canonical" href="<%= canonical_url %>">
+	<%= hreflang_tags %>
+
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="<%= request.original_url %>">
@@ -61,6 +65,7 @@
   <!-- End Google Tag Manager (noscript) →
   <% end %>
 	<%= render "shared/header" %>
+	<%= render_seo_h1_fallback %>
 	<%= yield %>
 	<%= render "shared/footer" %>
 	<%= javascript_include_tag 'application' %>
