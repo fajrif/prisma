@@ -171,6 +171,7 @@ en:
       title: "Coming Soon"
       desc: "We'll be here soon with our new awesome feature"
     read_more: "Read More"
+    see_more: "See More"
     explore_more: "Explore More"
     recaptcha_failed: "Recaptcha verification failed"
     view_profile: "View Profile"

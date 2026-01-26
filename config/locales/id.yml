@@ -172,6 +172,7 @@ id:
       title: "Segera Hadir"
       desc: "Kami akan segera hadir dengan fitur baru kami"
     read_more: "Telusuri"
+    see_more: "Lihat"
     explore_more: "Telusuri"
     recaptcha_failed: "Recaptcha verifikasi gagal"
     view_profile: "Lihat Profil"
