@@ -98,9 +98,9 @@ function bindProductItemClicks() {
       map.panTo(markers[index].position);
 
       // Open the info window with a small delay to ensure smoother transition and reliable opening
-      setTimeout(() => {
-        infoWindows[index].open(map, markers[index]);
-      }, 100);
+
+      // Open the info window immediately
+      infoWindows[index].open(map, markers[index]);
 
       // Highlight the selected product in sidebar
       highlightProduct(productId);
