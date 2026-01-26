@@ -44,7 +44,7 @@ function createMarkers(AdvancedMarkerElement, PinElement) {
     const pinElement = new PinElement({
       background: "#dc3545",
       borderColor: "#721c24",
-      glyphColor: "#ffffff"
+      glyphColor: "#721c24"
     });
 
     const marker = new AdvancedMarkerElement({
@@ -58,9 +58,9 @@ function createMarkers(AdvancedMarkerElement, PinElement) {
     marker.productId = product.id;
 
     const infoWindowContent = `
-      <div class="custom-info-window">
+      <div class="custom-info-window" style="max-width: 200px;">
         ${product.image_url_thumb ? `<img src="${product.image_url_thumb}" alt="${product.name}" class="border w-100" style="max-width: 200px; margin-bottom: 10px;">` : ''}
-        <h6 class="fw-semibold mb-2"><a class="text-white-2 text-hover" href="${product.product_url_path}">${product.name}</a></h6>
+        <h6 class="fw-semibold mb-2 text-wrap"><a class="text-white-2 text-hover" href="${product.product_url_path}">${product.name}</a></h6>
         <p style="font-size: 0.9em;">${product.est_impression || ''}</p>
       </div>
     `;
@@ -94,8 +94,13 @@ function bindProductItemClicks() {
       closeAllInfoWindows();
 
       // Set zoom level and center on marker
-      map.setZoom(15);
+      // map.setZoom(15);
       map.panTo(markers[index].position);
+
+      // Open the info window with a small delay to ensure smoother transition and reliable opening
+      setTimeout(() => {
+        infoWindows[index].open(map, markers[index]);
+      }, 100);
 
       // Highlight the selected product in sidebar
       highlightProduct(productId);
