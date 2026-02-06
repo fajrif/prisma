@@ -4,12 +4,12 @@
     data-lat="<%= product.latitude %>"
     data-lng="<%= product.longitude %>"
     >
-    <figure class="flex-shrink-0 border border-radius-8">
+    <figure class="flex-shrink-0">
       <% if product.image_url_thumb.present? %>
-        <img src="<%= product.image_url_thumb %>" class="border-radius-8" alt="<%= product.name %>">
+        <img src="<%= product.image_url_thumb %>" class=" border border-radius-8" alt="<%= product.name %>">
       <% end %>
     </figure>
-    <div class="media-body flex-grow-1 text-medium">
+    <div class="media-body flex-grow-1 text-small">
       <span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span>
       <span class="d-block text-extra-dark-gray text-small"><%= product.est_impression %></span>
     </div>
