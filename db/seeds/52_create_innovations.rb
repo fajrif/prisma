@@ -8,7 +8,7 @@ titles_id = I18n.t('dooh_innovations.title', locale: :id)
 descriptions_id = I18n.t('dooh_innovations.list', locale: :id)
 
 # Create 12 innovations
-12.times do |index|
+titles_en.each_with_index do |_, index|
   innovation = Innovation.new
 
   # Set icon filename

@@ -133,3 +133,8 @@
 	white-space: nowrap !important;
 	border: 0 !important;
 }
+
+/* Override dropdown menu top position */
+.simple-dropdown .dropdown-menu {
+	top: 54px !important;
+}
