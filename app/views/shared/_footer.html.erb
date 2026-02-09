@@ -53,6 +53,7 @@
             <span class="d-block text-medium mt-2 mb-4"><%= link_to adr.email1, "mailto:#{adr.email1}", class: "text-white-2" %></span>
             <span class="d-block text-medium"><%= link_to "#{adr.phone1} (Hunting)", "tel:#{adr.phone1}", class: "text-white-2" %></span>
             <span class="d-block text-medium"><%= link_to adr.phone2, "tel:#{adr.phone2}", class: "text-white-2" %></span>
+            <span class="d-block text-medium"><a href="https://wa.me/<%= configatron.whatsapp_number %>" class="text-white-2"><%= configatron.whatsapp_no_text %></a></span>
           <% end %>
         </div>
 				<!-- start links -->
