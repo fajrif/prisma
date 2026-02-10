@@ -136,5 +136,29 @@
 
 /* Override dropdown menu top position */
 .simple-dropdown>.dropdown-menu {
-	top: 54px !important;
+	top: 44px !important;
+}
+
+/* Show dropdown on li hover instead of link hover */
+@media (min-width: 992px) {
+
+	/* Create invisible bridge between link and dropdown to prevent hover gap */
+	.simple-dropdown:hover::before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		height: 44px;
+		z-index: 999;
+	}
+
+	.simple-dropdown:hover>.dropdown-menu {
+		display: block !important;
+	}
+
+	/* Ensure dropdown stays visible when hovering over it */
+	.simple-dropdown>.dropdown-menu:hover {
+		display: block !important;
+	}
 }
