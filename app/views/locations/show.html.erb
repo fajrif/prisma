@@ -8,9 +8,9 @@
             <div class="d-flex justify-content-lg-start align-items-center gap-2">
               <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Filter by Billboard Type:</label>
               <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= @location.slug %>">
-                <option value="">All Types</option>
-                <option value="digital">Digital Billboard</option>
-                <option value="static">Static Billboard</option>
+                <option value="" <%= 'selected' if params[:billboard_type].blank? %>>All Types</option>
+                <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>>Digital Billboard</option>
+                <option value="static" <%= 'selected' if params[:billboard_type] == 'static' %>>Static Billboard</option>
               </select>
             </div>
           </div>

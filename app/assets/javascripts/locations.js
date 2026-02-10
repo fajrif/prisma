@@ -172,12 +172,29 @@ $(document).ready(function () {
     const billboardType = $(this).val();
     const locationId = $(this).data('location-id');
 
+    // Build URL with billboard_type parameter
+    let url = `/locations/${locationId}`;
+    if (billboardType) {
+      url += `?billboard_type=${billboardType}`;
+    }
+
+    // Update browser URL without reloading
+    window.history.pushState({}, '', url);
+
+    // Make AJAX request to update content
     $.ajax({
       url: `/locations/${locationId}`,
       type: 'GET',
       dataType: 'script',
       data: { billboard_type: billboardType }
     });
+  });
+
+  // Handle browser back/forward navigation
+  window.addEventListener('popstate', function () {
+    // Reload the page when user navigates with browser buttons
+    // This ensures the filter state matches the URL
+    location.reload();
   });
 });
 
