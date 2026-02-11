@@ -37,7 +37,7 @@ module Prisma
 
 		# Configuration i18n
 		config.i18n.default_locale = :en
-		config.i18n.available_locales = %i[en id]
+		config.i18n.available_locales = %i[en id cn]
 
     # Configuration for the application, engines, and railties goes here.
     #

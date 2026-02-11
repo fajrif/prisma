@@ -1,0 +1,197 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :cn
+#
+# This would use the information in config/locales/cn.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     cn:
+#       "yes": yup
+#       enabled: "ON"
+
+cn:
+  contacts:
+    title: "打造您的下一次户外广告精彩活动"
+    short_description: "无论您正在规划雅加达的户外广告、在印尼全境推出数字户外广告（DOOH）活动，还是探索户外媒体的新形式，Prisma Advertising 已准备好将您的品牌带上街头——大胆、创意，并且目标明确。"
+    instructions: "立即联系我们，让我们携手共创真实世界的影响力。"
+    sales:
+      title: "最新服务与特别优惠"
+    info:
+      title: "合作与服务质量"
+    hrd:
+      title: "招聘职位"
+  inquiries:
+    name: "姓名"
+    phone: "电话"
+    email: "邮箱"
+    company_name: "公司名称"
+    message: "留言"
+    success: "感谢您的咨询！"
+    errors: "抱歉，我们无法提交您的咨询！"
+  products:
+    category: "类别"
+    specification: "规格"
+    est_impression: "预估曝光量"
+    address: "地址"
+    interest: "兴趣点"
+  applications:
+    name: "姓名"
+    phone: "电话"
+    email: "邮箱"
+    position: "职位"
+    select_position: "请选择您申请的职位"
+    file: "简历"
+    success: "感谢您的申请！"
+    errors: "抱歉，我们无法提交您的申请！"
+  locations:
+    name: "位置"
+    title: "数字与静态广告牌位置"
+    desc: "我们的广告牌位于雅加达及周边地区的高流量区域，拥有最佳位置。每个地点都具有强大的覆盖和互动能力，确保您的广告活动获得最大的曝光率。"
+    jabodetabek:
+      desc: "我们在雅加达的位置覆盖了主要的商业区、交通枢纽和高流量城市区域，非常适合触达印尼首都中多样化、移动中的受众。"
+    bali:
+      desc: "位于热门旅游区、海滨小镇和生活方式热点地区，我们在巴厘岛的广告位可以向本地及国际游客提供优质曝光，营造充满活力的体验式环境。"
+    bandung:
+      desc: "从新兴城市到通勤走廊，我们在西爪哇的位置将您的品牌与新兴市场和日常出行者连接起来。"
+    explore: "探索理想位置"
+  prisma:
+    advertising:
+      about: "Prisma Advertising：您强大的户外广告合作伙伴"
+      desc: "了解更多关于我们所服务的行业、我们提供的服务，以及使 Prisma Advertising 成为户外广告领导者的杰出项目。"
+  career:
+    about:
+      title: "有意义的工作，不断成长的文化"
+      desc: "我们相信，卓越的工作始于优秀的环境。在这里，您将找到建立在协作、好奇心和归属感之上的文化，并获得发展技能的机会，在塑造城市和故事的高曝光项目中留下您的印记。"
+    table:
+      title: "探索当前职位空缺，找到适合您的岗位"
+      desc: "发现创意、策略、运营等领域的各种职位，每个职位都提供了在快节奏、以影响力为驱动的团队中成长的机会。"
+    apply:
+      title: "有兴趣加入 Prisma Advertising 吗？"
+      desc: "我们始终欢迎充满热情、才华横溢的人才。填写通用申请表并提交您的简历，当有合适的机会时，我们会与您联系。"
+  vision_mission:
+    vision:
+      title: "愿景"
+      desc: "Prisma 致力于成为客户心目中首选的广告公司。我们在创新、创意和卓越服务方面力求最佳。"
+    mission:
+      title: "使命"
+      desc: "<ul><li>以获得的信任为基础</li><li>以信念、创意和努力为起点</li><li>以快速、细致、高性价比的方式执行</li><li>成为最佳、最完美的选择，为您的广告需求提供最高品质</li></ul>"
+  services:
+    caption: "我们提供的服务"
+    recommendation:
+      title: "我们的服务"
+      desc: "探索我们量身定制的户外广告服务，旨在满足电商广告的特定营销需求。"
+    why_choose_prisma:
+      title: "为什么选择 Prisma Ads？"
+      desc: "我们优越的户外广告位置和无缝协调让您的品牌获得应有的认可。凭借极具竞争力的价格，我们的优质服务是帮助您在印尼全境执行广告活动的理想选择。"
+    strategic_visibility:
+      title: "全国范围的战略性曝光"
+      desc: "凭借多年经验，我们的户外广告网络覆盖高流量地点，确保您的广告活动获得最大的曝光和认知度。"
+    digital_ooh:
+      title: "您的数字户外广告解决方案"
+      desc: "想让您的品牌脱颖而出？我们擅长制作引人注目的动画广告牌，确保吸引路人的目光。通过我们的动画工作室 PiX Animation，我们能帮助将您的创意转化为引人注目的动态图形。"
+    campaign_development:
+      title: "专注于端到端广告活动开发与执行的专业团队"
+      desc: "我们的专业创意团队携手合作，让每一次广告活动栩栩如生。凭借深厚的行业知识和对大胆故事叙述的热情，我们制定能产生实际效果的策略。"
+    production_installation:
+      title: "提供生产和安装支持服务"
+      desc: "我们的生产和安装团队确保每项资产按时、按规格交付，并在所有格式中完美执行。无论是静态还是数字广告，我们都有专业能力将其完美呈现。"
+    brand_impact:
+      title: "实时追踪您的品牌影响力"
+      desc: "通过我们的户外广告仪表板，您可以追踪每个广告活动，获得实时洞察，精确了解您的品牌表现。从实时更新到受众覆盖范围，我们在每个阶段为您提供完全的可见性，并提供可操作的数据来优化您的影响力。"
+  industries:
+    title: "我们服务的行业"
+    desc: "我们已为来自各行各业的客户提供服务，成功通过高影响力的广告活动实现了每个品牌的愿景。无论哪个行业，我们在推广您的信息方面拥有无与伦比的经验。"
+    caption: "我们服务的行业"
+    index:
+      title: "我们支持的行业"
+      desc: "探索我们通过定制的户外广告解决方案所支持的不同行业，以提升曝光度、相关性和效果。"
+    why_industry:
+      title: "为什么行业定制解决方案很重要？"
+      list: ["行业定制营销使您能够精准触达目标受众。", "根据特定行业的行为特征量身打造广告信息。", "通过行业定制解决方案与真实的消费者环境保持一致。", "运用来自行业定制营销解决方案的洞察。", "通过按行业定制的内容提升相关性。", "通过聚焦的行业定制策略提升效率。", "通过周密的广告活动规划推动更强的互动效果。", "通过行业定制的执行最大化户外广告效果。"]
+  testimonial:
+    title: "客户评价"
+    desc: "了解信赖我们并与我们合作的品牌的真实感受。"
+  portfolios:
+    title: "我们的广告活动作品集"
+    desc: "探索领先品牌如何通过我们的优质户外广告服务让他们的广告活动栩栩如生。"
+    caption: "广告活动作品集"
+    about_campaign: "关于活动"
+    area_coverage: "覆盖区域"
+    creative_highlights: "创意亮点"
+    execution:
+      title: "执行详情"
+      desc: "关于广告活动背后的形式、投放位置和流程的深入了解。"
+  blog:
+    title: "博客"
+    desc: "浏览我们的编辑精选、行业趋势和户外广告专家观点合集。"
+  footer:
+    title:
+      our_services: "我们的服务"
+      company: "公司"
+      explore: "探索"
+    explore:
+      client_projects: "广告活动作品集"
+      industries: "行业"
+      blogs: "博客"
+  boostad_services:
+    title: ["交通广告", "街道设施广告", "创意品牌推广", "数字户外广告（DOOH）"]
+    list: ["通过 TransJakarta 公交广告和交通媒体在移动中推广您的品牌。从整车包裹到站台和平台广告，以高曝光率覆盖数千名日常通勤者。", "将长凳、候车亭、信息亭等公共设施变成独特的广告空间。通过创意设计，您的品牌成为城市街道的一部分，始终留在人们的脑海中。", "在商场、办公室和生活方式场所增强您的品牌存在感。我们设计适合每个空间的创意户外品牌推广方案，帮助您的品牌在日常环境中脱颖而出。", "使用 LED 广告牌和数字屏幕投放大胆、动感的广告。从 3D 动画到互动 LED 内容，DOOH 为您的品牌在主要城市区域提供灵活性和影响力。"]
+  dooh_innovations:
+    title: ["时间变换", "外部数据传感器", "互动 LED", "3D 变形内容", "户外音频", "户外实时直播", "增强现实", "社交媒体抓取", "多屏显示", "欢呼屏", "互动户外拍照亭", "虚拟助手"]
+    list: ["在正确的时间传递正确的信息。此功能允许您的内容全天变化，为早晨通勤者、中午购物者或晚间人群量身定制广告，以最大化相关性和互动率。", "利用实时环境数据触发智能化内容。无论是天气、交通还是空气质量，您的信息都会自动适应，确保广告活动及时且有影响力。", "将静态观看转变为互动体验。这些显示屏可以响应动作、手势或触摸，让观众在公共空间中主动与您的品牌互动。", "通过平面屏幕上令人惊叹的 3D 视觉效果吸引注意力。此技术创造逼真的深度和运动感，使您的广告活动成为高流量地点的视觉奇观。", "通过定向声音增强视觉效果，带来多感官体验。从音乐到旁白，音频为您的信息增添深度，以沉浸式的方式吸引观众。", "将实时内容直接传递给您的观众，无论他们在哪里。实时流媒体允许您通过数字户外平台无缝播出活动、公告或更新。", "通过增强现实显示连接物理世界和数字世界。通过在真实环境中叠加互动元素，AR 创造出令人难忘的品牌体验，激发探索和互动。", "将用户实时生成的内容整合到您的广告活动中。提取实时帖子、标签或提及，创建动态广告牌，反映在线热度并加深与观众的连接。", "通过跨多个屏幕的同步视觉效果提升故事叙述。非常适合大空间，此设置支持全景效果、延展叙事或高影响力的分屏视觉效果。", "将人群能量变成体验的一部分。此互动显示响应声音或动作，激活视觉反应，奖励观众参与并放大互动效果。", "邀请观众走进故事。品牌拍照亭提供即时拍照或录像，附带滤镜或 AR 效果，鼓励社交分享并扩大有机覆盖。", "通过 AI 驱动的数字助手提供实时信息和互动。从产品咨询到引导体验，它在高人流量地点提供个性化的接触点。"]
+  errors:
+    404_title: "页面未找到"
+    404_desc: "您查找的页面不存在。"
+    403_title: "禁止访问"
+    403_desc: "禁止访问所请求的资源。"
+    422_title: "无法处理的内容"
+    422_desc: "您请求的更改被拒绝。"
+    500_title: "页面错误"
+    500_desc: "抱歉，系统发生了错误。"
+  global:
+    dismiss: "关闭"
+    coming_soon:
+      title: "即将推出"
+      desc: "我们将很快推出全新的精彩功能"
+    read_more: "阅读更多"
+    see_more: "查看更多"
+    explore_more: "探索更多"
+    recaptcha_failed: "验证码验证失败"
+    view_profile: "查看简介"
+    view_all: "查看全部"
+    view: "查看"
+    back_to: "返回%{object_name}"
+    back_to_blogs: "返回博客"
+    others: "其他%{object_name}"
+    others_blogs: "其他博客"
+    explore_ideal_locations: "探索理想位置"
+    no_data_found: "未找到数据"
+    download: "下载"
+    download_now: "立即下载"
+    apply_now: "立即申请"
+    join_us_now: "立即加入我们"
+    submit: "提交"
+    search_results: "搜索结果"
+    search_not_found: "未找到搜索结果：`%{search}`"
+    articles: "文章"
+    pages: "页面"
+    max: "最大"
+    all: "全部"

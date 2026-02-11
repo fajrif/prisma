@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get '/led-braga', to: 'redirects#legacy_page', defaults: { slug: 'ledbraga' }
   get '/billboard-jakarta-capai-jutaan-penglihatan-bersama-prisma-advertising', to: 'redirects#legacy_page', defaults: { slug: 'billboard' }
 
-	scope "(:locale)", locale: /id/ do
+	scope "(:locale)", locale: /id|cn/ do
 		namespace :admins do
 			root :to => 'dashboard#index'
 			get "account/change_password" => "accounts#change_password", :as => :change_password

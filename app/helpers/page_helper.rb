@@ -180,6 +180,7 @@ module PageHelper
 
 	def generate_footer_link(data)
 		_menu = ""
+		return _menu if data.nil?
 		data.each do |menu|
 			_menu += content_tag(:li, class: "margin-10px-bottom") do
 				link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: "text-white-2")
