@@ -20,7 +20,15 @@ async function initMap() {
   map = new Map(document.getElementById('map'), {
     center: { lat: centerLat, lng: centerLng },
     zoom: 15,
-    mapId: '3a496c8aa14f954cb04a4a27' // Required for AdvancedMarkerElement
+    mapId: '3a496c8aa14f954cb04a4a27', // Required for AdvancedMarkerElement
+    gestureHandling: 'greedy', // Allow smooth dragging without ctrl/cmd key
+    disableDefaultUI: false,
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: true,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: true
   });
 
   // Create markers for our products
@@ -28,6 +36,11 @@ async function initMap() {
 
   // List item click events
   bindProductItemClicks();
+
+  // Close all info windows when map is dragged
+  map.addListener('drag', function () {
+    closeAllInfoWindows();
+  });
 }
 
 function createMarkers(AdvancedMarkerElement, PinElement) {
@@ -66,7 +79,8 @@ function createMarkers(AdvancedMarkerElement, PinElement) {
     `;
 
     const infoWindow = new google.maps.InfoWindow({
-      content: infoWindowContent
+      content: infoWindowContent,
+      disableAutoPan: true // Prevent auto-panning when InfoWindow opens
     });
 
     markers.push(marker);
@@ -93,14 +107,14 @@ function bindProductItemClicks() {
       // Close all existing info windows
       closeAllInfoWindows();
 
-      // Set zoom level and center on marker
-      // map.setZoom(15);
+      // Pan to the marker location when clicking sidebar item
       map.panTo(markers[index].position);
 
-      // Open the info window with a small delay to ensure smoother transition and reliable opening
-
-      // Open the info window immediately
-      infoWindows[index].open(map, markers[index]);
+      // Wait for pan animation to complete before opening InfoWindow
+      // panTo animation takes ~300ms, so we wait 400ms to be safe
+      setTimeout(function () {
+        infoWindows[index].open(map, markers[index]);
+      }, 1000);
 
       // Highlight the selected product in sidebar
       highlightProduct(productId);
@@ -135,11 +149,10 @@ async function reinitializeMap() {
   products = JSON.parse(mapData.dataset.products);
 
   if (products.length > 0) {
-    const centerLat = parseFloat(mapData.dataset.centerLat);
-    const centerLng = parseFloat(mapData.dataset.centerLng);
-
-    // Update map center
-    map.setCenter({ lat: centerLat, lng: centerLng });
+    // Don't auto-center the map when filtering - maintain user's current view
+    // const centerLat = parseFloat(mapData.dataset.centerLat);
+    // const centerLng = parseFloat(mapData.dataset.centerLng);
+    // map.setCenter({ lat: centerLat, lng: centerLng });
 
     // Import marker library
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
