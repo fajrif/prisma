@@ -10,6 +10,11 @@ class PagesController < ApplicationController
 				I18n.locale = :id
 			end
 
+			if _id == 'cn'
+				_id = "home"
+				I18n.locale = :cn
+			end
+
 			if @page = Page.friendly.find(_id)
         if @page.published?
           @meta_title = @page.meta_title unless @page.meta_title.blank?

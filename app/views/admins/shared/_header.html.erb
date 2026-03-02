@@ -18,6 +18,8 @@
 							<img id="header-lang-img" src="<%= image_url('flags/us.svg') %>" height="20" class="rounded">
 						<% elsif I18n.locale == :id %>
 							<img id="header-lang-img" src="<%= image_url('flags/id.svg') %>" height="20" class="rounded">
+						<% elsif I18n.locale == :cn %>
+							<img id="header-lang-img" src="<%= image_url('flags/china.svg') %>" height="20" class="rounded">
 						<% end %>
 					</button>
 					<div class="dropdown-menu dropdown-menu-end" style="">
@@ -30,6 +32,11 @@
 						<a href="<%= url_for(locale: :id) %>" class="dropdown-item notify-item language" data-lang="id" title="Indonesia">
 							<img src="<%= image_url('flags/id.svg') %>" class="me-2 rounded" height="18">
 							<span class="align-middle">Indonesia</span>
+						</a>
+						<!-- item-->
+						<a href="<%= url_for(locale: :cn) %>" class="dropdown-item notify-item language" data-lang="cn" title="Chinese">
+							<img src="<%= image_url('flags/china.svg') %>" class="me-2 rounded" height="18">
+							<span class="align-middle">Chinese</span>
 						</a>
 					</div>
 				</div>
