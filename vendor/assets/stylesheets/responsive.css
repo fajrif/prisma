@@ -1326,7 +1326,7 @@
     h1 {font-size:65px; line-height: 65px;}
     h2 {font-size:50px; line-height:55px}
     h3 {font-size:42px; line-height:48px}
-    h4 {font-size:35px; line-height:41px}
+    h4, .text-h4 {font-size:35px; line-height:41px}
     h5 {font-size:27px; line-height:32px}
     h6 {font-size:22px; line-height:27px}
 
@@ -2733,7 +2733,7 @@
     h1 {font-size:57px; line-height: 58px;}
     h2 {font-size:43px; line-height:48px}
     h3 {font-size:36px; line-height:41px}
-    h4 {font-size:30px; line-height:35px}
+    h4, .text-h4 {font-size:30px; line-height:35px}
     h5 {font-size:24px; line-height:30px}
     h6 {font-size:22px; line-height:26px}
     p { margin: 0 0 20px; }
@@ -4353,7 +4353,7 @@
     h1 {font-size:38px; line-height:38px;}
     h2 {font-size:38px; line-height:38px;}
     h3 {font-size:28px; line-height:30px;}
-    h4 {font-size:24px; line-height:24px;}
+    h4, .text-h4 {font-size:24px; line-height:24px;}
     h5 {font-size:24px; line-height:24px;}
     h6 {font-size:20px; line-height:23px;}
 
