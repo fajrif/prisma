@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center order-1 order-md-2 sm-margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.3s">
-        <%= image_tag(@portfolio.logo) if @portfolio.logo.attached? %>
+        <%= image_tag(@portfolio.logo, alt: @portfolio.name) if @portfolio.logo.attached? %>
       </div>
     </div>
   </div>

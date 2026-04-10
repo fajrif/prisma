@@ -20,17 +20,17 @@
                       </div>
                       <div class="col-12 col-md-6 d-flex align-items-center">
                         <% if service.image.attached? %>
-                          <%= image_tag service.image, class: "w-100" %>
+                          <%= image_tag service.image, class: "w-100", alt: service.title %>
                         <% else %>
-                          <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100") %>
+                          <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100", alt: service.title) %>
                         <% end %>
                       </div>
                     <% else %>
                       <div class="col-12 col-md-6 d-flex align-items-center">
                         <% if service.image.attached? %>
-                          <%= image_tag service.image, class: "w-100 sm-margin-20px-bottom" %>
+                          <%= image_tag service.image, class: "w-100 sm-margin-20px-bottom", alt: service.title %>
                         <% else %>
-                          <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100 sm-margin-20px-bottom") %>
+                          <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100 sm-margin-20px-bottom", alt: service.title) %>
                         <% end %>
                       </div>
                       <div class="col-12 col-md-6">

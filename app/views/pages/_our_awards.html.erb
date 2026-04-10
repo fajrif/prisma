@@ -10,7 +10,7 @@
   <% categories.each do | category| %>
 	<div class="row">
 		<div class="col-12 col-lg-3 text-start text-md-center">
-      <%= image_tag(category.image) if category.image.attached? %>
+      <%= image_tag(category.image, alt: category.name) if category.image.attached? %>
     </div>
 		<div class="col-12 col-lg-9 blog-content">
 			<ul class="blog-classic blog-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-large">

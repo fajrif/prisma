@@ -19,13 +19,13 @@
         <div class="col-12 <%= [2,4].include?(index+1) ? 'col-lg-6' : 'col-lg-3' %> margin-15px-bottom">
           <div class="card service-card h-100 cover-background bg-prisma-color-<%= arr[index] %>">
             <div class="card-img-container">
-              <%= image_tag(service.image1, class: "card-img-top w-100") %>
+              <%= image_tag(service.image1, class: "card-img-top w-100", alt: service.name) %>
             </div>
             <div class="card-body text-white-2">
               <div class="card-title">
                 <div class="d-flex justify-content-start align-items-center gap-4 margin-15px-bottom">
                   <% if service.image_white.attached? %>
-                    <%= image_tag(service.image_white.variant(resize: "100x100")) %>
+                    <%= image_tag(service.image_white.variant(resize: "100x100"), alt: service.name) %>
                   <% end %>
                   <a href="<%= service_url(service) %>" class="text-extra-large text-white-2 font-weight-600 d-block w-100"><%= service.name %></a>
                 </div>

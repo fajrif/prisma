@@ -5,14 +5,14 @@ module SeoHelper
   # - Handles locale prefixes appropriately
   def canonical_url
     # Build the canonical URL
-    base_url = "https://prisma-ads.com"
-    
+    base_url = 'https://prisma-ads.com'
+
     # Get the current path
     path = request.path
-    
+
     # Remove trailing slash if present (except for root)
     path = path.chomp('/') unless path == '/'
-    
+
     # Handle pagination - remove page params from canonical
     # but keep the base URL
     if params[:page].present? && params[:page].to_i > 1
@@ -26,41 +26,34 @@ module SeoHelper
 
   # Generate alternate language links for hreflang tags
   def alternate_language_urls
-    base_url = "https://prisma-ads.com"
+    base_url = 'https://prisma-ads.com'
     current_path = request.path.chomp('/')
-    
-    # Check if we're on an Indonesian locale path
-    if current_path.start_with?('/id')
-      english_path = current_path.sub(/^\/id/, '')
-      english_path = '/' if english_path.blank?
-      
-      {
-        en: "#{base_url}#{english_path}",
-        id: "#{base_url}#{current_path}"
-      }
-    else
-      {
-        en: "#{base_url}#{current_path.presence || '/'}",
-        id: "#{base_url}/id#{current_path}"
-      }
-    end
+
+    # Strip locale prefix from current path
+    stripped_path = current_path.sub(%r{^/(id|cn)}, '')
+    stripped_path = '/' if stripped_path.blank?
+
+    {
+      id: "#{base_url}/id#{stripped_path}",
+      cn: "#{base_url}/cn#{stripped_path}"
+    }
   end
 
   # Generate hreflang link tags
   def hreflang_tags
     urls = alternate_language_urls
-    
+
     tags = []
-    tags << tag.link(rel: 'alternate', hreflang: 'en', href: urls[:en])
     tags << tag.link(rel: 'alternate', hreflang: 'id', href: urls[:id])
-    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:en])
-    
+    tags << tag.link(rel: 'alternate', hreflang: 'cn', href: urls[:cn])
+    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:id])
+
     safe_join(tags, "\n\t")
   end
 
   # Set the page H1 for SEO
   # Call this in your view: <% seo_h1("Page Heading") %>
-  # The H1 will be rendered in the layout as a visually hidden element 
+  # The H1 will be rendered in the layout as a visually hidden element
   # if no banner with H1 is present
   def seo_h1(heading_text)
     content_for(:seo_h1, heading_text)
@@ -86,16 +79,15 @@ module SeoHelper
       filename = source.is_a?(String) ? File.basename(source, '.*') : source.try(:filename).to_s.sub(/\.[^.]+$/, '')
       options[:alt] = filename.to_s.titleize.gsub(/[-_]/, ' ')
     end
-    
+
     image_tag(source, options)
   end
 
   # Helper to generate alt text from Active Storage attachment
   def attachment_alt_text(attachment, fallback = nil)
-    return fallback || "Image" unless attachment.present?
-    
+    return fallback || 'Image' unless attachment.present?
+
     filename = attachment.filename.to_s.sub(/\.[^.]+$/, '')
-    filename.titleize.gsub(/[-_]/, ' ').presence || fallback || "Image"
+    filename.titleize.gsub(/[-_]/, ' ').presence || fallback || 'Image'
   end
 end
-

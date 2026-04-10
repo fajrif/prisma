@@ -20,7 +20,7 @@
 							<% if article.image.attached? %>
 							<div class="blog-post-images overflow-hidden position-relative padding-10px-all">
 								<a href="<%= article_path(article) %>">
-									<%= image_tag article.image.variant(resize_to_limit: [345,253]), class: "border-radius-8" %>
+									<%= image_tag article.image.variant(resize_to_limit: [345,253]), class: "border-radius-8", alt: article.title %>
 								</a>
 							</div>
 							<% end %>

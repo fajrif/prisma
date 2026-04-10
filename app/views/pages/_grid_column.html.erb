@@ -63,7 +63,7 @@
 						<div class="h-100 d-flex flex-column">
 							<div class="feature-box-content sm-w-100 margin-30px-bottom sm-margin-15px-bottom">
 								<div class="feature-box-image d-flex justify-content-center align-items-center">
-									<%= image_tag(cdn_image_url(sp.image)) if sp.image.attached? %>
+									<%= image_tag(cdn_image_url(sp.image), alt: sp.title) if sp.image.attached? %>
 								</div>
 							</div>
 							<div class="h-100 d-flex flex-column justify-content-between align-items-start margin-25px-bottom <%= padding_lr %> sm-padding-one-lr text-center text-md-start">

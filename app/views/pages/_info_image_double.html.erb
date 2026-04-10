@@ -8,23 +8,23 @@
         <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600") %>
         <div class="margin-40px-bottom sm-margin-25px-bottom"><%= raw snippet.short_description %></div>
         <div class="margin-40px-bottom sm-margin-25px-bottom">
-          <%= image_tag(url_for(snippet.image), class: "border-radius-8 w-100") %>
+          <%= image_tag(url_for(snippet.image), class: "border-radius-8 w-100", alt: snippet.title) %>
         </div>
         <%= content_tag(header_tag.to_sym, snippet.caption, class: "font-weight-600") %>
         <div><%= raw snippet.description %></div>
       </div>
       <div class="col-md-6 padding-four-lr order-1 order-md-2 sm-margin-30px-bottom text-center wow animate__fadeInRight" data-wow-delay="0.4s">
-        <%= image_tag(url_for(snippet.background), class: "border-radius-8 w-100") %>
+        <%= image_tag(url_for(snippet.background), class: "border-radius-8 w-100", alt: snippet.title) %>
       </div>
     <% else %>
       <div class="col-md-6 padding-four-lr sm-margin-30px-bottom text-center wow animate__fadeInLeft" data-wow-delay="0.3s">
-        <%= image_tag(url_for(snippet.background), class: "border-radius-8 w-100") %>
+        <%= image_tag(url_for(snippet.background), class: "border-radius-8 w-100", alt: snippet.title) %>
       </div>
       <div class="col-md-6 wow animate__fadeInRight" data-wow-delay="0.4s">
         <%= content_tag(header_tag.to_sym, snippet.title, class: "font-weight-600") %>
         <div class="margin-40px-bottom sm-margin-25px-bottom"><%= raw snippet.short_description %></div>
         <div class="margin-40px-bottom sm-margin-25px-bottom">
-          <%= image_tag(url_for(snippet.image), class: "border-radius-8 w-100") %>
+          <%= image_tag(url_for(snippet.image), class: "border-radius-8 w-100", alt: snippet.title) %>
         </div>
         <%= content_tag(header_tag.to_sym, snippet.caption, class: "font-weight-600") %>
         <div><%= raw snippet.description %></div>

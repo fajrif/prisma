@@ -20,7 +20,7 @@
                 <div class="innovation-header transparent-white-box" data-toggle-innovation="<%= index + 1 %>">
                   <div class="innovation-title">
                     <span class="<%= text_color %> text-large font-weight-600 d-inline-block"><%= innovation.title %></span>
-                    <%= image_tag("icon-innovations/#{innovation.icon}") %>
+                    <%= image_tag("icon-innovations/#{innovation.icon}", alt: innovation.title) %>
                   </div>
                 </div>
                 <div class="innovation-content <%= text_color %>" id="innovation-content-<%= index + 1 %>">

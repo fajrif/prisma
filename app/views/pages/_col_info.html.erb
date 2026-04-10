@@ -5,7 +5,7 @@
 	<figure>
 		<div class="feature-box-content sm-w-100 margin-30px-bottom">
 			<div class="feature-box-image d-flex justify-content-center align-items-center">
-				<%= image_tag(url_for(snippet.image)) if snippet.image.attached? %>
+				<%= image_tag(url_for(snippet.image), alt: snippet.title) if snippet.image.attached? %>
 			</div>
 		</div>
 		<figcaption>

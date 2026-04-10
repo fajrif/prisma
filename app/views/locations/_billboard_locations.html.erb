@@ -15,7 +15,7 @@
               <div class="bg-white">
                 <div class="bg-black overflow-hidden location-image border-top-radius-8">
                   <a href="<%= location_path(location) %>">
-                    <%= image_tag(location.image.variant(resize_to_limit: [488,310])) %>
+                    <%= image_tag(location.image.variant(resize_to_limit: [488,310]), alt: location.name) %>
                   </a>
                 </div>
               </div>
