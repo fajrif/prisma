@@ -1,5 +1,5 @@
 <div class="whatsapp-wrapper">
-  <a href="https://wa.me/<%= configatron.whatsapp_number %>?text=<%= url_encode("Hi Prisma Advertising, I saw your website and would like to ask about Prisma’s services and products. Could you please assist me?") %>"><img src="<%= image_url('whatsapp.png') %>" alt="whatsapp" /></a>
+  <a id="floating-whatsapp-btn" href="https://wa.me/<%= configatron.whatsapp_number %>?text=<%= url_encode("Hi Prisma Advertising, I saw your website and would like to ask about Prisma’s services and products. Could you please assist me?") %>"><img src="<%= image_url('whatsapp.png') %>" alt="whatsapp" /></a>
 </div>
 
 <% unless is_contact_page? or is_careers_page? or is_errors_page? %>
@@ -106,3 +106,28 @@
 </footer>
 <!-- end footer -->
 
+<script>
+(function () {
+  function initWaTracking() {
+    // Select the WhatsApp button by its ID
+    var waBtn = document.getElementById('floating-whatsapp-btn');
+    if (!waBtn) return;
+
+    waBtn.addEventListener('click', function () {
+      // Push the event to Google Tag Manager via dataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'whatsapp_click',
+        'event_category': 'engagement',
+        'event_label': document.documentElement.lang || 'unknown'
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWaTracking);
+  } else {
+    initWaTracking();
+  }
+})();
+</script>
