@@ -5,7 +5,19 @@ class Admins::ArticlesController < Admins::BaseController
 		if params[:search].blank?
 			criteria = Article.all
 		else
-			criteria = Article.where("title ->> :key ILIKE :value", key: I18n.locale.to_s, value: "%#{params[:search]}%")
+			search_value = "%#{params[:search]}%"
+			locale_key   = I18n.locale.to_s
+			criteria = Article.where(
+				"title ->> :key ILIKE :value OR EXISTS (
+					SELECT 1 FROM action_text_rich_texts
+					WHERE record_id   = articles.id
+					  AND record_type = 'Article'
+					  AND name        = 'content'
+					  AND locale      = :key
+					  AND body        ILIKE :value
+				)",
+				key: locale_key, value: search_value
+			)
 		end
 
 		unless params[:category_id].blank?
