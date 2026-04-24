@@ -13,7 +13,7 @@ class PortfoliosController < ApplicationController
 
   def show
 		@portfolio = Portfolio.friendly.find(params[:id])
-		@meta_title = @portfolio.meta_title unless @portfolio.meta_title.blank?
+		@meta_title = @portfolio.meta_title.presence || @portfolio.name
 		@meta_desc = @portfolio.meta_description unless @portfolio.meta_description.blank?
   end
 

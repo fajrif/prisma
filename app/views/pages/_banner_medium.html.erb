@@ -1,3 +1,4 @@
+<% content_for(:has_visible_h1, true) %>
 <!-- start page single banner -->
 <section id="<%= banner.section_id %>" class="medium-banner <%= @banner_text_color %> wow animate__fadeIn parallax background-attachment-initial pb-0" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
 	<div class="opacity-extra-medium bg-black"></div>

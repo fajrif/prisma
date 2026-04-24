@@ -1,6 +1,7 @@
 <%- title ||= locals[:title] -%>
 <%- description ||= locals[:description] -%>
 <%- _image_url = locals[:bg_image] ? locals[:bg_image] : image_url(configatron.default_banner) -%>
+<% content_for(:has_visible_h1, true) %>
 <!-- start page single banner -->
 <section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= _image_url %>');">
 	<div class="full-screen text-white-2 md-landscape-h-580px">

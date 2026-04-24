@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= html_lang_code %>">
 <head>
 	<meta charset="UTF-8">
 	<!-- Enable zoom on mobile device -->
@@ -9,7 +9,7 @@
 	<meta name="description" content="<%= @meta_desc.nil? ? configatron.site_description : @meta_desc %>">
 	<meta name="robots" content="index, follow">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="language" content="English">
+	<meta name="language" content="<%= html_lang_code %>">
 	<meta name="revisit-after" content="1 days">
 	<meta name="author" content="Galo Solutions ">
 

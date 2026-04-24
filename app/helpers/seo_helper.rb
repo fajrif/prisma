@@ -1,4 +1,13 @@
 module SeoHelper
+  # Maps Rails locale symbol to a valid BCP 47 language tag for <html lang>
+  def html_lang_code
+    case I18n.locale.to_sym
+    when :cn then 'zh-Hans'
+    when :id then 'id'
+    else 'en'
+    end
+  end
+
   # Generate canonical URL for the current page
   # - Always uses https://prisma-ads.com (no www)
   # - Strips trailing slashes for consistency
@@ -29,24 +38,28 @@ module SeoHelper
     base_url = 'https://prisma-ads.com'
     current_path = request.path.chomp('/')
 
-    # Strip locale prefix from current path
     stripped_path = current_path.sub(%r{^/(id|cn)}, '')
     stripped_path = '/' if stripped_path.blank?
 
+    # For root path, locale homepages have no suffix (avoids trailing-slash mismatch with canonical)
+    path_suffix = stripped_path == '/' ? '' : stripped_path
+
     {
-      id: "#{base_url}/id#{stripped_path}",
-      cn: "#{base_url}/cn#{stripped_path}"
+      en: "#{base_url}#{stripped_path}",
+      id: "#{base_url}/id#{path_suffix}",
+      cn: "#{base_url}/cn#{path_suffix}"
     }
   end
 
-  # Generate hreflang link tags
+  # Generate hreflang link tags (en + id + zh-Hans + x-default → English)
   def hreflang_tags
     urls = alternate_language_urls
 
     tags = []
-    tags << tag.link(rel: 'alternate', hreflang: 'id', href: urls[:id])
-    tags << tag.link(rel: 'alternate', hreflang: 'cn', href: urls[:cn])
-    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:id])
+    tags << tag.link(rel: 'alternate', hreflang: 'en',        href: urls[:en])
+    tags << tag.link(rel: 'alternate', hreflang: 'id',        href: urls[:id])
+    tags << tag.link(rel: 'alternate', hreflang: 'zh-Hans',   href: urls[:cn])
+    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:en])
 
     safe_join(tags, "\n\t")
   end
@@ -59,13 +72,14 @@ module SeoHelper
     content_for(:seo_h1, heading_text)
   end
 
-  # Render the SEO H1 tag if set and not already present in page content
-  # This provides a fallback H1 that's visually hidden but accessible to search engines
+  # Render the SEO H1 tag if no visible H1 already exists in the page content.
+  # Banner/snippet partials set content_for(:has_visible_h1) when they render an <h1>.
   def render_seo_h1_fallback
+    return if content_for?(:has_visible_h1)
+
     if content_for?(:seo_h1)
       content_tag(:h1, content_for(:seo_h1), class: 'visually-hidden seo-h1')
     elsif @meta_title.present?
-      # Fallback to meta title if no explicit H1 is set
       content_tag(:h1, @meta_title, class: 'visually-hidden seo-h1')
     end
   end
