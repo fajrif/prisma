@@ -1,7 +1,7 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 User-agent: *
 Disallow: /admins/
-Disallow: /home/
-Disallow: /id/home/
+Allow: /home/
+Allow: /id/home/
 Disallow: /rails/active_storage/
 Sitemap: https://prisma-ads.com/sitemap.xml

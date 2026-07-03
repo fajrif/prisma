@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get '/about', to: 'redirects#legacy_page', defaults: { slug: 'about' }
   get '/contact', to: 'redirects#legacy_page', defaults: { slug: 'contact' }
   get '/work', to: 'redirects#legacy_page', defaults: { slug: 'work' }
-  get '/product', to: 'redirects#legacy_page', defaults: { slug: 'product' }
+  get '/product', to: 'redirects#legacy_page', defaults: { slug: 'product' }, as: :legacy_product
   get '/pix-animation', to: 'redirects#legacy_page', defaults: { slug: 'pixanimation' }
   get '/inovasi-real-time-live-stream', to: 'redirects#legacy_page', defaults: { slug: 'inivasirealtimestream' }
   get '/3-fakta-chase-smart-led', to: 'redirects#legacy_page', defaults: { slug: '3faktachasesmartled' }
