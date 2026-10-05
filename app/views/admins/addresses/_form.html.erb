@@ -11,6 +11,18 @@
 		<%= f.input :fax, as: :string %>
 		<%= f.input :latitude, as: :string %>
 		<%= f.input :longitude, as: :string %>
+
+		<hr/>
+		<p class="text-muted fs-13">
+			Alamat terstruktur di bawah dipakai untuk schema LocalBusiness & PostalAddress.
+			Kolom "Complete address" di atas tetap dipakai untuk tampilan di website.
+		</p>
+		<%= f.input :street_address, as: :string, hint: "Contoh: Graha Prisma, Jl. Kedoya Duri Raya No.38, Kedoya Selatan" %>
+		<%= f.input :locality, as: :string, label: "City / Locality", hint: "Contoh: Jakarta Barat" %>
+		<%= f.input :region, as: :string, hint: "Contoh: DKI Jakarta" %>
+		<%= f.input :postal_code, as: :string, hint: "Contoh: 11520" %>
+		<%= f.input :country_code, as: :string, hint: "Kode negara 2 huruf, contoh: ID" %>
+		<%= f.input :primary_office, as: :boolean, label: "Kantor utama (dipakai pada schema Organization)" %>
 	</fieldset>
 	<%= f.error :base %>
 	<div class="form-actions">

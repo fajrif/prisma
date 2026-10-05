@@ -12,6 +12,7 @@ class ServicesController < ApplicationController
 
   def show
 		@service = Service.friendly.find(params[:id])
+		@schema_subject = @service
     @sections = @service.segments
 
 		@meta_title = @service.meta_title unless @service.meta_title.blank?

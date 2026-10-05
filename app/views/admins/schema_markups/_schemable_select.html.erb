@@ -1,0 +1,4 @@
+<%= options_for_select([['', '']]) %>
+<% @objectables.each do |record| %>
+	<option value="<%= record.id %>"><%= schema_record_label(record) %></option>
+<% end %>

@@ -49,9 +49,20 @@ Rails.application.routes.draw do
   get '/prisma-advertising-jasa-billboard-jakarta-harga-murah-desain-menarik', to: 'redirects#legacy_page',
                                                                                defaults: { slug: 'jasabillboardjakarta' }
 
+  # Endpoint laporan pelanggaran Content-Security-Policy (mode report-only)
+  post '/csp-violation-report', to: 'csp_reports#create'
+
   scope '(:locale)', locale: /id|cn/ do
     namespace :admins do
       root to: 'dashboard#index'
+
+      # SEO
+      resources :schema_markups do
+        collection do
+          get :schemable_records
+        end
+      end
+      resource :setting, only: %i[show edit update]
       get 'account/change_password' => 'accounts#change_password', :as => :change_password
       put 'account/update_password' => 'accounts#update_password', :as => :update_password
 

@@ -57,7 +57,9 @@ class Admins::AddressesController < Admins::BaseController
   private
 
   def params_address
-    params.require(:address).permit(:order_no, :name, :complete_address, :phone1, :phone2, :fax, :longitude, :latitude, :email1, :email2)
+    params.require(:address).permit(:order_no, :name, :complete_address, :phone1, :phone2, :fax, :longitude, :latitude,
+																		:email1, :email2, :street_address, :locality, :region, :postal_code,
+																		:country_code, :primary_office)
   end
 
 	def set_address

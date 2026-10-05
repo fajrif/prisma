@@ -10,6 +10,7 @@
 # Ignore all environment files (except templates).
 /.env*
 !/.env*.erb
+!/.env.example
 app.yaml
 app-prod.yaml
 
@@ -42,3 +43,5 @@ app-prod.yaml
 # Ignore Claude Code files
 .claude/
 CLAUDE.md
+request/
+ROADMAP_PLAN.md

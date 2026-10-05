@@ -1,11 +1,49 @@
-<%= simple_form_for @setting, url: admins_setting_path, method: (@setting.new_record? ? :post : :put) do |f| %>
-	<%= f.error_notification %>
-	<fieldset>
-		<%= f.input :admin_investor, as: :string %>
-	</fieldset>
-	<%= f.error :base %>
-	<div class="form-actions">
-		<%= f.button :submit, :class => 'btn btn-secondary' %>
-		<%= link_to "Back", admins_setting_path, :class => 'btn btn-light' %>
+<%= simple_form_for @setting, url: admins_setting_path, method: :put do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :logo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp, image/svg+xml" },
+												hint: "Logo resmi untuk schema Organization. Idealnya PNG dengan latar transparan." %>
+						<%= f.input :legal_name, as: :string, label: "Legal name", hint: "Nama resmi perusahaan, contoh: PT Prisma Advertising" %>
+						<%= f.input :alternate_name, as: :string, hint: "Nama lain yang dikenal publik, contoh: Prisma Ads" %>
+						<%= f.input :description, as: :text, input_html: { rows: 4 },
+												hint: "Deskripsi singkat perusahaan (mengikuti bahasa aktif: #{I18n.locale.to_s.upcase})" %>
+						<%= f.input :founding_date, as: :string, input_html: { placeholder: "YYYY-MM-DD" } %>
+						<%= f.input :email, as: :string %>
+						<%= f.input :phone, as: :string, hint: "Format internasional, contoh: +62-21-5835-6570" %>
+						<%= f.input :whatsapp, as: :string, hint: "Contoh: 628111306888" %>
+						<%= f.input :same_as_text, as: :text, label: "Social profiles (sameAs)", input_html: { rows: 6 },
+												hint: "Satu URL per baris. Kosongkan untuk memakai daftar bawaan dari konfigurasi." %>
+						<%= f.input :admin_contact, as: :string, label: "Admin contact" %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions" style="margin-top:10px;">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<%= link_to "Cancel", admins_setting_path, :class => 'btn btn-light' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @setting, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Dipakai di mana?</h5>
+						</div>
+						<div class="card-body">
+							<p class="text-muted fs-13 mb-0">
+								Data ini dipakai untuk schema <b>Organization</b>, <b>WebSite</b>, dan <b>LocalBusiness</b>
+								yang tampil di seluruh halaman. Alamat kantor diatur terpisah di menu Addresses.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <% end %>

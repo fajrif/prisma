@@ -1,0 +1,71 @@
+<%= simple_form_for [:admins, @schema_markup] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :name, as: :string, hint: "Label internal, contoh: FAQ Digital Billboard" %>
+						<%= f.input :schema_type, as: :select, collection: get_schema_types, include_blank: false,
+												input_html: { "data-presets" => schema_presets.to_json } %>
+						<%= f.input :scope_type, as: :select, collection: get_schema_scope_types,
+												value_method: :first, label_method: :last, include_blank: false %>
+						<%= f.input :schemable_type, as: :select, collection: get_schema_markup_objects,
+												include_blank: false,
+												input_html: { "data-url" => schemable_records_admins_schema_markups_path(type: 'selected') } %>
+						<%= f.input :schemable_id, as: :select, include_blank: true,
+												collection: (@objectables || []).map { |record| [schema_record_label(record), record.id] },
+												label: "Record" %>
+						<%= f.input :path_pattern, as: :string,
+												hint: "Pola URL tanpa prefix bahasa, contoh: /services/* atau /locations" %>
+
+						<div class="alert alert-info">
+							JSON diisi terpisah untuk tiap bahasa. Bahasa yang sedang aktif: <b><%= I18n.locale.to_s.upcase %></b>.
+							Ganti bahasa lewat menu di pojok kanan atas, lalu isi ulang kolom JSON untuk bahasa tersebut.
+							Isi schema harus sama dengan konten yang tampil di halaman.
+						</div>
+
+						<%= f.input :body, as: :text, label: "JSON-LD",
+												input_html: { rows: 16, class: "font-monospace", id: "schema_markup_body" } %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions" style="margin-top:10px;">
+						<%= f.button :submit, :class => 'btn btn-secondary' %>
+						<% unless @schema_markup.new_record? %>
+							<%= link_to "Cancel", admins_schema_markup_path(@schema_markup), :class => 'btn btn-light' %>
+						<% else %>
+							<%= link_to "Cancel", admins_schema_markups_path, :class => 'btn btn-light' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", :target => @schema_markup, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.input :status, as: :select, collection: get_schema_status,
+													value_method: :first, label_method: :last, include_blank: false %>
+							<%= f.input :order_no, as: :integer %>
+							<button type="button" id="schema_markup_load_preset" class="btn btn-soft-primary btn-sm w-100 mt-2">
+								<i class="ri-file-copy-line align-bottom me-1"></i> Load template JSON
+							</button>
+							<p class="text-muted fs-12 mt-2 mb-0">
+								Template mengisi kolom JSON dengan kerangka sesuai Schema Type yang dipilih.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<%= javascript_include_tag "admins_schema_markups" %>
+<% end %>

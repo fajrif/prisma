@@ -7,7 +7,15 @@ class ApplicationController < ActionController::Base
 
 	include Locale
 
+	helper_method :schema_subject
+
   protected
+
+	# Record yang menjadi subjek schema otomatis pada halaman ini.
+	# Diisi oleh controller publik pada action #show.
+	def schema_subject
+		@schema_subject
+	end
 
   def layout_by_resource
 		if controller_path.include? "admin"

@@ -347,4 +347,133 @@ module AdminHelper
 		controller.controller_name == "inquiries"
 	end
 
+	def is_admins_seo_page?
+		controller.controller_name == "schema_markups" ||
+		controller.controller_name == "settings"
+	end
+
+	# ---------------------------------------------------------------------------
+	# Schema Manager
+	# ---------------------------------------------------------------------------
+
+	# Model yang bisa dijadikan target schema bertipe "record"
+	def get_schema_markup_objects
+		%w[Page Article Service Industry Portfolio Product Location Career]
+	end
+
+	def get_schema_scope_types
+		[%w[global All\ pages], %w[record Specific\ record], %w[path URL\ pattern]]
+	end
+
+	def get_schema_status
+		[[0, 'Draft'], [1, 'Active']]
+	end
+
+	def get_schema_types
+		%w[
+			Organization LocalBusiness WebSite WebPage Service Product FAQPage
+			Article BlogPosting Event Person VideoObject JobPosting DefinedTermSet ItemList Custom
+		]
+	end
+
+	def schema_record_label(record)
+		%i[name title full_name company_name].each do |attr|
+			value = record.try(attr)
+			return "#{value} [ID:#{record.id}]" if value.present?
+		end
+		"##{record.id}"
+	end
+
+	def badge_schema_scope(markup)
+		cls = { 'global' => 'primary', 'record' => 'success', 'path' => 'info' }[markup.scope_type] || 'secondary'
+		content_tag(:span, markup.scope_type, class: "badge bg-#{cls}-subtle text-#{cls} badge-border")
+	end
+
+	def badge_schema_status(markup)
+		cls = markup.status_active? ? 'success' : 'warning'
+		content_tag(:span, markup.status, class: "badge bg-#{cls}-subtle text-#{cls} badge-border")
+	end
+
+	# Perkiraan URL publik tempat schema ini akan tampil (untuk tombol test)
+	def schema_markup_preview_url(markup)
+		path = case markup.scope_type
+					 when 'record' then schema_markup_record_path(markup.schemable)
+					 when 'path' then markup.path_pattern.split('*').first.to_s.chomp('/')
+					 else '/'
+					 end
+
+		"https://prisma-ads.com#{path.presence || '/'}"
+	end
+
+	def schema_markup_record_path(record)
+		return '/' if record.blank?
+
+		slug = record.try(:slug).presence || record.id
+
+		case record.class.name
+		when 'Page' then "/#{slug}"
+		when 'Article' then "/articles/#{slug}"
+		when 'Service' then "/services/#{slug}"
+		when 'Industry' then "/industries/#{slug}"
+		when 'Portfolio' then "/campaigns/#{slug}"
+		when 'Product' then "/products/#{slug}"
+		when 'Location' then "/locations/#{slug}"
+		when 'Career' then "/careers/#{slug}"
+		else '/'
+		end
+	end
+
+	# Template siap pakai untuk kolom JSON di form Schema Manager
+	def schema_presets
+		{
+			'FAQPage' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'FAQPage',
+				'mainEntity' => [
+					{
+						'@type' => 'Question',
+						'name' => 'Pertanyaan yang tampil di halaman',
+						'acceptedAnswer' => { '@type' => 'Answer', 'text' => 'Jawaban yang tampil di halaman.' }
+					}
+				]
+			},
+			'Service' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'Service',
+				'name' => 'Nama layanan',
+				'serviceType' => 'Out-of-Home Advertising',
+				'provider' => { '@id' => 'https://prisma-ads.com/#organization' },
+				'areaServed' => { '@type' => 'Country', 'name' => 'Indonesia' }
+			},
+			'Event' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'Event',
+				'name' => 'Nama event',
+				'startDate' => '2026-01-01T09:00:00+07:00',
+				'location' => { '@type' => 'Place', 'name' => 'Lokasi', 'address' => 'Alamat lengkap' },
+				'organizer' => { '@id' => 'https://prisma-ads.com/#organization' }
+			},
+			'VideoObject' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'VideoObject',
+				'name' => 'Judul video',
+				'description' => 'Deskripsi video',
+				'thumbnailUrl' => 'https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg',
+				'uploadDate' => '2026-01-01T09:00:00+07:00',
+				'embedUrl' => 'https://www.youtube.com/embed/VIDEO_ID'
+			},
+			'ItemList' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'ItemList',
+				'itemListElement' => [
+					{ '@type' => 'ListItem', 'position' => 1, 'name' => 'Item pertama', 'url' => 'https://prisma-ads.com/' }
+				]
+			},
+			'Custom' => {
+				'@context' => 'https://schema.org',
+				'@type' => 'WebPage'
+			}
+		}
+	end
+
 end

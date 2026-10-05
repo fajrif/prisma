@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_01_090300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,12 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
     t.string "latitude", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "street_address", default: "", null: false
+    t.string "locality", default: "", null: false
+    t.string "region", default: "", null: false
+    t.string "postal_code", default: "", null: false
+    t.string "country_code", default: "ID", null: false
+    t.boolean "primary_office", default: false, null: false
   end
 
   create_table "admins", force: :cascade do |t|
@@ -400,6 +406,23 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
     t.string "description", default: "", null: false
   end
 
+  create_table "schema_markups", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.integer "scope_type", default: 0, null: false
+    t.string "schemable_type"
+    t.bigint "schemable_id"
+    t.string "path_pattern", default: "", null: false
+    t.string "schema_type", default: "", null: false
+    t.jsonb "body", default: {}
+    t.integer "status", default: 1, null: false
+    t.integer "order_no", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["path_pattern"], name: "index_schema_markups_on_path_pattern"
+    t.index ["schemable_type", "schemable_id"], name: "index_schema_markups_on_schemable_type_and_schemable_id"
+    t.index ["status"], name: "index_schema_markups_on_status"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.bigint "page_id"
     t.bigint "snippet_id"
@@ -420,6 +443,23 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
     t.integer "hidden", default: 0, null: false
     t.index ["service_id"], name: "index_segments_on_service_id"
     t.index ["snippet_id"], name: "index_segments_on_snippet_id"
+  end
+
+  create_table "seo_settings", force: :cascade do |t|
+    t.string "seoable_type", null: false
+    t.bigint "seoable_id", null: false
+    t.jsonb "meta_title", default: {}
+    t.jsonb "meta_description", default: {}
+    t.jsonb "og_title", default: {}
+    t.jsonb "og_description", default: {}
+    t.string "og_type", default: "", null: false
+    t.string "twitter_card", default: "", null: false
+    t.string "canonical_override", default: "", null: false
+    t.string "robots", default: "", null: false
+    t.datetime "content_modified_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seoable_type", "seoable_id"], name: "index_seo_settings_on_seoable_type_and_seoable_id", unique: true
   end
 
   create_table "services", force: :cascade do |t|
@@ -443,6 +483,14 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_21_123559) do
     t.string "admin_contact", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "legal_name", default: "", null: false
+    t.string "alternate_name", default: "", null: false
+    t.date "founding_date"
+    t.string "email", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.string "whatsapp", default: "", null: false
+    t.jsonb "same_as", default: []
+    t.jsonb "description", default: {}
   end
 
   create_table "snippets", force: :cascade do |t|

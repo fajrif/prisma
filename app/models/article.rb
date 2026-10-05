@@ -6,6 +6,7 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
 
 	include PublishedExtension
+	include HasSeoSetting
 
 	translates :content, backend: :action_text
 

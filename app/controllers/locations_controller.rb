@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
 
   def show
 		@location = Location.friendly.find(params[:id])
+		@schema_subject = @location
     @locations = Location.all # for the dropdown
     set_banner_show
     @products = @location.products.where.not(latitude: nil, longitude: nil)

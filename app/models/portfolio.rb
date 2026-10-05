@@ -6,6 +6,7 @@ class Portfolio < ApplicationRecord
   friendly_id :name, use: :slugged
 
 	include QuilleditorExtension
+	include HasSeoSetting
 
   default_scope { order(created_at: :desc) }
 

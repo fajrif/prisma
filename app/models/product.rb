@@ -5,6 +5,8 @@ class Product < ApplicationRecord
 	extend FriendlyId
   friendly_id :name, use: :slugged
 
+	include HasSeoSetting
+
   default_scope { order(created_at: :desc) }
 
   # Billboard types: 0 = Digital Billboard, 1 = Static Billboard

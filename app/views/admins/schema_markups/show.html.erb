@@ -1,0 +1,73 @@
+<% title_page("Schema details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-actions text-end">
+					<%= link_to 'Edit', edit_admins_schema_markup_path(@schema_markup), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_schema_markup_path(@schema_markup), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_schema_markups_path, :class => 'btn btn-light' %>
+				</div>
+				<div id="show-table">
+					<table class="table table-hover">
+						<tr>
+							<td style="width:15%;"><b>ID</b></td>
+							<td><%= @schema_markup.id %></td>
+						</tr>
+						<tr>
+							<td><b>Name</b></td>
+							<td><h5 class="fs-14 mb-0 text-body"><%= @schema_markup.name %></h5></td>
+						</tr>
+						<tr>
+							<td><b>Schema Type</b></td>
+							<td><%= @schema_markup.schema_type %></td>
+						</tr>
+						<tr>
+							<td><b>Scope</b></td>
+							<td><%= badge_schema_scope(@schema_markup) %></td>
+						</tr>
+						<tr>
+							<td><b>Target</b></td>
+							<td><%= @schema_markup.target_label %></td>
+						</tr>
+						<tr>
+							<td><b>Status</b></td>
+							<td><%= badge_schema_status(@schema_markup) %></td>
+						</tr>
+						<tr>
+							<td><b>Order</b></td>
+							<td><%= @schema_markup.order_no %></td>
+						</tr>
+						<tr>
+							<td><b>Preview URL</b></td>
+							<td>
+								<%- preview_url = schema_markup_preview_url(@schema_markup) -%>
+								<%= link_to preview_url, preview_url, target: "_blank" %>
+								&nbsp;
+								<%= link_to "Test di Rich Results Test",
+														"https://search.google.com/test/rich-results?url=#{CGI.escape(preview_url)}",
+														target: "_blank", class: "btn btn-soft-primary btn-sm" %>
+							</td>
+						</tr>
+					</table>
+
+					<h5 class="fs-14 mt-4">JSON-LD</h5>
+					<% I18n.available_locales.each do |locale| %>
+						<%- content = @schema_markup.pretty_body(locale) -%>
+						<div class="mb-3">
+							<span class="badge bg-secondary-subtle text-secondary badge-border mb-1"><%= locale.to_s.upcase %></span>
+							<% if content.present? %>
+								<% if @schema_markup.parsed_body(locale).nil? %>
+									<div class="alert alert-danger py-1 mb-1">JSON tidak valid untuk bahasa ini — schema tidak akan dirender.</div>
+								<% end %>
+								<pre class="bg-light p-3 rounded border" style="max-height:400px;overflow:auto;"><%= content %></pre>
+							<% else %>
+								<p class="text-muted mb-0">Belum diisi untuk bahasa ini.</p>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

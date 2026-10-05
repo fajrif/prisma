@@ -5,6 +5,8 @@ class Service < ApplicationRecord
 	extend FriendlyId
   friendly_id :name, use: :slugged
 
+	include HasSeoSetting
+
 	default_scope { order(id: :asc) }
 
 	has_one_attached :image, dependent: :purge

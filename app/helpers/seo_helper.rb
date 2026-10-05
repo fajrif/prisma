@@ -1,4 +1,6 @@
 module SeoHelper
+  BASE_URL = 'https://prisma-ads.com'.freeze
+
   # Maps Rails locale symbol to a valid BCP 47 language tag for <html lang>
   def html_lang_code
     case I18n.locale.to_sym
@@ -8,46 +10,43 @@ module SeoHelper
     end
   end
 
+  # Prefix locale untuk membangun URL internal ("" untuk :en)
+  def locale_prefix
+    I18n.locale.to_sym == I18n.default_locale.to_sym ? '' : "/#{I18n.locale}"
+  end
+
+  # Path halaman saat ini setelah dinormalisasi:
+  # - tanpa trailing slash
+  # - "/home" dan "/id/home" dianggap sama dengan halaman depan
+  def canonical_path
+    path = request.path
+    path = path.chomp('/') unless path == '/'
+    path = path.sub(%r{\A(/(?:id|cn))?/home\z}) { Regexp.last_match(1).to_s }
+    path.presence || '/'
+  end
+
   # Generate canonical URL for the current page
   # - Always uses https://prisma-ads.com (no www)
   # - Strips trailing slashes for consistency
-  # - Handles locale prefixes appropriately
+  # - Halaman berpaginasi memakai canonical ke dirinya sendiri (self-referencing)
   def canonical_url
-    # Build the canonical URL
-    base_url = 'https://prisma-ads.com'
-
-    # Get the current path
-    path = request.path
-
-    # Remove trailing slash if present (except for root)
-    path = path.chomp('/') unless path == '/'
-
-    # Handle pagination - remove page params from canonical
-    # but keep the base URL
-    if params[:page].present? && params[:page].to_i > 1
-      # For paginated pages, include page in canonical
-      "#{base_url}#{path}"
-    else
-      # For first page or non-paginated, use base path
-      "#{base_url}#{path}"
-    end
+    url = "#{BASE_URL}#{canonical_path}"
+    page = params[:page].to_i
+    page > 1 ? "#{url}?page=#{page}" : url
   end
 
   # Generate alternate language links for hreflang tags
   def alternate_language_urls
-    base_url = 'https://prisma-ads.com'
-    current_path = request.path.chomp('/')
-
-    stripped_path = current_path.sub(%r{^/(id|cn)}, '')
+    stripped_path = canonical_path.sub(%r{\A/(id|cn)}, '')
     stripped_path = '/' if stripped_path.blank?
 
     # For root path, locale homepages have no suffix (avoids trailing-slash mismatch with canonical)
     path_suffix = stripped_path == '/' ? '' : stripped_path
 
     {
-      en: "#{base_url}#{stripped_path}",
-      id: "#{base_url}/id#{path_suffix}",
-      cn: "#{base_url}/cn#{path_suffix}"
+      en: "#{BASE_URL}#{stripped_path}",
+      id: "#{BASE_URL}/id#{path_suffix}",
+      cn: "#{BASE_URL}/cn#{path_suffix}"
     }
   end
 
@@ -62,6 +61,79 @@ module SeoHelper
     tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:en])
 
     safe_join(tags, "\n\t")
+  end
+
+  # ---------------------------------------------------------------------------
+  # Structured data (JSON-LD)
+  # ---------------------------------------------------------------------------
+
+  # Merender schema otomatis (satu blok @graph) + schema manual dari Schema Manager
+  # (satu blok per entri). Dipanggil dari layout pada bagian <head>.
+  def render_structured_data
+    return if controller_name == 'errors'
+
+    tags = []
+
+    payloads = StructuredData::Registry.for(
+      record: schema_subject,
+      path: canonical_path,
+      url: canonical_url,
+      trail: breadcrumb_trail
+    )
+    tags << json_ld_script('@context' => 'https://schema.org', '@graph' => payloads) if payloads.present?
+
+    SchemaMarkup.matching(record: schema_subject, path: canonical_path).each do |markup|
+      parsed = markup.parsed_body
+      tags << json_ld_script(parsed) if parsed.present?
+    end
+
+    safe_join(tags, "\n\t")
+  rescue StandardError => e
+    Rails.logger.error("[StructuredData] render failed: #{e.class} #{e.message}")
+    nil
+  end
+
+  def json_ld_script(payload)
+    content_tag(:script, raw(json_escape(payload.to_json)), type: 'application/ld+json')
+  end
+
+  # Jejak navigasi halaman saat ini: [[nama, path], ...]
+  # Dipakai untuk schema BreadcrumbList (tampilan visual menyusul Bulan 3).
+  def breadcrumb_trail
+    trail = [['Home', locale_prefix.presence || '/']]
+
+    case controller_name
+    when 'pages'
+      trail << [@page.title, canonical_path] if @page && canonical_path != (locale_prefix.presence || '/')
+    when 'articles'
+      trail << ['Blog', "#{locale_prefix}/articles"]
+      trail << [@article.title, canonical_path] if @article
+    when 'services'
+      trail << ['Services', "#{locale_prefix}/services"]
+      trail << [@service.name, canonical_path] if @service
+    when 'industries'
+      trail << ['Industries', "#{locale_prefix}/industries"]
+      trail << [@industry.name, canonical_path] if @industry
+    when 'portfolios'
+      trail << ['Campaigns', "#{locale_prefix}/campaigns"]
+      trail << [@portfolio.name, canonical_path] if @portfolio
+    when 'locations'
+      trail << ['Locations', "#{locale_prefix}/locations"]
+      trail << [@location.name, canonical_path] if @location
+    when 'products'
+      if @product
+        trail << ['Locations', "#{locale_prefix}/locations"]
+        trail << [@product.location.name, "#{locale_prefix}/locations/#{@product.location.slug}"] if @product.location
+        trail << [@product.name, canonical_path]
+      end
+    when 'careers'
+      trail << ['Careers', "#{locale_prefix}/careers"]
+      trail << [@career.title, canonical_path] if @career
+    when 'inquiries'
+      trail << ['Contact Us', canonical_path]
+    end
+
+    trail
   end
 
   # Set the page H1 for SEO

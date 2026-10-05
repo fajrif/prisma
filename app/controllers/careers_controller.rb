@@ -12,6 +12,7 @@ class CareersController < ApplicationController
 
   def show
 		@career = Career.friendly.find(params[:id])
+		@schema_subject = @career
   end
 
   def create

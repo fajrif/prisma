@@ -1,35 +1,71 @@
-<% title_page("Settings") %>
+<% title_page("Company Profile") %>
 <div class="row">
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<% if @setting %>
+				<div class="form-actions text-end">
+					<%= link_to 'Edit', edit_admins_setting_path, :class => 'btn btn-secondary' %>
+				</div>
+				<div id="show-table">
 					<table class="table table-hover">
 						<tr>
-							<td style="width:15%;"><b>Name</b></td>
-							<td><b>App Setting</b></td>
-						</tr>
-						<tr>
-							<td><b>Admin Investor</b></td>
+							<td style="width:20%;"><b>Logo</b></td>
 							<td>
-								<%= @setting.admin_investor %>
+								<% if @setting.logo.attached? %>
+									<%= image_tag @setting.logo, style: "max-height:80px;" %>
+								<% else %>
+									<span class="text-muted">Belum diunggah — schema memakai logo bawaan aplikasi.</span>
+								<% end %>
 							</td>
 						</tr>
 						<tr>
-							<td><b>Created At</b></td>
-							<td><%= @setting.try(:created_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+							<td><b>Legal Name</b></td>
+							<td><%= blank_or_not(@setting.legal_name) %></td>
 						</tr>
 						<tr>
-							<td><b>Updated At</b></td>
-							<td><%= @setting.try(:updated_at).try(:strftime,'%d/%m/%Y %H:%M') %></td>
+							<td><b>Alternate Name</b></td>
+							<td><%= blank_or_not(@setting.alternate_name) %></td>
+						</tr>
+						<tr>
+							<td><b>Description</b></td>
+							<td><%= blank_or_not(@setting.description) %></td>
+						</tr>
+						<tr>
+							<td><b>Founding Date</b></td>
+							<td><%= blank_or_not(@setting.founding_date) %></td>
+						</tr>
+						<tr>
+							<td><b>Email</b></td>
+							<td><%= blank_or_not(@setting.email) %></td>
+						</tr>
+						<tr>
+							<td><b>Phone</b></td>
+							<td><%= blank_or_not(@setting.phone) %></td>
+						</tr>
+						<tr>
+							<td><b>WhatsApp</b></td>
+							<td><%= blank_or_not(@setting.whatsapp) %></td>
+						</tr>
+						<tr>
+							<td><b>Social Profiles</b></td>
+							<td>
+								<% if @setting.same_as_list.any? %>
+									<ul class="mb-0 ps-3">
+										<% @setting.same_as_list.each do |url| %>
+											<li><%= link_to url, url, target: "_blank" %></li>
+										<% end %>
+									</ul>
+								<% else %>
+									<span class="text-muted">Memakai daftar bawaan dari konfigurasi aplikasi.</span>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Admin Contact</b></td>
+							<td><%= blank_or_not(@setting.admin_contact) %></td>
 						</tr>
 					</table>
-					<div class="form-actions">
-						<%= link_to 'Edit', edit_admins_setting_path, :class => 'btn btn-secondary' %>
-					</div>
-				<% else %>
-						<%= link_to 'Add New', new_admins_setting_path, :class => 'btn btn-success' %>
-				<% end %>
+				</div>
 			</div>
 		</div>
 	</div>

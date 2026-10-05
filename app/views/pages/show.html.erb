@@ -5,7 +5,14 @@
 		<div class="container-xl">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="font-weight-320 text-uppercase"><%= @page.title %></h3>
+					<%- content_for(:has_visible_h1, true) -%>
+					<h1 class="font-weight-320 text-uppercase text-h3"><%= @page.title %></h1>
+					<% if @page.updated_at.present? %>
+						<p class="text-medium text-extra-dark-gray margin-20px-bottom">
+							<%= t('global.last_updated', default: 'Last updated') %>:
+							<time datetime="<%= @page.updated_at.to_date.iso8601 %>"><%= @page.updated_at.strftime('%d %B %Y') %></time>
+						</p>
+					<% end %>
 					<%= raw @page.content %>
 				</div>
 			</div>

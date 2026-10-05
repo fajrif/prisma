@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
   def show
 		@article = Article.friendly.find(params[:id])
+		@schema_subject = @article
 		@meta_title = @article.meta_title unless @article.meta_title.blank?
 		@meta_desc = @article.meta_description unless @article.meta_description.blank?
 		@articles = Article.most_recent_articles(@article.id, 3)

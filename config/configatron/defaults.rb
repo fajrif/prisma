@@ -36,7 +36,21 @@ configatron.sales_name = "Sales Team Prisma Ads"
 configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"
 
-configatron.recaptcha_v3_secret_key = "6LfW3vsrAAAAADqz9s5BDdF1dQmPR3990aqPp1pv"
-configatron.recaptcha_v3_site_key = "6LfW3vsrAAAAAFFNauE_HMDdARsTmtUARYsG_S8j"
-configatron.recaptcha_v2_secret_key = "6Lfz3vsrAAAAAN1LZ3LBUVKT4jJ9lLdVqeL2m8js"
-configatron.recaptcha_v2_site_key = "6Lfz3vsrAAAAADwt6eF_4UUrbSAAY7MvXLwLPJ6P"
+# Site key bersifat publik (memang tampil di HTML), secret key TIDAK boleh ada di repo.
+#
+# MIGRASI (Roadmap Bulan 1):
+#   1. Set RECAPTCHA_V3_SECRET_KEY & RECAPTCHA_V2_SECRET_KEY di server (dan .env lokal).
+#   2. Rotate kedua secret key di https://www.google.com/recaptcha/admin — key lama sudah
+#      terlanjur tersimpan di git history, jadi harus dianggap bocor.
+#   3. Setelah itu hapus nilai fallback di bawah ini.
+configatron.recaptcha_v3_site_key = ENV.fetch('RECAPTCHA_V3_SITE_KEY', "6LfW3vsrAAAAAFFNauE_HMDdARsTmtUARYsG_S8j")
+configatron.recaptcha_v2_site_key = ENV.fetch('RECAPTCHA_V2_SITE_KEY', "6Lfz3vsrAAAAADwt6eF_4UUrbSAAY7MvXLwLPJ6P")
+
+configatron.recaptcha_v3_secret_key = ENV.fetch('RECAPTCHA_V3_SECRET_KEY') do
+	Rails.logger.warn("[config] RECAPTCHA_V3_SECRET_KEY belum diset — memakai fallback dari repo") if defined?(Rails.logger)
+	"6LfW3vsrAAAAADqz9s5BDdF1dQmPR3990aqPp1pv"
+end
+configatron.recaptcha_v2_secret_key = ENV.fetch('RECAPTCHA_V2_SECRET_KEY') do
+	Rails.logger.warn("[config] RECAPTCHA_V2_SECRET_KEY belum diset — memakai fallback dari repo") if defined?(Rails.logger)
+	"6Lfz3vsrAAAAAN1LZ3LBUVKT4jJ9lLdVqeL2m8js"
+end

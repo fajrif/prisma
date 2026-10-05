@@ -5,6 +5,8 @@ class Location < ApplicationRecord
 	extend FriendlyId
   friendly_id :name, use: :slugged
 
+	include HasSeoSetting
+
 	default_scope { order(id: :asc) }
 
   validates_presence_of :name, :description
