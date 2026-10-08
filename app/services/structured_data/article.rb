@@ -14,8 +14,8 @@ module StructuredData
 				'headline' => plain_text(@record.title, limit: 110),
 				'description' => description,
 				'image' => attachment_url(@record.image),
-				'datePublished' => @record.published_date&.iso8601,
-				'dateModified' => (@record.updated_at || @record.published_date)&.iso8601,
+				'datePublished' => jakarta_time(@record.published_date),
+				'dateModified' => jakarta_time(@record.updated_at || @record.published_date),
 				'inLanguage' => locale_code,
 				'articleSection' => plain_text(@record.category&.name),
 				# Penulis per artikel menyusul pada Bulan 2 (halaman Author)
@@ -27,6 +27,13 @@ module StructuredData
 		end
 
 		private
+
+		# Spec meminta ISO 8601 dengan offset +07:00. `config.time_zone` aplikasi masih
+		# default UTC, jadi konversi dilakukan di sini saja — mengubah timezone aplikasi
+		# akan menggeser semua tanggal yang sudah tampil di halaman.
+		def jakarta_time(value)
+			value&.in_time_zone('Asia/Jakarta')&.iso8601
+		end
 
 		def description
 			plain_text(@record.meta_description.presence || @record.short_description, limit: 300)

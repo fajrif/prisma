@@ -46,10 +46,31 @@ id:
     message: "Pesan"
     success: "Terima kasih pesan dan data anda telah terkirim!"
     errors: "Maaf sistem tidak dapat memproses data anda!"
+  breadcrumb:
+    home: "Beranda"
+    blog: "Artikel"
+    services: "Layanan"
+    industries: "Industri"
+    campaigns: "Kampanye"
+    locations: "Lokasi"
+    careers: "Karier"
+    contact: "Kontak"
+  schema:
+    place:
+      format: "Format"
+      size: "Ukuran"
+      orientation: "Orientasi"
+      lighting: "Pencahayaan"
+      slot_duration: "Durasi slot"
+      operating_hours: "Jam tayang"
+      impressions_per_day: "Estimasi impresi per hari"
+      points_of_interest: "Titik sekitar"
+  product: "Billboard"
   products:
     category: "Kategori"
     specification: "Spesifikasi"
     est_impression: "Est. Impression"
+    map: "Koordinat"
     address: "Alamat"
     interest: "Point of Interest"
   applications:
@@ -65,7 +86,7 @@ id:
     name: "Lokasi"
     title: "Lokasi Papan Iklan Digital & Statis"
     desc: "Papan reklame kami menawarkan penempatan optimal di area dengan lalu lintas tinggi di seluruh Jakarta dan sekitarnya. Setiap lokasi memberikan jangkauan dan interaksi yang kuat, memastikan visibilitas maksimal untuk kampanye Anda."
-    jabodetabek:
+    jakarta:
       desc: "Our Jakarta locations cover key business districts, transit hubs, and high-traffic urban zones, ideal for reaching diverse, on-the-move audiences in Indonesia’s capital."
     bali:
       desc: "Positioned in popular tourist areas, beach towns, and lifestyle hotspots, our Bali sites offer premium exposure to both local and international visitors in a vibrant, experience-driven setting."

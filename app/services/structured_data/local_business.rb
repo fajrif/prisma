@@ -17,7 +17,8 @@ module StructuredData
 				'@id' => "#{base_url}/#office-#{@address.id}",
 				'name' => office_name,
 				'parentOrganization' => organization_ref,
-				'url' => base_url,
+				# Sebelumnya semua node LocalBusiness menunjuk ke homepage.
+				'url' => "#{base_url}/contact-us",
 				'telephone' => @address.phone1.presence || @address.phone2.presence,
 				'email' => @address.email1.presence || @address.email2.presence,
 				'address' => address_payload,

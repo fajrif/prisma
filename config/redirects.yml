@@ -1,0 +1,66 @@
+# Peta redirect 301 dari URL lama (WordPress & struktur lama) ke URL sekarang.
+#
+# Sumber: request/SEO_Strategist/prisma-redirect-map_1.csv (293 baris).
+# Sebagian besar baris CSV tidak ada di sini karena sudah tercakup aturan umum:
+#   - 258 baris /products/{slug} -> /billboards/{slug}  : route redirect di config/routes.rb
+#   - 15 baris /careers/{slug kedaluwarsa} -> /careers   : CareersController
+#   -  3 baris /locations/jabodetabek -> /locations/jakarta : route redirect
+#   -  1 baris www -> apex                                 : nginx, bukan aplikasi
+#
+# Nilai target ditulis tanpa prefix bahasa. Prefix ditambahkan saat runtime
+# mengikuti locale permintaan, kecuali target yang memang dipaksa ke satu bahasa
+# (artikel yang hanya punya versi Indonesia).
+
+# Slug halaman lama. Kunci sudah dinormalisasi: huruf kecil, tanpa "-" dan "_".
+legacy_pages:
+  # --- Titik billboard yang kini punya halamannya sendiri ---
+  # Sebelumnya semua ini dibuang ke /locations atau homepage.
+  bringrandeled:           "/billboards/brin-grande-led-gatot-subroto"
+  ledbraga:                "/billboards/led-braga"
+  ledtekukumar:            "/billboards/led-teuku-umar"
+  metaled:                 "/billboards/metaled-djakarta-theater"
+
+  # --- Halaman perusahaan ---
+  about:                   "/about-us"
+  contact:                 "/contact-us"
+  work:                    "/campaigns"
+  product:                 "/locations"
+  products:                "/locations"
+  blog:                    "/articles"
+  career:                  "/careers"
+
+  # --- Halaman konten lama ---
+  perbedaanoohdooh:        "/about-us"
+  3inovasippalingdiminati: "/innovations"
+  3lokasistrategisooh:     "/locations"
+  inovasikunciooh:         "/innovations"
+  billboard:               "/"
+  pixanimation:            "/innovations"
+  inivasirealtimestream:   "/articles"
+  3faktachasesmartled:     "/articles"
+  multichannlooh:          "/articles"
+  jasabillboardjakarta:    "/articles"
+
+# Artikel yang pindah slug atau dihapus. Kunci = slug lama, nilai = slug baru.
+# Dipakai juga oleh legacy_blog untuk URL /YYYY/MM/DD/{slug}/.
+articles:
+  ooh-audio-prisma-advertising: "ooh-audio-led-videotron-dengan-suara-melalui-gadget"
+  vending-machine-sprite-gratis-boostad: "vending-machine-sprite-gratis-viral"
+  what-is-advertising-used-for-a-visual-guide-to-public-and-business-communication: "perbedaan-iklan-komersial-dan-non-komersial-pengertian-ciri-contohnya"
+  prisma-group-drives-ooh-indonesia-innovation-through-dana-s-gold-winning-pr-awards-2026-campaign: "prisma-group-perkuat-posisi-ooh-indonesia-melalui-campaign-dana-peraih-gold-pr-awards-2026"
+
+# Artikel di atas yang hanya punya versi Indonesia, sehingga redirect selalu
+# diarahkan ke /id/ apa pun locale permintaannya (sesuai kolom "To" di CSV).
+articles_force_locale:
+  ooh-audio-led-videotron-dengan-suara-melalui-gadget: "id"
+  vending-machine-sprite-gratis-viral: "id"
+  prisma-group-perkuat-posisi-ooh-indonesia-melalui-campaign-dana-peraih-gold-pr-awards-2026: "id"
+
+# Halaman layanan yang berganti nama.
+services:
+  pix-animation-studio: "pix-creative-mindworks"
+
+# URL WordPress berbentuk ?p=ID. Kunci = ID, nilai = path tujuan.
+# CSV baru memuat 305; tambahan menyusul setelah strategist mengecek GSC.
+query_p:
+  "305": "/"

@@ -11,6 +11,24 @@
             <%= f.input :est_impression, as: :string %>
             <%= f.input :address, as: :text %>
             <%= f.input :interest, as: :string %>
+
+            <%- # Field terstruktur untuk schema Place. Nilai awal hasil parse otomatis
+                # dari Specification / Est. Impression / Address, jadi perlu dikoreksi. -%>
+            <hr class="my-3">
+            <p class="text-muted mb-2"><small>Data terstruktur (dipakai untuk schema Place di hasil pencarian & AI). Nilai awal hasil parse otomatis — mohon diperiksa.</small></p>
+            <div class="row">
+              <div class="col-md-6"><%= f.input :city, as: :string, label: "City", hint: "Contoh: Jakarta Selatan, Bekasi, Bandung" %></div>
+              <div class="col-md-6"><%= f.input :region, as: :string, label: "Region / Province", hint: "Contoh: DKI Jakarta, Jawa Barat, Banten, Bali" %></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><%= f.input :size, as: :string, label: "Size", hint: "Contoh: 6m (h) x 30m (w)" %></div>
+              <div class="col-md-6"><%= f.input :lighting, as: :string, label: "Lighting", hint: "Front Light / Back Light. Kosongkan untuk titik LED" %></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><%= f.input :impressions_per_day, as: :integer, label: "Est. Impressions / Day", hint: "Angka saja, tanpa pemisah ribuan" %></div>
+              <div class="col-md-4"><%= f.input :slot_duration, as: :string, label: "Slot Duration", hint: "Khusus LED. Contoh: 15 detik" %></div>
+              <div class="col-md-4"><%= f.input :operating_hours, as: :string, label: "Operating Hours", hint: "Khusus LED. Contoh: 06:00-24:00" %></div>
+            </div>
             <%= f.input :video_url, as: :string %>
 					</fieldset>
 					<%= f.error :base %>

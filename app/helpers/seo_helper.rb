@@ -1,5 +1,4 @@
 module SeoHelper
-  BASE_URL = 'https://prisma-ads.com'.freeze
 
   # Maps Rails locale symbol to a valid BCP 47 language tag for <html lang>
   def html_lang_code
@@ -30,7 +29,7 @@ module SeoHelper
   # - Strips trailing slashes for consistency
   # - Halaman berpaginasi memakai canonical ke dirinya sendiri (self-referencing)
   def canonical_url
-    url = "#{BASE_URL}#{canonical_path}"
+    url = "#{configatron.site_url}#{canonical_path}"
     page = params[:page].to_i
     page > 1 ? "#{url}?page=#{page}" : url
   end
@@ -44,9 +43,9 @@ module SeoHelper
     path_suffix = stripped_path == '/' ? '' : stripped_path
 
     {
-      en: "#{BASE_URL}#{stripped_path}",
-      id: "#{BASE_URL}/id#{path_suffix}",
-      cn: "#{BASE_URL}/cn#{path_suffix}"
+      en: "#{configatron.site_url}#{stripped_path}",
+      id: "#{configatron.site_url}/id#{path_suffix}",
+      cn: "#{configatron.site_url}/cn#{path_suffix}"
     }
   end
 
@@ -100,37 +99,39 @@ module SeoHelper
   # Jejak navigasi halaman saat ini: [[nama, path], ...]
   # Dipakai untuk schema BreadcrumbList (tampilan visual menyusul Bulan 3).
   def breadcrumb_trail
-    trail = [['Home', locale_prefix.presence || '/']]
+    trail = [[t('breadcrumb.home'), locale_prefix.presence || '/']]
 
     case controller_name
     when 'pages'
       trail << [@page.title, canonical_path] if @page && canonical_path != (locale_prefix.presence || '/')
     when 'articles'
-      trail << ['Blog', "#{locale_prefix}/articles"]
+      trail << [t('breadcrumb.blog'), "#{locale_prefix}/articles"]
       trail << [@article.title, canonical_path] if @article
     when 'services'
-      trail << ['Services', "#{locale_prefix}/services"]
+      trail << [t('breadcrumb.services'), "#{locale_prefix}/services"]
       trail << [@service.name, canonical_path] if @service
     when 'industries'
-      trail << ['Industries', "#{locale_prefix}/industries"]
+      trail << [t('breadcrumb.industries'), "#{locale_prefix}/industries"]
       trail << [@industry.name, canonical_path] if @industry
     when 'portfolios'
-      trail << ['Campaigns', "#{locale_prefix}/campaigns"]
+      trail << [t('breadcrumb.campaigns'), "#{locale_prefix}/campaigns"]
       trail << [@portfolio.name, canonical_path] if @portfolio
     when 'locations'
-      trail << ['Locations', "#{locale_prefix}/locations"]
+      trail << [t('breadcrumb.locations'), "#{locale_prefix}/locations"]
       trail << [@location.name, canonical_path] if @location
     when 'products'
       if @product
-        trail << ['Locations', "#{locale_prefix}/locations"]
-        trail << [@product.location.name, "#{locale_prefix}/locations/#{@product.location.slug}"] if @product.location
+        trail << [t('breadcrumb.locations'), "#{locale_prefix}/locations"]
+        if @product.location
+          trail << [@product.location.name, "#{locale_prefix}/locations/#{@product.location.slug}"]
+        end
         trail << [@product.name, canonical_path]
       end
     when 'careers'
-      trail << ['Careers', "#{locale_prefix}/careers"]
+      trail << [t('breadcrumb.careers'), "#{locale_prefix}/careers"]
       trail << [@career.title, canonical_path] if @career
     when 'inquiries'
-      trail << ['Contact Us', canonical_path]
+      trail << [t('breadcrumb.contact'), canonical_path]
     end
 
     trail

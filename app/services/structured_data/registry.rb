@@ -1,8 +1,17 @@
 module StructuredData
 	# Menentukan schema otomatis apa saja yang dipasang pada halaman yang sedang dibuka.
 	# Setiap generator dibungkus rescue supaya error pada satu schema tidak menjatuhkan halaman.
+	#
+	# Pemetaan halaman -> blok mengikuti tabel di prisma-schema-spec.md bagian "Which
+	# blocks go on which page".
 	class Registry
-		LOCAL_BUSINESS_PATHS = ['/', '/contact-us', '/about-us'].freeze
+		# Spec tidak mencantumkan LocalBusiness sama sekali, dan menyatakan Home hanya
+		# memuat Organization + WebSite. Node ini dipertahankan hanya di halaman kontak,
+		# tempatnya memang relevan (alamat + koordinat kantor). Masih menunggu
+		# konfirmasi strategist, lihat Pertanyaan Terbuka di ROADMAP_PLAN.md.
+		LOCAL_BUSINESS_PATHS = ['/contact-us'].freeze
+
+		LOCATIONS_INDEX_PATH = '/locations'.freeze
 
 		def self.for(record: nil, path: nil, url: nil, trail: [])
 			new(record: record, path: path, url: url, trail: trail).payloads
@@ -21,6 +30,8 @@ module StructuredData
 			items << safely('WebSite') { WebSite.call }
 			items.concat(safely('LocalBusiness') { LocalBusiness.all } || []) if local_business_page?
 			items << safely('Breadcrumb') { Breadcrumb.new(trail: @trail).payload }
+			items << safely('WebPage') { WebPage.for_path(path: @path, url: @url) }
+			items << safely('LocationsIndex') { locations_index_payload }
 			items << safely('Record') { record_payload }
 			items.flatten.compact_blank
 		end
@@ -31,10 +42,19 @@ module StructuredData
 			LOCAL_BUSINESS_PATHS.include?(@path)
 		end
 
+		# Arsip /locations tidak punya record tunggal, jadi ditentukan dari path.
+		def locations_index_payload
+			return unless @path == LOCATIONS_INDEX_PATH
+
+			Collection.for_locations_index(url: @url)
+		end
+
 		def record_payload
 			case @record
 			when ::Article then Article.new(record: @record, url: @url).payload
 			when ::Service then Service.new(record: @record, url: @url).payload
+			when ::Product then Place.new(record: @record, url: @url).payload
+			when ::Location then Collection.for_location(record: @record, url: @url)
 			end
 		end
 

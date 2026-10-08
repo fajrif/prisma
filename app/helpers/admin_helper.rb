@@ -402,7 +402,7 @@ module AdminHelper
 					 else '/'
 					 end
 
-		"https://prisma-ads.com#{path.presence || '/'}"
+		"#{configatron.site_url}#{path.presence || '/'}"
 	end
 
 	def schema_markup_record_path(record)
@@ -442,7 +442,7 @@ module AdminHelper
 				'@type' => 'Service',
 				'name' => 'Nama layanan',
 				'serviceType' => 'Out-of-Home Advertising',
-				'provider' => { '@id' => 'https://prisma-ads.com/#organization' },
+				'provider' => { '@id' => "#{configatron.site_url}/#organization" },
 				'areaServed' => { '@type' => 'Country', 'name' => 'Indonesia' }
 			},
 			'Event' => {
@@ -451,7 +451,7 @@ module AdminHelper
 				'name' => 'Nama event',
 				'startDate' => '2026-01-01T09:00:00+07:00',
 				'location' => { '@type' => 'Place', 'name' => 'Lokasi', 'address' => 'Alamat lengkap' },
-				'organizer' => { '@id' => 'https://prisma-ads.com/#organization' }
+				'organizer' => { '@id' => "#{configatron.site_url}/#organization" }
 			},
 			'VideoObject' => {
 				'@context' => 'https://schema.org',

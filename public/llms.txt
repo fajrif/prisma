@@ -1,0 +1,37 @@
+# Prisma Advertising
+
+> Prisma Advertising (PT Prisma Harapan) is an out-of-home (OOH) and digital out-of-home (DOOH) media company in Indonesia. It provides static billboards, digital billboards and videotrons, transit advertising and creative OOH, with billboard locations across Jakarta and Greater Jakarta (Jabodetabek), Bandung and Bali.
+
+Prisma Advertising plans, produces, installs and reports on outdoor advertising campaigns end to end, including location planning and permits. Campaign performance can be monitored through the Prisma OOH Dashboard. Creative OOH, 3D and anamorphic content is produced with sister company PiX Creative Mindworks. Prisma is part of Prisma Group, together with PiX Creative Mindworks and BoostAD.
+
+The site is available in Indonesian (/id), English and Chinese (/cn).
+
+## Services
+
+- [Static Billboard Advertising](https://prisma-ads.com/id/services/static-billboard-advertising): billboard statis di lokasi strategis
+- [Digital Billboard Advertising](https://prisma-ads.com/id/services/digital-billboard-advertising): billboard digital, LED dan videotron
+- [Transit Advertising](https://prisma-ads.com/id/services/transit-advertising): iklan transit
+- [Creative OOH Branding](https://prisma-ads.com/id/services/creative-ooh-branding): kampanye OOH kreatif
+- [OOH Dashboard](https://prisma-ads.com/id/services/ooh-dashboard): pemantauan dan pelaporan kampanye
+- [PiX Creative Mindworks](https://prisma-ads.com/id/services/pix-creative-mindworks): produksi konten kreatif, 3D dan animasi
+
+## Billboard locations
+
+- [Jakarta & Jabodetabek](https://prisma-ads.com/id/locations/jakarta): billboard statis dan LED di Jakarta, Tangerang dan Bekasi
+- [Bandung](https://prisma-ads.com/id/locations/bandung)
+- [Bali](https://prisma-ads.com/id/locations/bali)
+
+## Company
+
+- [About Prisma Advertising](https://prisma-ads.com/id/about-us)
+- [Campaigns](https://prisma-ads.com/id/campaigns): selected client campaigns
+- [Industries](https://prisma-ads.com/id/industries)
+- [Innovations](https://prisma-ads.com/id/innovations)
+- [Contact](https://prisma-ads.com/id/contact-us)
+
+## Articles
+
+- [Articles hub](https://prisma-ads.com/id/articles): guides on billboards, OOH and DOOH advertising in Indonesia
+- [Perbedaan baliho dan billboard](https://prisma-ads.com/id/articles/perbedaan-baliho-dan-billboard-mana-media-iklan-luar-ruang-yang-tepat-untuk-kampanye-anda)
+- [Perusahaan advertising billboard di Jakarta](https://prisma-ads.com/id/articles/perusahaan-advertising-billboard-di-jakarta-panduan-memilih-mitra-ooh-terbaik)
+- [Mengenal perbedaan OOH dan DOOH](https://prisma-ads.com/id/articles/mengenal-perbedaan-ooh-dan-dooh)

@@ -2,7 +2,6 @@ module StructuredData
 	# Induk semua generator schema otomatis.
 	# Tiap subclass mengembalikan satu Hash JSON-LD lewat #payload.
 	class Base
-		BASE_URL = 'https://prisma-ads.com'.freeze
 
 		def self.call(...)
 			new(...).payload
@@ -15,7 +14,7 @@ module StructuredData
 		protected
 
 		def base_url
-			BASE_URL
+			configatron.site_url
 		end
 
 		def organization_id

@@ -52,6 +52,10 @@ Rails.application.routes.draw do
   # Endpoint laporan pelanggaran Content-Security-Policy (mode report-only)
   post '/csp-violation-report', to: 'csp_reports#create'
 
+  # Dipakai redirect di dalam `scope '(:locale)'`: mengembalikan '' untuk bahasa default
+  # (en) dan '/id' atau '/cn' untuk lainnya, supaya redirect tidak melempar antar-bahasa.
+  locale_prefix_for = ->(params) { params[:locale].present? ? "/#{params[:locale]}" : '' }
+
   scope '(:locale)', locale: /id|cn/ do
     namespace :admins do
       root to: 'dashboard#index'
@@ -144,8 +148,30 @@ Rails.application.routes.draw do
     resources :industries, only: %i[index show]
     resources :portfolios, only: %i[index show], path: 'campaigns'
     resources :careers, only: %i[show create]
+    # --- Redirect URL lama, satu rilis bersama rename di bawah ---
+    # Harus dideklarasikan SEBELUM `resources :locations`, karena /locations/:id
+    # akan menangkap 'jabodetabek' lebih dulu dan membalas 404.
+    # Query ?billboard_type= dipertahankan sesuai permintaan client.
+    get '/locations/jabodetabek', to: redirect(status: 301) { |params, request|
+      target = "#{locale_prefix_for.call(params)}/locations/jakarta"
+      request.query_string.present? ? "#{target}?#{request.query_string}" : target
+    }
+    # 86 titik x 3 bahasa = 258 baris di redirect map, seluruhnya tercakup aturan ini.
+    get '/products/:id', to: redirect(status: 301) { |params, _request|
+      "#{locale_prefix_for.call(params)}/billboards/#{params[:id]}"
+    }
+
     resources :locations, only: %i[index show]
-    resources :products, only: [:show]
+    # Halaman titik billboard. URL /products/:slug diganti /billboards/:slug
+    # (disetujui client 8 Okt 2026); slug-nya sendiri tidak berubah.
+    resources :products, only: [:show], path: 'billboards'
+
+
+    # URL lama yang masih dikunjungi di ketiga bahasa. Harus sebelum catch-all
+    # `match ':id'`, kalau tidak akan dicari sebagai halaman CMS dan balas 404.
+    get 'products', to: 'redirects#legacy_page', defaults: { slug: 'products' }
+    get 'blog', to: 'redirects#legacy_page', defaults: { slug: 'blog' }
+    get 'career', to: 'redirects#legacy_page', defaults: { slug: 'career' }
 
     # route to pages
     match 'contact-us', to: 'inquiries#show', via: :get, as: :contact_us

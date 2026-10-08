@@ -1,4 +1,4 @@
-<%- legal_pages = Page.where(slug: %w[privacy-policy terms-conditions editorial-standard], status: 1) -%>
+<%- legal_pages = Page.where(slug: %w[privacy-policy terms editorial-standard], status: 1) -%>
 <% if legal_pages.any? %>
 	<ul class="text-small p-0 mb-0 list-unstyled d-inline-block">
 		<% legal_pages.each_with_index do |legal_page, index| %>

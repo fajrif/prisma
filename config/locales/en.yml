@@ -45,10 +45,31 @@ en:
     message: "Message"
     success: "Thank You for your inquiry!"
     errors: "Oops sorry we are unable to submit your inquiry!"
+  breadcrumb:
+    home: "Home"
+    blog: "Blog"
+    services: "Services"
+    industries: "Industries"
+    campaigns: "Campaigns"
+    locations: "Locations"
+    careers: "Careers"
+    contact: "Contact Us"
+  schema:
+    place:
+      format: "Format"
+      size: "Size"
+      orientation: "Orientation"
+      lighting: "Lighting"
+      slot_duration: "Slot duration"
+      operating_hours: "Operating hours"
+      impressions_per_day: "Estimated daily impressions"
+      points_of_interest: "Nearby landmarks"
+  product: "Billboard"
   products:
     category: "Category"
     specification: "Specification"
     est_impression: "Est. Impression"
+    map: "Coordinates"
     address: "Address"
     interest: "Point of Interest"
   applications:
@@ -64,7 +85,7 @@ en:
     name: "Location"
     title: "Digital & Static Billboard Locations"
     desc: "Our billboards offer optimal placement in high-traffic areas all around Jakarta and beyond. Each location delivers powerful reach and engagement, ensuring maximum visibility for your campaigns."
-    jabodetabek:
+    jakarta:
       desc: "Our Jakarta locations cover key business districts, transit hubs, and high-traffic urban zones, ideal for reaching diverse, on-the-move audiences in Indonesia’s capital."
     bali:
       desc: "Positioned in popular tourist areas, beach towns, and lifestyle hotspots, our Bali sites offer premium exposure to both local and international visitors in a vibrant, experience-driven setting."

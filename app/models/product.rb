@@ -35,8 +35,10 @@ class Product < ApplicationRecord
 		self.name_changed?
 	end
 
+	# Ditampilkan latitude dulu, mengikuti konvensi umum peta. Sebelumnya longitude
+	# yang ditulis lebih dulu, sehingga "106.99, -6.24" terbaca seperti koordinat terbalik.
 	def map_coordinate
-		"#{self.longitude}, #{self.latitude}"
+		"#{self.latitude}, #{self.longitude}"
 	end
 
   def image_url_thumb

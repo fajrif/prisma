@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+	# URL WordPress lama berbentuk /?p=123 masih dikutip dan sebelumnya dibalas 200
+	# berisi beranda, yang dari sisi crawler adalah duplikat.
+	before_action :redirect_legacy_query_param, only: [:show]
 
   def show
 		# get public page
@@ -29,8 +32,38 @@ class PagesController < ApplicationController
 			end
 
 		rescue ActiveRecord::RecordNotFound
-      raise ActiveRecord::RecordNotFound, "Page not found"
+      raise ActiveRecord::RecordNotFound, "Page not found" unless redirect_legacy_article_slug!
 		end
   end
+
+	private
+
+	def redirect_legacy_query_param
+		return if params[:p].blank?
+
+		target = RedirectMap.query_p(params[:p]) || '/'
+		destination = target == '/' ? (locale_prefix.presence || '/') : "#{locale_prefix}#{target}"
+
+		redirect_to destination, status: :moved_permanently, allow_other_host: false
+	end
+
+	# Pada /id dan /cn bahasa ada di params[:id], bukan params[:locale] (lihat hack
+	# di #show), dan before_action berjalan sebelum hack itu menyetel I18n.locale.
+	def locale_prefix
+		code = params[:locale].presence || (%w[id cn].include?(params[:id]) ? params[:id] : nil)
+		code.present? ? "/#{code}" : ''
+	end
+
+	# Sebagian artikel lama hidup di URL tanpa prefix /articles/. URL itu jatuh ke
+	# catch-all ini, jadi padanannya dicek sebelum menyerah ke 404.
+	def redirect_legacy_article_slug!
+		target = RedirectMap.article(params[:id])
+		return false if target.blank? || !Article.exists?(slug: target)
+
+		forced = RedirectMap.article_locale(target)
+		prefix = forced.present? ? "/#{forced}" : locale_prefix
+		redirect_to "#{prefix}/articles/#{target}", status: :moved_permanently, allow_other_host: false
+		true
+	end
 
 end

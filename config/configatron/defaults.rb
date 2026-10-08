@@ -5,6 +5,8 @@
 #   configatron.emails.sales_reciept.subject = 'Thanks for your order'
 #
 #   configatron.file.storage = :s3
+# URL kanonik situs. Sumber tunggal untuk canonical, hreflang, dan seluruh @id schema.
+configatron.site_url = "https://prisma-ads.com"
 configatron.site_name = "prisma-ads.com"
 configatron.site_title = "Prisma Advertising OOH Indonesia | Innovative Outdoor Ads"
 configatron.site_description = "Prisma Advertising adalah perusahaan OOH indonesia yang akan memaksimalkan dampak merek anda dengan billboard Jakarta, videotron Jakarta, dll"

@@ -46,10 +46,31 @@ cn:
     message: "留言"
     success: "感谢您的咨询！"
     errors: "抱歉，我们无法提交您的咨询！"
+  breadcrumb:
+    home: "首页"
+    blog: "文章"
+    services: "服务"
+    industries: "行业"
+    campaigns: "案例"
+    locations: "地点"
+    careers: "招聘"
+    contact: "联系我们"
+  schema:
+    place:
+      format: "格式"
+      size: "尺寸"
+      orientation: "方向"
+      lighting: "照明"
+      slot_duration: "时段时长"
+      operating_hours: "播放时间"
+      impressions_per_day: "每日预估曝光量"
+      points_of_interest: "周边地标"
+  product: "广告牌"
   products:
     category: "类别"
     specification: "规格"
     est_impression: "预估曝光量"
+    map: "坐标"
     address: "地址"
     interest: "兴趣点"
   applications:
@@ -65,7 +86,7 @@ cn:
     name: "位置"
     title: "数字与静态广告牌位置"
     desc: "我们的广告牌位于雅加达及周边地区的高流量区域，拥有最佳位置。每个地点都具有强大的覆盖和互动能力，确保您的广告活动获得最大的曝光率。"
-    jabodetabek:
+    jakarta:
       desc: "我们在雅加达的位置覆盖了主要的商业区、交通枢纽和高流量城市区域，非常适合触达印尼首都中多样化、移动中的受众。"
     bali:
       desc: "位于热门旅游区、海滨小镇和生活方式热点地区，我们在巴厘岛的广告位可以向本地及国际游客提供优质曝光，营造充满活力的体验式环境。"

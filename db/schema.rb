@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_01_090300) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_09_102000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -377,6 +377,13 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_01_090300) do
     t.datetime "updated_at", null: false
     t.string "slug", default: ""
     t.integer "billboard_type", default: 0, null: false
+    t.string "city", default: "", null: false
+    t.string "region", default: "", null: false
+    t.string "size", default: "", null: false
+    t.string "lighting", default: "", null: false
+    t.string "slot_duration", default: "", null: false
+    t.string "operating_hours", default: "", null: false
+    t.integer "impressions_per_day"
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
@@ -476,6 +483,9 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_01_090300) do
     t.integer "banner_section_id"
     t.jsonb "meta_title", default: {}
     t.jsonb "meta_description", default: {}
+    t.string "service_type", default: "", null: false
+    t.jsonb "area_served", default: []
+    t.string "schema_provider_url", default: "", null: false
     t.index ["slug"], name: "index_services_on_slug", unique: true
   end
 

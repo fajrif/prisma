@@ -12,7 +12,15 @@ class CareersController < ApplicationController
 
   def show
 		@career = Career.friendly.find(params[:id])
+
+		# Lowongan kedaluwarsa dihapus atau di-unpublish, tapi URL-nya masih ada di
+		# hasil pencarian. Strategist meminta 301 ke daftar lowongan, bukan error.
+		# Sebelumnya lowongan draft tetap disajikan dengan status 200.
+		return redirect_to_careers_index! unless @career.published?
+
 		@schema_subject = @career
+	rescue ActiveRecord::RecordNotFound
+		redirect_to_careers_index!
   end
 
   def create
@@ -47,6 +55,11 @@ class CareersController < ApplicationController
   end
 
 	protected
+
+	def redirect_to_careers_index!
+		prefix = I18n.locale.to_sym == I18n.default_locale.to_sym ? '' : "/#{I18n.locale}"
+		redirect_to "#{prefix}/careers", status: :moved_permanently, allow_other_host: false
+	end
 
 	def set_banner
 		if @banner_section = BannerSection.find_by_name("Career")

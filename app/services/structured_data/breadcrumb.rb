@@ -11,12 +11,14 @@ module StructuredData
 			compact_deep(
 				'@type' => 'BreadcrumbList',
 				'itemListElement' => @trail.each_with_index.map do |(name, url), index|
+					last = index == @trail.size - 1
 					{
 						'@type' => 'ListItem',
 						'position' => index + 1,
 						'name' => plain_text(name),
-						'item' => absolute_url(url)
-					}
+						# Spec: item terakhir adalah halaman saat ini dan tidak memakai `item`.
+						'item' => last ? nil : absolute_url(url)
+					}.compact
 				end
 			)
 		end

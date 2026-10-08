@@ -1,98 +1,74 @@
+# Menangani URL warisan WordPress dan struktur lama. Peta tujuannya ada di
+# config/redirects.yml, dibaca lewat RedirectMap.
 class RedirectsController < ApplicationController
-  # Handle legacy WordPress blog URLs: /YYYY/MM/DD/slug/
+  # /YYYY/MM/DD/slug/ -> /articles/:slug
   def legacy_blog
-    # Extract the slug from the path
     slug = extract_slug_from_path(params[:path])
+    article_slug = resolve_article_slug(slug)
 
-    if slug.present?
-      # Try to find matching article by slug
-      article = Article.friendly.find_by(slug: normalize_slug(slug))
+    return redirect_to_article(article_slug) if article_slug.present?
 
-      if article
-        redirect_to article_path(article), status: :moved_permanently
-        return
-      end
-    end
-
-    # If no matching article, redirect to articles index
-    redirect_to articles_path, status: :moved_permanently
+    # Tidak ada padanan: arahkan ke indeks artikel.
+    redirect_to localized('/articles'), status: :moved_permanently, allow_other_host: false
   end
 
-  # Handle legacy /works/ URLs -> redirect to /campaigns/
+  # /works/:slug -> /campaigns/:slug
   def legacy_works
-    slug = params[:slug]
+    portfolio = Portfolio.friendly.find_by(slug: params[:slug]) if params[:slug].present?
 
-    if slug.present?
-      # Try to find matching portfolio/campaign
-      portfolio = Portfolio.friendly.find_by(slug: slug)
-
-      if portfolio
-        redirect_to portfolio_path(portfolio), status: :moved_permanently
-        return
-      end
+    if portfolio
+      redirect_to portfolio_path(portfolio), status: :moved_permanently
+    else
+      redirect_to portfolios_path, status: :moved_permanently
     end
-
-    redirect_to portfolios_path, status: :moved_permanently
   end
 
-  # Handle legacy /wp-content/ URLs (old WordPress uploads) -> 410 Gone
+  # Unggahan WordPress lama sudah tidak ada dan tidak punya padanan -> 410 Gone.
   def legacy_wp_content
     head :gone
   end
 
-  # Handle other legacy pages that should redirect to home or specific pages
+  # Slug halaman lama, dipetakan di config/redirects.yml.
   def legacy_page
-    slug = params[:slug].to_s.downcase.gsub(/[-_]/, '')
+    target = RedirectMap.legacy_page(params[:slug])
 
-    # Map legacy slugs to new locations
-    # Using page_path for CMS pages since innovations is not a public resource
-    redirect_map = {
-      'metaled' => '/innovations',
-      'perbedaanoohdooh' => '/about-us',
-      '3inovasippalingdiminati' => '/innovations',
-      '3lokasistrategisooh' => locations_path,
-      'inovasikunciooh' => '/innovations',
-      'bringrandeled' => root_path,
-      'ledtekukumar' => locations_path,
-      'ledbraga' => locations_path,
-      'billboard' => root_path,
-      # Legacy pages from Ahref 500 errors
-      'about' => '/about-us',
-      'contact' => '/contact-us',
-      'work' => portfolios_path,
-      'product' => locations_path,
-      'pixanimation' => '/innovations',
-      'inivasirealtimestream' => articles_path,
-      '3faktachasesmartled' => articles_path,
-      'multichannlooh' => articles_path,
-      'jasabillboardjakarta' => articles_path
-    }
-
-    target = redirect_map[slug] || root_path
-    redirect_to target, status: :moved_permanently
+    # Slug yang tidak dikenal diarahkan ke beranda, bukan 404, karena route ini
+    # hanya dipasang untuk URL yang memang pernah ada dan masih punya backlink.
+    redirect_to localized(target || '/'), status: :moved_permanently, allow_other_host: false
   end
 
   private
 
+  # Mengubah slug lama jadi slug artikel yang hidup sekarang.
+  def resolve_article_slug(slug)
+    return nil if slug.blank?
+
+    normalized = slug.to_s.chomp('/').parameterize
+    mapped = RedirectMap.article(normalized) || normalized
+    Article.exists?(slug: mapped) ? mapped : nil
+  end
+
+  def redirect_to_article(slug)
+    forced = RedirectMap.article_locale(slug)
+    prefix = forced.present? ? "/#{forced}" : locale_prefix_path
+    redirect_to "#{prefix}/articles/#{slug}", status: :moved_permanently, allow_other_host: false
+  end
+
+  # Menambahkan prefix bahasa permintaan ke path tujuan.
+  def localized(path)
+    return path if path.start_with?('http')
+
+    prefix = locale_prefix_path
+    path == '/' ? (prefix.presence || '/') : "#{prefix}#{path}"
+  end
+
+  def locale_prefix_path
+    I18n.locale.to_sym == I18n.default_locale.to_sym ? '' : "/#{I18n.locale}"
+  end
+
   def extract_slug_from_path(path)
     return nil if path.blank?
 
-    # Path format: YYYY/MM/DD/slug or just slug
-    # Remove date prefix if present and extract the last segment
-    segments = path.to_s.split('/').reject(&:blank?)
-
-    # If we have date segments (YYYY/MM/DD/slug), take the last part
-    if segments.length >= 4 && segments[0..2].all? { |s| s.match?(/^\d+$/) }
-      segments.last
-    else
-      segments.last
-    end
-  end
-
-  def normalize_slug(slug)
-    return nil if slug.blank?
-
-    # Remove trailing slashes and normalize
-    slug.to_s.gsub(%r{/$}, '').parameterize
+    path.to_s.split('/').reject(&:blank?).last
   end
 end

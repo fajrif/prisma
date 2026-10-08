@@ -71,6 +71,16 @@
     <td><b>Interest</b></td>
     <td><%= @product.interest %></td>
   </tr>
+  <%- # Data terstruktur untuk schema Place -%>
+  <% { 'City' => @product.city, 'Region' => @product.region, 'Size' => @product.size,
+       'Lighting' => @product.lighting, 'Slot Duration' => @product.slot_duration,
+       'Operating Hours' => @product.operating_hours,
+       'Est. Impressions / Day' => @product.impressions_per_day }.each do |label, value| %>
+    <tr>
+      <td><b><%= label %></b></td>
+      <td><%= value.presence || content_tag(:span, '—', class: 'text-muted') %></td>
+    </tr>
+  <% end %>
   <tr>
     <td><b>Longitude</b></td>
     <td><%= @product.longitude %></td>

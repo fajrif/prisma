@@ -1,6 +1,52 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# robots.txt for prisma-ads.com
+# All search engines and AI crawlers are allowed. Only the admin area is blocked.
+
 User-agent: *
 Disallow: /admins/
 Disallow: /csp-violation-report
+Allow: /rails/active_storage/blobs/
+Allow: /rails/active_storage/representations/
+Disallow: /rails/active_storage/
+
+# Search engines
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+Disallow: /admins/
+Allow: /
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+Disallow: /admins/
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Disallow: /admins/
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Disallow: /admins/
+Allow: /
+
+# Google Gemini / AI training
+User-agent: Google-Extended
+Disallow: /admins/
+Allow: /
+
+# Microsoft Copilot, Apple, Meta, others
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: CCBot
+User-agent: DuckAssistBot
+Disallow: /admins/
+Allow: /
 
 Sitemap: https://prisma-ads.com/sitemap.xml

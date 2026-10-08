@@ -183,20 +183,20 @@ $(document).ready(function () {
   // Billboard type filter change handler
   $('#billboard-type-filter').on('change', function () {
     const billboardType = $(this).val();
-    const locationId = $(this).data('location-id');
-
-    // Build URL with billboard_type parameter
-    let url = `/locations/${locationId}`;
-    if (billboardType) {
-      url += `?billboard_type=${billboardType}`;
-    }
+    // Path dirender server-side sehingga sudah membawa prefix bahasa (/id, /cn).
+    // Sebelumnya path disusun di sini sebagai `/locations/${slug}`, yang membuang
+    // prefix tersebut dan melempar pengunjung /id dan /cn kembali ke versi Inggris.
+    const locationPath = $(this).data('location-path') || `/locations/${$(this).data('location-id')}`;
 
     // Update browser URL without reloading
+    const url = billboardType
+      ? `${locationPath}?billboard_type=${encodeURIComponent(billboardType)}`
+      : locationPath;
     window.history.pushState({}, '', url);
 
     // Make AJAX request to update content
     $.ajax({
-      url: `/locations/${locationId}`,
+      url: locationPath,
       type: 'GET',
       dataType: 'script',
       data: { billboard_type: billboardType }
