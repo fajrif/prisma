@@ -39,20 +39,35 @@ configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
 configatron.company_phone1 = "+62 21 5835 6570"
 
 # Site key bersifat publik (memang tampil di HTML), secret key TIDAK boleh ada di repo.
+# Nilai fallback yang dulu ditulis di sini sudah terlanjur masuk git history sejak
+# commit 12e2abf, jadi keempat key lama harus dianggap bocor dan wajib diganti.
 #
-# MIGRASI (Roadmap Bulan 1):
-#   1. Set RECAPTCHA_V3_SECRET_KEY & RECAPTCHA_V2_SECRET_KEY di server (dan .env lokal).
-#   2. Rotate kedua secret key di https://www.google.com/recaptcha/admin — key lama sudah
-#      terlanjur tersimpan di git history, jadi harus dianggap bocor.
-#   3. Setelah itu hapus nilai fallback di bawah ini.
-configatron.recaptcha_v3_site_key = ENV.fetch('RECAPTCHA_V3_SITE_KEY', "6LfW3vsrAAAAAFFNauE_HMDdARsTmtUARYsG_S8j")
-configatron.recaptcha_v2_site_key = ENV.fetch('RECAPTCHA_V2_SITE_KEY', "6Lfz3vsrAAAAADwt6eF_4UUrbSAAY7MvXLwLPJ6P")
+# SUMBER ENV:
+#   production  -> ~/.profile user deployer (systemd menjalankan ExecStart via `bash -lc`)
+#   development -> .env lewat dotenv-rails
+# Keterangan lengkap ada di .env.example.
+#
+# ROTASI (Week 1, BELUM selesai):
+#   1. Buat key pair BARU di https://www.google.com/recaptcha/admin. Tidak ada cara
+#      meregenerasi secret saja — secret terikat pada site key-nya — jadi keempat
+#      nilai ikut berubah, bukan hanya yang secret.
+#   2. Set keempatnya di ~/.profile (pakai `export`) dan di .env lokal.
+#   3. `systemctl restart unicorn-prisma`; reload/USR2 tidak mengambil ENV baru.
+#      Lalu uji form inquiry dan form lamaran kerja.
+#   4. Hapus key lama di console Google — ini yang benar-benar mematikan key bocor.
+recaptcha_env = lambda do |name|
+	value = ENV[name].to_s
+	next value if value.present?
 
-configatron.recaptcha_v3_secret_key = ENV.fetch('RECAPTCHA_V3_SECRET_KEY') do
-	Rails.logger.warn("[config] RECAPTCHA_V3_SECRET_KEY belum diset — memakai fallback dari repo") if defined?(Rails.logger)
-	"6LfW3vsrAAAAADqz9s5BDdF1dQmPR3990aqPp1pv"
+	# Production sengaja gagal keras saat boot: form yang diam-diam lolos tanpa
+	# verifikasi jauh lebih sulit terdeteksi daripada aplikasi yang tidak mau start.
+	raise KeyError, "ENV #{name} belum diset — set di ~/.profile (production) atau .env (development)" if Rails.env.production?
+
+	Rails.logger.warn("[config] #{name} belum diset; reCAPTCHA tidak akan terverifikasi") if defined?(Rails.logger)
+	''
 end
-configatron.recaptcha_v2_secret_key = ENV.fetch('RECAPTCHA_V2_SECRET_KEY') do
-	Rails.logger.warn("[config] RECAPTCHA_V2_SECRET_KEY belum diset — memakai fallback dari repo") if defined?(Rails.logger)
-	"6Lfz3vsrAAAAAN1LZ3LBUVKT4jJ9lLdVqeL2m8js"
-end
+
+configatron.recaptcha_v3_site_key = recaptcha_env.call('RECAPTCHA_V3_SITE_KEY')
+configatron.recaptcha_v2_site_key = recaptcha_env.call('RECAPTCHA_V2_SITE_KEY')
+configatron.recaptcha_v3_secret_key = recaptcha_env.call('RECAPTCHA_V3_SECRET_KEY')
+configatron.recaptcha_v2_secret_key = recaptcha_env.call('RECAPTCHA_V2_SECRET_KEY')
