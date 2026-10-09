@@ -216,6 +216,9 @@ id:
     pages: "Halaman"
     max: "Maks"
     all: "Semua"
+  dates:
+    updated: "Diperbarui"
+    last_updated: "Terakhir diperbarui"
   seo:
     site: "Prisma Advertising"
     billboard_type:

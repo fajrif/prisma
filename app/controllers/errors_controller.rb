@@ -7,6 +7,9 @@ class ErrorsController < ApplicationController
     respond_to do |format|
       format.html { render :show, status: @status_code }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[@status_code] }, status: @status_code }
+      # Format lain (.xml, .txt, dst.) tidak punya template error. Tanpa baris ini,
+      # URL tak dikenal seperti /x.xml jatuh ke failsafe dan dibalas 500, bukan 404.
+      format.any { head @status_code }
     end
   end
 

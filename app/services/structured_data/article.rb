@@ -15,7 +15,7 @@ module StructuredData
 				'description' => description,
 				'image' => attachment_url(@record.image),
 				'datePublished' => jakarta_time(@record.published_date),
-				'dateModified' => jakarta_time(@record.updated_at || @record.published_date),
+				'dateModified' => jakarta_time(@record.content_modified_at), # sama dengan lastmod di sitemap
 				'inLanguage' => locale_code,
 				'articleSection' => plain_text(@record.category&.name),
 				# Penulis per artikel menyusul pada Bulan 2 (halaman Author)

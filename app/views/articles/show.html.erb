@@ -22,7 +22,12 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-10">
-				<span class="post-author text-medium d-block margin-10px-bottom"><%= @article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
+				<span class="post-author text-medium d-block margin-10px-bottom">
+					<%= content_date_tag(@article.published_date) %>
+					<% if updated_after_publish?(@article) %>
+						&middot; <%= t('dates.updated') %> <%= content_date_tag(@article.content_modified_at) %>
+					<% end %>
+				</span>
 				<h5 class="font-weight-500 line-height-normal"><%= @article.title %></h5>
 				<div class="line-height-26 text-large">
 					<%= raw @article.content %>

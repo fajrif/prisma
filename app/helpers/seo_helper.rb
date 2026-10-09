@@ -158,6 +158,25 @@ module SeoHelper
     trail
   end
 
+  # Tanggal yang terbaca mesin: <time datetime="2026-10-09T10:00:00+07:00">Oct 09, 2026</time>.
+  # Format tampilan dipertahankan sama dengan sebelumnya ('%b %d, %Y').
+  def content_date_tag(time, format: '%b %d, %Y')
+    return if time.blank?
+
+    local = time.in_time_zone('Asia/Jakarta')
+    content_tag(:time, local.strftime(format), datetime: local.iso8601)
+  end
+
+  # Label "Diperbarui" hanya bila konten berubah minimal sehari setelah terbit, supaya
+  # simpan ulang di hari yang sama tidak memunculkannya.
+  def updated_after_publish?(record)
+    published = record.try(:published_date)
+    modified = record.try(:content_modified_at)
+    return false if published.blank? || modified.blank?
+
+    (modified.to_date - published.to_date) >= 1
+  end
+
   # Set the page H1 for SEO
   # Call this in your view: <% seo_h1("Page Heading") %>
   # The H1 will be rendered in the layout as a visually hidden element

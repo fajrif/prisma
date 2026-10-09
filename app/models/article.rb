@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :title, :short_description, :meta_title, :meta_description
 
@@ -40,5 +41,13 @@ class Article < ApplicationRecord
 
 	def read_only?
 		false
+	end
+
+	private
+
+	# published_date bisa diatur manual dan kadang lebih baru dari updated_at (beda jam di
+	# hari yang sama). Ikut dihitung supaya dateModified tidak pernah sebelum datePublished.
+	def related_modified_at
+		[published_date]
 	end
 end

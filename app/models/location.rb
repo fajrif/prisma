@@ -1,4 +1,5 @@
 class Location < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :description
 
@@ -27,4 +28,10 @@ class Location < ApplicationRecord
 		self.name_changed?
 	end
 
+	private
+
+	# Halaman hub menampilkan daftar billboard, jadi ikut berubah bila billboard-nya berubah.
+	def related_modified_at
+		[products.unscope(:order).maximum(:updated_at)]
+	end
 end

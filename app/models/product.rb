@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :description
 

@@ -25,7 +25,7 @@
 							</div>
 							<% end %>
 							<div class="post-details padding-40px-all md-padding-20px-all padding-10px-top">
-								<span class="post-author text-medium text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.try(:published_date).try(:strftime, '%b %d, %Y') %></span>
+								<span class="post-author text-medium text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= content_date_tag(article.published_date) %></span>
 								<a href="<%= article_path(article) %>" class="alt-font post-title font-weight-400 text-extra-large text-extra-dark-gray d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.title %></a>
 								<%= link_to article_path(article), class: "btn btn-medium btn-line text-gray text-uppercase margin-20px-top sm-margin-10px-top" do %>
 									<%= t('global.read_more') %> <i class="fa-solid fa-arrow-right icon-very-small" aria-hidden="true"></i>

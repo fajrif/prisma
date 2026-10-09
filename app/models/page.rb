@@ -1,4 +1,5 @@
 class Page < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :meta_title, :meta_description
 
@@ -27,4 +28,12 @@ class Page < ApplicationRecord
 		self.try(:banner_section).try(:banners)
 	end
 
+	private
+
+	# Isi Page disusun dari section -> snippet (tabel `sections` tidak punya timestamp)
+	# dan rich text `content` per bahasa.
+	def related_modified_at
+		[snippets.maximum(:updated_at),
+		 ActionText::RichText.where(record_type: 'Page', record_id: id).maximum(:updated_at)]
+	end
 end

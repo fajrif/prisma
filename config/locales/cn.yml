@@ -216,6 +216,9 @@ cn:
     pages: "页面"
     max: "最大"
     all: "全部"
+  dates:
+    updated: "Updated"
+    last_updated: "Last updated"
   seo:
     site: "Prisma Advertising"
     billboard_type:

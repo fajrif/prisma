@@ -1,4 +1,5 @@
 class Career < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :short_description
 

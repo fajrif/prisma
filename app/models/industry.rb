@@ -1,4 +1,5 @@
 class Industry < ApplicationRecord
+	include ContentModified
 	extend Mobility
   translates :name, :caption, :description, :meta_title, :meta_description
 

@@ -215,6 +215,9 @@ en:
     pages: "Pages"
     max: "Max"
     all: "All"
+  dates:
+    updated: "Updated"
+    last_updated: "Last updated"
   seo:
     site: "Prisma Advertising"
     billboard_type:

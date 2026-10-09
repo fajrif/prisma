@@ -52,6 +52,15 @@ Rails.application.routes.draw do
   # Endpoint laporan pelanggaran Content-Security-Policy (mode report-only)
   post '/csp-violation-report', to: 'csp_reports#create'
 
+  # Sitemap dibangkitkan dari database (T9). Harus di luar dan sebelum `scope '(:locale)'`,
+  # kalau tidak `match ':id'` menangkapnya sebagai halaman CMS. File statis lama di
+  # public/ sudah dihapus: middleware static Rails melayaninya lebih dulu dari route ini.
+  get 'sitemap.xml', to: 'sitemaps#index', defaults: { format: 'xml' }, as: :sitemap
+  get 'sitemap-:section.xml', to: 'sitemaps#show', defaults: { format: 'xml' },
+                              constraints: { section: /pages|locations|billboards|articles/ }
+  # Nama file lama Pro-Sitemaps, mungkin masih terdaftar di Search Console.
+  get 'sitemap_4629941.xml', to: redirect('/sitemap.xml', status: 301)
+
   # Dipakai redirect di dalam `scope '(:locale)'`: mengembalikan '' untuk bahasa default
   # (en) dan '/id' atau '/cn' untuk lainnya, supaya redirect tidak melempar antar-bahasa.
   locale_prefix_for = ->(params) { params[:locale].present? ? "/#{params[:locale]}" : '' }
