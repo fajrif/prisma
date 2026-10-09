@@ -1,0 +1,60 @@
+<%# Panel "SEO & Social". Dipakai di form pages, articles, products, dan locations.
+    Locals:
+      f          - form builder milik record (model harus include HasSeoSetting)
+      show_meta  - tampilkan meta title/description. Isi false untuk model yang sudah punya
+                   kolom meta sendiri (Page, Article), supaya editor tidak melihat dua field
+                   meta title yang berbeda. -%>
+<% show_meta = local_assigns.fetch(:show_meta, true) %>
+<div class="accordion custom-accordionwithicon mb-3" id="seoPanelAccordion">
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#seoPanel" aria-expanded="false" aria-controls="seoPanel">
+				<i class="ri-share-forward-line me-2"></i> SEO &amp; SOCIAL
+			</button>
+		</h2>
+		<div id="seoPanel" class="accordion-collapse collapse" data-bs-parent="#seoPanelAccordion">
+			<div class="accordion-body">
+				<div class="alert alert-info py-2">
+					Kolom yang <b>dikosongkan</b> tidak error: situs memakai rantai cadangan
+					(kolom model &rarr; dirakit otomatis dari data &rarr; default situs).
+					Diisi per bahasa &mdash; ganti bahasa lewat menu di pojok kanan atas.
+				</div>
+				<%= f.simple_fields_for :seo_setting, f.object.seo do |s| %>
+					<% if show_meta %>
+						<%= s.input :meta_title, as: :string, required: false,
+									hint: 'Ideal ±60 karakter. Kosong = dirakit otomatis dari data.' %>
+						<%= s.input :meta_description, as: :text, required: false, input_html: { rows: 3 },
+									hint: 'Ideal ±155 karakter. Kosong = dirakit otomatis dari data.' %>
+					<% end %>
+					<%= s.input :og_title, as: :string, required: false, label: 'Social title',
+								hint: 'Judul saat dibagikan (WhatsApp, LinkedIn, dll). Kosong = sama dengan meta title.' %>
+					<%= s.input :og_description, as: :text, required: false, input_html: { rows: 2 }, label: 'Social description',
+								hint: 'Kosong = sama dengan meta description.' %>
+					<%= s.input :og_image, as: :file, required: false, label: 'Share image',
+								input_html: { accept: 'image/png, image/jpg, image/jpeg, image/webp' },
+								hint: 'Ideal 1200×630 px. Kosong = gambar utama record, lalu logo.' %>
+					<% if s.object.og_image.attached? %>
+						<p class="small text-muted">Gambar saat ini: <%= s.object.og_image.filename %></p>
+					<% end %>
+					<div class="row">
+						<div class="col-md-6">
+							<%= s.input :og_type, as: :select, required: false, label: 'Social type',
+										collection: SeoMeta::OG_TYPES, include_blank: 'Otomatis (artikel = article, lainnya = website)' %>
+						</div>
+						<div class="col-md-6">
+							<%= s.input :twitter_card, as: :select, required: false,
+										collection: SeoMeta::TWITTER_CARDS, include_blank: 'Otomatis (summary_large_image)' %>
+						</div>
+					</div>
+					<%= s.input :robots, as: :select, required: false, label: 'Robots',
+								collection: [['index, follow (default)', ''], ['noindex, follow', 'noindex, follow'],
+														 ['noindex, nofollow', 'noindex, nofollow'], ['index, nofollow', 'index, nofollow']],
+								include_blank: false,
+								hint: 'Pilih noindex hanya untuk halaman yang memang tidak boleh muncul di Google.' %>
+					<%= s.input :canonical_override, as: :string, required: false, label: 'Canonical override',
+								hint: 'Biasanya kosong. Isi path (/articles/xyz) atau URL prisma-ads.com bila halaman ini duplikat halaman lain. Host lain diabaikan.' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

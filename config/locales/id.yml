@@ -216,3 +216,37 @@ id:
     pages: "Halaman"
     max: "Maks"
     all: "Semua"
+  seo:
+    site: "Prisma Advertising"
+    billboard_type:
+      digital: "Billboard Digital"
+      static: "Billboard Statis"
+    product:
+      title: "%{name} – %{type} di %{city}"
+      title_no_city: "%{name} – %{type}"
+      intro: "%{name} adalah %{type} di %{city}."
+      intro_no_city: "%{name} adalah %{type}."
+      size: "Ukuran %{size}."
+      impressions: "Sekitar %{count} impresi per hari."
+      closing: "Tersedia melalui Prisma Advertising."
+    location:
+      title: "Billboard di %{name}"
+      description: "Lihat %{count} billboard digital dan statis di %{name}, lengkap dengan spesifikasi, lokasi, dan impresi harian."
+    career:
+      title: "%{title} – Karier"
+    index:
+      articles:
+        title: "Artikel & Wawasan"
+        description: "Berita dan wawasan seputar periklanan billboard dan media luar ruang digital di Indonesia dari Prisma Advertising."
+      portfolios:
+        title: "Kampanye"
+        description: "Kampanye billboard dan media luar ruang digital pilihan yang dikerjakan Prisma Advertising untuk berbagai brand di Indonesia."
+      industries:
+        title: "Industri yang Kami Layani"
+        description: "Cara Prisma Advertising membantu brand lintas industri dengan billboard, videotron, dan iklan luar ruang kreatif."
+      locations:
+        title: "Lokasi Billboard"
+        description: "Lokasi billboard dan videotron di Jakarta, Bandung, dan Bali, lengkap dengan spesifikasi dan impresi harian."
+      inquiries:
+        title: "Hubungi Kami"
+        description: "Hubungi Prisma Advertising untuk merencanakan kampanye billboard, videotron, atau iklan luar ruang kreatif di Indonesia."

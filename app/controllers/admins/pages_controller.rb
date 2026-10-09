@@ -47,7 +47,7 @@ class Admins::PagesController < Admins::BaseController
   private
 
   def params_page
-    params.require(:page).permit(:title, :content, :banner_section_id, :meta_title, :meta_description, :published_date, :status)
+    params.require(:page).permit(:title, :content, :banner_section_id, :meta_title, :meta_description, :published_date, :status, seo_setting_attributes: HasSeoSetting::PERMITTED)
   end
 
   def set_page

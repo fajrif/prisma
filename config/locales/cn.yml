@@ -216,3 +216,37 @@ cn:
     pages: "页面"
     max: "最大"
     all: "全部"
+  seo:
+    site: "Prisma Advertising"
+    billboard_type:
+      digital: "Digital Billboard"
+      static: "Static Billboard"
+    product:
+      title: "%{name} – %{type} in %{city}"
+      title_no_city: "%{name} – %{type}"
+      intro: "%{name} is a %{type} in %{city}."
+      intro_no_city: "%{name} is a %{type}."
+      size: "Size %{size}."
+      impressions: "About %{count} impressions per day."
+      closing: "Available through Prisma Advertising."
+    location:
+      title: "Billboards in %{name}"
+      description: "Browse %{count} digital and static billboards in %{name}, with specifications, locations and daily impressions."
+    career:
+      title: "%{title} – Careers"
+    index:
+      articles:
+        title: "Articles & Insights"
+        description: "News and insights on out-of-home and digital billboard advertising in Indonesia from Prisma Advertising."
+      portfolios:
+        title: "Campaigns"
+        description: "Selected out-of-home and digital billboard campaigns delivered by Prisma Advertising for brands across Indonesia."
+      industries:
+        title: "Industries We Serve"
+        description: "How Prisma Advertising supports brands across industries with billboard, videotron and creative out-of-home advertising."
+      locations:
+        title: "Billboard Locations"
+        description: "Billboard and videotron locations in Jakarta, Bandung and Bali, with specifications and daily impressions."
+      inquiries:
+        title: "Contact Us"
+        description: "Contact Prisma Advertising to plan a billboard, videotron or creative out-of-home campaign in Indonesia."

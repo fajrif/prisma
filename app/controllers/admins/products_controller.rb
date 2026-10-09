@@ -52,7 +52,8 @@ class Admins::ProductsController < Admins::BaseController
 
   def params_product
     params.require(:product).permit(:name, :description, :product_category_id, :location_id, :specification, :est_impression, :longitude, :latitude, :address, :interest, :video_url, :image, :image1, :image2, :banner, :billboard_type,
-                                    :city, :region, :size, :lighting, :slot_duration, :operating_hours, :impressions_per_day)
+                                    :city, :region, :size, :lighting, :slot_duration, :operating_hours, :impressions_per_day,
+                                    seo_setting_attributes: HasSeoSetting::PERMITTED)
   end
 
   def set_product

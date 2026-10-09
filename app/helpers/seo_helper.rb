@@ -24,11 +24,32 @@ module SeoHelper
     path.presence || '/'
   end
 
+  # Title, description, robots, og:* dan gambar share halaman ini. Rantai fallback-nya
+  # ada di SeoMeta. @meta_title/@meta_desc diisi controller dari kolom model (tingkat 2).
+  def seo_meta
+    @seo_meta ||= SeoMeta.new(
+      record: schema_subject,
+      controller: controller_name,
+      action: action_name,
+      title: @meta_title,
+      description: @meta_desc
+    )
+  end
+
+  # Gambar share; logo bila record tidak punya gambar.
+  def seo_image_url
+    seo_meta.image_url || image_url('logo-prisma.png?v=2')
+  end
+
   # Generate canonical URL for the current page
   # - Always uses https://prisma-ads.com (no www)
   # - Strips trailing slashes for consistency
   # - Halaman berpaginasi memakai canonical ke dirinya sendiri (self-referencing)
+  # - canonical_override dari panel SEO & Social menggantikan semuanya (sudah divalidasi
+  #   di SeoMeta: hanya path internal atau host kanonik)
   def canonical_url
+    return seo_meta.canonical_override if seo_meta.canonical_override.present?
+
     url = "#{configatron.site_url}#{canonical_path}"
     page = params[:page].to_i
     page > 1 ? "#{url}?page=#{page}" : url

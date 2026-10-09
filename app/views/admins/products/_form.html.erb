@@ -31,6 +31,7 @@
             </div>
             <%= f.input :video_url, as: :string %>
 					</fieldset>
+					<%= render 'admins/shared/seo_panel', f: f, show_meta: true %>
 					<%= f.error :base %>
 					<div class="form-actions">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>

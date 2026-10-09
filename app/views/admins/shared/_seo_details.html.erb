@@ -1,0 +1,38 @@
+<%# Ringkasan SEO sebuah record di halaman show admin. Local: record -%>
+<% meta = SeoMeta.new(record: record) %>
+<% source_label = { seo_settings: ['SEO & Social', 'success'], model: ['Kolom model', 'primary'],
+										generated: ['Dirakit otomatis', 'info'], default: ['Default situs', 'warning'] } %>
+<h6 class="mt-4">SEO yang tampil di halaman (bahasa admin saat ini: <%= I18n.locale.to_s.upcase %>)</h6>
+<table class="table table-hover">
+	<tr>
+		<td width="150px"><b>Title</b></td>
+		<td>
+			<%= meta.title %>
+			<% label, color = source_label[meta.title_source] %>
+			<span class="badge bg-<%= color %>-subtle text-<%= color %> ms-2"><%= label %></span>
+			<span class="small <%= meta.title_length > SeoMeta::TITLE_LIMIT ? 'text-danger' : 'text-muted' %>"><%= meta.title_length %> karakter</span>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Description</b></td>
+		<td>
+			<%= meta.description %>
+			<% label, color = source_label[meta.description_source] %>
+			<span class="badge bg-<%= color %>-subtle text-<%= color %> ms-2"><%= label %></span>
+			<span class="small <%= meta.description_length > SeoMeta::DESCRIPTION_LIMIT ? 'text-danger' : 'text-muted' %>"><%= meta.description_length %> karakter</span>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Robots</b></td>
+		<td><%= meta.robots %></td>
+	</tr>
+	<% if meta.canonical_override.present? %>
+		<tr>
+			<td><b>Canonical override</b></td>
+			<td><%= meta.canonical_override %></td>
+		</tr>
+	<% end %>
+</table>
+<% if meta.description_source == :default || meta.title_source == :default %>
+	<p class="small text-warning">Title/description masih memakai default situs &mdash; isi di panel SEO &amp; Social agar unik.</p>
+<% end %>
