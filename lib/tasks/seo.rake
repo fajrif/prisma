@@ -32,12 +32,23 @@ namespace :seo do
 					'media company founded in 2004, with static billboards and videotrons in Jakarta, ' \
 					'Bandung and Bali.'
 		}
+		# Spec baris 20: halaman /cn memakai teks EN sampai salinan Mandarin tersedia.
+		# Mobility tidak punya aturan fallback untuk :cn (config/initializers/mobility.rb:84
+		# hanya memetakan en<->id), jadi nilai CN harus ditulis eksplisit — kalau tidak,
+		# schema di /cn jatuh ke configatron.site_description yang berbahasa Indonesia.
+		descriptions[:cn] = descriptions[:en]
+
 		descriptions.each do |locale, text|
 			Mobility.with_locale(locale) do
+				# `fallback: false` wajib di sini. Tanpa itu, pembacaan locale :en
+				# mengembalikan teks :id lewat fallbacks { en: :id } sehingga dianggap
+				# sudah terisi, dan versi EN tidak pernah ditulis — inilah sebabnya
+				# halaman Inggris sempat menampilkan deskripsi berbahasa Indonesia.
+				#
 				# Nilai lama hasil seed pertama adalah salinan configatron.site_description
-				# (deskripsi meta situs, bukan deskripsi entitas) dan ikut tersimpan di
-				# key :en. Nilai itu dianggap belum diisi supaya bisa diganti versi spec.
-				current = setting.description.to_s.strip
+				# (deskripsi meta situs, bukan deskripsi entitas); itu pun dianggap kosong
+				# supaya bisa diganti versi spec.
+				current = setting.description(fallback: false).to_s.strip
 				placeholder = current.blank? || current == configatron.site_description.to_s.strip
 				setting.description = text if placeholder
 			end

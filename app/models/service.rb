@@ -32,6 +32,38 @@ class Service < ApplicationRecord
 		self.name_changed?
 	end
 
+	# Tipe yang diterima schema.org untuk areaServed. Nilai lain ditolak supaya typo
+	# tidak menghasilkan @type yang tidak dikenal.
+	AREA_TYPES = %w[City AdministrativeArea State Country].freeze
+
+	# area_served disimpan sebagai array JSON [{type, name}]. Di form diedit sebagai
+	# teks, satu area per baris dengan format "Tipe: Nama", mis. "City: Jakarta".
+	def area_served_text
+		Array(area_served).map { |a| "#{a['type']}: #{a['name']}" }.join("\n")
+	end
+
+	def area_served_text=(text)
+		self.area_served = text.to_s.lines.map(&:strip).reject(&:blank?).map do |line|
+			type, name = line.split(':', 2).map(&:strip)
+			{ 'type' => type, 'name' => name }
+		end
+	end
+
+	validate :area_served_must_be_valid
+
+	private
+
+	def area_served_must_be_valid
+		Array(area_served).each do |area|
+			next if AREA_TYPES.include?(area['type']) && area['name'].present?
+
+			errors.add(:area_served_text, "baris tidak valid: \"#{area['type']}: #{area['name']}\". " \
+										"Gunakan format \"Tipe: Nama\" dengan tipe #{AREA_TYPES.join(', ')}")
+		end
+	end
+
+	public
+
   def self.get_service_glance
     # Assume you have a Post model and a list of desired IDs
     desired_order_ids = [4, 1, 6, 2, 5, 3]

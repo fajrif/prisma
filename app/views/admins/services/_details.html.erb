@@ -57,6 +57,18 @@
 		<td><b>Benefit Description</b></td>
 		<td><%= @service.benefit_description %></td>
 	</tr>
+	<tr>
+		<td><b>Schema: Service Type</b></td>
+		<td><%= @service.service_type.presence || content_tag(:span, 'belum diisi', class: 'text-muted') %></td>
+	</tr>
+	<tr>
+		<td><b>Schema: Area Served</b></td>
+		<td><%= simple_format(h(@service.area_served_text)) %></td>
+	</tr>
+	<tr>
+		<td><b>Schema: Provider @id</b></td>
+		<td><%= @service.schema_provider_url.presence || content_tag(:span, 'Prisma (default)', class: 'text-muted') %></td>
+	</tr>
 </table>
 <div class="form-actions">
   <%= link_to 'Edit', edit_admins_service_path(@service.id), :class => 'btn btn-secondary' %>
