@@ -13,7 +13,7 @@ module StructuredData
 
 		protected
 
-		# Meta description yang diisi tim SEO untuk record ini; fallback Mobility en<->id sama seperti
+		# Meta description yang diisi tim SEO untuk record ini; fallback Mobility (id/cn -> en) sama seperti
 		# <meta description> (SeoMeta), jadi schema dan halaman tidak berbeda bahasa.
 		def seo_description
 			@record.try(:seo_setting)&.meta_description

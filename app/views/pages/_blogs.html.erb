@@ -1,4 +1,4 @@
-<%- articles = Article.first(3) %>
+<%- articles = Article.listed_in.first(3) %>
 <% unless articles.empty? %>
 <div class="container">
 	<div class="row justify-content-start align-items-center margin-20px-bottom wow animate__fadeIn">

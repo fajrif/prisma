@@ -25,7 +25,7 @@ class Article < ApplicationRecord
 
   validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
-	validates_presence_of :title
+	validates_presence_of :title, message: ->(*) { "wajib diisi di bahasa #{I18n.locale.to_s.upcase} (tidak ada fallback dari bahasa lain; ganti bahasa admin bila artikel ini hanya punya isi di bahasa lain)" }
 	validates_uniqueness_of :title
 	validate :modified_date_after_published_date
 
@@ -52,8 +52,31 @@ class Article < ApplicationRecord
 		end
 	end
 
+	# Rantai bahasa yang dibaca Mobility untuk `locale` (config/initializers/mobility.rb):
+	# id/cn -> en; en tidak punya fallback.
+	def self.locale_chain(locale)
+		locale = locale.to_sym
+		locale == :en ? [:en] : [locale, :en]
+	end
+
+	# Artikel yang punya judul di bahasa tsb atau di bahasa fallback-nya; dipakai listing publik
+	# agar kartu tanpa judul tidak muncul (mis. artikel hanya-ID di daftar EN).
+	scope :listed_in, ->(locale = I18n.locale) {
+		cond = locale_chain(locale).map { |l| "NULLIF(btrim(articles.title ->> '#{l}'), '') IS NOT NULL" }
+		where(cond.join(' OR '))
+	}
+
+	# Bahasa tujuan bila halaman artikel ini tidak punya teks apa pun di rantai fallback `locale`
+	# (mis. artikel hanya-ID dibuka di EN); nil bila halaman bisa dirender di `locale`.
+	def redirect_locale_for(locale)
+		own = own_locales
+		return if own.empty? || (self.class.locale_chain(locale) & own).any?
+
+		own.include?(:id) ? :id : own.first
+	end
+
 	def self.most_recent_articles(id, limit)
-		where("id <> ?", id).limit(limit)
+		listed_in.where("articles.id <> ?", id).limit(limit)
 	end
 
 	def private?

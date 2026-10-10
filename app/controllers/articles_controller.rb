@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 	before_action :set_banner, only: [:index]
 
   def index
-    criteria = Article.all
+    criteria = Article.listed_in
 		@articles = criteria.page(params[:page]).per(12)
 
     respond_to do |format|
@@ -13,6 +13,11 @@ class ArticlesController < ApplicationController
 
   def show
 		@article = Article.friendly.find(params[:id])
+		# EN tanpa fallback: artikel yang tidak punya teks di rantai bahasa ini diarahkan ke
+		# versi yang punya isinya (bukan dirender kosong). 302: terjemahan bisa menyusul kapan saja.
+		if (target = @article.redirect_locale_for(I18n.locale))
+			return redirect_to "/#{target}/articles/#{@article.slug}", status: :found, allow_other_host: false
+		end
 		@schema_subject = @article
 		@articles = Article.most_recent_articles(@article.id, 3)
 	rescue ActiveRecord::RecordNotFound

@@ -33,17 +33,14 @@ namespace :seo do
 					'Bandung and Bali.'
 		}
 		# Spec baris 20: halaman /cn memakai teks EN sampai salinan Mandarin tersedia.
-		# Mobility tidak punya aturan fallback untuk :cn (config/initializers/mobility.rb:84
-		# hanya memetakan en<->id), jadi nilai CN harus ditulis eksplisit — kalau tidak,
-		# schema di /cn jatuh ke configatron.site_description yang berbahasa Indonesia.
+		# Nilai CN ditulis eksplisit (sama dengan EN) supaya terlihat di admin dan tidak bergantung
+		# pada fallback cn -> en (config/initializers/mobility.rb).
 		descriptions[:cn] = descriptions[:en]
 
 		descriptions.each do |locale, text|
 			Mobility.with_locale(locale) do
-				# `fallback: false` wajib di sini. Tanpa itu, pembacaan locale :en
-				# mengembalikan teks :id lewat fallbacks { en: :id } sehingga dianggap
-				# sudah terisi, dan versi EN tidak pernah ditulis — inilah sebabnya
-				# halaman Inggris sempat menampilkan deskripsi berbahasa Indonesia.
+				# `fallback: false` wajib di sini: tanpa itu :id/:cn yang kosong terbaca sebagai teks :en
+				# (fallback id/cn -> en) sehingga dianggap sudah terisi dan versinya tidak ditulis.
 				#
 				# Nilai lama hasil seed pertama adalah salinan configatron.site_description
 				# (deskripsi meta situs, bukan deskripsi entitas); itu pun dianggap kosong
@@ -432,4 +429,36 @@ namespace :seo do
 
 	desc "Jalankan seluruh setup SEO Week 1"
 	task setup: %i[seed_company_profile seed_services legal_pages backfill_billboards]
+
+  desc "Audit fallback Mobility: record yang kosong di EN tetapi terisi di ID/CN, dan salinan identik EN=ID (read-only)"
+  task fallback_audit: :environment do
+    # Aturan: id/cn kosong -> EN; EN kosong tetap kosong. Record "hanya-ID" menampilkan teks kosong di situs EN.
+    Rails.application.eager_load!
+    models = ApplicationRecord.descendants.select { |k| k.respond_to?(:mobility_attributes) && k.mobility_attributes.any? && k.table_exists? }
+    lines = []
+    models.sort_by(&:name).each do |klass|
+      klass.mobility_attributes.each do |attr|
+        next unless klass.column_names.include?(attr) # ActionText (content) dibaca terpisah di bawah
+        only_other = []
+        same = 0
+        klass.unscoped.find_each do |r|
+          raw = r.read_attribute(attr)
+          next unless raw.is_a?(Hash)
+          en = raw['en'].to_s.strip
+          others = %w[id cn].select { |l| raw[l].to_s.strip.present? }
+          only_other << (r.try(:slug) || r.id) if en.empty? && others.any?
+          same += 1 if en.present? && raw['id'].to_s.strip == en
+        end
+        next if only_other.empty? && same.zero?
+        lines << "#{klass.name}.#{attr}: EN kosong tapi ID/CN terisi=#{only_other.size}; EN==ID identik=#{same}"
+        lines << "  contoh slug/id: #{only_other.first(15).join(', ')}" if only_other.any?
+      end
+    end
+    # content (ActionText) per record: body ID/CN ada, EN kosong
+    ActionText::RichText.where(name: 'content').group_by { |rt| [rt.record_type, rt.record_id] }.each_with_object(Hash.new(0)) do |((type, _), rts), acc|
+      has = ->(l) { rts.any? { |rt| rt.locale.to_s == l && rt.body.present? } }
+      acc[type] += 1 if !has.('en') && (has.('id') || has.('cn'))
+    end.each { |type, n| lines << "#{type}.content: EN kosong tapi ID/CN terisi=#{n}" }
+    puts lines.empty? ? 'Tidak ada record terdampak.' : lines.join("\n")
+  end
 end

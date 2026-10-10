@@ -502,8 +502,8 @@ pages.each do |attrs|
 
   locales.each do |locale|
     Mobility.with_locale(locale) do
-      # fallback: false wajib. Tanpa itu, membaca :en yang kosong mengembalikan teks :id
-      # (fallbacks en<->id di config/initializers/mobility.rb), sehingga dianggap sudah terisi.
+      # fallback: false wajib. Tanpa itu, membaca :id/:cn yang kosong mengembalikan teks :en
+      # (fallbacks id/cn -> en di config/initializers/mobility.rb), sehingga dianggap sudah terisi.
       current = page.new_record? ? nil : page.content(fallback: false)
       current_text = current.respond_to?(:to_plain_text) ? current.to_plain_text : current.to_s
 

@@ -80,8 +80,10 @@ Mobility.configure do
     # Or uncomment this line to enable fallbacks with a global default.
     # fallbacks { :pt => :en }
     #
-    # Enable fallbacks between locales
-    fallbacks({ en: :id, id: :en })
+    # Aturan seragam seluruh aplikasi: :en adalah bahasa dasar. :id dan :cn yang kosong
+    # jatuh ke :en; :en yang kosong TIDAK jatuh ke bahasa lain (tetap kosong). Form admin
+    # membaca nilai mentah (fallback: false), lihat Admins::FormBuilder.
+    fallbacks({ id: :en, cn: :en })
 
     # Presence
     #

@@ -1,4 +1,10 @@
 module AdminHelper
+	# Semua simple_form di admin memakai builder yang membaca nilai Mobility mentah (tanpa fallback).
+	def simple_form_for(record, options = {}, &block)
+		options = options.merge(builder: Admins::FormBuilder) if controller.is_a?(Admins::BaseController) && !options.key?(:builder)
+		super(record, options, &block)
+	end
+
 
   def blank_or_not(object,blank='-')
     if object.blank?
@@ -252,17 +258,31 @@ module AdminHelper
 		public_send("admins_#{record.model_name.singular}_path", record.id)
 	end
 
-	# Admin menampilkan teks lewat fallback Mobility (en<->id), sehingga bahasa yang sebenarnya
-	# kosong terlihat terisi. Badge ini menandainya, memakai aturan yang sama dengan sitemap
-	# (Article#own_locales). Tidak tampil bila bahasa aktif punya isi sendiri.
+	# Judul artikel di bahasa admin aktif. EN tanpa fallback, jadi artikel yang hanya punya isi ID
+	# berjudul kosong di admin EN: tampilkan placeholder (tetap bisa diklik) alih-alih baris kosong.
+	def article_admin_title(article)
+		return article.title if article.title.present?
+
+		own = article.own_locales
+		hint = own.any? ? "kosong di #{I18n.locale.to_s.upcase}, tersedia: #{own.map { |l| l.to_s.upcase }.join(', ')}" : "kosong di #{I18n.locale.to_s.upcase}"
+		content_tag(:span, "(#{hint})", class: 'text-muted fst-italic')
+	end
+
+	# Aturan fallback seragam: id/cn kosong -> teks EN; en kosong -> tetap kosong. Badge menandai
+	# bahasa aktif yang tidak punya isi sendiri (aturan sama dengan sitemap: Article#own_locales).
 	def article_fallback_badge(article)
 		own = article.own_locales
 		return if own.empty? || own.include?(I18n.locale.to_sym)
 
-		source = own.include?(:id) ? :id : own.first
-		content_tag(:span, "#{I18n.locale.to_s.upcase} kosong, menampilkan teks #{source.to_s.upcase}",
-		            class: 'badge bg-warning-subtle text-warning ms-1',
-		            title: "Artikel ini belum punya isi #{I18n.locale.to_s.upcase} sendiri. Yang tampil adalah teks #{source.to_s.upcase} (fallback).")
+		loc = I18n.locale.to_s.upcase
+		if I18n.locale == :en
+			text, tip = "EN kosong (tidak tampil di situs EN)", "Artikel ini belum punya isi EN sendiri; situs EN mengarahkan pembaca ke versi #{own.first.to_s.upcase}."
+		elsif own.include?(:en)
+			text, tip = "#{loc} kosong, menampilkan teks EN", "Artikel ini belum punya isi #{loc} sendiri. Yang tampil adalah teks EN (fallback)."
+		else
+			text, tip = "#{loc} kosong", "Artikel ini belum punya isi #{loc} sendiri dan tidak ada teks EN untuk fallback."
+		end
+		content_tag(:span, text, class: 'badge bg-warning-subtle text-warning ms-1', title: tip)
 	end
 
 	# <span class="badge badge-label bg-primary"><i class="mdi mdi-circle-medium"></i> Primary</span>

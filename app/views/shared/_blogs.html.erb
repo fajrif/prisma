@@ -1,4 +1,4 @@
-<%- articles = Article.first(3) %>
+<%- articles = Article.listed_in.first(3) %>
 <% unless articles.empty? %>
   <section id="blogs-section" class="bg-grey">
     <div class="container">

@@ -132,9 +132,8 @@ class SeoMeta
 		@resolve_description ||= with_cn_fallback { description_chain }
 	end
 
-	# Meta title/description MEMAKAI fallback Mobility en<->id, sama seperti kolom model lama
-	# yang kini sudah dipindah ke seo_settings: tanpa itu halaman /id yang hanya punya meta
-	# berbahasa Inggris (isi strategist) turun ke teks dirakit. Field sosial (og_*) tetap
+	# Meta title/description MEMAKAI fallback Mobility (id/cn -> en; en tanpa fallback): halaman
+	# /id yang hanya punya meta berbahasa Inggris (isi strategist) memakai teks EN, bukan teks dirakit. Field sosial (og_*) tetap
 	# fallback: false. Mengubah ini ke fallback: false = keputusan SEO terpisah.
 	def seo_meta_text(attr)
 		return unless seo
@@ -156,10 +155,9 @@ class SeoMeta
 		end
 	end
 
-	# Spec: /cn memakai teks Inggris sampai salinan Mandarin ada. Mobility hanya punya
-	# fallback en<->id, jadi field yang kosong di CN tidak otomatis jatuh ke EN, dan seluruh
-	# rantai berakhir di default situs (yang berbahasa Indonesia). Dalam kasus itu rantai
-	# dihitung ulang dalam bahasa Inggris.
+	# Spec: /cn memakai teks Inggris sampai salinan Mandarin ada. Field yang kosong di CN sudah
+	# jatuh ke EN lewat Mobility; ini hanya pengaman bila seluruh rantai CN berakhir di default
+	# situs (berbahasa Indonesia): rantai dihitung ulang dalam bahasa Inggris.
 	def with_cn_fallback
 		result = yield
 		return result unless result.last == :default && I18n.locale.to_sym == :cn
