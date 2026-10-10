@@ -19,7 +19,7 @@ configatron.social_twitter_url = "https://twitter.com/PrismaAdvert"
 configatron.social_youtube_url = "https://www.youtube.com/channel/UCg0kpAkiDh4C2PjinfobRkw"
 configatron.social_tiktok_url = "https://www.tiktok.com/@prisma.advertising"
 
-configatron.default_banner = "banners/banner.png"
+configatron.default_banner = "banners/banner.webp"
 configatron.company_address = "GRAHA PRISMA<br/>Jl. Kedoya Duri Raya No.38<br/>Kedoya Selatan<br/>Jakarta Barat 11520<br/>Indonesia"
 configatron.admin_email = "info@prisma-ads.com"
 configatron.no_reply_email = "no-reply@prisma-ads.com"
