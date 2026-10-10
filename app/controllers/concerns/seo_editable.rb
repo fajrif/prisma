@@ -15,7 +15,7 @@ module SeoEditable
 
 	def update_seo
 		@seo_record = seo_record
-		if @seo_record.update(params.require(@seo_record.model_name.param_key).permit(seo_setting_attributes: HasSeoSetting::PERMITTED))
+		if @seo_record.update(params.require(@seo_record.model_name.param_key).permit(*extra_seo_params, seo_setting_attributes: HasSeoSetting::PERMITTED))
 			redirect_to seo_show_path(@seo_record), notice: 'SEO & Social disimpan.'
 		else
 			render 'admins/shared/seo_edit', status: :unprocessable_entity
@@ -23,6 +23,11 @@ module SeoEditable
 	end
 
 	private
+
+	# Atribut record (di luar seo_setting) yang ikut diedit di form SEO & Social; override di controller.
+	def extra_seo_params
+		[]
+	end
 
 	def seo_record
 		instance_variable_get("@#{controller_name.singularize}")

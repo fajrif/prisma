@@ -1,0 +1,12 @@
+<%# Field schema Service di form "SEO & Social". f = form builder Service. -%>
+<div class="card mt-3">
+	<div class="card-header"><h6 class="card-title mb-0">Data schema Service (JSON-LD)</h6></div>
+	<div class="card-body">
+		<%= f.input :service_type, label: 'Service Type', required: false,
+		            hint: 'Jenis layanan untuk schema serviceType, mis. "Billboard advertising". Berlaku untuk semua bahasa.' %>
+		<%= f.input :area_served_text, as: :text, label: 'Area Served', required: false, input_html: { rows: 4 },
+		            hint: "Satu area per baris, format \"Tipe: Nama\", mis. \"City: Jakarta\". Tipe: #{Service::AREA_TYPES.join(', ')}." %>
+		<%= f.input :schema_provider_url, label: 'Provider @id', required: false,
+		            hint: 'Kosong = Prisma (default). Isi hanya bila layanan disediakan organisasi lain, mis. PiX.' %>
+	</div>
+</div>

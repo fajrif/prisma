@@ -1,0 +1,16 @@
+<%# Data schema Service (JSON-LD Service): tampil di tab SEO Details. Diedit lewat "Edit SEO & Social". -%>
+<h6 class="mt-4 mb-2">Data schema Service</h6>
+<table class="table table-bordered table-sm">
+	<tr>
+		<td style="width: 220px;"><b>Service Type</b></td>
+		<td><%= record.service_type.presence || content_tag(:span, 'belum diisi', class: 'text-muted') %></td>
+	</tr>
+	<tr>
+		<td><b>Area Served</b></td>
+		<td><%= record.area_served_text.present? ? simple_format(h(record.area_served_text)) : content_tag(:span, 'belum diisi', class: 'text-muted') %></td>
+	</tr>
+	<tr>
+		<td><b>Provider @id</b></td>
+		<td><%= record.schema_provider_url.presence || content_tag(:span, 'Prisma (default)', class: 'text-muted') %></td>
+	</tr>
+</table>

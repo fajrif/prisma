@@ -52,8 +52,12 @@ class Admins::ServicesController < Admins::BaseController
 
   private
 
+  def extra_seo_params
+    %i[service_type area_served_text schema_provider_url]
+  end
+
   def params_service
-    params.require(:service).permit(:image, :image_white, :image1, :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :color, :banner_section_id, :service_type, :area_served_text, :schema_provider_url)
+    params.require(:service).permit(:image, :image_white, :image1, :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :color, :banner_section_id)
   end
 
   def set_service

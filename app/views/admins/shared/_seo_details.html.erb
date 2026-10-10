@@ -59,5 +59,8 @@
 	<p class="small text-warning">Title/description masih memakai default situs &mdash; isi di form SEO &amp; Social agar unik.</p>
 <% end %>
 <% if heading %>
+	<% if lookup_context.exists?("admins/#{record.model_name.plural}/schema_details", [], true) %>
+		<%= render "admins/#{record.model_name.plural}/schema_details", record: record %>
+	<% end %>
 	<%= render 'admins/shared/schema_preview', record: record %>
 <% end %>
