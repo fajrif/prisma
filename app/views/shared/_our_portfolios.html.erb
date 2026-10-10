@@ -23,7 +23,7 @@
                 <div class="blog-post blog-post-style1 text-start">
                   <div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
                     <a href="<%= portfolio_path(portfolio) %>">
-                      <%= image_tag portfolio.image, alt: portfolio.name %>
+                      <%= opt_image_tag portfolio.image, 800, alt: portfolio.name %>
                     </a>
                   </div>
                   <div class="post-details margin-20px-bottom w-95">

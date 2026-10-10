@@ -12,7 +12,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-lg-3 md-margin-70px-bottom sm-margin-50px-bottom d-none d-md-block wow animate__fadeIn">
-          <img src="<%= url_for(snippet.image) %>" alt="Prisma Logo"/>
+          <img src="<%= opt_image_url(snippet.image, 1200) %>" loading="lazy" alt="Prisma Logo"/>
         </div>
         <div class="col-lg-9">
             <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2 row-cols-sm-2 m-0">

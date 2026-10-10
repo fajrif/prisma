@@ -45,10 +45,18 @@ class Product < ApplicationRecord
 		"#{self.latitude}, #{self.longitude}"
 	end
 
-  def image_url_thumb
+  # Variant 500x500 untuk kartu & peta lokasi (WebP bila server mendukung).
+  def image_thumb_variant
     return unless image.attached?
 
-    Rails.application.routes.url_helpers.url_for(image.variant(resize_to_limit: [500, 500]))
+    opts = { resize_to_limit: [500, 500], saver: { strip: true, quality: 80 } }
+    opts[:format] = :webp if PerformanceHelper.webp?
+    image.variant(opts)
+  end
+
+  def image_url_thumb
+    variant = image_thumb_variant
+    Rails.application.routes.url_helpers.url_for(variant) if variant
   end
 
   def billboard_type_label

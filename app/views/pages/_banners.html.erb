@@ -8,7 +8,7 @@
           <% if banner.is_video? %>
             <div class="swiper-slide">
           <% else %>
-            <div class="swiper-slide banner-cover-background" style="background-image:url('<%= url_for(banner.image) if banner.image.attached? %>');">
+            <div class="swiper-slide banner-cover-background" style="background-image:url('<%= opt_image_url(banner.image, 1920) if banner.image.attached? %>');">
             <div class="opacity-medium bg-transparent-black z-index-0"></div>
           <% end %>
 					<div class="container position-relative h-100">
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<%- if banner.is_video? -%>
-					<video class="htms-video video-js" poster="<%= url_for(banner.image) if banner.image.attached? %>" autoplay loop muted playsinline>
+					<video class="htms-video video-js" poster="<%= opt_image_url(banner.image, 1920) if banner.image.attached? %>" autoplay loop muted playsinline>
 						<source type="<%= banner.video.content_type %>" src="<%= url_for(banner.video) %>">
 					</video>
 					<%- end -%>

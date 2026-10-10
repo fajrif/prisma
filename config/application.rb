@@ -34,6 +34,8 @@ module Prisma
     config.autoload_lib(ignore: %w(assets tasks))
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.active_storage.variant_processor = :mini_magick
+    # T15: gambar lazy-load secara default (image_tag); gambar atas lipatan memakai loading: 'eager'.
+    config.action_view.image_loading = 'lazy'
 
 		# Configuration i18n
 		config.i18n.default_locale = :en

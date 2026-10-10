@@ -7,8 +7,8 @@
             <!-- start logo -->
             <div class="col-auto ps-0">
                 <%= link_to root_path, class: "logo", "aria-label": "Prisma Ads" do %>
-                  <%= image_tag("logo2.png", class: get_default_logo("logo-dark"), alt: "") %>
-                  <%= image_tag("logo.png", class: get_default_logo("logo-light"), alt: "") %>
+                  <%= image_tag("logo2.png", class: get_default_logo("logo-dark"), alt: "", loading: "eager") %>
+                  <%= image_tag("logo.png", class: get_default_logo("logo-light"), alt: "", loading: "eager") %>
                 <% end %>
             </div>
             <!-- end logo -->

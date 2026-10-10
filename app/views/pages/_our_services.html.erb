@@ -13,7 +13,7 @@
         <div class="d-flex flex-column justify-content-between border border-width-2 border-radius-8 padding-five-all position-relative h-250px">
           <div>
             <div class="d-flex align-items-center gap-4 mb-4">
-              <%= image_tag service.image, style: "max-height:50px;", alt: service.name %>
+              <%= opt_image_tag service.image, 800, style: "max-height:50px;", alt: service.name %>
               <div class="text-large margin-5px-bottom alt-font font-weight-600"><%= service.name %></div>
             </div>
             <p><%= service.short_description %></p>

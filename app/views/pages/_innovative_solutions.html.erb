@@ -1,11 +1,11 @@
 <%- bg_color ||= '' -%>
 <%- text_color, btn_color = get_prisma_element_colors('bg-green') -%>
 
-<div class="container cover-background border-radius-20 sm-no-border-radius no-padding-lr" style="background-image:url('<%= url_for(snippet.background) %>');">
+<div class="container cover-background border-radius-20 sm-no-border-radius no-padding-lr" style="background-image:url('<%= opt_image_url(snippet.background, 1920) %>');">
   <div class="transparent-box box-embroided margin-40px-all sm-margin-20px-all">
     <div class="row row-cols-1 row-cols-lg-2">
       <div class="col d-flex align-items-center padding-three-lr padding-three-tb lg-padding-four-lr md-padding-three-all sm-padding-15px-lr">
-        <%= image_tag(snippet.image, class: "w-100", alt: snippet.title) %>
+        <%= opt_image_tag(snippet.image, 1200, class: "w-100", alt: snippet.title) %>
       </div>
       <div class="col text-white-2 padding-six-lr padding-three-tb lg-padding-four-lr md-padding-three-all sm-padding-15px-lr">
         <h3 class="font-weight-600"><%= snippet.title %></h3>

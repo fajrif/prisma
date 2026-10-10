@@ -1,5 +1,5 @@
 <!-- start page single banner -->
-<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@product.banner) if @product.banner.attached? %>');">
+<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= opt_image_url(@product.banner, 1920) if @product.banner.attached? %>');">
   <div class="opacity-medium bg-transparent-black z-index-0"></div>
 	<div class="full-screen text-white-2">
 		<div class="container position-relative h-100">

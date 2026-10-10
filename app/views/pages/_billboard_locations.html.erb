@@ -13,11 +13,11 @@
           <% locations.each_with_index do |location, index| %>
           <!-- start features box item -->
           <div class="col-12 col-lg-4 sm-margin-15px-bottom wow animate__fadeInUp" data-wow-delay="0.<%= index + 2 %>s">
-            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index+1}.png") %>')">
+            <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index+1}.webp") %>')">
               <div class="bg-white">
                 <div class="bg-black overflow-hidden location-image border-top-radius-8">
                   <a href="<%= location_path(location) %>">
-                    <%= image_tag(location.image.variant(resize_to_limit: [488,310]), alt: location.name) %>
+                    <%= opt_image_tag(location.image, 488, alt: location.name) %>
                   </a>
                 </div>
               </div>

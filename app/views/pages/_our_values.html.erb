@@ -6,7 +6,7 @@
         <div class="text-white-2 mb-3 font-weight-400"><%= snippet.short_description %></div>
       </div>
       <% if snippet.image.attached? %>
-        <img src="<%= url_for(snippet.image) %>" class="d-none d-md-block" alt="Prisma Logo"/>
+        <img src="<%= opt_image_url(snippet.image, 1200) %>" loading="lazy" class="d-none d-md-block" alt="Prisma Logo"/>
       <% end %>
     </div>
     <div class="col-lg-9">

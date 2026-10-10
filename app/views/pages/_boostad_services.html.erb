@@ -1,5 +1,5 @@
 <%- boostad_services = BoostadService.all -%>
-<div class="container bg-image padding-40px-tb border-radius-20 sm-no-border-radius" style="background-image:url('<%= image_url('bg-boostad-services.png') %>');">
+<div class="container bg-image padding-40px-tb border-radius-20 sm-no-border-radius" style="background-image:url('<%= image_url('bg-boostad-services.webp') %>');">
   <div class="row justify-content-center align-items-center margin-20px-bottom wow animate__fadeIn">
     <div class="col-12 text-center">
       <h5 class="text-uppercase text-white-2 font-weight-600"><%= snippet.title %></h5>
@@ -20,7 +20,7 @@
                       </div>
                       <div class="col-12 col-md-6 d-flex align-items-center">
                         <% if service.image.attached? %>
-                          <%= image_tag service.image, class: "w-100", alt: service.title %>
+                          <%= opt_image_tag service.image, 800, class: "w-100", alt: service.title %>
                         <% else %>
                           <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100", alt: service.title) %>
                         <% end %>
@@ -28,7 +28,7 @@
                     <% else %>
                       <div class="col-12 col-md-6 d-flex align-items-center">
                         <% if service.image.attached? %>
-                          <%= image_tag service.image, class: "w-100 sm-margin-20px-bottom", alt: service.title %>
+                          <%= opt_image_tag service.image, 800, class: "w-100 sm-margin-20px-bottom", alt: service.title %>
                         <% else %>
                           <%= image_tag("boostad/boostad-#{index + 1}.png", class: "w-100 sm-margin-20px-bottom", alt: service.title) %>
                         <% end %>
