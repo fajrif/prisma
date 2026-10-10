@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
 	include ContentModified
 	extend Mobility
-  translates :title, :short_description, :meta_title, :meta_description
+  translates :title, :short_description
 
 	extend FriendlyId
   friendly_id :title, use: :slugged

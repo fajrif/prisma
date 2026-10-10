@@ -1,7 +1,7 @@
 class Portfolio < ApplicationRecord
 	include ContentModified
 	extend Mobility
-  translates :caption, :short_description, :description, :about_campaign, :area_coverage, :creative_highlights, :meta_title, :meta_description
+  translates :caption, :short_description, :description, :about_campaign, :area_coverage, :creative_highlights
 
 	extend FriendlyId
   friendly_id :name, use: :slugged

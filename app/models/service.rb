@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
 	include ContentModified
 	extend Mobility
-  translates :name, :caption, :short_description, :description, :benefit_title, :benefit_description, :meta_title, :meta_description
+  translates :name, :caption, :short_description, :description, :benefit_title, :benefit_description
 
 	extend FriendlyId
   friendly_id :name, use: :slugged

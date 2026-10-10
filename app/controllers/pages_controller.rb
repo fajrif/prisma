@@ -21,8 +21,6 @@ class PagesController < ApplicationController
 			if @page = Page.friendly.find(_id)
         if @page.published?
           @schema_subject = @page
-          @meta_title = @page.meta_title unless @page.meta_title.blank?
-          @meta_desc = @page.meta_description unless @page.meta_description.blank?
           current_banner_section_style(@page.banner_section)
           @banners = @page.banners
           @sections = @page.sections

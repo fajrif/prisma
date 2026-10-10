@@ -219,10 +219,11 @@ namespace :seo do
 
 			page = Page.new(title: attrs[:title], status: 0, published_date: Time.current)
 
+			seo = page.build_seo_setting
 			%i[en id].each do |locale|
 				Mobility.with_locale(locale) do
-					page.meta_title = attrs[:meta_title][locale]
-					page.meta_description = attrs[:meta_description][locale]
+					seo.meta_title = attrs[:meta_title][locale]
+					seo.meta_description = attrs[:meta_description][locale]
 					page.content = attrs[:content][locale]
 				end
 			end
@@ -396,12 +397,7 @@ namespace :seo do
 		%i[en id cn].each do |locale|
 			I18n.with_locale(locale) do
 				rows = subjects.map do |label, record, opts|
-					# Page/Article/Service/Industry/Portfolio memakai kolom model sebagai tingkat 2,
-					# sama seperti controller (@meta_title / @meta_desc).
-					model_title = record.try(:meta_title).presence
-					model_desc = record.try(:meta_description).presence
-					meta = SeoMeta.new(record: record, controller: opts&.dig(:controller), action: opts&.dig(:action),
-														 title: model_title, description: model_desc)
+					meta = SeoMeta.new(record: record, controller: opts&.dig(:controller), action: opts&.dig(:action))
 					{ label: label, title: meta.title, description: meta.description,
 						t_src: meta.title_source, d_src: meta.description_source }
 				end

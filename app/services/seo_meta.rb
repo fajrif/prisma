@@ -1,13 +1,12 @@
 # Menentukan title, description, dan metadata sosial sebuah halaman.
 #
 # Rantai fallback (urutan prioritas, sesuai brief T7):
-#   1. seo_settings   -> diisi tim SEO lewat panel "SEO & Social" di admin
-#   2. kolom model    -> meta_title/meta_description milik Page, Article, Service, dst.
-#                        (dikirim controller lewat @meta_title / @meta_desc)
-#   3. generated      -> dirakit dari data record + template di config/locales (seo.*)
-#   4. default situs  -> configatron.site_title / site_description
+#   1. seo_settings   -> diisi tim SEO lewat form "SEO & Social" di admin (satu-satunya sumber
+#                        meta title/description; kolom meta_title lama di model sudah tidak dibaca)
+#   2. generated      -> dirakit dari data record + template di config/locales (seo.*)
+#   3. default situs  -> configatron.site_title / site_description
 #
-# Tingkat 1 dibaca dengan `fallback: false`. Mobility punya fallback en<->id, jadi tanpa
+# Field sosial tingkat 1 dibaca dengan `fallback: false`. Mobility punya fallback en<->id, jadi tanpa
 # itu teks yang hanya diisi dalam bahasa Indonesia akan muncul di halaman Inggris. Lebih
 # baik jatuh ke tingkat berikutnya daripada menampilkan teks berbahasa salah.
 class SeoMeta
@@ -19,14 +18,12 @@ class SeoMeta
 	ROBOTS_TOKENS = %w[index noindex follow nofollow noarchive nosnippet noimageindex].freeze
 
 	# Yang dikembalikan #source: dari tingkat mana nilai berasal.
-	SOURCES = %i[seo_settings model generated default].freeze
+	SOURCES = %i[seo_settings generated default].freeze
 
-	def initialize(record: nil, controller: nil, action: nil, title: nil, description: nil)
+	def initialize(record: nil, controller: nil, action: nil)
 		@record = record
 		@controller = controller.to_s
 		@action = action.to_s
-		@model_title = title.presence
-		@model_description = description.presence
 	end
 
 	def title
@@ -37,7 +34,7 @@ class SeoMeta
 		resolve_description.first
 	end
 
-	# [:seo_settings | :model | :generated | :default] — dipakai rake seo:audit & panel admin
+	# [:seo_settings | :generated | :default] — dipakai rake seo:audit & panel admin
 	def title_source
 		resolve_title.last
 	end
@@ -113,24 +110,32 @@ class SeoMeta
 	end
 
 	def resolve_title
-		@resolve_title ||= with_cn_fallback(:title) { |model_value| title_chain(model_value) }
+		@resolve_title ||= with_cn_fallback { title_chain }
 	end
 
 	def resolve_description
-		@resolve_description ||= with_cn_fallback(:description) { |model_value| description_chain(model_value) }
+		@resolve_description ||= with_cn_fallback { description_chain }
 	end
 
-	def title_chain(model_value)
-		if (v = seo_text(:meta_title)) then [v, :seo_settings]
-		elsif model_value then [model_value, :model]
+	# Meta title/description MEMAKAI fallback Mobility en<->id, sama seperti kolom model lama
+	# yang kini sudah dipindah ke seo_settings: tanpa itu halaman /id yang hanya punya meta
+	# berbahasa Inggris (isi strategist) turun ke teks dirakit. Field sosial (og_*) tetap
+	# fallback: false. Mengubah ini ke fallback: false = keputusan SEO terpisah.
+	def seo_meta_text(attr)
+		return unless seo
+
+		seo.public_send(attr).presence
+	end
+
+	def title_chain
+		if (v = seo_meta_text(:meta_title)) then [v, :seo_settings]
 		elsif (v = generated_title) then [v, :generated]
 		else [configatron.site_title, :default]
 		end
 	end
 
-	def description_chain(model_value)
-		if (v = seo_text(:meta_description)) then [v, :seo_settings]
-		elsif model_value then [model_value, :model]
+	def description_chain
+		if (v = seo_meta_text(:meta_description)) then [v, :seo_settings]
 		elsif (v = generated_description) then [v, :generated]
 		else [configatron.site_description, :default]
 		end
@@ -139,16 +144,12 @@ class SeoMeta
 	# Spec: /cn memakai teks Inggris sampai salinan Mandarin ada. Mobility hanya punya
 	# fallback en<->id, jadi field yang kosong di CN tidak otomatis jatuh ke EN, dan seluruh
 	# rantai berakhir di default situs (yang berbahasa Indonesia). Dalam kasus itu rantai
-	# dihitung ulang dalam bahasa Inggris, termasuk kolom model yang dibaca ulang di sana.
-	def with_cn_fallback(field)
-		model_value = field == :title ? @model_title : @model_description
-		result = yield(model_value)
+	# dihitung ulang dalam bahasa Inggris.
+	def with_cn_fallback
+		result = yield
 		return result unless result.last == :default && I18n.locale.to_sym == :cn
 
-		en_result = I18n.with_locale(:en) do
-			attr = field == :title ? :meta_title : :meta_description
-			yield(@record.try(attr).presence)
-		end
+		en_result = I18n.with_locale(:en) { yield }
 		en_result.last == :default ? result : en_result
 	end
 
@@ -160,7 +161,8 @@ class SeoMeta
 		when ::Location then with_site(I18n.t('seo.location.title', name: @record.name))
 		when ::Career then with_site(I18n.t('seo.career.title', title: @record.title))
 		when ::Article, ::Page then with_site(@record.title)
-		when ::Service, ::Industry, ::Portfolio then with_site(@record.name)
+		when ::Portfolio then @record.name # tanpa akhiran situs, seperti sebelum meta dipindah
+		when ::Service, ::Industry then with_site(@record.name)
 		when nil then index_text(:title) && with_site(index_text(:title))
 		end
 	end

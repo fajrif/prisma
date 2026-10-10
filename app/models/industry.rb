@@ -1,7 +1,7 @@
 class Industry < ApplicationRecord
 	include ContentModified
 	extend Mobility
-  translates :name, :caption, :description, :meta_title, :meta_description
+  translates :name, :caption, :description
 
 	include QuilleditorExtension
 

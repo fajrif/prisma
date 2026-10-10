@@ -1,7 +1,7 @@
 class Page < ApplicationRecord
 	include ContentModified
 	extend Mobility
-  translates :meta_title, :meta_description
+  # meta title/description kini di seo_settings (HasSeoSetting); kolom lama dibiarkan di DB.
 
 	extend FriendlyId
   friendly_id :title, use: :slugged

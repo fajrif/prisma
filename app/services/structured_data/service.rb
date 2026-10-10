@@ -47,7 +47,7 @@ module StructuredData
 		end
 
 		def description
-			plain_text(@record.meta_description.presence || @record.short_description.presence || @record.description,
+			plain_text(seo_description.presence || @record.short_description.presence || @record.description,
 								 limit: 500)
 		end
 	end

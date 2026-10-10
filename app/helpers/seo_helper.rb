@@ -25,14 +25,12 @@ module SeoHelper
   end
 
   # Title, description, robots, og:* dan gambar share halaman ini. Rantai fallback-nya
-  # ada di SeoMeta. @meta_title/@meta_desc diisi controller dari kolom model (tingkat 2).
+  # ada di SeoMeta.
   def seo_meta
     @seo_meta ||= SeoMeta.new(
       record: schema_subject,
       controller: controller_name,
-      action: action_name,
-      title: @meta_title,
-      description: @meta_desc
+      action: action_name
     )
   end
 
@@ -235,8 +233,8 @@ module SeoHelper
 
     if content_for?(:seo_h1)
       content_tag(:h1, content_for(:seo_h1), class: 'visually-hidden seo-h1')
-    elsif @meta_title.present?
-      content_tag(:h1, @meta_title, class: 'visually-hidden seo-h1')
+    elsif seo_meta.title.present?
+      content_tag(:h1, seo_meta.title, class: 'visually-hidden seo-h1')
     end
   end
 

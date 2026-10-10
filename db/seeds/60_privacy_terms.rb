@@ -11,7 +11,7 @@
 # - Halaman dicari per slug (`privacy-policy`, `terms`), lalu per judul. Belum ada -> dibuat.
 # - Konten tiap bahasa hanya ditulis bila masih kosong atau masih placeholder "[Isi oleh tim ...]" dari
 #   `rake seo:legal_pages`. Teks yang sudah diedit tim Prisma di admin TIDAK ditimpa.
-# - Meta title/description hanya diisi bila masih kosong.
+# - Meta title/description (di seo_settings) hanya diisi bila masih kosong.
 # - Halaman diterbitkan (status Published) bila ada konten yang ditulis pada run ini.
 #
 # Opsi (ENV):
@@ -514,11 +514,14 @@ pages.each do |attrs|
         skipped << locale_names[locale]
       end
 
-      if force || page.new_record? || page.meta_title(fallback: false).to_s.strip.empty?
-        page.meta_title = attrs[:meta_title][locale]
+      # Meta ada di seo_settings (form "SEO & Social"), bukan kolom model. Dibaca tanpa fallback
+      # agar teks EN tidak dianggap terisi oleh teks ID.
+      seo = page.seo_setting || page.build_seo_setting
+      if force || seo.new_record? || seo.meta_title(fallback: false).to_s.strip.empty?
+        seo.meta_title = attrs[:meta_title][locale]
       end
-      if force || page.new_record? || page.meta_description(fallback: false).to_s.strip.empty?
-        page.meta_description = attrs[:meta_description][locale]
+      if force || seo.new_record? || seo.meta_description(fallback: false).to_s.strip.empty?
+        seo.meta_description = attrs[:meta_description][locale]
       end
     end
   end
