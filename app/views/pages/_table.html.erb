@@ -1,0 +1,22 @@
+<%# Blok tabel (T8). Isi dari TinyMCE di snippet.description; dibungkus agar bisa digulir di mobile. %>
+<% if snippet.description.present? %>
+	<div class="container-xl table-block">
+		<% if snippet.title.present? %>
+			<div class="row margin-30px-bottom sm-margin-20px-bottom">
+				<div class="col-lg-8">
+					<h2 class="block-heading text-extra-dark-gray m-0"><%= snippet.title %></h2>
+					<% if snippet.short_description.present? %>
+						<div class="margin-15px-top last-paragraph-no-margin"><%= rich_block_html(snippet.short_description) %></div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+		<div class="row">
+			<div class="col-12">
+				<div class="table-responsive content-table" tabindex="0" role="region" aria-label="<%= snippet.title.presence || t('content_blocks.table_label', default: 'Table') %>">
+					<%= rich_block_html(snippet.description) %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

@@ -47,7 +47,7 @@ class Admins::IndustriesController < Admins::BaseController
   private
 
   def params_industry
-    params.require(:industry).permit(:image, :name, :caption, :description, :banner_section_id, :meta_title, :meta_description)
+    params.require(:industry).permit(:image, :name, :caption, :description, :banner_section_id, :meta_title, :meta_description, content_blocks_attributes: HasContentBlocks::PERMITTED)
   end
 
 	def set_industry

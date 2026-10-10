@@ -1,0 +1,6 @@
+<%# Blok FAQ/tabel yang dipasang lewat panel "Blok konten" (Article, Location, Industry, Product). %>
+<% blocks.each do |block| %>
+	<section id="block-<%= block.id %>" class="content-block padding-70px-tb sm-padding-40px-tb">
+		<%= render "pages/#{block.snippet.template}", snippet: block.snippet, bg_color: nil %>
+	</section>
+<% end %>

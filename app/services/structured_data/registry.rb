@@ -13,15 +13,16 @@ module StructuredData
 
 		LOCATIONS_INDEX_PATH = '/locations'.freeze
 
-		def self.for(record: nil, path: nil, url: nil, trail: [])
-			new(record: record, path: path, url: url, trail: trail).payloads
+		def self.for(record: nil, path: nil, url: nil, trail: [], faq_items: [])
+			new(record: record, path: path, url: url, trail: trail, faq_items: faq_items).payloads
 		end
 
-		def initialize(record: nil, path: nil, url: nil, trail: [])
+		def initialize(record: nil, path: nil, url: nil, trail: [], faq_items: [])
 			@record = record
 			@path = SchemaMarkup.normalize_path(path)
 			@url = url
 			@trail = trail
+			@faq_items = faq_items
 		end
 
 		def payloads
@@ -33,6 +34,7 @@ module StructuredData
 			items << safely('WebPage') { WebPage.for_path(path: @path, url: @url) }
 			items << safely('LocationsIndex') { locations_index_payload }
 			items << safely('Record') { record_payload }
+			items << safely('FAQPage') { FaqPage.new(items: @faq_items, url: @url).payload } if @faq_items.present?
 			items.flatten.compact_blank
 		end
 

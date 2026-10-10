@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_10_100000) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_11_101000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -211,6 +211,29 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_10_100000) do
     t.string "link", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "content_blocks", force: :cascade do |t|
+    t.string "placeable_type", null: false
+    t.bigint "placeable_id", null: false
+    t.bigint "snippet_id", null: false
+    t.integer "order_no", default: 0, null: false
+    t.integer "hidden", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["placeable_type", "placeable_id"], name: "index_content_blocks_on_placeable"
+    t.index ["snippet_id"], name: "index_content_blocks_on_snippet_id"
+  end
+
+  create_table "faq_items", force: :cascade do |t|
+    t.bigint "snippet_id", null: false
+    t.jsonb "question", default: {}
+    t.jsonb "answer", default: {}
+    t.integer "order_no", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["snippet_id"], name: "index_faq_items_on_snippet_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -537,4 +560,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_10_100000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "content_blocks", "snippets"
+  add_foreign_key "faq_items", "snippets"
 end

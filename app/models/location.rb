@@ -7,6 +7,7 @@ class Location < ApplicationRecord
   friendly_id :name, use: :slugged
 
 	include HasSeoSetting
+	include HasContentBlocks
 
 	default_scope { order(id: :asc) }
 

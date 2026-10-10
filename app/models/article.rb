@@ -8,6 +8,7 @@ class Article < ApplicationRecord
 
 	include PublishedExtension
 	include HasSeoSetting
+	include HasContentBlocks
 
 	translates :content, backend: :action_text
 

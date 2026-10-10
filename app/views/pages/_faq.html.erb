@@ -1,0 +1,41 @@
+<%# Blok FAQ (T8). Hanya butir published yang pertanyaan & jawabannya terisi di bahasa aktif. %>
+<%- items = visible_faq_items(snippet) -%>
+<% if items.any? %>
+	<%- pairs = items.map { |item| [item.question, rich_block_html(item.answer)] } -%>
+	<%- register_faq_items(pairs) -%>
+	<%- block_id = "faq-#{snippet.id}" -%>
+	<div class="container-xl faq-block">
+		<% if snippet.title.present? %>
+			<div class="row margin-40px-bottom sm-margin-25px-bottom">
+				<div class="col-lg-8">
+					<h2 class="block-heading text-extra-dark-gray m-0"><%= snippet.title %></h2>
+					<% if snippet.short_description.present? %>
+						<div class="margin-15px-top last-paragraph-no-margin"><%= rich_block_html(snippet.short_description) %></div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+		<div class="row">
+			<div class="col-12">
+				<div class="panel-group accordion-style1 faq-accordion" id="<%= block_id %>">
+					<% pairs.each_with_index do |(question, answer), index| %>
+						<%- item_id = "#{block_id}-#{index + 1}" -%>
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title" id="<%= item_id %>-q">
+									<button type="button" class="faq-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#<%= item_id %>-a" aria-expanded="false" aria-controls="<%= item_id %>-a">
+										<span><%= question %></span>
+										<i class="fa-solid fa-plus" aria-hidden="true"></i>
+									</button>
+								</h3>
+							</div>
+							<div id="<%= item_id %>-a" class="panel-collapse collapse" role="region" aria-labelledby="<%= item_id %>-q" data-bs-parent="#<%= block_id %>">
+								<div class="panel-body last-paragraph-no-margin"><%= answer %></div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,37 @@
+<%= simple_form_for [:admins, @snippet, @faq_item] do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<div class="alert alert-info py-2">
+						Sedang mengisi bahasa <b><%= I18n.locale.to_s.upcase %></b>. Ganti bahasa lewat menu di pojok kanan atas,
+						lalu simpan lagi untuk bahasa lain. Butir hanya tampil di bahasa yang pertanyaan &amp; jawabannya terisi.
+						Teks berisi <code>[TBC</code> tidak ditampilkan.
+					</div>
+					<%= f.error_notification %>
+					<%= f.input :question, as: :string, label: 'Pertanyaan', required: false %>
+					<%= f.input :answer, as: :text, label: 'Jawaban', required: false, input_html: { class: 'tinymce-faq-answer', rows: 8 } %>
+					<div class="form-actions">
+						<%= f.button :submit, 'Simpan', class: 'btn btn-secondary' %>
+						<%= link_to 'Batal', admins_snippet_path(@snippet), class: 'btn btn-light' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card">
+				<div class="card-header"><h5 class="card-title mb-0">Settings</h5></div>
+				<div class="card-body">
+					<%= f.input :status, as: :select, collection: [['Published', 1], ['Draft', 0]], include_blank: false %>
+					<%= f.input :order_no, label: 'Urutan', hint: 'Kosong/0 = paling akhir.' %>
+					<p class="small text-muted mb-0">Blok: <b><%= @snippet.name %></b></p>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<%= render 'admins/shared/tinymce' %>
+	<script>PrismaTinymce.init('textarea.tinymce-faq-answer', 'faq_answer');</script>
+<% end %>

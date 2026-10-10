@@ -84,7 +84,7 @@ class Admins::ArticlesController < Admins::BaseController
   private
 
   def params_article
-    params.require(:article).permit(:image, :name, :title, :short_description, :content, :published_date, :modified_date, :status, :category_id, :meta_title, :meta_description, :file, seo_setting_attributes: HasSeoSetting::PERMITTED)
+    params.require(:article).permit(:image, :name, :title, :short_description, :content, :published_date, :modified_date, :status, :category_id, :meta_title, :meta_description, :file, seo_setting_attributes: HasSeoSetting::PERMITTED, content_blocks_attributes: HasContentBlocks::PERMITTED)
   end
 
   def set_article

@@ -119,23 +119,35 @@ module SeoHelper
 
     tags = []
 
+    manual = SchemaMarkup.matching(record: schema_subject, path: canonical_path).filter_map(&:parsed_body)
+
+    # FAQPage otomatis dari blok FAQ yang tampil; dilewati bila Schema Manager sudah memasang
+    # FAQPage untuk halaman ini, supaya tidak ada dua FAQPage.
+    faq_items = manual_schema_types(manual).include?('FAQPage') ? [] : rendered_faq_items
+
     payloads = StructuredData::Registry.for(
       record: schema_subject,
       path: canonical_path,
       url: canonical_url,
-      trail: breadcrumb_trail
+      trail: breadcrumb_trail,
+      faq_items: faq_items
     )
     tags << json_ld_script('@context' => 'https://schema.org', '@graph' => payloads) if payloads.present?
 
-    SchemaMarkup.matching(record: schema_subject, path: canonical_path).each do |markup|
-      parsed = markup.parsed_body
-      tags << json_ld_script(parsed) if parsed.present?
-    end
+    manual.each { |parsed| tags << json_ld_script(parsed) }
 
     safe_join(tags, "\n\t")
   rescue StandardError => e
     Rails.logger.error("[StructuredData] render failed: #{e.class} #{e.message}")
     nil
+  end
+
+  # Semua @type di schema manual (termasuk yang ada di dalam @graph).
+  def manual_schema_types(payloads)
+    payloads.flat_map do |payload|
+      nodes = payload.is_a?(Hash) && payload['@graph'].is_a?(Array) ? payload['@graph'] : Array.wrap(payload)
+      nodes.flat_map { |node| node.is_a?(Hash) ? Array.wrap(node['@type']) : [] }
+    end
   end
 
   def json_ld_script(payload)

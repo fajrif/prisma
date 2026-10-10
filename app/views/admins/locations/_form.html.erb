@@ -10,6 +10,7 @@
             <%= f.input :description, as: :text %>
 					</fieldset>
 					<%= render 'admins/shared/seo_panel', f: f, show_meta: true %>
+					<%= render 'admins/shared/content_blocks_panel', f: f %>
 					<%= f.error :base %>
 					<div class="form-actions">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>

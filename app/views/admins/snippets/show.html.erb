@@ -140,6 +140,10 @@
 	</div>
 </div>
 
+<% if @snippet.template == 'faq' %>
+	<%= render 'admins/snippets/faq_items/table' %>
+<% end %>
+
 <div id="link-buttons-table">
 	<%= render "admins/snippets/link_buttons/table" %>
 </div>

@@ -11,7 +11,13 @@
 						<%= f.input :title, as: :string %>
 						<%= f.input :caption, as: :string %>
 						<%= f.input :short_description, input_html: { class: 'quill_container' } %>
-						<%= f.input :description, input_html: { class: 'quill_container' } %>
+						<%# Template table memakai TinyMCE (Quill tidak mendukung tabel); template lain tetap Quill. %>
+						<% if @snippet.template == 'table' %>
+							<%= f.input :description, label: 'Tabel', input_html: { class: 'tinymce-table', rows: 12 },
+										hint: 'Baris pertama dijadikan header lewat tombol "Row header". Bisa tempel langsung dari Excel/Google Sheets.' %>
+						<% else %>
+							<%= f.input :description, input_html: { class: 'quill_container' } %>
+						<% end %>
 						<%= f.input :video_url %>
 					</fieldset>
 					<div class="form-actions">
@@ -52,6 +58,42 @@
 <% end %>
 
 <%= content_for :tail do %>
+	<%= render 'admins/shared/tinymce' %>
+	<script>
+		// Editor isi mengikuti template: table -> TinyMCE, lainnya -> Quill (dimuat quill.global).
+		(function ($) {
+			var $field = $('#snippet_description');
+			var $quill = function () { return $('.snippet_description-quill').add($('.snippet_description-quill').prev('.ql-toolbar')); };
+
+			function useTable() {
+				if ($quill().length) {
+					$field.val($('.snippet_description-quill .ql-editor').html());
+					$quill().hide();
+				}
+				$field.addClass('tinymce-table');
+				PrismaTinymce.init('#snippet_description', 'table');
+			}
+
+			function useQuill() {
+				PrismaTinymce.remove('#snippet_description');
+				$field.removeClass('tinymce-table');
+				if ($quill().length) {
+					$('.snippet_description-quill .ql-editor').html($field.val());
+					$field.hide();
+					$quill().show();
+				} else {
+					$field.show();
+				}
+			}
+
+			$(function () {
+				if ($field.hasClass('tinymce-table')) PrismaTinymce.init('#snippet_description', 'table');
+				$('#snippet_template').on('change', function () {
+					$(this).val() === 'table' ? useTable() : useQuill();
+				});
+			});
+		})(jQuery);
+	</script>
 	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
 	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 	<style>

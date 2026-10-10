@@ -110,6 +110,8 @@ module AdminHelper
       "service_title",
       "info_bg",
       "info_desc_bg",
+      "faq",
+      "table",
       "info_image_box",
       "info_image_box_2",
       "info_image_double",

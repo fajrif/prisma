@@ -142,6 +142,7 @@ Rails.application.routes.draw do
       end
       resources :snippets do
         resources :link_buttons, controller: 'snippets/link_buttons', except: %i[index show]
+        resources :faq_items, controller: 'snippets/faq_items', except: %i[index show]
         member do
           delete 'delete_attachment/:asset_id' => 'snippets#delete_attachment', :as => :delete_attachment
         end
