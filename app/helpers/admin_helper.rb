@@ -1,4 +1,15 @@
 module AdminHelper
+	# Path blok konten untuk record placeable. Selalu memakai id numerik, bukan slug (to_param FriendlyId).
+	# action: nil (create/update/destroy), :new, :edit.
+	def admin_content_block_path(record, block = nil, action: nil)
+		name = "admins_#{record.model_name.singular_route_key}_content_block"
+		args = block&.persisted? ? [record.id, block.id] : [record.id]
+		path = block&.persisted? || action == :edit ? name : name.sub(/_block\z/, '_blocks')
+		path = "new_#{name}" if action == :new
+		path = "edit_#{name}" if action == :edit
+		public_send("#{path}_path", *args)
+	end
+
 	# Semua simple_form di admin memakai builder yang membaca nilai Mobility mentah (tanpa fallback).
 	def simple_form_for(record, options = {}, &block)
 		options = options.merge(builder: Admins::FormBuilder) if controller.is_a?(Admins::BaseController) && !options.key?(:builder)

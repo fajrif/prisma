@@ -5,7 +5,7 @@
 	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-	<%= simple_form_for [:admins, @placeable, @block], remote: true do |f| %>
+	<%= simple_form_for @block, url: admin_content_block_path(@placeable, @block), method: (@block.persisted? ? :patch : :post), remote: true do |f| %>
 		<%= f.error_notification %>
 		<% if f.object.errors.any? %>
 			<div class="alert alert-danger py-2"><%= f.object.errors.full_messages.to_sentence %></div>

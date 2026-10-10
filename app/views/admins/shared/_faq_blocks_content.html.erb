@@ -18,8 +18,8 @@
 			</div>
 			<div class="hstack gap-2">
 				<%= link_to 'Kelola butir', admins_snippet_path(snippet), class: 'btn btn-sm btn-soft-secondary' %>
-				<%= link_to 'Edit', edit_polymorphic_path([:admins, record, placement]), remote: true, class: 'btn btn-sm btn-soft-primary' %>
-				<%= link_to 'Hapus', polymorphic_path([:admins, record, placement]), method: :delete, remote: true,
+				<%= link_to 'Edit', admin_content_block_path(record, placement, action: :edit), remote: true, class: 'btn btn-sm btn-soft-primary' %>
+				<%= link_to 'Hapus', admin_content_block_path(record, placement), method: :delete, remote: true,
 							data: { confirm: "Lepas blok #{snippet.name} dari halaman ini?" }, class: 'btn btn-sm btn-soft-danger' %>
 			</div>
 		</div>
@@ -69,8 +69,8 @@
 					<span class="text-muted small">&mdash; urutan <%= placement.order_no %><%= ', disembunyikan' if placement.hidden.to_i == 1 %></span>
 				</span>
 				<span class="hstack gap-2">
-					<%= link_to 'Edit', edit_polymorphic_path([:admins, record, placement]), remote: true, class: 'btn btn-sm btn-soft-primary' %>
-					<%= link_to 'Hapus', polymorphic_path([:admins, record, placement]), method: :delete, remote: true,
+					<%= link_to 'Edit', admin_content_block_path(record, placement, action: :edit), remote: true, class: 'btn btn-sm btn-soft-primary' %>
+					<%= link_to 'Hapus', admin_content_block_path(record, placement), method: :delete, remote: true,
 								data: { confirm: "Lepas blok #{placement.snippet.name} dari halaman ini?" }, class: 'btn btn-sm btn-soft-danger' %>
 				</span>
 			</li>

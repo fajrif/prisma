@@ -5,7 +5,7 @@
 		Bahasa admin saat ini: <b><%= I18n.locale.to_s.upcase %></b>. Isi pertanyaan &amp; jawaban dikelola di
 		<%= link_to 'Snippets', admins_snippets_path %>; butir hanya tampil di situs pada bahasa yang terisi.
 	</p>
-	<%= link_to new_polymorphic_path([:admins, record, :content_block]), remote: true, class: 'btn btn-success btn-sm text-nowrap ms-3' do %>
+	<%= link_to admin_content_block_path(record, action: :new), remote: true, class: 'btn btn-success btn-sm text-nowrap ms-3' do %>
 		<i class="ri-add-line align-bottom me-1"></i> Add
 	<% end %>
 </div>

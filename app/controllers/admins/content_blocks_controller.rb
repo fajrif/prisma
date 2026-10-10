@@ -42,7 +42,7 @@ class Admins::ContentBlocksController < Admins::BaseController
 		key, klass = PLACEABLE_PARAMS.find { |param, _| params[param].present? }
 		raise ActiveRecord::RecordNotFound, 'placeable tidak dikenal' unless key
 
-		@placeable = klass.unscoped.friendly.find(params[key]) # slug (to_param) atau id
+		@placeable = klass.unscoped.find(params[key]) # admin selalu memakai id numerik
 	end
 
 	def set_block
