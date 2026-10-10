@@ -7,11 +7,16 @@
 	Diisi per bahasa &mdash; ganti bahasa lewat menu di pojok kanan atas
 	(sekarang: <b><%= I18n.locale.to_s.upcase %></b>).
 </div>
+<%- auto = SeoMeta.new(record: f.object) -%>
 <%= f.simple_fields_for :seo_setting, f.object.seo do |s| %>
 	<%= s.input :meta_title, as: :string, required: false,
-				hint: 'Ideal ±60 karakter. Kosong = dirakit otomatis dari data.' %>
-	<%= s.input :meta_description, as: :text, required: false, input_html: { rows: 3 },
-				hint: 'Ideal ±155 karakter. Kosong = dirakit otomatis dari data.' %>
+				hint: "Ideal #{SeoMeta::TITLE_MIN}–#{SeoMeta::TITLE_LIMIT} karakter. Kosong = dirakit otomatis dari data.",
+				input_html: { placeholder: auto.automatic_title,
+											data: { seo_counter: true, min: SeoMeta::TITLE_MIN, max: SeoMeta::TITLE_LIMIT, auto: auto.automatic_title } } %>
+	<%= s.input :meta_description, as: :text, required: false,
+				hint: "Ideal #{SeoMeta::DESCRIPTION_MIN}–#{SeoMeta::DESCRIPTION_LIMIT} karakter. Kosong = dirakit otomatis dari data.",
+				input_html: { rows: 3, placeholder: auto.automatic_description,
+											data: { seo_counter: true, min: SeoMeta::DESCRIPTION_MIN, max: SeoMeta::DESCRIPTION_LIMIT, auto: auto.automatic_description } } %>
 	<%= s.input :og_title, as: :string, required: false, label: 'Social title',
 				hint: 'Judul saat dibagikan (WhatsApp, LinkedIn, dll). Kosong = sama dengan meta title.' %>
 	<%= s.input :og_description, as: :text, required: false, input_html: { rows: 2 }, label: 'Social description',

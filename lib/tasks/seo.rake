@@ -377,7 +377,7 @@ namespace :seo do
 	task audit: :environment do
 		# Memakai SeoMeta langsung (tanpa HTTP), jadi bisa dijalankan di server tanpa
 		# membebani situs dan hasilnya sama dengan yang dirender layout.
-		limits = { title: (20..SeoMeta::TITLE_LIMIT), description: (70..SeoMeta::DESCRIPTION_LIMIT) }
+		limits = { title: (SeoMeta::TITLE_MIN..SeoMeta::TITLE_LIMIT), description: (SeoMeta::DESCRIPTION_MIN..SeoMeta::DESCRIPTION_LIMIT) }
 
 		subjects = []
 		subjects += Page.all.map { |r| ["page:#{r.slug}", r] }

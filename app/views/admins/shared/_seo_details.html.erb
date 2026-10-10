@@ -20,7 +20,7 @@
 			<%= meta.title %>
 			<% label, color = source_label[meta.title_source] %>
 			<span class="badge bg-<%= color %>-subtle text-<%= color %> ms-2"><%= label %></span>
-			<span class="small <%= meta.title_length > SeoMeta::TITLE_LIMIT ? 'text-danger' : 'text-muted' %>"><%= meta.title_length %> karakter</span>
+			<span class="small <%= seo_length_class(meta.title_length, SeoMeta::TITLE_MIN, SeoMeta::TITLE_LIMIT) %>"><%= meta.title_length %> karakter</span>
 		</td>
 	</tr>
 	<tr>
@@ -29,7 +29,7 @@
 			<%= meta.description %>
 			<% label, color = source_label[meta.description_source] %>
 			<span class="badge bg-<%= color %>-subtle text-<%= color %> ms-2"><%= label %></span>
-			<span class="small <%= meta.description_length > SeoMeta::DESCRIPTION_LIMIT ? 'text-danger' : 'text-muted' %>"><%= meta.description_length %> karakter</span>
+			<span class="small <%= seo_length_class(meta.description_length, SeoMeta::DESCRIPTION_MIN, SeoMeta::DESCRIPTION_LIMIT) %>"><%= meta.description_length %> karakter</span>
 		</td>
 	</tr>
 	<% if seo && seo.og_title(fallback: false).present? %>

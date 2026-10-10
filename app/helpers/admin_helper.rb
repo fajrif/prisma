@@ -217,6 +217,14 @@ module AdminHelper
 		end
 	end
 
+	# Kelas warna panjang teks SEO: merah = melewati batas atas, kuning = di bawah batas bawah.
+	def seo_length_class(length, min, max)
+		if length > max then 'text-danger'
+		elsif length < min then 'text-warning'
+		else 'text-muted'
+		end
+	end
+
 	# Path form "SEO & Social" terpisah sebuah record (rute dari concern :seo_editable).
 	def seo_admin_path(record)
 		public_send("seo_admins_#{record.model_name.singular}_path", record)

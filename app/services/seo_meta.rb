@@ -10,7 +10,12 @@
 # itu teks yang hanya diisi dalam bahasa Indonesia akan muncul di halaman Inggris. Lebih
 # baik jatuh ke tingkat berikutnya daripada menampilkan teks berbahasa salah.
 class SeoMeta
+	# Aturan panjang (karakter) yang dibaca mesin pencari. Batas atas: sisanya terpotong di hasil
+	# pencarian. Batas bawah: terlalu pendek = peluang menjelaskan halaman terbuang. Dipakai form
+	# SEO & Social (penghitung langsung), ringkasan admin, dan rake seo:audit.
+	TITLE_MIN = 20
 	TITLE_LIMIT = 60
+	DESCRIPTION_MIN = 70
 	DESCRIPTION_LIMIT = 160
 	DEFAULT_ROBOTS = 'index, follow'.freeze
 	OG_TYPES = %w[website article].freeze
@@ -86,6 +91,16 @@ class SeoMeta
 	# Gambar share: seo_settings.og_image -> gambar record -> nil (layout memakai logo).
 	def image_url
 		attachment_url(seo&.og_image) || attachment_url(record_image)
+	end
+
+	# Nilai yang dipakai situs bila field SEO & Social dikosongkan (dirakit otomatis, lalu default
+	# situs). Dipakai form admin sebagai placeholder dan dasar penghitung panjang.
+	def automatic_title
+		generated_title.presence || configatron.site_title
+	end
+
+	def automatic_description
+		generated_description.presence || configatron.site_description
 	end
 
 	# Panjang yang dibaca mesin pencari, dipakai audit.
