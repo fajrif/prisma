@@ -16,7 +16,7 @@
 					<%= render 'admins/shared/seo_fields', f: f %>
 					<div class="form-actions mt-3">
 						<%= f.button :submit, 'Simpan SEO & Social', class: 'btn btn-secondary' %>
-						<%= link_to 'Kembali', "#{polymorphic_path([:admins, record])}#seo-details", class: 'btn btn-light' %>
+						<%= link_to 'Kembali', "#{admin_show_path(record)}#seo-details", class: 'btn btn-light' %>
 					</div>
 				<% end %>
 			</div>
