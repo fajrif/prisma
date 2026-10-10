@@ -58,3 +58,6 @@
 <% if meta.description_source == :default || meta.title_source == :default %>
 	<p class="small text-warning">Title/description masih memakai default situs &mdash; isi di form SEO &amp; Social agar unik.</p>
 <% end %>
+<% if heading %>
+	<%= render 'admins/shared/schema_preview', record: record %>
+<% end %>

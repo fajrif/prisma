@@ -217,6 +217,21 @@ module AdminHelper
 		end
 	end
 
+	# Path halaman publik sebuah record pada satu bahasa (en tanpa prefix). nil bila record tidak
+	# punya halaman publik. Dipakai pratinjau schema di tab SEO Details.
+	def public_path_for(record, locale)
+		loc = locale.to_sym == I18n.default_locale.to_sym ? nil : locale
+		case record
+		when Page then record.slug == 'home' ? root_path(locale: loc) : page_path(record.slug, locale: loc)
+		when Article then article_path(record.slug, locale: loc)
+		when Service then service_path(record.slug, locale: loc)
+		when Industry then industry_path(record.slug, locale: loc)
+		when Portfolio then portfolio_path(record.slug, locale: loc)
+		when Location then location_path(record.slug, locale: loc)
+		when Product then product_path(record.slug, locale: loc)
+		end
+	end
+
 	# Kelas warna panjang teks SEO: merah = melewati batas atas, kuning = di bawah batas bawah.
 	def seo_length_class(length, min, max)
 		if length > max then 'text-danger'

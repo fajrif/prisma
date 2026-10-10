@@ -1,0 +1,30 @@
+<%# Pratinjau schema JSON-LD yang benar-benar keluar di halaman publik sebuah record, supaya tim SEO
+    bisa melihatnya langsung. Diambil dari HTML halaman publik (same-origin) oleh schema_preview.js,
+    jadi sama persis dengan yang dibaca Google (schema otomatis + Schema Manager + FAQPage).
+    Locals: record -%>
+<%- paths = { 'en' => 'EN', 'id' => 'ID', 'cn' => 'CN' }.keys.to_h { |l| [l, public_path_for(record, l.to_sym)] }.compact -%>
+<% if paths.any? %>
+	<%- default_locale = paths.key?(I18n.locale.to_s) ? I18n.locale.to_s : paths.keys.first -%>
+	<div class="card border mt-4" data-schema-preview
+			 data-paths="<%= paths.to_json %>" data-default-locale="<%= default_locale %>"
+			 data-site-url="<%= configatron.site_url %>" data-seo-tab="#seo-details">
+		<div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+			<h6 class="mb-0"><i class="ri-braces-line align-bottom me-1"></i> Schema JSON-LD di halaman publik</h6>
+			<div class="hstack gap-2">
+				<div class="btn-group btn-group-sm" role="group" aria-label="Bahasa">
+					<% paths.each_key do |l| %>
+						<button type="button" class="btn btn-outline-secondary<%= ' active' if l == default_locale %>" data-schema-locale="<%= l %>"><%= l.upcase %></button>
+					<% end %>
+				</div>
+				<button type="button" class="btn btn-sm btn-soft-secondary" data-schema-copy>Salin JSON</button>
+				<a class="btn btn-sm btn-soft-primary" target="_blank" rel="noopener" data-schema-rich-results href="#">Rich Results Test</a>
+			</div>
+		</div>
+		<div class="card-body">
+			<p class="small text-muted mb-2" data-schema-status>Menunggu tab dibuka&hellip;</p>
+			<div class="mb-2" data-schema-types></div>
+			<pre class="bg-light border rounded p-3 mb-0 small" style="max-height:480px; overflow:auto; white-space:pre-wrap;" data-schema-json></pre>
+		</div>
+	</div>
+	<%= javascript_include_tag 'schema_preview' %>
+<% end %>
