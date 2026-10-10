@@ -217,6 +217,11 @@ module AdminHelper
 		end
 	end
 
+	# Path form "SEO & Social" terpisah sebuah record (rute dari concern :seo_editable).
+	def seo_admin_path(record)
+		public_send("seo_admins_#{record.model_name.singular}_path", record)
+	end
+
 	# Admin menampilkan teks lewat fallback Mobility (en<->id), sehingga bahasa yang sebenarnya
 	# kosong terlihat terisi. Badge ini menandainya, memakai aturan yang sama dengan sitemap
 	# (Article#own_locales). Tidak tampil bila bahasa aktif punya isi sendiri.

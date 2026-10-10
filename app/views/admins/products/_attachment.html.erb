@@ -1,0 +1,13 @@
+<%# Satu gambar produk + tombol hapus bila gambar itu tidak wajib di model. Local: name (Symbol). %>
+<%- attachment = @product.public_send(name) -%>
+<% if attachment.attached? %>
+	<%= image_tag attachment.variant(resize_to_limit: [100,100]) %>
+	<% unless @product.attachment_required?(name) %>
+		<%= link_to delete_attachment_admins_product_path(@product.id, name), class: "ms-2 btn btn-danger btn-sm", method: :delete,
+					data: { confirm: "Hapus #{name}?" }, title: "Hapus #{name}" do %>
+			<i class="ri-delete-bin-fill"></i>
+		<% end %>
+	<% end %>
+<% else %>
+	<span class="text-muted fst-italic">Belum ada</span>
+<% end %>

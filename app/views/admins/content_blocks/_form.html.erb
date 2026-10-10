@@ -1,0 +1,29 @@
+<%- taken = @placeable.content_blocks.where.not(id: @block.id).pluck(:snippet_id) -%>
+<%- choices = Snippet.where(template: ContentBlock::TEMPLATES).where.not(id: taken).order(:name).map { |s| ["#{s.name} (#{s.template})", s.id] } -%>
+<div class="modal-header">
+	<h5 class="modal-title"><%= @block.new_record? ? 'Tambah blok' : 'Edit blok' %></h5>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+	<%= simple_form_for [:admins, @placeable, @block], remote: true do |f| %>
+		<%= f.error_notification %>
+		<% if f.object.errors.any? %>
+			<div class="alert alert-danger py-2"><%= f.object.errors.full_messages.to_sentence %></div>
+		<% end %>
+		<% if choices.empty? && @block.new_record? %>
+			<div class="alert alert-warning py-2">
+				Belum ada snippet FAQ/tabel yang bisa dipasang. Buat dulu di <%= link_to 'Snippets', admins_snippets_path %>
+				(template <b>faq</b> atau <b>table</b>).
+			</div>
+		<% end %>
+		<%= f.input :snippet_id, as: :select, collection: choices, label: 'Snippet', include_blank: 'Pilih snippet…',
+					selected: @block.snippet_id, required: true,
+					hint: 'Hanya snippet bertemplate faq atau table yang belum terpasang di halaman ini.' %>
+		<%= f.input :order_no, label: 'Urutan', hint: 'Blok tampil di bawah isi utama, berurutan menurut angka ini.' %>
+		<%= f.input :hidden, as: :boolean, label: 'Sembunyikan (tidak tampil di situs)', checked_value: 1, unchecked_value: 0 %>
+		<div class="hstack gap-2 justify-content-end">
+			<a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+			<%= f.button :submit, 'Save', class: 'btn btn-secondary', disabled: (choices.empty? && @block.new_record?) %>
+		</div>
+	<% end %>
+</div>

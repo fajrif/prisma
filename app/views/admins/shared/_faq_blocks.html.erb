@@ -1,0 +1,14 @@
+<%# Tab "Block FAQ" (Article, Location, Industry, Product): tombol Add membuka modal pemasangan blok.
+    Page dan Service tidak memakai tab ini (dikelola di tab Sections / Segments). Local: record -%>
+<div class="d-flex align-items-center justify-content-between mb-3">
+	<p class="text-muted mb-0">
+		Bahasa admin saat ini: <b><%= I18n.locale.to_s.upcase %></b>. Isi pertanyaan &amp; jawaban dikelola di
+		<%= link_to 'Snippets', admins_snippets_path %>; butir hanya tampil di situs pada bahasa yang terisi.
+	</p>
+	<%= link_to new_polymorphic_path([:admins, record, :content_block]), remote: true, class: 'btn btn-success btn-sm text-nowrap ms-3' do %>
+		<i class="ri-add-line align-bottom me-1"></i> Add
+	<% end %>
+</div>
+<div id="faq-blocks-content">
+	<%= render 'admins/shared/faq_blocks_content', record: record %>
+</div>

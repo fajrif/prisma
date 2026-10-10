@@ -1,4 +1,5 @@
 class Admins::IndustriesController < Admins::BaseController
+	include SeoEditable
 	before_action :set_industry, except: [:index, :new, :create]
 
   def index
@@ -47,7 +48,7 @@ class Admins::IndustriesController < Admins::BaseController
   private
 
   def params_industry
-    params.require(:industry).permit(:image, :name, :caption, :description, :banner_section_id, :meta_title, :meta_description, content_blocks_attributes: HasContentBlocks::PERMITTED)
+    params.require(:industry).permit(:image, :name, :caption, :description, :banner_section_id)
   end
 
 	def set_industry

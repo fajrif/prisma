@@ -1,4 +1,5 @@
 class Admins::ProductsController < Admins::BaseController
+	include SeoEditable
 	before_action :set_product, except: [:index, :new, :create]
 
   def index
@@ -48,12 +49,23 @@ class Admins::ProductsController < Admins::BaseController
     redirect_to admins_products_url, :notice => "Successfully destroyed product."
   end
 
+	# Hapus satu gambar produk. Hanya lampiran yang tidak wajib (lihat ApplicationRecord#attachment_required?).
+	def delete_attachment
+		name = params[:name].to_s
+		if Product::IMAGE_ATTACHMENTS.include?(name) && !@product.attachment_required?(name) && @product.public_send(name).attached?
+			@product.public_send(name).purge
+			flash[:notice] = "Gambar #{name} dihapus."
+		else
+			flash[:alert] = "Gambar #{name} wajib ada dan tidak bisa dihapus."
+		end
+		redirect_to admins_product_path(@product.id)
+	end
+
   private
 
   def params_product
     params.require(:product).permit(:name, :description, :product_category_id, :location_id, :specification, :est_impression, :longitude, :latitude, :address, :interest, :video_url, :image, :image1, :image2, :banner, :billboard_type,
-                                    :city, :region, :size, :lighting, :slot_duration, :operating_hours, :impressions_per_day,
-                                    seo_setting_attributes: HasSeoSetting::PERMITTED, content_blocks_attributes: HasContentBlocks::PERMITTED)
+                                    :city, :region, :size, :lighting, :slot_duration, :operating_hours, :impressions_per_day)
   end
 
   def set_product

@@ -1,4 +1,5 @@
 class Admins::LocationsController < Admins::BaseController
+	include SeoEditable
 	before_action :set_location, except: [:index, :new, :create]
 
   def index
@@ -47,7 +48,7 @@ class Admins::LocationsController < Admins::BaseController
   private
 
   def params_location
-    params.require(:location).permit(:name, :description, :image, :banner_section_id, seo_setting_attributes: HasSeoSetting::PERMITTED, content_blocks_attributes: HasContentBlocks::PERMITTED)
+    params.require(:location).permit(:name, :description, :image, :banner_section_id)
   end
 
   def set_location

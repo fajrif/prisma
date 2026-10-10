@@ -67,6 +67,17 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: /id|cn/ do
     namespace :admins do
+      # Form "SEO & Social" terpisah (Admins::SeoEditable) dan blok FAQ/tabel (Admins::ContentBlocksController)
+      concern :seo_editable do
+        member do
+          get :seo, action: :edit_seo
+          patch :seo, action: :update_seo
+        end
+      end
+      concern :content_blockable do
+        resources :content_blocks, controller: '/admins/content_blocks', only: %i[new create edit update destroy]
+      end
+
       root to: 'dashboard#index'
 
       # SEO
@@ -101,7 +112,7 @@ Rails.application.routes.draw do
       resources :banners do
         resources :link_buttons, controller: 'banners/link_buttons', except: %i[index show]
       end
-      resources :articles do
+      resources :articles, concerns: %i[seo_editable content_blockable] do
         member do
           delete 'delete_attachment/:asset_id' => 'articles#delete_attachment', :as => :delete_attachment
           delete 'delete_attachment_image/:asset_id' => 'articles#delete_attachment_image',
@@ -109,16 +120,20 @@ Rails.application.routes.draw do
         end
       end
       resources :categories
-      resources :portfolios
-      resources :locations
-      resources :products
+      resources :portfolios, concerns: :seo_editable
+      resources :locations, concerns: %i[seo_editable content_blockable]
+      resources :products, concerns: %i[seo_editable content_blockable] do
+        member do
+          delete 'delete_attachment/:name' => 'products#delete_attachment', :as => :delete_attachment
+        end
+      end
       resources :product_categories
       resources :awards
       resources :award_categories
       resources :pix_services
       resources :innovations
       resources :boostad_services
-      resources :services do
+      resources :services, concerns: :seo_editable do
         resources :segments, controller: 'services/segments', except: [:index] do
           collection do
             patch :sort
@@ -126,9 +141,9 @@ Rails.application.routes.draw do
         end
         resources :benefits, controller: 'services/benefits', except: [:index]
       end
-      resources :industries
+      resources :industries, concerns: %i[seo_editable content_blockable]
       resources :inquiries, only: %i[index show destroy]
-      resources :pages do
+      resources :pages, concerns: :seo_editable do
         resources :sections, controller: 'pages/sections', except: [:index] do
           collection do
             patch :sort

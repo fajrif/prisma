@@ -1,0 +1,5 @@
+$("#faq-blocks-content").html("<%= escape_javascript(render("admins/shared/faq_blocks_content", record: @placeable)) %>");
+$("#faq-blocks-count").text("<%= faq_block_entries(@placeable).size %>");
+$("#forFlashMessage").html("<%= escape_javascript(flash_message) %>");
+$("#myModal").modal('hide');
+<%- flash.discard -%>

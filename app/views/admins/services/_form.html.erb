@@ -5,40 +5,6 @@
 				<div class="card-body">
 					<%= f.error_notification %>
           <fieldset>
-          <!-- Accordions with Icons -->
-          <div class="accordion custom-accordionwithicon mb-3" id="accordionWithicon">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="accordionwithiconExample1">
-                <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#metatags" aria-expanded="true" aria-controls="metatags">
-                    <i class="ri-global-line me-2"></i> META TAGS
-                </button>
-              </h2>
-              <div id="metatags" class="accordion-collapse collapse" aria-labelledby="metatags" data-bs-parent="#accordionWithicon">
-                <div class="accordion-body">
-                  <%= f.input :meta_title, as: :string %>
-                  <%= f.input :meta_description, as: :text %>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#schemadata" aria-expanded="false" aria-controls="schemadata">
-                    <i class="ri-code-s-slash-line me-2"></i> STRUCTURED DATA (SCHEMA)
-                </button>
-              </h2>
-              <div id="schemadata" class="accordion-collapse collapse" data-bs-parent="#accordionWithicon">
-                <div class="accordion-body">
-                  <%= f.input :service_type, as: :string,
-                        hint: 'Kategori layanan untuk schema, bukan tagline. Contoh: Billboard advertising' %>
-                  <%= f.input :area_served_text, as: :text, label: 'Area served',
-                        input_html: { rows: 5 },
-                        hint: 'Satu area per baris, format "Tipe: Nama". Tipe: City, AdministrativeArea, State, Country. Contoh: City: Jakarta' %>
-                  <%= f.input :schema_provider_url, as: :string, label: 'Provider @id (opsional)',
-                        hint: 'Kosongkan untuk layanan Prisma. Isi hanya bila penyedianya organisasi lain, mis. PiX.' %>
-                </div>
-              </div>
-            </div>
-          </div>
 					<%= f.input :name, as: :string %>
 					<%= f.input :caption, as: :string %>
 					<%= f.input :short_description, as: :text %>

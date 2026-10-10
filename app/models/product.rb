@@ -14,6 +14,8 @@ class Product < ApplicationRecord
   # Billboard types: 0 = Digital Billboard, 1 = Static Billboard
   enum :billboard_type, { digital: 0, static: 1 }, default: :digital
 
+	IMAGE_ATTACHMENTS = %w[image image1 image2 banner].freeze
+
 	has_one_attached :banner, dependent: :purge
 	has_one_attached :image, dependent: :purge
 	has_one_attached :image1, dependent: :purge

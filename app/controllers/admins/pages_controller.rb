@@ -1,4 +1,5 @@
 class Admins::PagesController < Admins::BaseController
+	include SeoEditable
 	before_action :set_page, except: [:index, :new, :create]
 
   def index
@@ -47,7 +48,7 @@ class Admins::PagesController < Admins::BaseController
   private
 
   def params_page
-    params.require(:page).permit(:title, :content, :banner_section_id, :meta_title, :meta_description, :published_date, :status, seo_setting_attributes: HasSeoSetting::PERMITTED)
+    params.require(:page).permit(:title, :content, :banner_section_id, :published_date, :status)
   end
 
   def set_page

@@ -126,3 +126,11 @@ var defaults = {
 
 //This is the global config object
 Quilljs.setDefaults(defaults)
+
+// Buka tab yang ditunjuk anchor (mis. /admins/articles/62#seo-details setelah menyimpan form SEO & Social).
+jQuery(document).ready(function ($) {
+	var hash = window.location.hash;
+	if (!hash || !window.bootstrap) return;
+	var link = document.querySelector('.nav-tabs a[href="' + hash + '"]');
+	if (link) new window.bootstrap.Tab(link).show();
+});

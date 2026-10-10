@@ -1,4 +1,5 @@
 class Admins::PortfoliosController < Admins::BaseController
+	include SeoEditable
 	before_action :set_portfolio, except: [:index, :new, :create]
 
   def index
@@ -51,7 +52,7 @@ class Admins::PortfoliosController < Admins::BaseController
   private
 
   def params_portfolio
-    params.require(:portfolio).permit(:company_name, :video_url, :service_id, :industry_id, :name, :logo, :image, :image1, :image2, :banner, :caption, :short_description, :description, :about_campaign, :area_coverage, :media_used, :collaborators, :creative_highlights, :meta_title, :meta_description, :modified_date)
+    params.require(:portfolio).permit(:company_name, :video_url, :service_id, :industry_id, :name, :logo, :image, :image1, :image2, :banner, :caption, :short_description, :description, :about_campaign, :area_coverage, :media_used, :collaborators, :creative_highlights, :modified_date)
   end
 
   def set_portfolio

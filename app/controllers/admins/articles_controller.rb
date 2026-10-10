@@ -1,4 +1,5 @@
 class Admins::ArticlesController < Admins::BaseController
+	include SeoEditable
 	before_action :set_article, except: [:index, :new, :create]
 
   def index
@@ -84,7 +85,7 @@ class Admins::ArticlesController < Admins::BaseController
   private
 
   def params_article
-    params.require(:article).permit(:image, :name, :title, :short_description, :content, :published_date, :modified_date, :status, :category_id, :meta_title, :meta_description, :file, seo_setting_attributes: HasSeoSetting::PERMITTED, content_blocks_attributes: HasContentBlocks::PERMITTED)
+    params.require(:article).permit(:image, :name, :title, :short_description, :content, :published_date, :modified_date, :status, :category_id, :file)
   end
 
   def set_article

@@ -1,0 +1,33 @@
+<%# Form "SEO & Social" terpisah untuk satu record. Dipakai SeoEditable#edit_seo/update_seo.
+    @seo_record = Page/Article/Industry/Portfolio/Service/Location/Product -%>
+<% title_page("SEO & Social") %>
+<%- record = @seo_record -%>
+<%- label = record.try(:title).presence || record.try(:name).presence || "##{record.id}" -%>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card">
+			<div class="card-body">
+				<p class="text-muted mb-3">
+					<%= record.model_name.human %>: <b><%= label %></b>
+				</p>
+				<%= simple_form_for record, url: seo_admin_path(record), method: :patch, html: { multipart: true } do |f| %>
+					<%= f.error_notification %>
+					<%= render 'admins/shared/error_messages', target: record, col: 'col-lg-12' if record.errors.any? %>
+					<%= render 'admins/shared/seo_fields', f: f %>
+					<div class="form-actions mt-3">
+						<%= f.button :submit, 'Simpan SEO & Social', class: 'btn btn-secondary' %>
+						<%= link_to 'Kembali', "#{polymorphic_path([:admins, record])}#seo-details", class: 'btn btn-light' %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="card">
+			<div class="card-header"><h5 class="card-title mb-0">Yang tampil sekarang</h5></div>
+			<div class="card-body">
+				<%= render 'admins/shared/seo_details', record: record, heading: false %>
+			</div>
+		</div>
+	</div>
+</div>

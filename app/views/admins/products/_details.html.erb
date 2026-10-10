@@ -20,27 +20,27 @@
     </td>
   </tr>
   <tr>
-    <td><b>Image</b></td>
+    <td><b>Image</b><% if @product.attachment_required?(:image) %> <span class="text-danger" title="Wajib">*</span><% end %></td>
     <td>
-      <%= image_tag @product.image.variant(resize_to_limit: [100,100]) if @product.image.attached? %>
+      <%= render 'admins/products/attachment', name: :image %>
     </td>
   </tr>
   <tr>
-    <td><b>Image 1</b></td>
+    <td><b>Image 1</b><% if @product.attachment_required?(:image1) %> <span class="text-danger" title="Wajib">*</span><% end %></td>
     <td>
-      <%= image_tag @product.image1.variant(resize_to_limit: [100,100]) if @product.image1.attached? %>
+      <%= render 'admins/products/attachment', name: :image1 %>
     </td>
   </tr>
   <tr>
-    <td><b>Image 2</b></td>
+    <td><b>Image 2</b><% if @product.attachment_required?(:image2) %> <span class="text-danger" title="Wajib">*</span><% end %></td>
     <td>
-      <%= image_tag @product.image2.variant(resize_to_limit: [100,100]) if @product.image2.attached? %>
+      <%= render 'admins/products/attachment', name: :image2 %>
     </td>
   </tr>
   <tr>
-    <td><b>Banner</b></td>
+    <td><b>Banner</b><% if @product.attachment_required?(:banner) %> <span class="text-danger" title="Wajib">*</span><% end %></td>
     <td>
-      <%= image_tag @product.banner.variant(resize_to_limit: [100,100]) if @product.banner.attached? %>
+      <%= render 'admins/products/attachment', name: :banner %>
     </td>
   </tr>
   <tr>

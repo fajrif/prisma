@@ -9,11 +9,26 @@
 								Details
 						</a>
 					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#seo-details" role="tab" aria-selected="false">
+								SEO Details
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" data-bs-toggle="tab" href="#faq-blocks" role="tab" aria-selected="false" tabindex="-1">
+							Block FAQ (<span id="faq-blocks-count"><%= faq_block_entries(@product).size %></span>)
+						</a>
+					</li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active show" id="details" role="tabpanel">
 						<%= render "details" %>
+					</div>
+					<div class="tab-pane" id="seo-details" role="tabpanel">
 						<%= render 'admins/shared/seo_details', record: @product %>
+					</div>
+					<div class="tab-pane" id="faq-blocks" role="tabpanel">
+						<%= render 'admins/shared/faq_blocks', record: @product %>
 					</div>
 				</div>
 				<div class="form-actions">

@@ -1,8 +1,18 @@
-<%# Ringkasan SEO sebuah record di halaman show admin. Local: record -%>
+<%# Ringkasan SEO sebuah record: nilai yang benar-benar tampil di situs (hasil SeoMeta) + sumbernya.
+    Locals: record; heading (default true) = tampilkan judul & tombol "Edit SEO & Social". -%>
+<% heading = local_assigns.fetch(:heading, true) %>
 <% meta = SeoMeta.new(record: record) %>
-<% source_label = { seo_settings: ['SEO & Social', 'success'], model: ['Kolom model', 'primary'],
-										generated: ['Dirakit otomatis', 'info'], default: ['Default situs', 'warning'] } %>
-<h6 class="mt-4">SEO yang tampil di halaman (bahasa admin saat ini: <%= I18n.locale.to_s.upcase %>)</h6>
+<% seo = record.try(:seo_setting) %>
+<% source_label = { seo_settings: ['SEO & Social', 'success'], generated: ['Dirakit otomatis', 'info'],
+										default: ['Default situs', 'warning'] } %>
+<% if heading %>
+	<div class="d-flex align-items-center justify-content-between mb-2">
+		<h6 class="mb-0">SEO yang tampil di halaman (bahasa admin saat ini: <%= I18n.locale.to_s.upcase %>)</h6>
+		<%= link_to seo_admin_path(record), class: 'btn btn-sm btn-secondary' do %>
+			<i class="ri-share-forward-line align-bottom me-1"></i> Edit SEO &amp; Social
+		<% end %>
+	</div>
+<% end %>
 <table class="table table-hover">
 	<tr>
 		<td width="150px"><b>Title</b></td>
@@ -22,6 +32,18 @@
 			<span class="small <%= meta.description_length > SeoMeta::DESCRIPTION_LIMIT ? 'text-danger' : 'text-muted' %>"><%= meta.description_length %> karakter</span>
 		</td>
 	</tr>
+	<% if seo && seo.og_title(fallback: false).present? %>
+		<tr><td><b>Social title</b></td><td><%= seo.og_title(fallback: false) %></td></tr>
+	<% end %>
+	<% if seo && seo.og_description(fallback: false).present? %>
+		<tr><td><b>Social description</b></td><td><%= seo.og_description(fallback: false) %></td></tr>
+	<% end %>
+	<% if seo&.og_image&.attached? %>
+		<tr><td><b>Share image</b></td><td><%= image_tag seo.og_image.variant(resize_to_limit: [160, 160]) %></td></tr>
+	<% end %>
+	<% if seo && (seo.og_type.present? || seo.twitter_card.present?) %>
+		<tr><td><b>Social type / card</b></td><td><%= [meta.og_type, meta.twitter_card].join(' / ') %></td></tr>
+	<% end %>
 	<tr>
 		<td><b>Robots</b></td>
 		<td><%= meta.robots %></td>
@@ -34,5 +56,5 @@
 	<% end %>
 </table>
 <% if meta.description_source == :default || meta.title_source == :default %>
-	<p class="small text-warning">Title/description masih memakai default situs &mdash; isi di panel SEO &amp; Social agar unik.</p>
+	<p class="small text-warning">Title/description masih memakai default situs &mdash; isi di form SEO &amp; Social agar unik.</p>
 <% end %>

@@ -40,4 +40,19 @@ module ContentBlocksHelper
 
 		render 'shared/content_blocks', blocks: blocks
 	end
+
+	# Pemasangan snippet pada sebuah record untuk tab "Block FAQ" di admin. Sumbernya berbeda per
+	# resource tetapi bentuknya sama (snippet, order_no, hidden): Page = sections, Service = segments,
+	# Article/Location/Industry/Product = content_blocks.
+	def snippet_placements(record)
+		if record.respond_to?(:sections) then record.sections
+		elsif record.respond_to?(:segments) then record.segments
+		elsif record.respond_to?(:content_blocks) then record.content_blocks
+		else []
+		end
+	end
+
+	def faq_block_entries(record, template = 'faq')
+		snippet_placements(record).select { |placement| placement.snippet&.template == template }
+	end
 end
