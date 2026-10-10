@@ -59,7 +59,8 @@
 
 <%= content_for :tail do %>
 	<%= stylesheet_link_tag :actiontext, "data-turbo-track": "reload" %>
+	<%# trix_config.js wajib sebelum trix.js: atribut blok harus terdaftar sebelum editor mem-parse isi awal %>
+	<%= javascript_include_tag "trix_config.js" %>
 	<%= javascript_include_tag :trix %>
 	<%= javascript_include_tag :actiontext %>
-	<%= javascript_include_tag "trix_config.js" %>
 <% end %>

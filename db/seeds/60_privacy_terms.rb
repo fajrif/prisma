@@ -17,6 +17,12 @@
 # Opsi (ENV):
 #   PUBLISH=0  tulis konten tetapi biarkan/ubah ke Draft (tidak tampil di situs & footer)
 #   FORCE=1    timpa konten & meta SEMUA bahasa, termasuk yang sudah diedit
+#   ONLY=slug[,slug]    batasi ke halaman tertentu (privacy-policy, terms); halaman lain tidak disentuh
+#   LOCALES=en,id       batasi ke bahasa tertentu (konten & meta); bahasa lain tidak disentuh
+#
+# Memulihkan halaman yang strukturnya rusak (mis. <h2> menjadi <div> setelah disimpan dari editor admin)
+# tanpa menyentuh halaman/bahasa lain:
+#   RAILS_ENV=production FORCE=1 ONLY=privacy-policy LOCALES=en,id bin/rails runner db/seeds/60_privacy_terms.rb
 #
 # CATATAN ISI: ini template standar, bukan nasihat hukum. Wajib ditinjau legal Prisma. Terjemahan Mandarin
 # (Sederhana) perlu dicek penutur asli. Poin yang perlu dikonfirmasi Prisma ada di ROADMAP_PLAN.md (T3).
@@ -24,6 +30,11 @@
 
 publish = ENV['PUBLISH'] != '0'
 force   = ENV['FORCE'] == '1'
+only    = ENV['ONLY'].to_s.split(',').map(&:strip).reject(&:empty?)
+locales = ENV['LOCALES'].to_s.split(',').map { |l| l.strip.downcase.to_sym }.reject { |l| l == :'' }
+locales = %i[en id cn] if locales.empty?
+unknown = locales - %i[en id cn]
+abort "LOCALES tidak dikenal: #{unknown.join(', ')} (pilihan: en, id, cn)" if unknown.any?
 
 placeholder = ->(text) { text.to_s.strip.empty? || text.to_s.include?('[Isi oleh') }
 
@@ -481,13 +492,15 @@ pages = [
 locale_names = { en: 'EN', id: 'ID', cn: 'CN' }
 
 pages.each do |attrs|
+  next if only.any? && !only.include?(attrs[:slug])
+
   page = Page.find_by(slug: attrs[:slug]) || Page.find_by(title: attrs[:title])
   created = page.nil?
   page ||= Page.new(title: attrs[:title], status: 0, published_date: Time.current)
   written = []
   skipped = []
 
-  %i[en id cn].each do |locale|
+  locales.each do |locale|
     Mobility.with_locale(locale) do
       # fallback: false wajib. Tanpa itu, membaca :en yang kosong mengembalikan teks :id
       # (fallbacks en<->id di config/initializers/mobility.rb), sehingga dianggap sudah terisi.
