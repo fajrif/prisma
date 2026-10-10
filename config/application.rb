@@ -36,6 +36,9 @@ module Prisma
     config.active_storage.variant_processor = :mini_magick
     # T15: gambar lazy-load secara default (image_tag); gambar atas lipatan memakai loading: 'eager'.
     config.action_view.image_loading = 'lazy'
+    # T15: url_for(attachment/variant) langsung ke endpoint proxy (1 request, Cache-Control public setahun)
+    # menggantikan rantai 3 redirect (representations -> blobs -> disk) yang masing-masing memakai worker Unicorn.
+    config.active_storage.resolve_model_to_route = :rails_storage_proxy
 
 		# Configuration i18n
 		config.i18n.default_locale = :en
