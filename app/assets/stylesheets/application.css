@@ -169,3 +169,16 @@
 	font-size: 30px;
 	line-height: 1.3;
 }
+
+/* Banner default (halaman tanpa banner section, mis. Privacy Policy). Tingginya kecil karena
+   hanya memuat judul; h1 bawaan tema terlalu besar untuk ruang ini. */
+.default-banner h1 {
+	font-size: 56px;
+	line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+	.default-banner h1 {
+		font-size: 36px;
+	}
+}

@@ -3,20 +3,18 @@
 <%- _image_url = locals[:bg_image] ? locals[:bg_image] : image_url(configatron.default_banner) -%>
 <% content_for(:has_visible_h1, true) %>
 <!-- start page single banner -->
-<section class="p-0 single-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= _image_url %>');">
-	<div class="full-screen text-white-2 md-landscape-h-580px">
+<section class="p-0 single-banner default-banner parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= _image_url %>');">
+	<div class="h-300px sm-h-250px text-white-2 position-relative">
 	<div class="opacity-extra-medium bg-black"></div>
 		<div class="container-xl position-relative h-100">
 			<div class="row h-100">
-				<div class="col-12 d-flex margin-150px-top justify-content-between flex-column">
-					<div>
-						<h1 class="text-uppercase font-weight-320 margin-35px-bottom sm-margin-15px-bottom w-45 lg-w-60 md-w-70 sm-w-80"><%= title %></h1>
-					</div>
-					<div class="d-flex justify-content-between align-items-end align-items-md-start">
-						<div class="margin-five-bottom sm-margin-ten-bottom last-paragraph-no-margin sm-fs-16 w-45 lg-w-45 md-w-50 sm-w-100">
-							<p class="min-h-50px"><%= description %></p>
+				<div class="col-12 d-flex flex-column justify-content-end padding-30px-bottom sm-padding-20px-bottom">
+					<h1 class="text-uppercase font-weight-320 m-0 w-70 lg-w-80 md-w-100"><%= title %></h1>
+					<% if description.present? %>
+						<div class="margin-10px-top last-paragraph-no-margin sm-fs-16 w-45 md-w-70 sm-w-100">
+							<p><%= description %></p>
 						</div>
-					</div>
+					<% end %>
 				</div>
 			</div>
 		</div>
