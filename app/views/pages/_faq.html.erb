@@ -4,9 +4,9 @@
 	<%- pairs = items.map { |item| [item.question, rich_block_html(item.answer)] } -%>
 	<%- register_faq_items(pairs) -%>
 	<%- block_id = "faq-#{snippet.id}" -%>
-	<div class="container-xl faq-block">
+	<div class="container faq-block">
 		<% if snippet.title.present? %>
-			<div class="row margin-40px-bottom sm-margin-25px-bottom">
+			<div class="row margin-25px-bottom sm-margin-25px-bottom">
 				<div class="col-lg-8">
 					<h2 class="block-heading text-extra-dark-gray m-0"><%= snippet.title %></h2>
 					<% if snippet.short_description.present? %>
@@ -30,7 +30,7 @@
 								</h3>
 							</div>
 							<div id="<%= item_id %>-a" class="panel-collapse collapse" role="region" aria-labelledby="<%= item_id %>-q" data-bs-parent="#<%= block_id %>">
-								<div class="panel-body last-paragraph-no-margin"><%= answer %></div>
+								<div class="panel-body last-paragraph-no-margin content-table"><%= answer %></div>
 							</div>
 						</div>
 					<% end %>

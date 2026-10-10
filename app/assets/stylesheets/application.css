@@ -313,6 +313,15 @@
 	border-collapse: collapse;
 }
 
+/* Jawaban FAQ boleh berisi tabel: digulir horizontal di mobile seperti blok tabel. */
+.faq-accordion .panel-body.content-table {
+	overflow-x: auto;
+}
+
+.faq-accordion .panel-body table {
+	margin: 10px 0 15px;
+}
+
 .content-table th,
 .content-table td {
 	padding: 12px 16px;

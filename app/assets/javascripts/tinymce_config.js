@@ -39,11 +39,21 @@
 			table_default_styles: {},
 			min_height: 360
 		},
-		// Jawaban FAQ: teks sederhana.
+		// Jawaban FAQ: teks sederhana, boleh berisi tabel (aturan tabel sama dengan preset table).
 		faq_answer: {
-			plugins: 'lists link autoresize',
-			toolbar: 'undo redo | bold italic | bullist numlist | link | removeformat',
-			valid_elements: TEXT_ELEMENTS
+			plugins: 'table lists link autoresize',
+			toolbar: 'undo redo | bold italic | bullist numlist | link | table tablerowheader | removeformat',
+			valid_elements: TEXT_ELEMENTS + ',' + TABLE_ELEMENTS,
+			table_header_type: 'sectionCells',
+			table_use_colgroups: false,
+			table_resize_bars: false,
+			table_appearance_options: false,
+			table_advtab: false,
+			table_cell_advtab: false,
+			table_row_advtab: false,
+			table_style_by_css: false,
+			table_default_attributes: {},
+			table_default_styles: {}
 		}
 	};
 
