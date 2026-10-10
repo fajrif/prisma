@@ -430,7 +430,8 @@ module AdminHelper
 
 	def is_admins_seo_page?
 		controller.controller_name == "schema_markups" ||
-		controller.controller_name == "settings"
+		controller.controller_name == "settings" ||
+		controller.controller_name == "seo_audits"
 	end
 
 	# ---------------------------------------------------------------------------

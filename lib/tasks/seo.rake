@@ -370,61 +370,20 @@ namespace :seo do
 		puts "Slug tidak ditemukan: #{missing.join(', ')}" if missing.any?
 	end
 
-	desc "Audit title & description tiap halaman: kosong/default, terlalu panjang atau pendek, duplikat (per bahasa)"
+	desc "Audit title & description tiap halaman: kosong/default, terlalu panjang atau pendek, duplikat (per bahasa). SAVE=1 menyimpan JSON seperti menu admin SEO Audit"
 	task audit: :environment do
-		# Memakai SeoMeta langsung (tanpa HTTP), jadi bisa dijalankan di server tanpa
-		# membebani situs dan hasilnya sama dengan yang dirender layout.
-		limits = { title: (SeoMeta::TITLE_MIN..SeoMeta::TITLE_LIMIT), description: (SeoMeta::DESCRIPTION_MIN..SeoMeta::DESCRIPTION_LIMIT) }
-
-		subjects = []
-		subjects += Page.all.map { |r| ["page:#{r.slug}", r] }
-		subjects += Article.where(status: 1).map { |r| ["article:#{r.slug}", r] }
-		subjects += Service.all.map { |r| ["service:#{r.slug}", r] }
-		subjects += Industry.all.map { |r| ["industry:#{r.slug}", r] }
-		subjects += Portfolio.all.map { |r| ["portfolio:#{r.slug}", r] }
-		subjects += Location.all.map { |r| ["location:#{r.slug}", r] }
-		subjects += Product.unscoped.map { |r| ["billboard:#{r.slug}", r] }
-		subjects += Career.all.map { |r| ["career:#{r.slug}", r] }
-		%w[articles portfolios industries locations inquiries].each do |c|
-			subjects << ["index:#{c}", nil, { controller: c, action: 'index' }]
+		# Logika di SeoAudit (dipakai juga menu admin SEO -> SEO Audit). Tanpa HTTP, jadi aman di server.
+		result = SeoAudit.run
+		SeoAudit::LOCALES.each do |locale|
+			rows = result[:rows].select { |r| r[:locale] == locale.to_s }
+			issues = result[:findings].select { |f| f[:locale] == locale.to_s }
+			puts "\n=== #{locale.to_s.upcase}: #{rows.size} halaman dicek, #{issues.size} temuan ==="
+			issues.each { |f| puts "  - #{f[:label]}: #{f[:message]}" }
 		end
 
-		total_issues = 0
-
-		%i[en id cn].each do |locale|
-			I18n.with_locale(locale) do
-				rows = subjects.map do |label, record, opts|
-					meta = SeoMeta.new(record: record, controller: opts&.dig(:controller), action: opts&.dig(:action))
-					{ label: label, title: meta.title, description: meta.description,
-						t_src: meta.title_source, d_src: meta.description_source }
-				end
-
-				issues = []
-				rows.each do |r|
-					issues << [r[:label], 'title memakai default situs'] if r[:t_src] == :default
-					issues << [r[:label], 'description memakai default situs'] if r[:d_src] == :default
-					issues << [r[:label], "title #{r[:title].length} karakter (ideal #{limits[:title]})"] unless limits[:title].cover?(r[:title].length)
-					issues << [r[:label], "description #{r[:description].length} karakter (ideal #{limits[:description]})"] unless limits[:description].cover?(r[:description].length)
-				end
-
-				%i[title description].each do |field|
-					rows.group_by { |r| r[field] }.each do |text, group|
-						next if group.size < 2
-
-						issues << [group.map { |g| g[:label] }.first(4).join(', ') + (group.size > 4 ? " (+#{group.size - 4})" : ''),
-											 "#{field} ganda di #{group.size} halaman: #{text.truncate(60)}"]
-					end
-				end
-
-				puts "\n=== #{locale.to_s.upcase}: #{rows.size} halaman dicek, #{issues.size} temuan ==="
-				issues.group_by(&:last).first(0)
-				issues.each { |label, msg| puts "  - #{label}: #{msg}" }
-				total_issues += issues.size
-			end
-		end
-
-		puts "\nTotal temuan: #{total_issues}"
+		puts "\nTotal temuan: #{result[:findings].size}"
 		puts "Catatan: title/description 'default situs' berarti record belum punya data untuk dirakit otomatis."
+		puts "Disimpan: tmp/seo_audit/#{SeoAudit.save(result)}" if ENV['SAVE'].present?
 	end
 
 	desc "Jalankan seluruh setup SEO Week 1"

@@ -87,6 +87,9 @@ Rails.application.routes.draw do
         end
       end
       resource :setting, only: %i[show edit update]
+      resource :seo_audit, only: %i[show create] do
+        get :download
+      end
       get 'account/change_password' => 'accounts#change_password', :as => :change_password
       put 'account/update_password' => 'accounts#update_password', :as => :update_password
 

@@ -1,0 +1,95 @@
+<% title_page("SEO Audit") %>
+<%- limits = @audit && @audit[:limits] -%>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header border-0">
+				<div class="row g-3 align-items-center">
+					<div class="col-md">
+						<h5 class="card-title mb-1">SEO Audit: title &amp; description</h5>
+						<p class="text-muted mb-0 small">
+							Mengecek title/description tiap halaman (default situs, panjang, duplikat) per bahasa. Hasil dirakit dari <code>SeoMeta</code>,
+							sama dengan yang dirender di situs. Disimpan di <code>tmp/seo_audit</code> (<%= SeoAudit::KEEP %> run terakhir).
+						</p>
+					</div>
+					<div class="col-md-auto hstack gap-2">
+						<% if @audit %>
+							<%= link_to download_admins_seo_audit_path(run: @audit[:file]), class: 'btn btn-light' do %>
+								<i class="ri-download-2-line align-bottom me-1"></i> JSON
+							<% end %>
+						<% end %>
+						<%= button_to admins_seo_audit_path, method: :post, class: 'btn btn-success',
+						              form: { data: { turbo: false } }, data: { disable_with: 'Menjalankan…' } do %>
+							<i class="ri-play-line align-bottom me-1"></i> Jalankan audit
+						<% end %>
+					</div>
+				</div>
+			</div>
+
+			<% if @audit.nil? %>
+				<div class="card-body text-center text-muted py-5">
+					Belum ada hasil audit. Klik <b>Jalankan audit</b> untuk membuatnya (beberapa detik).
+				</div>
+			<% else %>
+				<div class="card-body border-top">
+					<div class="row g-3 mb-3">
+						<div class="col-md-3">
+							<div class="text-muted small">Dijalankan</div>
+							<div class="fw-semibold"><%= l(Time.zone.parse(@audit[:generated_at]), format: :long) rescue @audit[:generated_at] %></div>
+							<% if @history.size > 1 %>
+								<%= form_tag admins_seo_audit_path, method: :get, class: 'mt-1' do %>
+									<%= select_tag :run, options_for_select(@history.map { |n| [n.sub('audit-', '').sub('.json', ''), n] }, @audit[:file]),
+									               class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+								<% end %>
+							<% end %>
+						</div>
+						<% %w[en id cn].each do |loc| %>
+							<div class="col-md-3 col-6">
+								<div class="text-muted small"><%= loc.upcase %></div>
+								<div class="fw-semibold"><%= @audit[:summary][:findings][loc.to_sym].to_i %> temuan
+									<span class="text-muted fw-normal">/ <%= @audit[:summary][:pages][loc.to_sym].to_i %> halaman</span></div>
+							</div>
+						<% end %>
+					</div>
+					<div class="d-flex flex-wrap gap-1 mb-3">
+						<% SeoAudit::ISSUES.each do |code, label| %>
+							<% n = @audit[:summary][:by_issue][code.to_sym].to_i %>
+							<%= link_to "#{label}: #{n}", admins_seo_audit_path(run: @audit[:file], issue: code, audit_locale: params[:audit_locale]),
+							            class: "badge #{n.zero? ? 'bg-light text-muted' : 'bg-warning-subtle text-warning'} text-decoration-none" %>
+						<% end %>
+					</div>
+
+					<%= form_tag admins_seo_audit_path, method: :get, class: 'row g-2 align-items-center mb-3 seo-audit-filter' do %>
+						<%= hidden_field_tag :run, @audit[:file] %>
+						<div class="col-md-3">
+							<%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Cari halaman, title, description…' %>
+						</div>
+						<div class="col-md-2">
+							<%= select_tag :audit_locale, options_for_select([['Semua bahasa', ''], %w[EN en], %w[ID id], %w[CN cn]], params[:audit_locale]), class: 'form-select' %>
+						</div>
+						<div class="col-md-2">
+							<%= select_tag :type, options_for_select([['Semua jenis', '']] + @types.map { |t| [t, t] }, params[:type]), class: 'form-select' %>
+						</div>
+						<div class="col-md-3">
+							<%= select_tag :issue, options_for_select([['Semua halaman', ''], ['Hanya bermasalah', 'any']] + SeoAudit::ISSUES.map { |c, l| [l, c] }, params[:issue]), class: 'form-select' %>
+						</div>
+						<div class="col-md-auto">
+							<button class="btn btn-secondary" type="submit">Filter</button>
+							<%= link_to 'Reset', admins_seo_audit_path(run: @audit[:file]), class: 'btn btn-light' %>
+						</div>
+					<% end %>
+					<p class="text-muted small mb-2"><%= @total_rows %> baris. Ideal: title <%= limits[:title].join('–') %>, description <%= limits[:description].join('–') %> karakter.</p>
+
+					<%= render 'table' %>
+					<div class="mt-3"><%= paginate @rows %></div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<style>
+	/* Choices.js membungkus select dengan margin-bottom; dinolkan agar sejajar dengan input & tombol */
+	.seo-audit-filter .choices { margin-bottom: 0; }
+	.seo-audit-filter .choices__inner { min-height: 38px; }
+</style>

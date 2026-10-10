@@ -1,0 +1,57 @@
+<%- source_label = { 'seo_settings' => ['SEO & Social', 'success'], 'generated' => ['Dirakit', 'info'], 'default' => ['Default', 'warning'] } -%>
+<div class="table-responsive table-card">
+	<table class="table table-hover table-striped align-middle mb-0">
+		<thead class="table-light">
+			<tr>
+				<th>Bahasa</th>
+				<th>Halaman</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Isu</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% if @rows.empty? %>
+				<tr><td colspan="6" class="text-center text-muted py-4">Tidak ada baris yang cocok.</td></tr>
+			<% end %>
+			<% @rows.each do |r| %>
+				<tr>
+					<td><span class="badge bg-secondary-subtle text-secondary"><%= r[:locale].upcase %></span></td>
+					<td style="min-width: 180px;">
+						<%= link_to r[:label], r[:public_path], target: '_blank', rel: 'noopener', class: 'text-body fw-medium' %>
+					</td>
+					<td style="min-width: 260px;">
+						<div><%= r[:title] %></div>
+						<small class="<%= seo_length_class(r[:title_len], @audit[:limits][:title][0], @audit[:limits][:title][1]) %>"><%= r[:title_len] %> karakter</small>
+						<% lbl, color = source_label[r[:title_source]] %>
+						<span class="badge bg-<%= color %>-subtle text-<%= color %>"><%= lbl %></span>
+					</td>
+					<td style="min-width: 320px;">
+						<div><%= r[:description] %></div>
+						<small class="<%= seo_length_class(r[:description_len], @audit[:limits][:description][0], @audit[:limits][:description][1]) %>"><%= r[:description_len] %> karakter</small>
+						<% lbl, color = source_label[r[:description_source]] %>
+						<span class="badge bg-<%= color %>-subtle text-<%= color %>"><%= lbl %></span>
+					</td>
+					<td>
+						<% if r[:issues].empty? %>
+							<span class="badge bg-success-subtle text-success">OK</span>
+						<% else %>
+							<% r[:issues].each do |code| %>
+								<span class="badge bg-warning-subtle text-warning d-block mb-1 text-start"><%= SeoAudit::ISSUES[code] %></span>
+							<% end %>
+						<% end %>
+					</td>
+					<td>
+						<% if r[:record_id] && r[:record_type] %>
+							<%- rec = r[:record_type].safe_constantize&.unscoped&.find_by(id: r[:record_id]) -%>
+							<% if rec %>
+								<%= link_to 'Edit SEO & Social', seo_admin_path(rec), class: 'btn btn-sm btn-soft-primary text-nowrap' %>
+							<% end %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
