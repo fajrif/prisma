@@ -222,3 +222,28 @@
 		line-height: 38px;
 	}
 }
+
+/* Isi halaman teks panjang (Privacy Policy, Terms). Heading bawaan tema (h2 60px) terlalu besar untuk
+   dokumen bernomor, jadi diturunkan seperti .article-content. Hanya halaman ber-konten yang terkena;
+   halaman ber-section tidak memakai wrapper ini. */
+.page-content h2 {
+	font-size: 28px;
+	line-height: 1.3;
+	margin-top: 30px;
+}
+
+.page-content h3 {
+	font-size: 22px;
+	line-height: 1.3;
+	margin-top: 24px;
+}
+
+@media (max-width: 767px) {
+	.page-content h2 {
+		font-size: 24px;
+	}
+
+	.page-content h3 {
+		font-size: 19px;
+	}
+}
