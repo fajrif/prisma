@@ -5,18 +5,19 @@ class Admins::ArticlesController < Admins::BaseController
 		if params[:search].blank?
 			criteria = Article.all
 		else
-			search_value = "%#{params[:search]}%"
-			locale_key   = I18n.locale.to_s
+			# Semua bahasa, bukan hanya bahasa admin yang aktif: artikel yang hanya punya isi ID
+			# tetap ditampilkan (dengan tanda "kosong, menampilkan bahasa lain") saat admin berbahasa EN.
+			search_value = "%#{Article.sanitize_sql_like(params[:search])}%"
 			criteria = Article.where(
-				"title ->> :key ILIKE :value OR EXISTS (
+				"EXISTS (SELECT 1 FROM jsonb_each_text(articles.title) AS t(locale, value) WHERE t.value ILIKE :value)
+				 OR EXISTS (
 					SELECT 1 FROM action_text_rich_texts
 					WHERE record_id   = articles.id
 					  AND record_type = 'Article'
 					  AND name        = 'content'
-					  AND locale      = :key
 					  AND body        ILIKE :value
 				)",
-				key: locale_key, value: search_value
+				value: search_value
 			)
 		end
 

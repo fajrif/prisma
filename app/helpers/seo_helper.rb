@@ -50,9 +50,30 @@ module SeoHelper
   def canonical_url
     return seo_meta.canonical_override if seo_meta.canonical_override.present?
 
+    # Artikel dibuka di bahasa yang tidak punya isinya sendiri (hanya fallback en<->id):
+    # canonical ke versi bahasa aslinya supaya tidak dihitung duplikat.
+    return alternate_language_urls[article_canonical_locale] if article_canonical_locale
+
     url = "#{configatron.site_url}#{canonical_path}"
     page = params[:page].to_i
     page > 1 ? "#{url}?page=#{page}" : url
+  end
+
+  # Bahasa yang punya isi sendiri untuk artikel yang sedang dibuka; nil di halaman lain
+  # (semua bahasa dianggap ada). Aturannya di Article#own_locales, sama dengan sitemap.
+  def article_own_locales
+    return unless controller_name == 'articles' && action_name == 'show' && @article.is_a?(Article)
+
+    @article_own_locales ||= @article.own_locales
+  end
+
+  # Locale tujuan canonical bila bahasa halaman ini bukan bahasa yang punya isi sendiri.
+  # nil bila halaman ini sendiri sudah benar (atau tidak ada data bahasa sama sekali).
+  def article_canonical_locale
+    locales = article_own_locales
+    return if locales.blank? || locales.include?(I18n.locale.to_sym)
+
+    locales.include?(:id) ? :id : locales.first
   end
 
   # Generate alternate language links for hreflang tags
@@ -70,15 +91,19 @@ module SeoHelper
     }
   end
 
-  # Generate hreflang link tags (en + id + zh-Hans + x-default → English)
+  # Generate hreflang link tags (en + id + zh-Hans + x-default → English).
+  # Artikel: hanya bahasa yang punya isi sendiri; x-default → en bila ada, kalau tidak id.
   def hreflang_tags
     urls = alternate_language_urls
+    only = article_own_locales
+    urls = urls.slice(*only) if only.present?
+    default = urls[:en] || urls[:id] || urls.values.first
 
     tags = []
-    tags << tag.link(rel: 'alternate', hreflang: 'en',        href: urls[:en])
-    tags << tag.link(rel: 'alternate', hreflang: 'id',        href: urls[:id])
-    tags << tag.link(rel: 'alternate', hreflang: 'zh-Hans',   href: urls[:cn])
-    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: urls[:en])
+    tags << tag.link(rel: 'alternate', hreflang: 'en',      href: urls[:en]) if urls[:en]
+    tags << tag.link(rel: 'alternate', hreflang: 'id',      href: urls[:id]) if urls[:id]
+    tags << tag.link(rel: 'alternate', hreflang: 'zh-Hans', href: urls[:cn]) if urls[:cn]
+    tags << tag.link(rel: 'alternate', hreflang: 'x-default', href: default)
 
     safe_join(tags, "\n\t")
   end

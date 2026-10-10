@@ -91,8 +91,7 @@ class SitemapBuilder
 	end
 
 	# Artikel hanya dimasukkan dalam bahasa yang benar-benar punya isinya sendiri.
-	# Dibaca dari data mentah, BUKAN lewat Mobility: fallback en<->id membuat setiap
-	# artikel tampak punya versi kedua bahasa.
+	# Aturannya ada di Article#own_locales (dipakai juga oleh hreflang/canonical di <head>).
 	def articles
 		content_locales = ActionText::RichText.where(record_type: 'Article', name: 'content')
 																					.where.not(body: [nil, ''])
@@ -101,13 +100,7 @@ class SitemapBuilder
 																					.transform_values { |rows| rows.map { |r| r.last.to_s } }
 
 		published_articles.flat_map do |article|
-
-			titles = article.read_attribute(:title) || {}
-			locales = LOCALES.select do |l|
-				has_title = titles[l.to_s].to_s.strip.present?
-				# ID adalah bahasa utama artikel: cukup ada title. EN/CN wajib punya isi sendiri.
-				l == :id ? has_title : has_title && content_locales.fetch(article.id, []).include?(l.to_s)
-			end
+			locales = article.own_locales(content_locales.fetch(article.id, []))
 
 			group(article.content_modified_at, locales: locales, record: article) { |l| routes.article_path(article.slug, locale: param(l)) }
 		end

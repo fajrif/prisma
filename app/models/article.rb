@@ -32,6 +32,25 @@ class Article < ApplicationRecord
 		self.title_changed?
 	end
 
+	LOCALE_ORDER = %i[en id cn].freeze
+
+	# Bahasa yang artikel ini punya isinya SENDIRI. Satu-satunya sumber aturan; dipakai sitemap
+	# dan hreflang/canonical di <head>. Dibaca dari data mentah, BUKAN lewat Mobility: fallback
+	# en<->id membuat setiap artikel tampak punya versi dua bahasa.
+	# ID adalah bahasa utama (hasil migrasi WordPress): cukup ada title. EN/CN wajib punya
+	# title dan isi sendiri. `content_locales` (locale yang punya body) boleh diberikan agar
+	# pemanggil massal (sitemap) tidak query per artikel.
+	def own_locales(content_locales = nil)
+		content_locales ||= ActionText::RichText.where(record_type: 'Article', record_id: id, name: 'content')
+		                                         .where.not(body: [nil, ''])
+		                                         .pluck(:locale).map(&:to_s)
+		titles = read_attribute(:title) || {}
+		LOCALE_ORDER.select do |l|
+			has_title = titles[l.to_s].to_s.strip.present?
+			l == :id ? has_title : has_title && content_locales.include?(l.to_s)
+		end
+	end
+
 	def self.most_recent_articles(id, limit)
 		where("id <> ?", id).limit(limit)
 	end

@@ -215,6 +215,19 @@ module AdminHelper
 		end
 	end
 
+	# Admin menampilkan teks lewat fallback Mobility (en<->id), sehingga bahasa yang sebenarnya
+	# kosong terlihat terisi. Badge ini menandainya, memakai aturan yang sama dengan sitemap
+	# (Article#own_locales). Tidak tampil bila bahasa aktif punya isi sendiri.
+	def article_fallback_badge(article)
+		own = article.own_locales
+		return if own.empty? || own.include?(I18n.locale.to_sym)
+
+		source = own.include?(:id) ? :id : own.first
+		content_tag(:span, "#{I18n.locale.to_s.upcase} kosong, menampilkan teks #{source.to_s.upcase}",
+		            class: 'badge bg-warning-subtle text-warning ms-1',
+		            title: "Artikel ini belum punya isi #{I18n.locale.to_s.upcase} sendiri. Yang tampil adalah teks #{source.to_s.upcase} (fallback).")
+	end
+
 	# <span class="badge badge-label bg-primary"><i class="mdi mdi-circle-medium"></i> Primary</span>
 	def badge_category(category)
 		if category

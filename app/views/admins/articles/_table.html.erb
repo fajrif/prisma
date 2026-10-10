@@ -15,7 +15,7 @@
 					<td class="text-center"><%= article.id %></td>
 					<td><%= image_tag article.image.variant(resize_to_limit: [100,100]) if article.image.attached? %></td>
 					<td>
-						<h5 class="fs-14 mb-1"><%= link_to article.title, admins_article_path(article.id), class: "text-body" %></h5>
+						<h5 class="fs-14 mb-1"><%= link_to article.title, admins_article_path(article.id), class: "text-body" %><%= article_fallback_badge(article) %></h5>
 						<p class="text-muted mb-0">Category : <%= badge_category(article.category) %></p>
 					</td>
 					<td>
