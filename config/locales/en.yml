@@ -187,6 +187,16 @@ en:
     500_title: "Page Error"
     500_desc: "We're sorry, but something went wrong."
   global:
+    skip_to_content: "Skip to main content"
+    toggle_navigation: "Toggle navigation"
+    open_submenu: "Open %{name} submenu"
+    close_menu: "Close menu"
+    search: "Search"
+    language_switcher: "Language"
+    main_navigation: "Main navigation"
+    carousel: "Carousel"
+    chat_whatsapp: "Chat on WhatsApp"
+    opens_new_tab: "(opens in a new tab)"
     dismiss: "Dismiss"
     coming_soon:
       title: "Coming Soon"

@@ -1,13 +1,13 @@
 <!-- mobile menu -->
-<button type="button" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".prisma-mobile-menu">
-	<span class="sr-only">toggle navigation</span>
+<button type="button" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".prisma-mobile-menu" aria-controls="prisma-mobile-menu" aria-expanded="false" aria-label="<%= t('global.toggle_navigation') %>">
+	<span class="visually-hidden"><%= t('global.toggle_navigation') %></span>
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
 </button>
 
 <!-- start main menu -->
-<div class="full-screen prisma-mobile-menu d-block d-lg-none collapse">
+<div id="prisma-mobile-menu" class="full-screen prisma-mobile-menu d-block d-lg-none collapse">
 		<div class="row g-0 h-100 justify-content-center">
 				<div class="col-12 px-0 bg-yellow full-screen d-flex flex-column justify-content-between xs-padding-10px-top">
 					<div class="navbar">
@@ -15,12 +15,12 @@
 							<!-- start logo -->
 							<div class="center-logo">
 								<%= link_to root_path, class: "logo" do %>
-									<%= image_tag("logo.png", alt: "Indo Energy Corporation") %>
+									<%= image_tag("logo.png", alt: "Prisma Ads") %>
 								<% end %>
 							</div>
 							<!-- end logo -->
 							<div class="col col-lg-12">
-								<button class="navbar-toggler close-button-menu close-button-mobile-menu" data-bs-toggle="collapse" data-bs-target=".prisma-mobile-menu"></button>
+								<button class="navbar-toggler close-button-menu close-button-mobile-menu" type="button" aria-label="<%= t('global.close_menu') %>" data-bs-toggle="collapse" data-bs-target=".prisma-mobile-menu"></button>
 							</div>
 						</div>
 					</div>
@@ -37,16 +37,16 @@
 						</div>
 						<div class=" d-flex justify-content-between padding-three-all">
 							<div class="text-medium d-flex gap-10 align-items-center">
-								<a href="<%= @en_path %>">EN</a> |
-								<a href="<%= @id_path %>">ID</a>
+								<a href="<%= @en_path %>" hreflang="en" lang="en" aria-label="EN, English">EN</a> |
+								<a href="<%= @id_path %>" hreflang="id" lang="id" aria-label="ID, Bahasa Indonesia">ID</a>
 							</div>
 							<!-- start social links -->
 							<div class="social-icon-style-8">
 								<ul class="medium-icon mb-0">
-									<li><a class="instagram" href="<%= configatron.social_instagram_url %>" target="_blank"><i class="fa-brands fa-instagram me-0" aria-hidden="true"></i></a></li>
-									<li><a class="linkedin" href="<%= configatron.social_linkedin_url %>" target="_blank"><i class="fa-brands fa-linkedin-in me-0" aria-hidden="true"></i></a></li>
-									<li><a class="youtube" href="<%= configatron.social_youtube_url %>" target="_blank"><i class="fa-brands fa-youtube me-0" aria-hidden="true"></i></a></li>
-									<li><a class="tiktok" href="<%= configatron.social_tiktok_url %>" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+									<li><a class="instagram" href="<%= configatron.social_instagram_url %>" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram me-0" aria-hidden="true"></i></a></li>
+									<li><a class="linkedin" href="<%= configatron.social_linkedin_url %>" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in me-0" aria-hidden="true"></i></a></li>
+									<li><a class="youtube" href="<%= configatron.social_youtube_url %>" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube me-0" aria-hidden="true"></i></a></li>
+									<li><a class="tiktok" href="<%= configatron.social_tiktok_url %>" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
 								</ul>
 							</div>
 							<!-- start social links -->

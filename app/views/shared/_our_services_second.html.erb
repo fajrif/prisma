@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <div class="swiper swiper-pagination-bottom" data-slider-options='{ "slidesPerView": "1", "allowTouchMove":true, "loop":false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" }, "breakpoints": { "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".swiper-pagination", "clickable": true } }'>
+          <div class="swiper swiper-pagination-bottom" role="region" aria-roledescription="carousel" aria-label="<%= t('global.carousel') %>" data-slider-options='{ "a11y": { "enabled": true }, "slidesPerView": "1", "allowTouchMove":true, "loop":false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" }, "breakpoints": { "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".swiper-pagination", "clickable": true } }'>
               <div class="swiper-wrapper margin-25px-bottom">
                 <% services.each do |service| %>
                   <!-- start testimonial item -->

@@ -150,7 +150,7 @@ module PageHelper
         active_class = set_active_class_menu(menu["active_path"])
 				if menu["menu"]
           _submenu = link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: active_class) +
-              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle", "data-bs-toggle": "dropdown") +
+              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle", "data-bs-toggle": "dropdown", role: "button", tabindex: 0, "aria-haspopup": "true", "aria-expanded": "false", "aria-label": I18n.t("global.open_submenu", name: menu["label"])) +
               generate_dropdown_menu(menu["menu"])
 					_menu += content_tag(:li, class: "dropdown simple-dropdown") do
             raw(_submenu)
@@ -250,7 +250,7 @@ module PageHelper
 					raw(_list)
 				end
 				_content += content_tag(:li, class: "dropdown") do
-					link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: "text-uppercase") + content_tag(:span, nil, class: "dropdown-toggle") + _dropdown_menu
+					link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: "text-uppercase") + content_tag(:span, nil, class: "dropdown-toggle", role: "button", tabindex: 0, "aria-haspopup": "true", "aria-label": I18n.t("global.open_submenu", name: menu["label"])) + _dropdown_menu
 				end
 			else
 				_content += content_tag(:li) do

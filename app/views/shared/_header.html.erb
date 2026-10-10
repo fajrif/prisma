@@ -2,19 +2,19 @@
 <!-- start header -->
 <header>
     <!-- start navigation -->
-    <nav class="navbar navbar-default bootsnav navbar-fixed-top header-light background-transparent nav-box-width white-link navbar-expand-lg">
+    <nav aria-label="<%= t('global.main_navigation') %>" class="navbar navbar-default bootsnav navbar-fixed-top header-light background-transparent nav-box-width white-link navbar-expand-lg">
         <div class="container nav-header-container">
             <!-- start logo -->
             <div class="col-auto ps-0">
-                <%= link_to root_path, class: "logo" do %>
-                  <%= image_tag("logo2.png", class: get_default_logo("logo-dark"), alt: "Prisma Ads") %>
-                  <%= image_tag("logo.png", class: get_default_logo("logo-light"), alt: "Prisma Ads") %>
+                <%= link_to root_path, class: "logo", "aria-label": "Prisma Ads" do %>
+                  <%= image_tag("logo2.png", class: get_default_logo("logo-dark"), alt: "") %>
+                  <%= image_tag("logo.png", class: get_default_logo("logo-light"), alt: "") %>
                 <% end %>
             </div>
             <!-- end logo -->
             <div class="col accordion-menu pe-0 pe-md-3">
-                <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-toggle-1">
-                    <span class="sr-only">toggle navigation</span>
+                <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-toggle-1" aria-controls="navbar-collapse-toggle-1" aria-expanded="false" aria-label="<%= t('global.toggle_navigation') %>">
+                    <span class="visually-hidden"><%= t('global.toggle_navigation') %></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

@@ -14,7 +14,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <div class="swiper swiper-pagination-bottom blog-slider" data-slider-options='{ "slidesPerView": "1", "allowTouchMove":true, "loop":false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" }, "breakpoints": { "992": { "slidesPerView": 4 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".swiper-pagination-1", "clickable": true } }'>
+      <div class="swiper swiper-pagination-bottom blog-slider" role="region" aria-roledescription="carousel" aria-label="<%= t('global.carousel') %>" data-slider-options='{ "a11y": { "enabled": true }, "slidesPerView": "1", "allowTouchMove":true, "loop":false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" }, "breakpoints": { "992": { "slidesPerView": 4 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".swiper-pagination-1", "clickable": true } }'>
           <div class="swiper-wrapper">
             <%- @services = Service.all -%>
             <% @services.each_with_index do |service, index| %>

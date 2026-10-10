@@ -11,14 +11,14 @@
                 <!-- start accordion item -->
                 <div class="panel">
                   <div class="panel-heading">
-                    <a class="accordion-toggle" data-bs-toggle="collapse" data-bs-parent="#accordion-pix-services" href="#design<%= index + 1 %>" aria-expanded="false">
+                    <a data-bs-toggle="collapse" data-bs-parent="#accordion-pix-services" href="#design<%= index + 1 %>" role="button" aria-expanded="<%= index == 0 %>" aria-controls="design<%= index + 1 %>" class="accordion-toggle<%= ' collapsed' unless index == 0 %>">
                       <div class="panel-title font-weight-700 title-small text-dark-gray text-uppercase">
                         <span><%= inno.title %></span>
-                        <i class="title-small <%= "gradient-icon-#{i}" %> font-weight-900 <%= index == 0 ? 'ti-minus' : 'ti-plus' %>"></i>
+                        <i class="title-small <%= "gradient-icon-#{i}" %> font-weight-900 <%= index == 0 ? 'ti-minus' : 'ti-plus' %>" aria-hidden="true"></i>
                       </div>
                     </a>
                   </div>
-                  <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-pix-services" aria-expanded="false" role="tablist">
+                  <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-pix-services">
                     <div class="panel-body w-75 sm-w-100">
                       <p class="mb-0"><%= inno.description %></p>
                     </div>

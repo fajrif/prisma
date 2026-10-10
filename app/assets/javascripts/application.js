@@ -20,6 +20,7 @@
 //= require theme-vendors.min.js
 //= require bootstrap-select.min.js
 //= require main.js
+//= require a11y.js
 
 jQuery(document).ready(function($){
 	// Search

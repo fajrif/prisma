@@ -188,6 +188,16 @@ id:
     500_title: "Halaman Error"
     500_desc: "Mohon maaf terjadi kesalahan pada halaman ini."
   global:
+    skip_to_content: "Lewati ke konten utama"
+    toggle_navigation: "Buka/tutup navigasi"
+    open_submenu: "Buka submenu %{name}"
+    close_menu: "Tutup menu"
+    search: "Cari"
+    language_switcher: "Bahasa"
+    main_navigation: "Navigasi utama"
+    carousel: "Karusel"
+    chat_whatsapp: "Chat lewat WhatsApp"
+    opens_new_tab: "(terbuka di tab baru)"
     dismiss: "Tutup"
     coming_soon:
       title: "Segera Hadir"

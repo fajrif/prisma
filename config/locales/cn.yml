@@ -188,6 +188,16 @@ cn:
     500_title: "页面错误"
     500_desc: "抱歉，系统发生了错误。"
   global:
+    skip_to_content: "跳到主要内容"
+    toggle_navigation: "切换导航"
+    open_submenu: "展开%{name}子菜单"
+    close_menu: "关闭菜单"
+    search: "搜索"
+    language_switcher: "语言"
+    main_navigation: "主导航"
+    carousel: "轮播"
+    chat_whatsapp: "通过 WhatsApp 聊天"
+    opens_new_tab: "（在新标签页打开）"
     dismiss: "关闭"
     coming_soon:
       title: "即将推出"

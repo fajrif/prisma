@@ -1,5 +1,5 @@
 <div class="whatsapp-wrapper">
-  <a id="floating-whatsapp-btn" href="https://wa.me/<%= configatron.whatsapp_number %>?text=<%= url_encode("Hi Prisma Advertising, I saw your website and would like to ask about Prisma’s services and products. Could you please assist me?") %>"><img src="<%= image_url('whatsapp.png') %>" alt="whatsapp" /></a>
+  <a id="floating-whatsapp-btn" aria-label="<%= t('global.chat_whatsapp') %>" href="https://wa.me/<%= configatron.whatsapp_number %>?text=<%= url_encode("Hi Prisma Advertising, I saw your website and would like to ask about Prisma’s services and products. Could you please assist me?") %>"><img src="<%= image_url('whatsapp.png') %>" alt="" /></a>
 </div>
 
 <% unless is_contact_page? or is_careers_page? or is_errors_page? %>
@@ -37,10 +37,10 @@
         <div class="col-md-6 text-center text-md-end sm-margin-20px-bottom">
 					<div class="social-icon-style-8 d-inline-block align-middle">
 						<ul class="large-icon mb-0">
-							<li><a class="instagram text-white-2" href="<%= configatron.social_instagram_url %>" target="_blank"><i class="fa-brands fa-instagram no-margin-right"></i></a></li>
-							<li><a class="linkedin text-white-2" href="<%= configatron.social_linkedin_url %>" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-							<li><a class="youtube text-white-2" href="<%= configatron.social_youtube_url %>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-							<li><a class="tiktok text-white-2" href="<%= configatron.social_tiktok_url %>" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+							<li><a class="instagram text-white-2" href="<%= configatron.social_instagram_url %>" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram no-margin-right" aria-hidden="true"></i></a></li>
+							<li><a class="linkedin text-white-2" href="<%= configatron.social_linkedin_url %>" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+							<li><a class="youtube text-white-2" href="<%= configatron.social_youtube_url %>" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+							<li><a class="tiktok text-white-2" href="<%= configatron.social_tiktok_url %>" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
 						</ul>
 					</div>
 				</div>
