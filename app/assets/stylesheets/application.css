@@ -167,5 +167,5 @@
    untuk sub-judul di dalam artikel. Di-scope ke .article-content agar h2 lain tidak ikut. */
 .article-content h2 {
 	font-size: 30px;
-	line-height: 20px;
+	line-height: 1.3;
 }
