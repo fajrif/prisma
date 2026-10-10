@@ -197,6 +197,12 @@ module SeoHelper
     end
   end
 
+  # Isi editor (artikel/page) tidak boleh menambah H1 kedua; H1 halaman sudah ada di banner.
+  # Diturunkan saat render saja, data di database tidak diubah.
+  def demote_h1(content)
+    content.to_s.gsub(/<(\/?)h1(?=[\s>])/i, '<\\1h2')
+  end
+
   # Helper to generate images with automatic alt text from filename
   # Usage: <%= seo_image_tag(image, alt: "Custom alt text") %>
   # or: <%= seo_image_tag(image) %> to auto-generate from filename

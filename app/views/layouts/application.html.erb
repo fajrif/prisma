@@ -70,8 +70,10 @@
   <!-- End Google Tag Manager (noscript) -->
   <% end %>
 	<%= render "shared/header" %>
-	<%= render_seo_h1_fallback %>
-	<%= yield %>
+	<main id="main-content">
+		<%= render_seo_h1_fallback %>
+		<%= yield %>
+	</main>
 	<%= render "shared/footer" %>
 	<%= javascript_include_tag 'application' %>
 	<%= yield :tail %>

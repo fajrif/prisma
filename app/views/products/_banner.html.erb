@@ -6,7 +6,8 @@
       <div class="row h-100 align-items-center">
 				<div class="col-xl-10 col-md-10 margin-30px-bottom">
           <span class="d-block mb-2"><%= t('product') %></span>
-					<h2 class="font-weight-600 text-white-2 alt-font w-90"><%= @product.name %></h2>
+					<% content_for(:has_visible_h1, true) %>
+					<h1 class="font-weight-600 text-white-2 alt-font w-90 size-h2"><%= @product.name %></h1>
           <div class="d-flex flex-wrap gap-2 mt-4">
             <% if @product.product_category %>
               <span class="btn btn-medium btn-rounded btn-border btn-transparent-prisma"><%= @product.try(:product_category).try(:name) %></span>

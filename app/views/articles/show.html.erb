@@ -1,4 +1,5 @@
 <% content_for(:has_visible_h1, true) %>
+<article>
 <!-- start page single banner -->
 <section class="p-0 single-banner bg-black parallax" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@article.image) if @article.image.attached? %>');">
   <div class="opacity-medium bg-transparent-black z-index-0"></div>
@@ -28,9 +29,8 @@
 						&middot; <%= t('dates.updated') %> <%= content_date_tag(@article.modified_date) %>
 					<% end %>
 				</span>
-				<h5 class="font-weight-500 line-height-normal"><%= @article.title %></h5>
 				<div class="article-content line-height-26 text-large">
-					<%= raw @article.content %>
+					<%= raw demote_h1(@article.content) %>
 				</div>
 				<% if @article.file.attached? %>
 					<div class="margin-30px-top">
@@ -42,6 +42,7 @@
 	</div>
 </section>
 <!-- end blog content section -->
+</article>
 <%= render "shared/prisma_adv" %>
 <%= render "shared/our_services_second" %>
 <%= render "shared/our_portfolios" %>

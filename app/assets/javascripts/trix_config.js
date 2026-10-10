@@ -36,7 +36,6 @@ function toolbarDefaultHTML() {
 			<button type="button" class="trix-button trix-button--icon trix-button--icon-link" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="${lang.link}" tabindex="-1">${lang.link}</button>
 		</span>
 		<span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
-			<button type="button" class="trix-button  " data-trix-attribute="heading1" title="h1" tabindex="-1">h1</button>
 			<button type="button" class="trix-button  " data-trix-attribute="heading2" title="h2" tabindex="-1">h2</button>
 			<button type="button" class="trix-button  " data-trix-attribute="heading3" title="h3" tabindex="-1">h3</button>
 			<button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" title="${lang.quote}" tabindex="-1">${lang.quote}</button>

@@ -5,15 +5,18 @@
 		<div class="container-xl">
 			<div class="row">
 				<div class="col-md-12">
-					<%- content_for(:has_visible_h1, true) -%>
-					<h1 class="font-weight-320 text-uppercase text-h3"><%= @page.title %></h1>
+					<%# Banner dirender lebih dulu; bila sudah memasang H1, judul di sini hanya duplikat. %>
+					<%- unless content_for?(:has_visible_h1) -%>
+						<%- content_for(:has_visible_h1, true) -%>
+						<h1 class="font-weight-320 text-uppercase text-h3"><%= @page.title %></h1>
+					<%- end -%>
 					<% if @page.updated_at.present? %>
 						<p class="text-medium text-extra-dark-gray margin-20px-bottom">
 							<%= t('global.last_updated', default: 'Last updated') %>:
 							<time datetime="<%= @page.updated_at.to_date.iso8601 %>"><%= @page.updated_at.strftime('%d %B %Y') %></time>
 						</p>
 					<% end %>
-					<%= raw @page.content %>
+					<%= raw demote_h1(@page.content) %>
 				</div>
 			</div>
 		</div>

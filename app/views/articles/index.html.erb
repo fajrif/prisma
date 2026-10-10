@@ -20,7 +20,7 @@
                     <% if article.category %>
                       <span class="btn btn-medium btn-rounded btn-border btn-prisma mb-4"><%= article.try(:category).try(:name) %></span>
                     <% end %>
-                    <a href="<%= article_path(article) %>" class="post-title font-weight-600 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.title %></a>
+                    <h2 class="heading-reset"><a href="<%= article_path(article) %>" class="post-title font-weight-600 text-extra-large text-extra-dark-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom"><%= article.title %></a></h2>
                     <span class="post-author text-extra-dark-gray d-block margin-15px-bottom"><%= article.short_description %></span>
                   </div>
                 </div>

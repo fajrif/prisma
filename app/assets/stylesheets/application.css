@@ -182,3 +182,43 @@
 		font-size: 36px;
 	}
 }
+
+/* T6: heading semantik tanpa mengubah tampilan.
+   .heading-reset membungkus elemen bergaya yang sudah ada (class aslinya tetap di elemen dalam),
+   sehingga tag heading tidak membawa ukuran/margin bawaan tema. */
+.heading-reset {
+	font: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+/* .size-h2: H1 yang dulunya H2 (nama campaign, nama billboard) tetap berukuran h2 tema.
+   Nilai disalin dari style.css & responsive.css (breakpoint 1199/991/767). */
+.size-h2 {
+	font-size: 60px;
+	line-height: 60px;
+}
+
+@media (max-width: 1199px) {
+	.size-h2 {
+		font-size: 50px;
+		line-height: 55px;
+	}
+}
+
+@media (max-width: 991px) {
+	.size-h2 {
+		font-size: 43px;
+		line-height: 48px;
+	}
+}
+
+@media (max-width: 767px) {
+	.size-h2 {
+		font-size: 38px;
+		line-height: 38px;
+	}
+}
