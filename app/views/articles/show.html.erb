@@ -25,11 +25,11 @@
 				<span class="post-author text-medium d-block margin-10px-bottom">
 					<%= content_date_tag(@article.published_date) %>
 					<% if updated_after_publish?(@article) %>
-						&middot; <%= t('dates.updated') %> <%= content_date_tag(@article.content_modified_at) %>
+						&middot; <%= t('dates.updated') %> <%= content_date_tag(@article.modified_date) %>
 					<% end %>
 				</span>
 				<h5 class="font-weight-500 line-height-normal"><%= @article.title %></h5>
-				<div class="line-height-26 text-large">
+				<div class="article-content line-height-26 text-large">
 					<%= raw @article.content %>
 				</div>
 				<% if @article.file.attached? %>

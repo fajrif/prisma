@@ -50,6 +50,10 @@
     <td><%= @portfolio.company_name %></td>
   </tr>
   <tr>
+    <td><b>Tanggal diperbarui (konten)</b></td>
+    <td><%= @portfolio.modified_date ? @portfolio.modified_date.strftime('%d/%m/%Y %H:%M') : '-' %></td>
+  </tr>
+  <tr>
     <td><b>Slug</b></td>
     <td><%= link_to portfolio_path(@portfolio), portfolio_path(@portfolio) %></td>
   </tr>

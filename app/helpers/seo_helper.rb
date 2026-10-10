@@ -167,11 +167,11 @@ module SeoHelper
     content_tag(:time, local.strftime(format), datetime: local.iso8601)
   end
 
-  # Label "Diperbarui" hanya bila konten berubah minimal sehari setelah terbit, supaya
-  # simpan ulang di hari yang sama tidak memunculkannya.
+  # Label "Diperbarui" hanya bila admin mengisi modified_date minimal sehari setelah terbit.
+  # Simpan ulang biasa (updated_at) tidak pernah memunculkannya.
   def updated_after_publish?(record)
     published = record.try(:published_date)
-    modified = record.try(:content_modified_at)
+    modified = record.try(:modified_date)
     return false if published.blank? || modified.blank?
 
     (modified.to_date - published.to_date) >= 1

@@ -51,6 +51,7 @@
 						<div class="card-body">
 							<%= f.association :category, as: :select %>
 							<%= f.input :published_date, as: :string, input_html: { class: "datetimepicker", value: get_input_date_value(f.object.published_date) } %>
+							<%= f.input :modified_date, as: :string, label: 'Tanggal diperbarui (konten)', hint: 'Isi hanya bila isi konten benar-benar direvisi. Dipakai di sitemap, schema, dan label &quot;Diperbarui&quot;. Simpan ulang biasa tidak mengubahnya.'.html_safe, input_html: { class: "datetimepicker", value: get_input_date_value(f.object.modified_date) } %>
 							<%= f.input :status, as: :select, collection: get_published_status, value_method: :first, label_method: :last %>
 						</div>
 					</div>

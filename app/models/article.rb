@@ -26,6 +26,7 @@ class Article < ApplicationRecord
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates_presence_of :title
 	validates_uniqueness_of :title
+	validate :modified_date_after_published_date
 
 	def should_generate_new_friendly_id?
 		self.title_changed?
@@ -43,11 +44,19 @@ class Article < ApplicationRecord
 		false
 	end
 
+	# Tanggal konten untuk lastmod, dateModified, dan label "Diperbarui". Memakai tanggal yang
+	# diatur admin, bukan updated_at: simpan ulang untuk merapikan tampilan tidak dihitung
+	# sebagai pembaruan. Tanpa modified_date nilainya = tanggal terbit.
+	def content_modified_at
+		[published_date, modified_date].compact.max || created_at
+	end
+
 	private
 
-	# published_date bisa diatur manual dan kadang lebih baru dari updated_at (beda jam di
-	# hari yang sama). Ikut dihitung supaya dateModified tidak pernah sebelum datePublished.
-	def related_modified_at
-		[published_date]
+	def modified_date_after_published_date
+		return if modified_date.blank? || published_date.blank?
+		return if modified_date >= published_date
+
+		errors.add(:modified_date, 'tidak boleh sebelum tanggal terbit')
 	end
 end

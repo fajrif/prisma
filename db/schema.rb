@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_09_102000) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_10_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -130,6 +130,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_09_102000) do
     t.string "slug", default: ""
     t.jsonb "meta_title", default: {}
     t.jsonb "meta_description", default: {}
+    t.datetime "modified_date"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["title"], name: "index_articles_on_title", unique: true
@@ -351,6 +352,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_09_102000) do
     t.string "slug", default: ""
     t.jsonb "meta_title", default: {}
     t.jsonb "meta_description", default: {}
+    t.datetime "modified_date"
     t.index ["name"], name: "index_portfolios_on_name", unique: true
     t.index ["slug"], name: "index_portfolios_on_slug", unique: true
   end

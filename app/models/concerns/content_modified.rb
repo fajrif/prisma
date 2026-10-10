@@ -5,6 +5,10 @@
 # Dihitung saat diminta, bukan disimpan: nilai tersimpan bisa basi bila relasinya
 # berubah, sedangkan nilai terhitung tidak.
 #
+# Article dan Portfolio meng-override ini dengan tanggal yang diatur admin
+# (`modified_date`), karena updated_at mereka sering bergeser oleh simpan ulang
+# yang hanya merapikan tampilan. Model lain tetap memakai updated_at.
+#
 # Aturan internal: tanggal tidak boleh dimajukan tanpa pembaruan konten. Jangan
 # memanggil `touch` massal dari rake/script; backfill memakai `update_columns`,
 # yang memang tidak mengubah `updated_at`.

@@ -11,7 +11,9 @@
           </div>
           <p class="mb-2"><strong><%= t('portfolios.media_used') %>:</strong> <%= blank_or_not @portfolio.media_used %></p>
           <p class="mb-0"><strong><%= t('portfolios.collaborators') %>:</strong> <%= blank_or_not @portfolio.collaborators %></p>
-          <p class="mb-0 margin-10px-top text-small"><%= t('dates.last_updated') %>: <%= content_date_tag(@portfolio.content_modified_at) %></p>
+          <% if @portfolio.modified_date.present? %>
+          <p class="mb-0 margin-10px-top text-small"><%= t('dates.last_updated') %>: <%= content_date_tag(@portfolio.modified_date) %></p>
+          <% end %>
         </div>
       </div>
       <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center order-1 order-md-2 sm-margin-20px-bottom wow animate__fadeIn" data-wow-delay="0.3s">

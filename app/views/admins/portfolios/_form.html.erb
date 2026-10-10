@@ -66,6 +66,7 @@
               <%= f.input :banner, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
               <%= f.association :service, as: :select %>
               <%= f.association :industry, as: :select %>
+              <%= f.input :modified_date, as: :string, label: 'Tanggal diperbarui (konten)', hint: 'Isi hanya bila isi konten benar-benar direvisi. Dipakai di sitemap, schema, dan label &quot;Diperbarui&quot;. Simpan ulang biasa tidak mengubahnya.'.html_safe, input_html: { class: "datetimepicker", value: get_input_date_value(f.object.modified_date) } %>
 						</div>
 					</div>
 				</div>

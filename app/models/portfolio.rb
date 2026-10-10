@@ -33,6 +33,13 @@ class Portfolio < ApplicationRecord
 	validates :banner, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
+	# Tanggal konten untuk lastmod di sitemap dan label "Terakhir diperbarui". Diatur admin,
+	# bukan updated_at (lihat Article#content_modified_at). Campaign tidak punya tanggal
+	# terbit, jadi tanpa modified_date dipakai tanggal dibuat.
+	def content_modified_at
+		modified_date || created_at
+	end
+
   protected
 
 	def should_generate_new_friendly_id?
@@ -58,5 +65,4 @@ class Portfolio < ApplicationRecord
   def featured_label
     self.featured == 1 ? 'Yes' : 'No'
   end
-
 end
