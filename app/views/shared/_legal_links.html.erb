@@ -3,7 +3,7 @@
 	<ul class="text-small p-0 mb-0 list-unstyled d-inline-block">
 		<% legal_pages.each_with_index do |legal_page, index| %>
 			<li class="d-inline-block <%= 'margin-10px-right' unless index == legal_pages.size - 1 %>">
-				<%= link_to legal_page.title, page_path(legal_page.slug), class: "text-white-2" %>
+				<%= link_to page_display_title(legal_page), page_path(legal_page.slug), class: "text-white-2" %>
 			</li>
 		<% end %>
 	</ul>

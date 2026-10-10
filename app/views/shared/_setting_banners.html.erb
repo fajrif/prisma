@@ -12,8 +12,8 @@
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= render "shared/default_banner", locals: { title: @page.title, description: "", bg_image: nil } %>
+		<%= render "shared/default_banner", locals: { title: page_display_title(@page), description: "", bg_image: nil } %>
 	<% end %>
 <% else %>
-	<%= render "shared/default_banner", locals: { title: @page.title, description: "", bg_image: nil } %>
+	<%= render "shared/default_banner", locals: { title: page_display_title(@page), description: "", bg_image: nil } %>
 <% end %>

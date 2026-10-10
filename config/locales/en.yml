@@ -215,6 +215,12 @@ en:
     pages: "Pages"
     max: "Max"
     all: "All"
+  # Judul halaman legal. Kolom pages.title bukan Mobility (satu nilai untuk semua bahasa),
+  # jadi tampilan publik (banner, footer, breadcrumb) memakai kunci ini lewat page_display_title.
+  page_titles:
+    privacy-policy: "Privacy Policy"
+    terms: "Terms & Conditions"
+    editorial-standard: "Editorial Standard"
   dates:
     updated: "Updated"
     last_updated: "Last updated"

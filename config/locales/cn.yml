@@ -216,9 +216,15 @@ cn:
     pages: "页面"
     max: "最大"
     all: "全部"
+  # Judul halaman legal. Kolom pages.title bukan Mobility (satu nilai untuk semua bahasa),
+  # jadi tampilan publik (banner, footer, breadcrumb) memakai kunci ini lewat page_display_title.
+  page_titles:
+    privacy-policy: "隐私政策"
+    terms: "条款和条件"
+    editorial-standard: "编辑标准"
   dates:
-    updated: "Updated"
-    last_updated: "Last updated"
+    updated: "更新于"
+    last_updated: "最后更新"
   seo:
     site: "Prisma Advertising"
     billboard_type:

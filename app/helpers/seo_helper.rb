@@ -124,7 +124,7 @@ module SeoHelper
 
     case controller_name
     when 'pages'
-      trail << [@page.title, canonical_path] if @page && canonical_path != (locale_prefix.presence || '/')
+      trail << [page_display_title(@page), canonical_path] if @page && canonical_path != (locale_prefix.presence || '/')
     when 'articles'
       trail << [t('breadcrumb.blog'), "#{locale_prefix}/articles"]
       trail << [@article.title, canonical_path] if @article
@@ -175,6 +175,12 @@ module SeoHelper
     return false if published.blank? || modified.blank?
 
     (modified.to_date - published.to_date) >= 1
+  end
+
+  # Judul Page untuk tampilan publik. pages.title bukan Mobility, jadi halaman legal mengambil terjemahannya
+  # dari `page_titles.<slug>` (config/locales); halaman lain jatuh ke pages.title seperti sebelumnya.
+  def page_display_title(page)
+    I18n.t("page_titles.#{page.slug}", default: page.title)
   end
 
   # Set the page H1 for SEO
