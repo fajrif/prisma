@@ -20,7 +20,7 @@
 							<h3 class="panel-title" id="<%= item_id %>-q">
 								<button type="button" class="faq-toggle<%= ' collapsed' unless open %>" data-bs-toggle="collapse" data-bs-target="#<%= item_id %>-a" aria-expanded="<%= open %>" aria-controls="<%= item_id %>-a">
 									<span><%= career.title %></span>
-									<i class="fa-solid fa-plus" aria-hidden="true"></i>
+									<%= svg_icon(:plus) %>
 								</button>
 							</h3>
 						</div>

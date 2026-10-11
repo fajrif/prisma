@@ -118,13 +118,15 @@ module PageHelper
 		end
 	end
 
+	# Ikon panah tetap membawa kelas `fa-solid` sebagai penanda CSS: aturan tema (style.css,
+	# responsive.css) mengatur posisi & visibilitasnya lewat kelas itu. Font Awesome sendiri tidak dimuat.
 	def generate_dropdown_menu(data)
 		_menu = ""
 		if data
       _dropdown = ""
 			data.each do |menu|
 				if menu["menu"]
-          _submenu = menu["label"] + content_tag(:i, nil, class: "fa-solid fa-angle-right")
+          _submenu = menu["label"] + svg_icon("angle-right", class: "fa-solid")
           _dropdown += content_tag(:li, class: "dropdown") do
             link_to(menu["url"] ? menu["url"] : "#", class: "dropdown-toggle") do
               raw(_submenu)
@@ -150,7 +152,7 @@ module PageHelper
         active_class = set_active_class_menu(menu["active_path"])
 				if menu["menu"]
           _submenu = link_to(menu["label"], menu["url"] ? menu["url"] : "#", class: active_class) +
-              content_tag(:i, nil, class: "fa-solid fa-angle-down dropdown-toggle", "data-bs-toggle": "dropdown", role: "button", tabindex: 0, "aria-haspopup": "true", "aria-expanded": "false", "aria-label": I18n.t("global.open_submenu", name: menu["label"])) +
+              svg_icon("angle-down", class: "fa-solid dropdown-toggle", "data-bs-toggle": "dropdown", role: "button", tabindex: 0, "aria-haspopup": "true", "aria-expanded": "false", "aria-label": I18n.t("global.open_submenu", name: menu["label"])) +
               generate_dropdown_menu(menu["menu"])
 					_menu += content_tag(:li, class: "dropdown simple-dropdown") do
             raw(_submenu)

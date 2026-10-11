@@ -395,3 +395,19 @@
 @media (max-width: 767px) {
 	.hero-bg { background-image: var(--hero-sm); }
 }
+
+/* Ikon SVG inline (svg_icon di IconHelper) pengganti glyph Font Awesome. SVG berperilaku seperti
+   glyph FA: inline setinggi 1em, dasar 0.125em di bawah baseline, sehingga text-align/line-height
+   dari aturan tema tetap memusatkannya. :where() membuat specificity 0, jadi aturan tema yang
+   menyasar elemen ini (mis. menyembunyikan panah menu di desktop) tetap menang. */
+:where(.svg-icon) {
+	display: inline-block;
+	line-height: 0; /* tinggi kotak = tinggi SVG (1em), tidak ditambah tinggi baris font teks */
+	font-style: normal;
+}
+.svg-icon > svg {
+	display: inline-block;
+	vertical-align: -0.125em;
+	fill: currentColor;
+	overflow: visible;
+}
