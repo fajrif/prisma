@@ -3,6 +3,21 @@ let map;
 let markers = [];
 let infoWindows = [];
 let products = [];
+// T15: Google Maps API (±1 MB skrip + 72 marker) baru dimuat saat peta mendekati layar, atau saat
+// pengunjung mengklik item daftar lebih dulu. Peta berada di bawah lipatan, jadi skrip Maps tidak lagi
+// ikut membebani pemuatan awal (LCP/TBT). URL API ada di data-maps-src pada #map.
+let mapsRequested = false;
+let pendingProductId = null;
+
+function loadMapsApi() {
+  const el = document.getElementById('map');
+  if (mapsRequested || !el || !el.dataset.mapsSrc) return;
+  mapsRequested = true;
+  const script = document.createElement('script');
+  script.src = el.dataset.mapsSrc; // memanggil callback initMap setelah siap
+  script.async = true;
+  document.head.appendChild(script);
+}
 
 async function initMap() {
   const mapData = document.getElementById('map-data');
@@ -41,6 +56,12 @@ async function initMap() {
   map.addListener('drag', function () {
     closeAllInfoWindows();
   });
+
+  // Item yang diklik sebelum peta siap: buka sekarang.
+  if (pendingProductId !== null) {
+    $(`.product-item[data-product-id="${pendingProductId}"]`).trigger('click');
+    pendingProductId = null;
+  }
 }
 
 function createMarkers(AdvancedMarkerElement, PinElement) {
@@ -147,6 +168,8 @@ async function reinitializeMap() {
   if (!mapData) return;
 
   products = JSON.parse(mapData.dataset.products);
+  // Peta belum dimuat: initMap nanti membaca #map-data yang baru ini.
+  if (!map) return;
 
   if (products.length > 0) {
     // Import marker library
@@ -175,6 +198,28 @@ async function reinitializeMap() {
 
 // Billboard type filter change handler
 $(document).ready(function () {
+  const mapEl = document.getElementById('map');
+  if (mapEl) {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        if (entries.some(e => e.isIntersecting)) {
+          observer.disconnect();
+          loadMapsApi();
+        }
+      }); // tanpa rootMargin: di desktop peta hanya ±130px di bawah layar awal
+      observer.observe(mapEl);
+    } else {
+      loadMapsApi();
+    }
+  }
+
+  // Klik item daftar sebelum peta dimuat: muat peta, lalu buka item itu di initMap.
+  $(document).on('click', '.product-item', function () {
+    if (map) return;
+    pendingProductId = $(this).data('product-id');
+    loadMapsApi();
+  });
+
   // Location select change handler
   $('#location-select').on('change', function () {
     const slug = $(this).val();

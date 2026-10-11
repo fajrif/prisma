@@ -11,8 +11,9 @@ namespace :images do
 		helper = Class.new { include PerformanceHelper }.new
 		plan = {
 			# Gambar hero (hero_bg_style) dipakai dalam dua ukuran: 1200 (HP) dan 1920 (layar lebar).
-			Article => { image: [800, 1200, 1920] }, Portfolio => { image: [800], banner: [1200, 1920], image1: [1200], image2: [1200] },
-			Service => { image: [800], image1: [800] }, Industry => { image: [1200] },
+			# Gambar kartu (opt_image_tag dengan sizes:) memakai srcset 480 + 800.
+			Article => { image: [480, 800, 1200, 1920] }, Portfolio => { image: [480, 800], banner: [1200, 1920], image1: [1200], image2: [1200] },
+			Service => { image: [800], image1: [480, 800] }, Industry => { image: [1200] },
 			Banner => { image: [1200, 1920] }, Location => { image: [488] }, Snippet => { image: [1200, 1920], background: [1920] },
 			Product => { banner: [1200, 1920], image1: [1200], image2: [1200] }
 		}
@@ -36,8 +37,10 @@ namespace :images do
 			puts "#{klass.name}: selesai"
 		end
 		Product.unscoped.find_each do |product|
-			product.image_thumb_variant&.processed
-			done += 1
+			[500, Product::LIST_THUMB_SIZE].each do |size|
+				product.image_thumb_variant(size)&.processed
+				done += 1
+			end
 		rescue StandardError => e
 			warn "Product##{product.id} thumb: #{e.class} #{e.message.truncate(80)}"
 		end

@@ -28,7 +28,7 @@
                 </div>
             </aside>
             <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">
-              <div id="map" class="w-100 h-100"></div>
+              <div id="map" class="w-100 h-100" data-maps-src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['PRISMA_GOOGLE_API_KEY'] %>&callback=initMap&loading=async"></div>
               <!-- Hidden data for JavaScript -->
               <%= render "map_data", products: @products %>
             </article>
@@ -42,10 +42,9 @@
 <%= render_content_blocks(@location) %>
 
 <%= content_for :tail do %>
-  <%# Keduanya defer (tanpa async) agar urutannya terjaga: application.js -> locations.js (mendefinisikan
-      initMap) -> Maps API (memanggil callback initMap). %>
+  <%# locations.js defer (setelah application.js/jQuery). Maps API tidak dimuat di sini: locations.js
+      menyisipkannya dari data-maps-src saat #map mendekati layar (callback initMap). %>
   <%= javascript_include_tag "locations", defer: true %>
-  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['PRISMA_GOOGLE_API_KEY']}&callback=initMap&loading=async", defer: true %>
 
   <style>
     .product-item {
@@ -73,6 +72,7 @@
       max-width: 250px;
     }
     #map {
+      background-color: #e5e3df; /* warna dasar Google Maps selama skrip belum dimuat */
       box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
               0 1px 3px 1px rgba(60, 64, 67, 0.15);
     }

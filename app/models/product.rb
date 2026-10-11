@@ -45,17 +45,20 @@ class Product < ApplicationRecord
 		"#{self.latitude}, #{self.longitude}"
 	end
 
-  # Variant 500x500 untuk kartu & peta lokasi (WebP bila server mendukung).
-  def image_thumb_variant
+  # Variant 500x500 untuk info window peta lokasi (WebP bila server mendukung).
+  # LIST_THUMB_SIZE: thumbnail daftar lokasi (tampil ±75px, cukup tajam di layar 3x).
+  LIST_THUMB_SIZE = 240
+
+  def image_thumb_variant(size = 500)
     return unless image.attached?
 
-    opts = { resize_to_limit: [500, 500], saver: { strip: true, quality: 80 } }
+    opts = { resize_to_limit: [size, size], saver: { strip: true, quality: 80 } }
     opts[:format] = :webp if PerformanceHelper.webp?
     image.variant(opts)
   end
 
-  def image_url_thumb
-    variant = image_thumb_variant
+  def image_url_thumb(size = 500)
+    variant = image_thumb_variant(size)
     Rails.application.routes.url_helpers.url_for(variant) if variant
   end
 

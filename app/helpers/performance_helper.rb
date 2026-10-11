@@ -36,18 +36,37 @@ module PerformanceHelper
 		img && url_for(img)
 	end
 
+	# Lebar tambahan untuk srcset. 480: kartu grid desktop (±430px) dan kolom sempit; HP 1 kolom
+	# (±380px x DPR 2) tetap memakai `width` (800).
+	SRCSET_WIDTHS = [480].freeze
+	# `sizes` untuk kartu grid tema (.grid xs-grid-1col / sm,md-grid-2col / 3col, container 1170px).
+	CARD_SIZES = '(max-width: 575px) 100vw, (max-width: 991px) 50vw, 430px'.freeze
+
 	# image_tag untuk attachment; width/height dihitung dari metadata blob (skala ke `width`).
 	# nil bila belum terpasang. `loading: 'eager'` untuk gambar di atas lipatan.
+	# `sizes:` (lebar tampil) menambah srcset dari SRCSET_WIDTHS + `width`, sehingga browser memilih
+	# variant terkecil yang cukup. Hanya untuk gambar yang di-resize (file kecil/GIF/SVG tetap satu URL).
 	def opt_image_tag(attachment, width, options = {})
 		img = opt_image(attachment, width)
 		return unless img
 
+		sizes = options.delete(:sizes)
 		blob = attachment.blob
 		ow = blob.metadata[:width].to_i
 		oh = blob.metadata[:height].to_i
 		if ow.positive? && oh.positive? && !options.key?(:width)
 			w = [ow, width].min
 			options = options.merge(width: w, height: (oh * w / ow.to_f).round)
+		end
+		if sizes && img != attachment && ow.positive?
+			# [lebar diminta, lebar hasil]: resize_to_limit tidak memperbesar, jadi gambar asli yang lebih
+			# kecil menghasilkan lebar yang sama (dibuang uniq). URL memakai lebar diminta agar variant src dipakai ulang.
+			candidates = (SRCSET_WIDTHS.select { |sw| sw < width } + [width]).map { |sw| [sw, [sw, ow].min] }
+			candidates = candidates.reverse.uniq(&:last).reverse
+			if candidates.size > 1
+				srcset = candidates.map { |sw, actual| "#{url_for(opt_image(attachment, sw))} #{actual}w" }.join(', ')
+				options = options.merge(srcset: srcset, sizes: sizes)
+			end
 		end
 		image_tag(img, options)
 	end

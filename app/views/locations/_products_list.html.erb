@@ -5,8 +5,9 @@
     data-lng="<%= product.longitude %>"
     >
     <figure class="flex-shrink-0">
-      <% if product.image_url_thumb.present? %>
-        <img src="<%= product.image_url_thumb %>" class=" border border-radius-8" alt="<%= product.name %>">
+      <% if (thumb = product.image_url_thumb(Product::LIST_THUMB_SIZE)) %>
+        <%# lazy: daftar berisi puluhan item di dalam kotak bergulir; hanya yang terlihat yang diunduh. %>
+        <img src="<%= thumb %>" class=" border border-radius-8" alt="<%= product.name %>" loading="lazy" decoding="async">
       <% end %>
     </figure>
     <div class="media-body flex-grow-1 text-small">

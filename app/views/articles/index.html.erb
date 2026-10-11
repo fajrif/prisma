@@ -13,7 +13,7 @@
                 <div class="blog-post blog-post-style1 text-start">
                   <div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom border-radius-8">
                     <a href="<%= article_path(article) %>">
-                      <%= opt_image_tag article.image, 800, alt: article.title if article.image.attached? %>
+                      <%= opt_image_tag article.image, 800, sizes: PerformanceHelper::CARD_SIZES, alt: article.title if article.image.attached? %>
                     </a>
                   </div>
                   <div class="post-details margin-20px-bottom w-95">
