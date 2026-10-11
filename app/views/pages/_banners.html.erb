@@ -8,7 +8,7 @@
           <% if banner.is_video? %>
             <div class="swiper-slide">
           <% else %>
-            <div class="swiper-slide banner-cover-background" style="background-image:url('<%= opt_image_url(banner.image, 1920) if banner.image.attached? %>');">
+            <div class="swiper-slide banner-cover-background hero-bg" style="<%= hero_bg_style(banner.image, preload: index.zero?) %>">
             <div class="opacity-medium bg-transparent-black z-index-0"></div>
           <% end %>
 					<div class="container position-relative h-100">

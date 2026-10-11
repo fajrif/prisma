@@ -51,4 +51,27 @@ module PerformanceHelper
 		end
 		image_tag(img, options)
 	end
+
+	# Gambar hero dipasang sebagai background CSS, sehingga browser baru menemukannya setelah CSS
+	# diproses dan memberinya prioritas rendah, padahal gambar inilah yang sering menjadi LCP.
+	# Helper ini memberi dua ukuran (HP 1200px, layar lebar 1920px) lewat custom property yang dipilih
+	# media query di kelas `hero-bg` (application.css). Hero pertama di halaman juga mendapat
+	# <link rel="preload" fetchpriority="high"> di <head> (yield :hero_preload) dengan media query
+	# yang sama, jadi hanya satu ukuran yang diunduh. Dipakai sebagai isi atribut style.
+	HERO_MOBILE_MAX = 767
+
+	def hero_bg_style(attachment, preload: true)
+		sm = opt_image_url(attachment, 1200)
+		lg = opt_image_url(attachment, 1920)
+		return '' unless sm && lg
+
+		if preload && !@hero_preloaded
+			@hero_preloaded = true
+			content_for :hero_preload, safe_join([
+				tag.link(rel: 'preload', as: 'image', href: sm, media: "(max-width: #{HERO_MOBILE_MAX}px)", fetchpriority: 'high'),
+				tag.link(rel: 'preload', as: 'image', href: lg, media: "(min-width: #{HERO_MOBILE_MAX + 1}px)", fetchpriority: 'high')
+			], "\n")
+		end
+		"--hero-sm:url('#{sm}');--hero-lg:url('#{lg}');"
+	end
 end

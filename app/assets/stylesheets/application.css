@@ -382,3 +382,16 @@
 	outline: 2px solid #0d6efd;
 	outline-offset: 2px;
 }
+
+/* T15 LCP: tinggi hero mengikuti layar sejak awal. Tema menulis 980px lalu menyesuaikannya lewat JS
+   (fullScreenHeight di main.js) setelah application.js dan gambar selesai dimuat; di HP judul hero
+   (align-items-end) berada di luar layar sampai saat itu sehingga LCP tertunda. svh = tinggi layar
+   tanpa bilah alamat; vh sebagai cadangan browser lama. */
+.full-screen { height: 100vh; height: 100svh; }
+
+/* Gambar hero responsif (hero_bg_style di PerformanceHelper): 1200px di HP, 1920px di layar lebar.
+   Media query harus sama dengan <link rel="preload"> agar hanya satu ukuran yang diunduh. */
+.hero-bg { background-image: var(--hero-lg); }
+@media (max-width: 767px) {
+	.hero-bg { background-image: var(--hero-sm); }
+}
