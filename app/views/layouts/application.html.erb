@@ -50,11 +50,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	</noscript>
-	<!-- Google Recaptcha: dimuat saat ada interaksi pertama atau 3 detik setelah halaman selesai (347KB tidak lagi menghambat render).
-	     Stub menampung grecaptcha.ready() dari form sampai skrip aslinya terunduh. -->
+	<!-- Google Recaptcha: dimuat hanya saat pengunjung mulai mengisi form ber-reCAPTCHA (fokus/klik/sentuh di dalam form),
+	     atau langsung bila halaman memuat widget v2 (checkbox harus terlihat). Pengunjung yang tidak menyentuh form
+	     tidak mengunduh/menjalankan 347KB skrip reCAPTCHA. Stub menampung grecaptcha.ready() dari form sampai skrip asli terunduh. -->
 	<script>
 		(function () {
 			var queue = [], loading = false;
+			var FORM_MARK = 'input[name="recaptcha_token"], [id^="recaptcha_widget_"]';
 			window.grecaptcha = window.grecaptcha || { ready: function (fn) { queue.push(fn); }, getResponse: function () { return ''; }, reset: function () {} };
 			function load() {
 				if (loading) return;
@@ -66,10 +68,16 @@
 				s.onload = function () { queue.forEach(function (fn) { window.grecaptcha.ready(fn); }); queue = []; };
 				document.head.appendChild(s);
 			}
-			['pointerdown', 'keydown', 'touchstart', 'scroll', 'focusin'].forEach(function (ev) {
-				window.addEventListener(ev, load, { once: true, passive: true });
+			function onInteract(e) {
+				var form = e.target && e.target.closest && e.target.closest('form');
+				if (form && form.querySelector(FORM_MARK)) load();
+			}
+			['focusin', 'pointerdown', 'touchstart'].forEach(function (ev) {
+				document.addEventListener(ev, onInteract, { passive: true, capture: true });
 			});
-			window.addEventListener('load', function () { setTimeout(load, 3000); });
+			document.addEventListener('DOMContentLoaded', function () {
+				if (document.querySelector('[id^="recaptcha_widget_"]')) load();
+			});
 		})();
 	</script>
 	<%= csrf_meta_tags %>
