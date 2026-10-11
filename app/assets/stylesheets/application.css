@@ -415,3 +415,8 @@
 	fill: currentColor;
 	overflow: visible;
 }
+
+/* Ikon bergradien accordion PiX (pages/_pix_services): gradien didefinisikan sebagai <linearGradient> di partial. */
+.pix-icon-1 > svg { fill: url(#pix-gradient-1); }
+.pix-icon-2 > svg { fill: url(#pix-gradient-2); }
+.pix-icon-3 > svg { fill: url(#pix-gradient-3); }

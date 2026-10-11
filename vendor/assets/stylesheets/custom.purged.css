@@ -629,27 +629,6 @@ video:focus {
 	background: #eee;
 }
 
-.gradient-icon-1 {
-	background: linear-gradient(45deg, #ff7b00, #ff00d4);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	display: inline-block;
-}
-
-.gradient-icon-2 {
-	background: linear-gradient(45deg, #00e0ff, #0077ff);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	display: inline-block;
-}
-
-.gradient-icon-3 {
-	background: linear-gradient(45deg, #00ff94, #00c3ff);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	display: inline-block;
-}
-
 
 
 #static_billboard_benefits,

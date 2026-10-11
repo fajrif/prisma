@@ -1,31 +1,40 @@
+<%# Accordion layanan PiX; markup & perilaku sama dengan blok FAQ/Careers (tombol .faq-toggle, ikon SVG plus yang
+    berputar jadi x saat terbuka). Ikon bergradien lewat <linearGradient> SVG di bawah (gaya .pix-icon-N di
+    application.css), pengganti gradient-icon-N yang hanya bekerja untuk glyph font. Butir pertama terbuka. %>
 <% innovations = PixService.all %>
 <% unless innovations.empty? %>
+<svg width="0" height="0" class="position-absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="pix-gradient-1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ff7b00"/><stop offset="1" stop-color="#ff00d4"/></linearGradient>
+    <linearGradient id="pix-gradient-2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#00e0ff"/><stop offset="1" stop-color="#0077ff"/></linearGradient>
+    <linearGradient id="pix-gradient-3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#00ff94"/><stop offset="1" stop-color="#00c3ff"/></linearGradient>
+  </defs>
+</svg>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <!-- start accordion -->
-            <div class="panel-group accordion-event accordion-style1" id="accordion-pix-services" data-active-icon="ti-minus" data-inactive-icon="ti-plus">
-              <% i = 1 %>
+            <div class="panel-group accordion-style1 faq-accordion" id="accordion-pix-services">
               <% innovations.each_with_index do |inno, index| %>
-                <% i = 1 if i >= 4 %>
+                <%- item_id = "pix-service-#{inno.id}" -%>
+                <%- open = index.zero? -%>
                 <!-- start accordion item -->
                 <div class="panel">
                   <div class="panel-heading">
-                    <a data-bs-toggle="collapse" data-bs-parent="#accordion-pix-services" href="#design<%= index + 1 %>" role="button" aria-expanded="<%= index == 0 %>" aria-controls="design<%= index + 1 %>" class="accordion-toggle<%= ' collapsed' unless index == 0 %>">
-                      <div class="panel-title font-weight-700 title-small text-dark-gray text-uppercase">
-                        <span><%= inno.title %></span>
-                        <i class="title-small <%= "gradient-icon-#{i}" %> font-weight-900 <%= index == 0 ? 'ti-minus' : 'ti-plus' %>" aria-hidden="true"></i>
-                      </div>
-                    </a>
+                    <h3 class="panel-title" id="<%= item_id %>-q">
+                      <button type="button" class="faq-toggle<%= ' collapsed' unless open %>" data-bs-toggle="collapse" data-bs-target="#<%= item_id %>-a" aria-expanded="<%= open %>" aria-controls="<%= item_id %>-a">
+                        <span class="font-weight-700 title-small text-dark-gray text-uppercase"><%= inno.title %></span>
+                        <%= svg_icon(:plus, class: "title-small pix-icon-#{index % 3 + 1}") %>
+                      </button>
+                    </h3>
                   </div>
-                  <div id="design<%= index + 1 %>" class="panel-collapse collapse <%= "show" if index == 0 %>" data-bs-parent="#accordion-pix-services">
+                  <div id="<%= item_id %>-a" class="panel-collapse collapse<%= ' show' if open %>" role="region" aria-labelledby="<%= item_id %>-q" data-bs-parent="#accordion-pix-services">
                     <div class="panel-body w-75 sm-w-100">
                       <p class="mb-0"><%= inno.description %></p>
                     </div>
                   </div>
                 </div>
                 <!-- end accordion item -->
-                <% i+=1 %>
               <% end %>
             </div>
             <!-- end accordion -->
