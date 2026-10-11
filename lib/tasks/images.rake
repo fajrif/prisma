@@ -10,10 +10,11 @@ namespace :images do
 	task warm: :environment do
 		helper = Class.new { include PerformanceHelper }.new
 		plan = {
-			Article => { image: [800] }, Portfolio => { image: [800], banner: [1920], image1: [1200], image2: [1200] },
+			# Gambar hero (hero_bg_style) dipakai dalam dua ukuran: 1200 (HP) dan 1920 (layar lebar).
+			Article => { image: [800, 1200, 1920] }, Portfolio => { image: [800], banner: [1200, 1920], image1: [1200], image2: [1200] },
 			Service => { image: [800], image1: [800] }, Industry => { image: [1200] },
-			Banner => { image: [1920] }, Location => { image: [488] }, Snippet => { image: [1200, 1920], background: [1920] },
-			Product => { banner: [1920], image1: [1200], image2: [1200] }
+			Banner => { image: [1200, 1920] }, Location => { image: [488] }, Snippet => { image: [1200, 1920], background: [1920] },
+			Product => { banner: [1200, 1920], image1: [1200], image2: [1200] }
 		}
 		done = 0
 		plan.each do |klass, attrs|
