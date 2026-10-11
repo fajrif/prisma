@@ -4433,7 +4433,7 @@
     .sm-no-margin-right {margin-right:0 !important}
     .sm-margin-lr-auto {margin-left:auto !important; margin-right:auto !important}
     .sm-margin-auto {margin: 0 auto !important;}
-    .sm-margin-20px-all {margin:20px; !important;}
+    .sm-margin-20px-all {margin:20px;}
 
     /* margin top */
     .sm-margin-one-top {margin-top:1%;}

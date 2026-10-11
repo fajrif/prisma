@@ -54,21 +54,9 @@ header nav .navbar-nav>li>a {
 	color: var(--prisma-dark-grey-color);
 }
 
-.bootstrap-select .btn.show,
 .btn:hover {
 	background-color: #e9ecef;
 	border-color: #e9ecef;
-}
-
-.bootstrap-select>.dropdown-toggle.bs-placeholder,
-.bootstrap-select>.dropdown-toggle.bs-placeholder:active,
-.bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
-.bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
-	color: var(--prisma-dark-grey-color);
-}
-
-.bootstrap-select>.dropdown-toggle {
-	border-radius: 8px;
 }
 
 .dropdown-item.active,
@@ -76,12 +64,6 @@ header nav .navbar-nav>li>a {
 	color: var(--prisma-dark-grey-color);
 	text-decoration: none;
 	background-color: #e9ecef;
-}
-
-.bootstrap-select .dropdown-toggle:focus,
-.bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
-	outline: 1px auto var(--light-grey-color) !important;
-	outline-offset: 0;
 }
 
 header.header-appear nav.header-dark .logo img.default {

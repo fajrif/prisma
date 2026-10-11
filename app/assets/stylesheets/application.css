@@ -10,13 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require bootsnav.css
- *= require theme-vendors.min.css
+ * T15: CSS tema dimuat dalam versi *.purged.css (rule yang tidak dipakai halaman publik sudah dibuang;
+ * ±1 MB -> ±270 KB mentah). File aslinya tetap di vendor/assets/stylesheets sebagai sumber. Setelah
+ * mengubah view, kelas CSS di view, CSS tema, atau mengisi kelas baru di CMS: jalankan `bin/rails css:purge`
+ * lalu commit hasilnya (lihat lib/tasks/css.rake).
+ *
+ *= require bootsnav.purged.css
+ *= require theme-vendors.min.purged.css
  *= require font-icons.min.css
- *= require bootstrap-select.min.css
- *= require style.css
- *= require custom.css
- *= require responsive.css
+ *= require style.purged.css
+ *= require custom.purged.css
+ *= require responsive.purged.css
  *= require_self
  */
 
