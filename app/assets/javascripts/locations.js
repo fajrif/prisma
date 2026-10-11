@@ -149,19 +149,20 @@ async function reinitializeMap() {
   products = JSON.parse(mapData.dataset.products);
 
   if (products.length > 0) {
-    // Don't auto-center the map when filtering - maintain user's current view
-    // const centerLat = parseFloat(mapData.dataset.centerLat);
-    // const centerLng = parseFloat(mapData.dataset.centerLng);
-    // map.setCenter({ lat: centerLat, lng: centerLng });
-
     // Import marker library
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
     // Recreate markers
+    closeAllInfoWindows();
     createMarkers(AdvancedMarkerElement, PinElement);
 
     // Rebind click events for new product items
     bindProductItemClicks();
+
+    // Setelah filter berubah, arahkan peta ke item pertama di daftar baru (urutan daftar = urutan
+    // `products`) dan kembalikan daftar ke atas agar item itu terlihat.
+    map.panTo({ lat: parseFloat(products[0].latitude), lng: parseFloat(products[0].longitude) });
+    $('#product-list').scrollTop(0);
   } else {
     // Clear markers if no products
     markers.forEach(marker => {
