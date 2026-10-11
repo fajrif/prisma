@@ -35,7 +35,8 @@
 <!-- NEED THIS to reveal wow animation -->
 <%= content_for :tail do %>
 	<script>
-		$(document).ready(function() {
+		// application.js (jQuery) dimuat defer; DOMContentLoaded baru terpicu setelahnya.
+		document.addEventListener('DOMContentLoaded', function () {
 			$(".nav-tabs .nav-item > .nav-link").click(function() {
 				window.scrollTo(window.scrollX, window.scrollY + 1);
 			});

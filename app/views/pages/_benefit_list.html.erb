@@ -15,9 +15,10 @@
 </div>
 
 <%= content_for :tail do %>
-	<%= javascript_include_tag "jquery.marquee.min.js" %>
+	<%= javascript_include_tag "jquery.marquee.min.js", defer: true %>
 	<script>
-		jQuery(document).ready(function($){
+		// jQuery & plugin marquee dimuat defer; DOMContentLoaded baru terpicu setelah keduanya jalan.
+		document.addEventListener('DOMContentLoaded', function () {
 			$('.marquee').marquee({
 				speed: 100,
 				gap: 100,

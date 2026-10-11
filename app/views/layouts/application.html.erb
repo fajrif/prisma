@@ -109,7 +109,9 @@
 		<%= yield %>
 	</main>
 	<%= render "shared/footer" %>
-	<%= javascript_include_tag 'application' %>
+	<%# defer: tidak menahan render pertama (T15). Script lain yang butuh jQuery harus `defer` juga (urutan
+	    eksekusi dijaga) atau menunggu DOMContentLoaded, yang baru terpicu setelah semua script defer jalan. %>
+	<%= javascript_include_tag 'application', defer: true %>
 	<%= yield :tail %>
 </body>
 </html>

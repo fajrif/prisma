@@ -42,8 +42,10 @@
 <%= render_content_blocks(@location) %>
 
 <%= content_for :tail do %>
-  <%= javascript_include_tag "locations" %>
-  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['PRISMA_GOOGLE_API_KEY']}&callback=initMap&loading=async", async: true, defer: true %>
+  <%# Keduanya defer (tanpa async) agar urutannya terjaga: application.js -> locations.js (mendefinisikan
+      initMap) -> Maps API (memanggil callback initMap). %>
+  <%= javascript_include_tag "locations", defer: true %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['PRISMA_GOOGLE_API_KEY']}&callback=initMap&loading=async", defer: true %>
 
   <style>
     .product-item {
