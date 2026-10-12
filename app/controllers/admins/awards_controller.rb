@@ -51,7 +51,7 @@ class Admins::AwardsController < Admins::BaseController
   private
 
   def params_award
-    params.require(:award).permit(:image, :name, :description, :award_category_id)
+    params.require(:award).permit(:image, :name, :description, :schema_text, :award_category_id)
   end
 
 	def set_award

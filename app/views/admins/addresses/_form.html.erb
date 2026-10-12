@@ -14,10 +14,10 @@
 
 		<hr/>
 		<p class="text-muted fs-13">
-			Alamat terstruktur di bawah dipakai untuk schema LocalBusiness & PostalAddress.
-			Kolom "Complete address" di atas tetap dipakai untuk tampilan di website.
+			Alamat terstruktur di bawah dipakai untuk schema Organization (PostalAddress).
+			Bila diisi lengkap, alamat terstruktur ini juga dipakai untuk tampilan di website (footer, Contact); "Complete address" hanya cadangan.
 		</p>
-		<%= f.input :street_address, as: :string, hint: "Contoh: Graha Prisma, Jl. Kedoya Duri Raya No.38, Kedoya Selatan" %>
+		<%= f.input :street_address, as: :string, hint: "Contoh: GRHA PRISMA, Jl. Kedoya Duri Raya No.38, Kedoya Selatan, Kebon Jeruk" %>
 		<%= f.input :locality, as: :string, label: "City / Locality", hint: "Contoh: Jakarta Barat" %>
 		<%= f.input :region, as: :string, hint: "Contoh: DKI Jakarta" %>
 		<%= f.input :postal_code, as: :string, hint: "Contoh: 11520" %>

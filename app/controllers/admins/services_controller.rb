@@ -53,7 +53,7 @@ class Admins::ServicesController < Admins::BaseController
   private
 
   def extra_seo_params
-    %i[service_type area_served_text schema_provider_url]
+    %i[schema_name service_type area_served_text schema_provider_url]
   end
 
   def params_service

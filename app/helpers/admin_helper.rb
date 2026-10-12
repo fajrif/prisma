@@ -453,7 +453,7 @@ module AdminHelper
 
 	def get_schema_types
 		%w[
-			Organization LocalBusiness WebSite WebPage Service Product FAQPage
+			WebPage Service Product FAQPage
 			Article BlogPosting Event Person VideoObject JobPosting DefinedTermSet ItemList Custom
 		]
 	end

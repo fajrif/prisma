@@ -2,6 +2,8 @@
 <div class="card mt-3">
 	<div class="card-header"><h6 class="card-title mb-0">Data schema Service (JSON-LD)</h6></div>
 	<div class="card-body">
+		<%= f.input :schema_name, as: :string, label: 'Schema Name', required: false,
+		            hint: 'Nama layanan di schema, mis. "Sewa Billboard Statis". Kosong = memakai nama yang tampil di halaman. Per bahasa.' %>
 		<%= f.input :service_type, label: 'Service Type', required: false,
 		            hint: 'Jenis layanan untuk schema serviceType, mis. "Billboard advertising". Berlaku untuk semua bahasa.' %>
 		<%= f.input :area_served_text, as: :text, label: 'Area Served', required: false, input_html: { rows: 4 },

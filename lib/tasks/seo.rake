@@ -57,13 +57,10 @@ namespace :seo do
 		# Alamat terstruktur kantor pusat. Kolomnya sudah ada sejak migrasi sebelumnya
 		# tapi belum pernah diisi, sehingga schema jatuh ke `complete_address` apa adanya.
 		#
-		# CATATAN: nama jalan di spec ("GRHA PRISMA, Jl. Raya Kedoya No.38, Kedoya Selatan,
-		# Kebon Jeruk") berbeda dari yang tampil di situs ("GRAHA PRISMA, Jl. Kedoya Duri
-		# Raya No.38"). Sudah ditanyakan ke strategist; sementara memakai versi situs agar
-		# schema tetap sama dengan konten yang terlihat.
+		# Alamat resmi mengikuti Google Business Profile (dikonfirmasi strategist).
 		address = Address.primary
 		if address
-			address.street_address = 'GRAHA PRISMA, Jl. Kedoya Duri Raya No.38, Kedoya Selatan' if address.street_address.blank?
+			address.street_address = 'GRHA PRISMA, Jl. Kedoya Duri Raya No.38, Kedoya Selatan, Kebon Jeruk'
 			address.locality = 'Jakarta Barat' if address.locality.blank?
 			address.region = 'DKI Jakarta' if address.region.blank?
 			address.postal_code = '11520' if address.postal_code.blank?
@@ -368,6 +365,52 @@ namespace :seo do
 		end
 
 		puts "Slug tidak ditemukan: #{missing.join(', ')}" if missing.any?
+	end
+
+	desc "Terapkan jawaban SEO Strategist: alamat resmi, nama layanan ID + schema_name, teks award schema, sameAs 4 URL (idempoten)"
+	task apply_strategist_answers: :environment do
+		# Alamat resmi (Google Business Profile)
+		if (address = Address.primary)
+			address.update!(street_address: 'GRHA PRISMA, Jl. Kedoya Duri Raya No.38, Kedoya Selatan, Kebon Jeruk',
+											locality: 'Jakarta Barat', region: 'DKI Jakarta', postal_code: '11520', country_code: 'ID')
+			puts "Alamat kantor pusat diperbarui (id: #{address.id})."
+		end
+
+		# Nama layanan: versi ID berubah; schema_name memakai nilai spec (semua bahasa)
+		{
+			'static-billboard-advertising' => ['Billboard Statis', 'Sewa Billboard Statis'],
+			'digital-billboard-advertising' => ['Videotron & Billboard Digital', 'Sewa Videotron & Billboard Digital']
+		}.each do |slug, (name_id, schema_name)|
+			service = Service.friendly.find(slug)
+			Mobility.with_locale(:id) { service.name = name_id }
+			Mobility.with_locale(:en) { service.schema_name = schema_name }
+			service.save!
+			puts "Service #{slug}: ID=#{name_id.inspect}, schema_name=#{schema_name.inspect}"
+		rescue ActiveRecord::RecordNotFound
+			puts "Service #{slug} tidak ditemukan, dilewati."
+		end
+
+		# Teks award lengkap hanya untuk schema; dicocokkan berdasarkan tahun + penyelenggara
+		awards = {
+			/Citra Pariwara 2018/ => 'Citra Pariwara 2018 – Bronze, Best Use of Ambient Media – Large Scale',
+			/Citra Pariwara 2020/ => 'Citra Pariwara 2020 – Bronze, Best Use of Out-of-Home',
+			/Citra Pariwara 2022/ => 'Citra Pariwara 2022 – Silver, Giant Billboard – Best Use of Out-of-Home',
+			/Citra Pariwara 2023/ => 'Citra Pariwara 2023 – Silver, Digital Screens (Single) – Best Use of Out-of-Home',
+			/MMA Smarties APAC 2025/ => 'MMA Smarties APAC 2025 – Gold, O2O / New Retail / Innovative & New Tech Sales Channels'
+		}
+		Award.find_each do |award|
+			pattern, text = awards.find { |regex, _| Mobility.with_locale(:en) { award.name.to_s.match?(regex) } }
+			next unless pattern
+
+			award.update!(schema_text: text)
+			puts "Award #{award.id}: #{text}"
+		end
+
+		# sameAs: hanya Instagram, LinkedIn, YouTube, TikTok
+		setting = Setting.current
+		kept = setting.same_as_list.reject { |u| u.match?(%r{//(?:[\w-]+\.)*(facebook|twitter|x)\.com(/|\z)}i) }
+		setting.update!(same_as: kept)
+		puts "sameAs: #{kept.size} URL."
 	end
 
 	desc "Audit title & description tiap halaman: kosong/default, terlalu panjang atau pendek, duplikat (per bahasa). SAVE=1 menyimpan JSON seperti menu admin SEO Audit"

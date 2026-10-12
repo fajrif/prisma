@@ -69,7 +69,8 @@ module StructuredData
 								 .gsub(%r{<br\s*/?>}i, ', ')
 								 .gsub(%r{</(p|div|li|h[1-6]|tr)>}i, ' ')
 
-			text = ActionView::Base.full_sanitizer.sanitize(html).to_s.squish
+			# full_sanitizer mengembalikan entitas HTML (&amp;); JSON-LD harus teks biasa.
+			text = CGI.unescapeHTML(ActionView::Base.full_sanitizer.sanitize(html).to_s).squish
 			text = text.gsub(/(?:,\s*){2,}/, ', ').sub(/[,\s]+\z/, '')
 			return if text.blank?
 

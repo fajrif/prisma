@@ -4,6 +4,8 @@
 		<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg, image/webp" } %>
 		<%= f.association :award_category, as: :select %>
 		<%= f.input :name, as: :string %>
+		<%= f.input :schema_text, as: :string, required: false,
+		            hint: 'Teks lengkap hanya untuk schema Organization (award), mis. "Citra Pariwara 2018 – Bronze, Best Use of Ambient Media – Large Scale". Kosong = memakai Name. Tidak tampil di website.' %>
     <%= f.input :description, input_html: { class: 'quill_container' } %>
 	</fieldset>
 	<%= f.error :base %>

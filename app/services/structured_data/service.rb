@@ -11,7 +11,7 @@ module StructuredData
 			compact_deep(
 				'@type' => 'Service',
 				'@id' => "#{@url}#service",
-				'name' => plain_text(@record.name),
+				'name' => plain_text(@record.schema_name.presence || @record.name),
 				'serviceType' => service_type,
 				'description' => description,
 				'url' => @url,

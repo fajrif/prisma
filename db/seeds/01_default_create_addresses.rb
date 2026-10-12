@@ -4,7 +4,7 @@ puts "create addresses"
 addresses = [{
 	en: "Headquarters",
 	id: "Kantor Pusat",
-  address: "GRAHA PRISMA<br/>Jl. Kedoya Duri Raya No.38,Kedoya Selatan,<br/>Jakarta Barat, 11520 - Indonesia",
+  address: "GRHA PRISMA<br/>Jl. Kedoya Duri Raya No.38,Kedoya Selatan,<br/>Jakarta Barat, 11520 - Indonesia",
 	email1: "sales@prisma-ads.com",
 	phone1: "+62 21 5835 6575",
 	phone2: "+62 21 5835 6570",

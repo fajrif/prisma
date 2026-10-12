@@ -11,6 +11,13 @@ class SchemaMarkup < ApplicationRecord
 
 	belongs_to :schemable, polymorphic: true, optional: true
 
+	# Organization dan WebSite sudah dikeluarkan otomatis (satu kali per halaman, @id tetap);
+	# LocalBusiness dibuang sepenuhnya (keputusan strategist).
+	RESERVED_TYPES = %w[Organization LocalBusiness WebSite].freeze
+	# Schema Manager tidak boleh memuat harga, offers, atau rating.
+	FORBIDDEN_KEYS = %w[price priceCurrency priceRange offers aggregateRating review rating ratingValue].freeze
+	RESERVED_IDS = %w[#organization #website].freeze
+
 	default_scope { order(order_no: :asc, id: :asc) }
 
 	validates_presence_of :name, :schema_type
@@ -108,5 +115,22 @@ class SchemaMarkup < ApplicationRecord
 
 		errors.add(:body, 'is missing "@context" (e.g. "https://schema.org")') if object['@context'].blank?
 		errors.add(:body, 'is missing "@type"') if object['@type'].blank? && object['@graph'].blank?
+
+		validate_reserved_and_forbidden(object)
+	end
+
+	def validate_reserved_and_forbidden(node)
+		case node
+		when Hash
+			reserved = Array.wrap(node['@type']) & RESERVED_TYPES
+			errors.add(:body, "can't use @type #{reserved.join(', ')} — dikeluarkan otomatis oleh sistem") if reserved.any?
+			if node['@id'].to_s.end_with?(*RESERVED_IDS)
+				errors.add(:body, "@id #{node['@id']} dipakai sistem; gunakan @id lain")
+			end
+			(node.keys & FORBIDDEN_KEYS).each { |key| errors.add(:body, "can't contain \"#{key}\" (harga/offers/rating tidak diperbolehkan)") }
+			node.each_value { |value| validate_reserved_and_forbidden(value) }
+		when Array
+			node.each { |value| validate_reserved_and_forbidden(value) }
+		end
 	end
 end

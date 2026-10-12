@@ -8,6 +8,7 @@ module StructuredData
 	#     ada di Company Profile (tabel settings) agar bisa diedit tim SEO.
 	#   - Penghargaan dibaca dari CRUD Awards yang sudah ada.
 	class Organization < Base
+		EXCLUDED_SAME_AS_HOSTS = %w[facebook.com twitter.com x.com].freeze
 		FACTS_PATH = Rails.root.join('config', 'seo', 'organization.yml').freeze
 
 		def self.facts
@@ -138,14 +139,16 @@ module StructuredData
 
 		# Dibaca dari CRUD Awards supaya tim SEO bisa menambah penghargaan sendiri.
 		def awards
-			::Award.all.map { |award| plain_text(award.name) }.compact_blank
+			::Award.all.map { |award| plain_text(award.schema_text.presence || award.name) }.compact_blank
 		rescue StandardError => e
 			Rails.logger.warn("[StructuredData] cannot read awards: #{e.message}")
 			[]
 		end
 
 		def same_as
-			urls = @setting.same_as_list
+			# Keputusan strategist: hanya Instagram, LinkedIn, YouTube, TikTok. Facebook dan X
+			# dibuang walau masih ada di Company Profile.
+			urls = @setting.same_as_list.reject { |url| EXCLUDED_SAME_AS_HOSTS.any? { |host| url.match?(%r{//(?:[\w-]+\.)*#{Regexp.escape(host)}(?:/|\z)}i) } }
 			return urls if urls.any?
 
 			[configatron.social_instagram_url, configatron.social_linkedin_url,

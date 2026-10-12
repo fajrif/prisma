@@ -118,6 +118,8 @@ module SeoHelper
     tags = []
 
     manual = SchemaMarkup.matching(record: schema_subject, path: canonical_path).filter_map(&:parsed_body)
+    # Entri lama bertipe Organization/WebSite/LocalBusiness dilewati: sudah ada di @graph otomatis.
+    manual = manual.reject { |payload| (manual_schema_types([payload]) & SchemaMarkup::RESERVED_TYPES).any? }
 
     # FAQPage otomatis dari blok FAQ yang tampil; dilewati bila Schema Manager sudah memasang
     # FAQPage untuk halaman ini, supaya tidak ada dua FAQPage.

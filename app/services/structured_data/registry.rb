@@ -5,12 +5,6 @@ module StructuredData
 	# Pemetaan halaman -> blok mengikuti tabel di prisma-schema-spec.md bagian "Which
 	# blocks go on which page".
 	class Registry
-		# Spec tidak mencantumkan LocalBusiness sama sekali, dan menyatakan Home hanya
-		# memuat Organization + WebSite. Node ini dipertahankan hanya di halaman kontak,
-		# tempatnya memang relevan (alamat + koordinat kantor). Masih menunggu
-		# konfirmasi strategist, lihat Pertanyaan Terbuka di ROADMAP_PLAN.md.
-		LOCAL_BUSINESS_PATHS = ['/contact-us'].freeze
-
 		LOCATIONS_INDEX_PATH = '/locations'.freeze
 
 		def self.for(record: nil, path: nil, url: nil, trail: [], faq_items: [])
@@ -29,7 +23,6 @@ module StructuredData
 			items = []
 			items << safely('Organization') { Organization.call }
 			items << safely('WebSite') { WebSite.call }
-			items.concat(safely('LocalBusiness') { LocalBusiness.all } || []) if local_business_page?
 			items << safely('Breadcrumb') { Breadcrumb.new(trail: @trail).payload }
 			items << safely('WebPage') { WebPage.for_path(path: @path, url: @url) }
 			items << safely('LocationsIndex') { locations_index_payload }
@@ -39,10 +32,6 @@ module StructuredData
 		end
 
 		private
-
-		def local_business_page?
-			LOCAL_BUSINESS_PATHS.include?(@path)
-		end
 
 		# Arsip /locations tidak punya record tunggal, jadi ditentukan dari path.
 		def locations_index_payload
