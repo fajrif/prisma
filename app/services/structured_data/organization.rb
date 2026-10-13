@@ -1,23 +1,18 @@
 module StructuredData
 	# Identitas resmi perusahaan (schema.org/Organization).
 	#
-	# Sumber data dibagi dua:
-	#   - Fakta tetap (nama dagang, badan hukum, area layanan, bidang keahlian,
-	#     anak perusahaan, titik kontak) ada di config/seo/organization.yml.
-	#   - Nilai operasional (deskripsi, logo, sameAs, email, telepon, WhatsApp)
-	#     ada di Company Profile (tabel settings) agar bisa diedit tim SEO.
+	# Sumber data:
+	#   - Company Profile (tabel settings) yang diedit tim SEO: nama dagang, badan hukum,
+	#     tahun berdiri, nama alternatif, area layanan, bidang keahlian, anak perusahaan,
+	#     titik kontak, deskripsi, logo, sameAs, email, telepon.
 	#   - Penghargaan dibaca dari CRUD Awards yang sudah ada.
+	# Tidak ada file konfigurasi cadangan: kolom kosong berarti node itu tidak diemit.
 	class Organization < Base
 		EXCLUDED_SAME_AS_HOSTS = %w[facebook.com twitter.com x.com].freeze
-		FACTS_PATH = Rails.root.join('config', 'seo', 'organization.yml').freeze
 
-		def self.facts
-			@facts ||= (YAML.safe_load_file(FACTS_PATH) || {}).freeze
-		end
-
-		def self.reload_facts!
-			@facts = nil
-			facts
+		# Nama dagang; dipakai juga oleh WebSite supaya keduanya selalu sama.
+		def self.brand_name(setting = ::Setting.current)
+			setting.profile(:brand_name).presence || configatron.email_name
 		end
 
 		def initialize(setting: nil, address: nil)
@@ -42,7 +37,7 @@ module StructuredData
 				'address' => address_payload,
 				'contactPoint' => contact_points,
 				'areaServed' => area_served,
-				'knowsAbout' => facts['knows_about'],
+				'knowsAbout' => @setting.profile(:knows_about),
 				'award' => awards,
 				'subOrganization' => sub_organizations,
 				'sameAs' => same_as
@@ -51,23 +46,19 @@ module StructuredData
 
 		private
 
-		def facts
-			self.class.facts
-		end
-
 		# Nama dagang yang dipakai publik; berbeda dari badan hukum.
 		def name
-			facts['name'].presence || configatron.email_name
+			self.class.brand_name(@setting)
 		end
 
 		# Badan hukum. Tidak diemit kalau nilainya sama dengan nama dagang.
 		def legal_name
-			value = facts['legal_name'].presence || @setting.legal_name.presence
+			value = @setting.profile(:legal_name).presence
 			value if value.present? && value != name
 		end
 
 		def alternate_names
-			list = Array(facts['alternate_names']).map { |v| v.to_s.strip }.reject(&:blank?)
+			list = Array(@setting.profile(:alternate_names)).map { |v| v.to_s.strip }.reject(&:blank?)
 			return list if list.any?
 
 			Array(@setting.alternate_name.presence)
@@ -93,11 +84,11 @@ module StructuredData
 
 		# Spec menulis "2004" (tahun saja), bukan tanggal penuh.
 		def founding_date
-			facts['founding_year'].presence || @setting.founding_date&.year&.to_s
+			@setting.profile(:founding_year).presence || @setting.founding_date&.year&.to_s
 		end
 
 		def primary_telephone
-			first = Array(facts['contact_points']).first
+			first = Array(@setting.profile(:contact_points)).first
 			first&.dig('telephone').presence || @setting.phone.presence || configatron.company_phone1
 		end
 
@@ -113,7 +104,7 @@ module StructuredData
 		end
 
 		def contact_points
-			Array(facts['contact_points']).map do |point|
+			Array(@setting.profile(:contact_points)).map do |point|
 				{
 					'@type' => 'ContactPoint',
 					'contactType' => point['contact_type'],
@@ -126,13 +117,13 @@ module StructuredData
 		end
 
 		def area_served
-			Array(facts['area_served']).map do |area|
+			Array(@setting.profile(:area_served)).map do |area|
 				{ '@type' => area['type'], 'name' => area['name'] }
 			end
 		end
 
 		def sub_organizations
-			Array(facts['sub_organizations']).map do |org|
+			Array(@setting.profile(:sub_organizations)).map do |org|
 				{ '@type' => 'Organization', '@id' => org['id'], 'name' => org['name'], 'url' => org['url'] }
 			end
 		end

@@ -19,20 +19,40 @@
 							</td>
 						</tr>
 						<tr>
-							<td><b>Legal Name</b></td>
-							<td><%= blank_or_not(@setting.legal_name) %></td>
+							<td><b>Nama dagang</b></td>
+							<td><%= blank_or_not(@setting.profile(:brand_name)) %> <span class="badge bg-warning-subtle text-warning">Identitas resmi</span></td>
 						</tr>
 						<tr>
-							<td><b>Alternate Name</b></td>
-							<td><%= blank_or_not(@setting.alternate_name) %></td>
+							<td><b>Legal Name</b></td>
+							<td><%= blank_or_not(@setting.profile(:legal_name)) %> <span class="badge bg-warning-subtle text-warning">Identitas resmi</span></td>
+						</tr>
+						<tr>
+							<td><b>Tahun berdiri</b></td>
+							<td><%= blank_or_not(@setting.profile(:founding_year)) %> <span class="badge bg-warning-subtle text-warning">Identitas resmi</span></td>
+						</tr>
+						<tr>
+							<td><b>Alternate Names</b></td>
+							<td><%= simple_format(h(@setting.alternate_names_text)) %></td>
+						</tr>
+						<tr>
+							<td><b>Knows About</b></td>
+							<td><%= simple_format(h(@setting.knows_about_text)) %></td>
+						</tr>
+						<tr>
+							<td><b>Area Served</b></td>
+							<td><%= simple_format(h(@setting.area_served_text)) %></td>
+						</tr>
+						<tr>
+							<td><b>Contact Points</b></td>
+							<td><%= simple_format(h(@setting.contact_points_text)) %></td>
+						</tr>
+						<tr>
+							<td><b>Anak perusahaan</b></td>
+							<td><%= simple_format(h(@setting.sub_organizations_text)) %> <span class="badge bg-warning-subtle text-warning">Identitas resmi</span></td>
 						</tr>
 						<tr>
 							<td><b>Description</b></td>
 							<td><%= blank_or_not(@setting.description) %></td>
-						</tr>
-						<tr>
-							<td><b>Founding Date</b></td>
-							<td><%= blank_or_not(@setting.founding_date) %></td>
 						</tr>
 						<tr>
 							<td><b>Email</b></td>
@@ -66,6 +86,9 @@
 						</tr>
 					</table>
 				</div>
+				<h6 class="mt-4">Pratinjau schema Organization (JSON-LD)</h6>
+				<p class="text-muted fs-13">Persis yang dikeluarkan di setiap halaman. Uji di <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a> setelah mengubah data.</p>
+				<pre class="bg-light p-3 rounded fs-12" style="max-height: 420px; overflow: auto;"><%= JSON.pretty_generate(StructuredData::Organization.call) %></pre>
 			</div>
 		</div>
 	</div>

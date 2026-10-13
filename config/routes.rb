@@ -86,7 +86,9 @@ Rails.application.routes.draw do
           get :schemable_records
         end
       end
-      resource :setting, only: %i[show edit update]
+      resource :setting, only: %i[show edit update] do
+        patch :identity
+      end
       resource :seo_audit, only: %i[show create] do
         get :download
       end

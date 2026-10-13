@@ -1,3 +1,4 @@
+<%= render "identity_modal" %>
 <%= simple_form_for @setting, url: admins_setting_path, method: :put do |f| %>
 	<div class="row">
 		<div class="col-lg-8">
@@ -7,11 +8,8 @@
 					<fieldset>
 						<%= f.input :logo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp, image/svg+xml" },
 												hint: "Logo resmi untuk schema Organization. Idealnya PNG dengan latar transparan." %>
-						<%= f.input :legal_name, as: :string, label: "Legal name", hint: "Nama resmi perusahaan, contoh: PT Prisma Advertising" %>
-						<%= f.input :alternate_name, as: :string, hint: "Nama lain yang dikenal publik, contoh: Prisma Ads" %>
 						<%= f.input :description, as: :text, input_html: { rows: 4 },
 												hint: "Deskripsi singkat perusahaan (mengikuti bahasa aktif: #{I18n.locale.to_s.upcase})" %>
-						<%= f.input :founding_date, as: :string, input_html: { placeholder: "YYYY-MM-DD" } %>
 						<%= f.input :email, as: :string %>
 						<%= f.input :phone, as: :string, hint: "Format internasional, contoh: +62-21-5835-6570" %>
 						<%= f.input :whatsapp, as: :string, hint: "Contoh: 628111306888" %>
@@ -19,6 +17,34 @@
 												hint: "Satu URL per baris. Kosongkan untuk memakai daftar bawaan dari konfigurasi." %>
 						<%= f.input :admin_contact, as: :string, label: "Admin contact" %>
 					</fieldset>
+
+					<hr/>
+					<h6 class="mb-1">Schema Organization</h6>
+					<p class="text-muted fs-13">Kolom dikosongkan = memakai nilai bawaan aplikasi. Satu item per baris. Perubahan langsung tampil di schema seluruh halaman.</p>
+					<fieldset>
+						<%= f.input :alternate_names_text, as: :text, label: "Alternate names", input_html: { rows: 2 },
+												hint: "Nama lain yang dikenal publik. Nama pertama juga dipakai sebagai alternateName WebSite. Strategist menetapkan hanya \"Prisma Ads\"." %>
+						<%= f.input :knows_about_text, as: :text, label: "Knows about", input_html: { rows: 6 },
+												hint: "Bidang keahlian perusahaan, mis. \"Billboard advertising\"." %>
+						<%= f.input :area_served_text, as: :text, label: "Area served", input_html: { rows: 4 },
+												hint: "Format \"Tipe: Nama\", mis. \"City: Jakarta\". Tipe: #{Service::AREA_TYPES.join(', ')}." %>
+						<%= f.input :contact_points_text, as: :text, label: "Contact points", input_html: { rows: 4 },
+												hint: "Format: jenis | telepon | email | area | bahasa. Contoh: sales | +62-811-1306-888 | sales@prisma-ads.com | ID | id,en. Kontak pertama menjadi telepon utama Organization." %>
+					</fieldset>
+
+					<hr/>
+					<h6 class="mb-1">Identitas resmi <span class="badge bg-warning-subtle text-warning ms-1">Berisiko</span></h6>
+					<p class="text-muted fs-13">Nilai di bawah jarang berubah dan perubahan yang salah berdampak ke seluruh situs. Untuk mengubahnya ada satu langkah konfirmasi tersendiri.</p>
+					<table class="table table-sm table-bordered">
+						<tr><td style="width: 30%;"><b>Nama dagang</b></td><td><%= @setting.profile(:brand_name) %></td></tr>
+						<tr><td><b>Legal name</b></td><td><%= @setting.profile(:legal_name) %></td></tr>
+						<tr><td><b>Tahun berdiri</b></td><td><%= @setting.profile(:founding_year) %></td></tr>
+						<tr><td><b>Anak perusahaan</b></td><td><%= safe_join(Array(@setting.profile(:sub_organizations)).map { |o| tag.div("#{o['name']} (#{o['id']})") }) %></td></tr>
+					</table>
+					<button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#identityModal">
+						Ubah identitas resmi…
+					</button>
+					<hr/>
 					<%= f.error :base %>
 					<div class="form-actions" style="margin-top:10px;">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>

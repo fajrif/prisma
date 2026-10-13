@@ -260,8 +260,13 @@ module AdminHelper
 	# Path form "SEO & Social" terpisah sebuah record (rute dari concern :seo_editable).
 	# Controller admin memakai Model.find(params[:id]) (id numerik), sedangkan to_param Page/Article/Service/dst
 	# adalah slug (FriendlyId). Karena itu path admin SELALU dibangun dengan record.id, bukan record.
-	def seo_admin_path(record)
-		public_send("seo_admins_#{record.model_name.singular}_path", record.id)
+	# `locale:` membuka form di bahasa itu (mis. baris audit ber-bahasa ID). Tanpa argumen,
+	# URL mengikuti bahasa admin aktif lewat default_url_options. Locale default (EN) tidak
+	# diberi prefiks di URL.
+	def seo_admin_path(record, locale: nil)
+		args = { id: record.id }
+		args[:locale] = (locale.to_sym == I18n.default_locale ? nil : locale.to_sym) if locale.present?
+		public_send("seo_admins_#{record.model_name.singular}_path", **args)
 	end
 
 	# Halaman detail admin sebuah record (id numerik, lihat seo_admin_path).

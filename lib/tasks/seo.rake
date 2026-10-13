@@ -3,7 +3,6 @@ namespace :seo do
 	task seed_company_profile: :environment do
 		setting = Setting.current
 
-		setting.legal_name = StructuredData::Organization.facts['legal_name'] if setting.legal_name.blank?
 		setting.alternate_name = 'Prisma Ads' if setting.alternate_name.blank?
 		setting.email = configatron.info_email if setting.email.blank?
 		setting.phone = configatron.company_phone1 if setting.phone.blank?

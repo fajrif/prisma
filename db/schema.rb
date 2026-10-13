@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_12_090000) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_13_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -528,6 +528,13 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_12_090000) do
     t.string "whatsapp", default: "", null: false
     t.jsonb "same_as", default: []
     t.jsonb "description", default: {}
+    t.string "brand_name", default: "", null: false
+    t.string "founding_year", default: "", null: false
+    t.jsonb "alternate_names", default: []
+    t.jsonb "knows_about", default: []
+    t.jsonb "area_served", default: []
+    t.jsonb "contact_points", default: []
+    t.jsonb "sub_organizations", default: []
   end
 
   create_table "snippets", force: :cascade do |t|

@@ -46,7 +46,7 @@
 						<% if r[:record_id] && r[:record_type] %>
 							<%- rec = r[:record_type].safe_constantize&.unscoped&.find_by(id: r[:record_id]) -%>
 							<% if rec %>
-								<%= link_to 'Edit SEO & Social', seo_admin_path(rec), class: 'btn btn-sm btn-soft-primary text-nowrap' %>
+								<%= link_to 'Edit SEO & Social', seo_admin_path(rec, locale: r[:locale]), class: 'btn btn-sm btn-soft-primary text-nowrap' %>
 							<% end %>
 						<% end %>
 					</td>

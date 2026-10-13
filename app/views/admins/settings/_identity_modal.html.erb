@@ -1,0 +1,55 @@
+<%# Langkah terpisah untuk mengubah identitas resmi; form utama tidak ikut terkirim. -%>
+<div class="modal fade" id="identityModal" tabindex="-1" aria-labelledby="identityModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<%= simple_form_for @setting, url: identity_admins_setting_path, method: :patch, html: { id: 'identity-form' } do |f| %>
+				<div class="modal-header">
+					<h5 class="modal-title" id="identityModalLabel">Ubah identitas resmi perusahaan</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-warning" role="alert">
+						<h6 class="alert-heading mb-2">Perhatian: perubahan ini berdampak ke seluruh situs</h6>
+						<ul class="mb-0 ps-3 fs-13">
+							<li><b>Nama dagang</b> dipakai sebagai <code>name</code> di schema Organization dan WebSite. Harus sama dengan nama yang tampil di halaman; selisih membuat Google membaca dua entitas berbeda.</li>
+							<li><b>Legal name</b> tampil sebagai <code>legalName</code>. Tulis nama badan hukum resmi persis seperti di akta.</li>
+							<li><b>Tahun berdiri</b> hanya empat digit (mis. 2004), bukan tanggal penuh.</li>
+							<li><b>Anak perusahaan</b>: <code>@id</code> harus <u>sama persis</u> dengan yang dikeluarkan situs masing-masing (filter RankMath di WordPress mereka). Salah satu karakter saja memutus relasi induk-anak di kedua sisi.</li>
+							<li>Perubahan langsung tayang di production tanpa review developer dan baru terbaca ulang oleh Google setelah di-crawl. Uji di <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a> sesudah menyimpan.</li>
+						</ul>
+					</div>
+					<%= f.error_notification %>
+					<%= f.error :base %>
+					<%= f.input :brand_name, as: :string, label: "Nama dagang", input_html: { value: @setting.profile(:brand_name) } %>
+					<%= f.input :legal_name, as: :string, label: "Legal name", input_html: { value: @setting.profile(:legal_name) } %>
+					<%= f.input :founding_year, as: :string, label: "Tahun berdiri", input_html: { value: @setting.profile(:founding_year), maxlength: 4 } %>
+					<%= f.input :sub_organizations_text, as: :text, label: "Anak perusahaan", input_html: { rows: 4 },
+											hint: "Satu per baris. Format: @id (https) | nama | url (https). Contoh: https://boostad.co.id/#organization | BoostAD | https://boostad.co.id/" %>
+					<div class="form-check mt-3">
+						<%= check_box_tag :confirm_risk, '1', false, class: 'form-check-input', id: 'confirm_risk' %>
+						<%= label_tag :confirm_risk, 'Saya memahami risiko di atas dan sudah memeriksa nilai yang saya isi.', class: 'form-check-label' %>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+					<%= f.button :submit, 'Simpan identitas resmi', class: 'btn btn-warning', id: 'identity-submit', disabled: true %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<%= content_for :tail do %>
+	<script>
+		(function () {
+			var box = document.getElementById('confirm_risk');
+			var btn = document.getElementById('identity-submit');
+			if (box && btn) box.addEventListener('change', function () { btn.disabled = !box.checked; });
+			<% if @open_identity_modal %>
+			document.addEventListener('DOMContentLoaded', function () {
+				if (window.bootstrap) new window.bootstrap.Modal(document.getElementById('identityModal')).show();
+			});
+			<% end %>
+		})();
+	</script>
+<% end %>

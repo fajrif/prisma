@@ -1,5 +1,6 @@
 class Setting < ApplicationRecord
 	extend Mobility
+	include OrganizationProfile
 	translates :description
 
 	has_one_attached :logo, dependent: :purge
