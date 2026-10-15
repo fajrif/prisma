@@ -109,13 +109,11 @@ class Product < ApplicationRecord
     ActiveSupport::NumberHelper.number_to_delimited(impressions_per_day, delimiter: delimiter)
   end
 
-  # Titik lain untuk section "Billboard lain di {area}". Area yang hanya berisi titik ini
-  # dilengkapi titik lain di location yang sama. Urutan sama dengan daftar di halaman area.
+  # Titik lain di area yang sama untuk section "Billboard lain di {area}", urutan sama dengan
+  # daftar di halaman area. Kosong bila titik ini satu-satunya di areanya (section tidak dirender).
   def related_sites
     others = area ? area.products.where.not(id: id).to_a : []
-    return [others, area] if others.any?
-
-    [location ? location.products.where.not(id: id).to_a : [], location]
+    [others, area]
   end
 
   # URL halaman billboard: /locations/{location}/{area}/{slug} (satu sumber untuk sitemap,

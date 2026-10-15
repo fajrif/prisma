@@ -212,6 +212,8 @@ id:
     language_switcher: "Bahasa"
     main_navigation: "Navigasi utama"
     carousel: "Karusel"
+    previous: "Sebelumnya"
+    next: "Berikutnya"
     breadcrumb: "Jejak navigasi"
     chat_whatsapp: "Chat lewat WhatsApp"
     opens_new_tab: "(terbuka di tab baru)"

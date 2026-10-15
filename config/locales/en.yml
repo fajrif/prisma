@@ -211,6 +211,8 @@ en:
     language_switcher: "Language"
     main_navigation: "Main navigation"
     carousel: "Carousel"
+    previous: "Previous"
+    next: "Next"
     breadcrumb: "Breadcrumb"
     chat_whatsapp: "Chat on WhatsApp"
     opens_new_tab: "(opens in a new tab)"

@@ -546,6 +546,25 @@
 /* Foto titik sering terang: lapisan gelap tambahan di atas gradien banner supaya teks terbaca. */
 .product-banner .opacity-medium { background-color: rgba(0, 0, 0, .45); }
 
+/* Panah slider "Billboard lain di area" (menggantikan dot, jumlah titik bisa belasan). */
+.related-nav { display: flex; gap: 10px; margin-top: 20px; }
+.related-nav button {
+	width: 40px;
+	height: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	background: transparent;
+	color: #fff;
+	cursor: pointer;
+	transition: background-color .2s, color .2s, opacity .2s;
+}
+.related-nav button:hover:not(.swiper-button-disabled),
+.related-nav button:focus-visible { background: #fff; color: #000; }
+.related-nav button.swiper-button-disabled { opacity: .35; cursor: default; }
+
 /* T12: judul area dan pill area di hub/halaman area (locations/_explorer). */
 .area-heading {
 	font-size: 14px;

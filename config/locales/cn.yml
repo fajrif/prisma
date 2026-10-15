@@ -212,6 +212,8 @@ cn:
     language_switcher: "语言"
     main_navigation: "主导航"
     carousel: "轮播"
+    previous: "上一个"
+    next: "下一个"
     breadcrumb: "面包屑导航"
     chat_whatsapp: "通过 WhatsApp 聊天"
     opens_new_tab: "（在新标签页打开）"

@@ -13,12 +13,12 @@
         <% end %>
       </div>
       <div class="col-lg-8 locations-list">
-        <div class="swiper swiper-pagination-bottom" role="region" aria-roledescription="carousel" aria-label="<%= t('products.related.title', area: group.name) %>" data-slider-options='{ "a11y": { "enabled": true }, "slidesPerView": "1", "allowTouchMove": true, "loop": false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".related-sites .swiper-pagination", "clickable": true } }'>
+        <div class="swiper swiper-pagination-bottom" role="region" aria-roledescription="carousel" aria-label="<%= t('products.related.title', area: group.name) %>" data-slider-options='{ "a11y": { "enabled": true }, "slidesPerView": "1", "allowTouchMove": true, "loop": false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "navigation": { "nextEl": ".related-sites .related-next", "prevEl": ".related-sites .related-prev" } }'>
           <div class="swiper-wrapper">
             <% sites.each_with_index do |site, index| %>
               <div class="swiper-slide h-auto">
                 <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index % 3 + 1}.webp") %>')">
-                  <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                  <div class="bg-black overflow-hidden location-image">
                     <a href="<%= site.public_path %>" tabindex="-1" aria-hidden="true">
                       <%= opt_image_tag(site.image, 488, alt: site.name) if site.image.attached? %>
                     </a>
@@ -34,7 +34,10 @@
               </div>
             <% end %>
           </div>
-          <div class="swiper-pagination position-relative margin-20px-top"></div>
+          <div class="related-nav">
+            <button type="button" class="related-prev" aria-label="<%= t('global.previous') %>"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button type="button" class="related-next" aria-label="<%= t('global.next') %>"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
         </div>
       </div>
     </div>
