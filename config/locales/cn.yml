@@ -226,6 +226,7 @@ cn:
     view_profile: "查看简介"
     view_all: "查看全部"
     view: "查看"
+    explore: "探索"
     back_to: "返回%{object_name}"
     back_to_blogs: "返回博客"
     others: "其他%{object_name}"

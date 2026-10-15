@@ -624,3 +624,23 @@
 @media (max-width: 1199px) { .size-h5 { font-size: 27px; line-height: 32px; } }
 @media (max-width: 991px) { .size-h5 { font-size: 24px; line-height: 30px; } }
 @media (max-width: 767px) { .size-h5 { font-size: 24px; line-height: 24px; } }
+
+/* Logo wide partner (BoostAD, PiX) di kartu Our Services (wide_logo? di PerformanceHelper).
+   Desktop: sejajar dengan judul seperti icon lain, tapi max-height dilebihkan (75px vs 50px icon
+   lain) karena bentuk landscape-nya terasa "gepeng"/kurang solid kalau disamakan tinggi persis
+   dengan icon square. HP: logo landscape terlalu lebar untuk sejajar, jadi ditumpuk di atas judul
+   & diperbesar (width, bukan max-height) supaya tetap terbaca. Dipisah dari style inline
+   opt_image_tag karena style inline tidak bisa di-override media query. */
+.wide-logo-img { /*max-height: 75px;*/ width: 30%; }
+
+@media (max-width: 767px) {
+	.wide-logo-row {
+		/*flex-direction: column;
+		align-items: flex-start !important;*/
+	}
+
+	.wide-logo-img {
+		max-height: none;
+		width: 30%;
+	}
+}
