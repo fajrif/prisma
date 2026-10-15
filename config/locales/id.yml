@@ -67,6 +67,18 @@ id:
       points_of_interest: "Titik sekitar"
   product: "Billboard"
   products:
+    type: "Tipe Billboard"
+    area: "Area"
+    latitude: "Latitude"
+    longitude: "Longitude"
+    map_title: "Lokasi di Peta"
+    type_with_orientation: "%{type} %{orientation}"
+    subtitle: "%{type} di %{place}, dengan estimasi %{count} impresi per hari."
+    subtitle_short: "%{type} di %{place}."
+    related:
+      title: "Billboard Lain di %{area}"
+      desc: "Titik billboard statis dan digital lain di %{area}, berdekatan dengan lokasi ini. Gabungkan beberapa titik terdekat untuk menjangkau audiens yang sama lebih sering."
+      view_all: "Lihat semua titik di %{area}"
     category: "Kategori"
     specification: "Spesifikasi"
     est_impression: "Est. Impression"
@@ -83,6 +95,8 @@ id:
     success: "Terima kasih aplikasi dan data anda telah terkirim!"
     errors: "Maaf sistem tidak dapat memproses data aplikasi anda!"
   locations:
+    area: "Area"
+    area_title: "Billboard di %{area}"
     name: "Lokasi"
     title: "Lokasi Papan Iklan Digital & Statis"
     desc: "Papan reklame kami menawarkan penempatan optimal di area dengan lalu lintas tinggi di seluruh Jakarta dan sekitarnya. Setiap lokasi memberikan jangkauan dan interaksi yang kuat, memastikan visibilitas maksimal untuk kampanye Anda."
@@ -188,6 +202,8 @@ id:
     500_title: "Halaman Error"
     500_desc: "Mohon maaf terjadi kesalahan pada halaman ini."
   global:
+    whatsapp_default: "Halo Prisma Advertising, saya melihat website Anda dan ingin bertanya tentang layanan dan produk Prisma. Bisakah dibantu?"
+    whatsapp_product: "Halo Prisma Advertising, saya ingin menanyakan %{type} di %{area}: %{url} Mohon info lebih lanjut."
     skip_to_content: "Lewati ke konten utama"
     toggle_navigation: "Buka/tutup navigasi"
     open_submenu: "Buka submenu %{name}"
@@ -196,6 +212,7 @@ id:
     language_switcher: "Bahasa"
     main_navigation: "Navigasi utama"
     carousel: "Karusel"
+    breadcrumb: "Jejak navigasi"
     chat_whatsapp: "Chat lewat WhatsApp"
     opens_new_tab: "(terbuka di tab baru)"
     dismiss: "Tutup"
@@ -236,6 +253,9 @@ id:
     updated: "Diperbarui"
     last_updated: "Terakhir diperbarui"
   seo:
+    area:
+      title: "Billboard di %{area}, %{location}"
+      description: "Lihat %{count} billboard digital dan statis di %{area}, %{location}, lengkap dengan spesifikasi, peta lokasi, dan impresi harian."
     site: "Prisma Advertising"
     billboard_type:
       digital: "Billboard Digital"

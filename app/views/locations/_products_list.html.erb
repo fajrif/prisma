@@ -11,7 +11,8 @@
       <% end %>
     </figure>
     <div class="media-body flex-grow-1 text-small">
-      <span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span>
+      <%# Nama = link sungguhan ke halaman titik (bisa di-crawl); klik di bagian kartu lain tetap menggeser peta. %>
+      <a href="<%= product.public_path %>" class="product-link"><span class="d-inline-block margin-5px-bottom fw-semibold"><%= product.name %></span></a>
       <span class="d-block text-extra-dark-gray text-small"><%= product.est_impression %></span>
     </div>
   </li>

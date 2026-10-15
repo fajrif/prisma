@@ -1,0 +1,69 @@
+<%# Hub (/locations/:slug) dan halaman area (/locations/:location/:area) memakai tampilan yang sama:
+    breadcrumb, filter tipe, judul lokasi (+ pill area atau nama area), daftar titik, peta.
+    locals: location, area (nil di hub), products %>
+<%- area = local_assigns[:area] -%>
+<%- filter_path = area ? area.public_path : location.public_path -%>
+<section class="half-section">
+    <div class="container">
+        <%= render "shared/breadcrumb", css_class: "margin-25px-bottom" %>
+        <div class="row align-items-center mb-4">
+          <div class="col-12 col-lg-3 col-md-3">
+            <div class="d-flex justify-content-lg-start align-items-center gap-2">
+              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Filter by Billboard Type:</label>
+              <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= location.slug %>" data-location-path="<%= filter_path %>">
+                <option value="" <%= 'selected' if params[:billboard_type].blank? %>>All Types</option>
+                <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>>Digital Billboard</option>
+                <option value="static" <%= 'selected' if params[:billboard_type] == 'static' %>>Static Billboard</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-lg-9 col-md-9 text-center mt-3 mt-lg-0">
+            <div class="text-extra-dark-gray alt-font text-uppercase font-weight-600">
+              <h2 class="heading-reset">
+                <% if area %>
+                  <%= t('locations.name') %>: <%= link_to location.name, location.public_path, class: "text-extra-dark-gray text-decoration-underline" %>
+                <% else %>
+                  <%= "#{t('locations.name')}: #{location.name}" %>
+                <% end %>
+              </h2>
+            </div>
+            <% if area %>
+              <h3 class="heading-reset area-heading margin-10px-top"><%= t('locations.area') %>: <%= area.name %></h3>
+            <% elsif (areas = location.areas.to_a).size > 1 %>
+              <div class="area-pills-row margin-10px-top">
+                <h3 class="heading-reset area-heading"><%= t('locations.area') %>:</h3>
+                <ul class="area-pills">
+                  <% areas.each do |a| %>
+                    <li><%= link_to a.name, a.public_path, class: "area-pill" %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row flex-nowrap h-600px">
+          <% unless products.empty? %>
+            <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
+                <div class="flex-grow-1 overflow-auto">
+                  <ul id="product-list" class="latest-post position-relative">
+                    <%= render "locations/products_list", products: products %>
+                  </ul>
+                </div>
+            </aside>
+            <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">
+              <div id="map" class="w-100 h-100" data-maps-src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['PRISMA_GOOGLE_API_KEY'] %>&callback=initMap&loading=async"></div>
+              <!-- Hidden data for JavaScript -->
+              <%= render "locations/map_data", products: products %>
+            </article>
+          <% else %>
+            <span id="no-data-message" class="text-center text-medium padding-15px">No products available for this location.</span>
+          <% end %>
+        </div>
+    </div>
+</section>
+
+<%= content_for :tail do %>
+  <%# locations.js defer (setelah application.js/jQuery). Maps API tidak dimuat di sini: locations.js
+      menyisipkannya dari data-maps-src saat #map mendekati layar (callback initMap). %>
+  <%= javascript_include_tag "locations", defer: true %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_13_100000) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_14_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,6 +116,20 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_13_100000) do
     t.integer "read_only", default: 0
     t.index ["archive_type_id"], name: "index_archives_on_archive_type_id"
     t.index ["title"], name: "index_archives_on_title", unique: true
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.integer "banner_section_id"
+    t.string "name", default: "", null: false
+    t.jsonb "description", default: {}
+    t.string "slug", default: "", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id", "name"], name: "index_areas_on_location_id_and_name", unique: true
+    t.index ["location_id", "slug"], name: "index_areas_on_location_id_and_slug", unique: true
+    t.index ["location_id"], name: "index_areas_on_location_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -410,6 +424,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_13_100000) do
     t.string "slot_duration", default: "", null: false
     t.string "operating_hours", default: "", null: false
     t.integer "impressions_per_day"
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_products_on_area_id"
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
@@ -569,6 +585,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_13_100000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "areas", "locations"
   add_foreign_key "content_blocks", "snippets"
   add_foreign_key "faq_items", "snippets"
+  add_foreign_key "products", "areas"
 end

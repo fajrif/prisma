@@ -46,6 +46,7 @@ module StructuredData
 			when ::Service then Service.new(record: @record, url: @url).payload
 			when ::Product then Place.new(record: @record, url: @url).payload
 			when ::Location then Collection.for_location(record: @record, url: @url)
+			when ::Area then Collection.for_area(record: @record, url: @url)
 			end
 		end
 

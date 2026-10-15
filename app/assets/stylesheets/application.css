@@ -420,3 +420,207 @@
 .pix-icon-1 > svg { fill: url(#pix-gradient-1); }
 .pix-icon-2 > svg { fill: url(#pix-gradient-2); }
 .pix-icon-3 > svg { fill: url(#pix-gradient-3); }
+
+/* Peta lokasi (hub, halaman area, halaman billboard; locations.js). Dipindah dari locations/show
+   agar dipakai bersama. */
+.product-item {
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 
+          0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.product-item:hover {
+  background-color: #f8f9fa;
+}
+
+.product-item.selected {
+  background-color: #000000 !important;
+  border: 2px solid !important;
+  border-color: var(--base-color) !important;
+}
+
+.product-item.selected .media-body span {
+  color: #fff !important;
+}
+
+.gm-style-iw {
+  max-width: 250px;
+}
+#map {
+  background-color: #e5e3df; /* warna dasar Google Maps selama skrip belum dimuat */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+          0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+
+/* Custom info window styling - only targets our custom markers */
+/* These styles apply when the info window contains .custom-info-window wrapper */
+.gm-style .gm-style-iw-c:has(.custom-info-window) {
+  background-color: #000000 !important;
+  padding: 0 !important;
+  border: 2px solid;
+  border-radius: 12px !important;
+  border-color: var(--base-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Target the InfoWindow content wrapper for custom info windows */
+.gm-style .gm-style-iw-c:has(.custom-info-window) .gm-style-iw-d {
+  overflow: auto !important;
+  max-height: none !important;
+}
+
+/* Arrow styling for custom info windows */
+.gm-style .gm-style-iw-tc:has(+ .gm-style-iw-c .custom-info-window)::after,
+.gm-style .gm-style-iw-t:has(.custom-info-window)::after {
+  background: #000000 !important;
+}
+
+/* Style the close button for custom info windows */
+.gm-style .gm-style-iw-c:has(.custom-info-window) button {
+  background-color: transparent !important;
+  filter: brightness(0) invert(1); /* Make close button white */
+}
+
+/* Custom content styling */
+.custom-info-window {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0 15px 15px;
+  border-radius: 12px;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+/* Change text color to pink (base-color) when hovering the window */
+.custom-info-window:hover h6 a,
+.custom-info-window:hover p {
+  color: var(--base-color) !important;
+  transition: color 0.3s ease;
+}
+
+.custom-info-window h6 {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.custom-info-window p {
+  color: #ecf0f1;
+  margin-bottom: 8px;
+}
+
+.custom-info-window img {
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.custom-info-window strong {
+  color: #3498db;
+}
+
+.custom-info-window small {
+  color: #bdc3c7;
+}
+
+/* T12: breadcrumb visual (shared/_breadcrumb), dari array yang sama dengan schema BreadcrumbList. */
+.page-breadcrumb ol {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	line-height: 1.6;
+}
+.page-breadcrumb li + li::before {
+	content: "\203A";
+	padding: 0 8px;
+	opacity: .6;
+}
+.page-breadcrumb a { color: inherit; }
+.page-breadcrumb a:hover { color: var(--base-color); }
+.page-breadcrumb [aria-current] { font-weight: 600; }
+
+/* T12: judul area dan pill area di hub/halaman area (locations/_explorer). */
+.area-heading {
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.area-pills-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 8px 12px;
+}
+.area-pills {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.area-pill {
+	display: inline-block;
+	padding: 3px 14px;
+	border: 1px solid #232323;
+	border-radius: 50px;
+	font-size: 13px;
+	line-height: 1.6;
+	color: #232323;
+	transition: background-color .2s, color .2s, border-color .2s;
+}
+.area-pill:hover,
+.area-pill:focus-visible {
+	background: var(--base-color);
+	border-color: var(--base-color);
+	color: #fff;
+}
+
+/* Nama titik di daftar hub/area adalah link; tampilannya tetap seperti teks kartu. */
+.product-item .product-link { color: inherit; }
+.product-item .product-link:hover span { text-decoration: underline; }
+
+/* T12: kartu data titik di halaman billboard (sementara, sampai ada desain). */
+.billboard-facts { padding: 30px 35px; font-size: 16px; line-height: 1.5; }
+.billboard-facts dl {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 12px 24px;
+}
+.billboard-fact { display: contents; }
+.billboard-facts dt { font-weight: 700; }
+.billboard-facts dd {
+	margin: 0;
+	text-align: right;
+	overflow-wrap: anywhere;
+}
+@media (max-width: 575px) {
+	.billboard-facts { padding: 24px 22px; }
+	.billboard-facts dl { grid-template-columns: 1fr; gap: 2px; }
+	.billboard-facts dd { text-align: left; margin-bottom: 10px; }
+}
+
+/* Kartu titik terkait: gambar seragam tingginya walau rasio foto berbeda. */
+.related-sites .location-image img {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.billboard-map { height: 450px; }
+@media (max-width: 767px) {
+	.billboard-map { height: 320px; }
+}
+
+/* H2 seukuran h5 tema (judul section billboard terkait, peta). Nilai disalin dari style.css &
+   responsive.css (breakpoint 1199/991/767). */
+.size-h5 { font-size: 30px; line-height: 30px; }
+@media (max-width: 1199px) { .size-h5 { font-size: 27px; line-height: 32px; } }
+@media (max-width: 991px) { .size-h5 { font-size: 24px; line-height: 30px; } }
+@media (max-width: 767px) { .size-h5 { font-size: 24px; line-height: 24px; } }

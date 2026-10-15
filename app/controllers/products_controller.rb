@@ -12,9 +12,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  # /locations/:location_id/:area_id/:id. Titik dicari dari slug-nya saja; bila segmen
+  # location/area di URL tidak sama dengan data (titik pindah area, area diganti nama),
+  # 301 ke URL yang benar.
   def show
-		@product = Product.friendly.find(params[:id])
+		@product = Product.unscoped.includes(:location, :area).find_by!(slug: params[:id].to_s)
+		canonical = @product.public_path
+		return redirect_to(canonical, status: :moved_permanently, allow_other_host: false) if request.path != canonical
+
 		@schema_subject = @product
+		@area = @product.area
+		@location = @product.location
+		# Tombol WhatsApp di footer: pesan langsung menanyakan titik ini (tipe, area, URL).
+		@whatsapp_text = t('global.whatsapp_product', type: @product.type_name, area: (@area || @location)&.name,
+		                                              url: "#{configatron.site_url}#{@product.public_path}")
   end
 
 	protected

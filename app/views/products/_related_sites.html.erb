@@ -1,0 +1,43 @@
+<%# Billboard lain di area yang sama (dilengkapi dari lokasi yang sama bila area hanya berisi titik ini).
+    Desain mengikuti shared/_our_locations; kartu ke-1..3 memakai bg1..bg3 bergiliran. %>
+<% sites, group = @product.related_sites %>
+<% if sites.any? %>
+<section class="half-section bg-black text-white-2 wow animate__fadeIn related-sites">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center text-lg-start margin-30px-bottom md-padding-80px-lr sm-padding-15px-lr">
+        <h2 class="font-weight-600 size-h5"><%= t('products.related.title', area: group.name) %></h2>
+        <div class="margin-40px-bottom sm-margin-20px-bottom w-90 sm-w-100"><%= t('products.related.desc', area: group.name) %></div>
+        <%= link_to group.public_path, class: "btn btn-medium btn-rounded btn-border btn-transparent-prisma" do %>
+          <%= t('products.related.view_all', area: group.name) %>
+        <% end %>
+      </div>
+      <div class="col-lg-8 locations-list">
+        <div class="swiper swiper-pagination-bottom" role="region" aria-roledescription="carousel" aria-label="<%= t('products.related.title', area: group.name) %>" data-slider-options='{ "a11y": { "enabled": true }, "slidesPerView": "1", "allowTouchMove": true, "loop": false, "spaceBetween": 30, "autoplay": false, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "pagination": { "el": ".related-sites .swiper-pagination", "clickable": true } }'>
+          <div class="swiper-wrapper">
+            <% sites.each_with_index do |site, index| %>
+              <div class="swiper-slide h-auto">
+                <div class="cover-background h-100 text-white-2 border-bottom-radius-8" style="background: url('<%= image_url("bg#{index % 3 + 1}.webp") %>')">
+                  <div class="bg-black overflow-hidden location-image border-top-radius-8">
+                    <a href="<%= site.public_path %>" tabindex="-1" aria-hidden="true">
+                      <%= opt_image_tag(site.image, 488, alt: site.name) if site.image.attached? %>
+                    </a>
+                  </div>
+                  <div class="padding-20px-all border-top border-width-2">
+                    <h3 class="heading-reset margin-15px-bottom">
+                      <a href="<%= site.public_path %>" class="text-large alt-font text-white-2 text-white-hover font-weight-700 d-inline-block"><%= site.name %></a>
+                    </h3>
+                    <p class="font-weight-500 mb-1"><%= site.type_name %></p>
+                    <p class="font-weight-500 mb-0"><%= site.est_impression %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="swiper-pagination position-relative margin-20px-top"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>

@@ -172,6 +172,7 @@ class SeoMeta
 		case @record
 		when ::Product then product_title
 		when ::Location then with_site(I18n.t('seo.location.title', name: @record.name))
+		when ::Area then area_title
 		when ::Career then with_site(I18n.t('seo.career.title', title: @record.title))
 		when ::Article, ::Page then with_site(@record.title)
 		when ::Portfolio then @record.name # tanpa akhiran situs, seperti sebelum meta dipindah
@@ -184,6 +185,7 @@ class SeoMeta
 		case @record
 		when ::Product then product_description
 		when ::Location then location_description
+		when ::Area then area_description
 		when ::Article, ::Career then clip(plain(@record.short_description))
 		when ::Service, ::Portfolio then clip(plain(@record.short_description))
 		when ::Industry then clip(plain(@record.caption.presence || @record.description))
@@ -244,6 +246,22 @@ class SeoMeta
 		I18n.t('seo.location.description', name: @record.name, count: count) if count.positive?
 	end
 
+	# "Billboard di Jakarta Pusat, Jakarta | Prisma Advertising"; nama lokasi dibuang bila tidak muat,
+	# daripada nama area terpotong.
+	def area_title
+		full = with_site(I18n.t('seo.area.title', area: @record.name, location: @record.location.name))
+		return full unless full.include?('...')
+
+		with_site(I18n.t('locations.area_title', area: @record.name))
+	end
+
+	def area_description
+		own = clip(plain(@record.description))
+		return own if own.present?
+
+		I18n.t('seo.area.description', area: @record.name, location: @record.location.name, count: @record.products.count)
+	end
+
 	def billboard_type_label
 		I18n.t("seo.billboard_type.#{@record.billboard_type}", default: @record.billboard_type_label)
 	end
@@ -284,6 +302,7 @@ class SeoMeta
 	def record_image
 		case @record
 		when ::Article, ::Product, ::Location, ::Portfolio, ::Industry then @record.image
+		when ::Area then @record.location.image
 		when ::Service then @record.image1
 		end
 	end

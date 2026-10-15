@@ -75,6 +75,7 @@ class SeoAudit
 			list += Industry.all.map { |r| ["industry:#{r.slug}", r] }
 			list += Portfolio.all.map { |r| ["portfolio:#{r.slug}", r] }
 			list += Location.all.map { |r| ["location:#{r.slug}", r] }
+			list += Area.includes(:location).select(&:standalone?).map { |r| ["area:#{r.location.slug}/#{r.slug}", r] }
 			list += Product.unscoped.map { |r| ["billboard:#{r.slug}", r] }
 			list += Career.all.map { |r| ["career:#{r.slug}", r] }
 			%w[articles portfolios industries locations inquiries].each do |c|
@@ -107,8 +108,9 @@ class SeoAudit
 			when Service then "#{prefix}/services/#{record.slug}"
 			when Industry then "#{prefix}/industries/#{record.slug}"
 			when Portfolio then "#{prefix}/campaigns/#{record.slug}"
-			when Location then "#{prefix}/locations/#{record.slug}"
-			when Product then "#{prefix}/billboards/#{record.slug}"
+			when Location then record.public_path(locale)
+			when Area then record.public_path(locale)
+			when Product then record.public_path(locale)
 			when Career then "#{prefix}/careers/#{record.slug}"
 			else
 				name = label.split(':', 2).last

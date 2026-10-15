@@ -21,9 +21,13 @@ class Product < ApplicationRecord
 	has_one_attached :image1, dependent: :purge
 	has_one_attached :image2, dependent: :purge
   belongs_to :location
+  belongs_to :area
   belongs_to :product_category
 
 	validates_presence_of :name, :address, :longitude, :latitude
+
+	# Location selalu mengikuti area-nya; kolom location_id dipertahankan untuk query lama.
+	before_validation { self.location_id = area.location_id if area }
 	validates_uniqueness_of :name
 
 	validates :image, attached: true, content_type: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
@@ -66,12 +70,65 @@ class Product < ApplicationRecord
     billboard_type == "digital" ? "Digital Billboard" : "Static Billboard"
   end
 
-  def product_url_path
-    options = { host: Rails.application.routes.default_url_options[:host] }
-    # only include locale if it's not default
-    options[:locale] = I18n.locale == I18n.default_locale ? nil : I18n.locale
+  # Label tipe sesuai bahasa halaman ("Static Billboard", "Billboard Statis", ...).
+  def type_name
+    I18n.t("seo.billboard_type.#{billboard_type}", default: billboard_type_label)
+  end
 
-    Rails.application.routes.url_helpers.polymorphic_url(self, options)
+  # Orientasi diturunkan dari nama kategori produk ("Horizontal LED", "Vertical Static
+  # Billboard", "Curved Horizontal LED", ...). Dipakai subtitle dan schema Place.
+  def orientation
+    category = product_category&.name.to_s
+    match = category.match(/\b(curved\s+)?(horizontal|vertical|square)\b/i)
+    match && match[0].split.map(&:capitalize).join(' ')
+  end
+
+  # Kalimat ringkas di bawah H1, juga `description` schema Place (spec bagian 4), mis.
+  # "Billboard statis horizontal di Jl. Ahmad Yani, Bekasi, dengan estimasi 133.376 impresi per hari."
+  def subtitle
+    # Huruf kecil di tengah frasa ("Billboard statis horizontal"); Mandarin tidak berhuruf kapital.
+    latin = I18n.locale.to_sym != :cn
+    type = latin ? type_name.downcase : type_name
+    type = I18n.t('products.type_with_orientation', type: type, orientation: orientation.downcase) if orientation
+    type = type.upcase_first
+
+    street = address.to_s.split(',').first.to_s.squish
+    place = [street.presence, (city if city.present? && !street.include?(city.to_s))].compact.join(', ')
+    place = city.to_s if place.blank?
+
+    if impressions_per_day.to_i.positive?
+      I18n.t('products.subtitle', type: type, place: place, count: impressions_text)
+    else
+      I18n.t('products.subtitle_short', type: type, place: place)
+    end
+  end
+
+  # Pemisah ribuan mengikuti bahasa: titik di Indonesia ("46.694"), koma di bahasa lain.
+  def impressions_text
+    delimiter = I18n.locale.to_sym == :id ? '.' : ','
+    ActiveSupport::NumberHelper.number_to_delimited(impressions_per_day, delimiter: delimiter)
+  end
+
+  # Titik lain untuk section "Billboard lain di {area}". Area yang hanya berisi titik ini
+  # dilengkapi titik lain di location yang sama. Urutan sama dengan daftar di halaman area.
+  def related_sites
+    others = area ? area.products.where.not(id: id).to_a : []
+    return [others, area] if others.any?
+
+    [location ? location.products.where.not(id: id).to_a : [], location]
+  end
+
+  # URL halaman billboard: /locations/{location}/{area}/{slug} (satu sumber untuk sitemap,
+  # schema, peta, admin, redirect). Titik tanpa area jatuh ke halaman hub-nya.
+  def public_path(locale = I18n.locale)
+    return location&.public_path(locale) if area.nil?
+
+    "#{area.public_path(locale)}/#{slug}"
+  end
+
+  # Dipakai info window peta (locations.js); path relatif agar ikut host yang sedang dibuka.
+  def product_url_path
+    public_path
   end
 end
 

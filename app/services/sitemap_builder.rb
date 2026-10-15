@@ -80,13 +80,18 @@ class SitemapBuilder
 
 			list.concat(group(location.content_modified_at, record: location) { |l| routes.location_path(location.slug, locale: param(l)) })
 		end
+
+		# Halaman area, kecuali area tunggal sebuah location (canonical ke hub).
+		Area.includes(:location).select(&:standalone?).each do |area|
+			list.concat(group(area.content_modified_at, record: area) { |l| area.public_path(l) })
+		end
 		list
 	end
 
 	def billboards
-		Product.unscoped.order(:id).flat_map do |product|
+		Product.unscoped.includes(:location, :area).order(:id).flat_map do |product|
 
-			group(product.content_modified_at, record: product) { |l| routes.product_path(product.slug, locale: param(l)) }
+			group(product.content_modified_at, record: product) { |l| product.public_path(l) }
 		end
 	end
 

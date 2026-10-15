@@ -120,7 +120,9 @@ function createMarkers(AdvancedMarkerElement, PinElement) {
 }
 
 function bindProductItemClicks() {
-  $('.product-item').off('click').on('click', function () {
+  $('.product-item').off('click').on('click', function (e) {
+    // Klik pada nama titik (link) membuka halaman billboard, bukan menggeser peta.
+    if ($(e.target).closest('a').length) return;
     const productId = $(this).data('product-id');
     const index = products.findIndex(p => p.id === productId);
 
@@ -214,8 +216,8 @@ $(document).ready(function () {
   }
 
   // Klik item daftar sebelum peta dimuat: muat peta, lalu buka item itu di initMap.
-  $(document).on('click', '.product-item', function () {
-    if (map) return;
+  $(document).on('click', '.product-item', function (e) {
+    if (map || $(e.target).closest('a').length) return;
     pendingProductId = $(this).data('product-id');
     loadMapsApi();
   });

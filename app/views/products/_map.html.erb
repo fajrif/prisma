@@ -1,0 +1,15 @@
+<%# Peta satu titik. Memakai locations.js (muat Google Maps saat peta mendekati layar). %>
+<% if @product.latitude.present? && @product.longitude.present? %>
+  <section class="half-section pt-0">
+    <div class="container">
+      <h2 class="alt-font font-weight-600 text-extra-dark-gray size-h5 margin-25px-bottom"><%= t('products.map_title') %></h2>
+      <div class="billboard-map">
+        <div id="map" class="w-100 h-100 border-radius-8" data-maps-src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['PRISMA_GOOGLE_API_KEY'] %>&callback=initMap&loading=async"></div>
+        <%= render "locations/map_data", products: [@product] %>
+      </div>
+    </div>
+  </section>
+  <%= content_for :tail do %>
+    <%= javascript_include_tag "locations", defer: true %>
+  <% end %>
+<% end %>

@@ -1,0 +1,37 @@
+<%= simple_form_for @area, url: (@area.new_record? ? admins_areas_path : admins_area_path(@area.id)), method: (@area.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :name, as: :string, hint: "Nama lokal, sama di semua bahasa (mis. Jakarta Pusat, SCBD, PIK). Slug URL dibentuk dari nama ini; mengganti nama mengubah URL area dan semua billboard di dalamnya (URL lama 301 otomatis)." %>
+						<%= f.input :description, as: :text, input_html: { rows: 4 }, hint: "Teks pengantar halaman area, per bahasa (ganti bahasa admin untuk mengisi versi lain). Kosong = kalimat otomatis." %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, class: 'btn btn-secondary' %>
+						<%= link_to 'Cancel', (@area.new_record? ? admins_areas_path : admins_area_path(@area.id)), class: 'btn btn-light' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", target: @area, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.association :location, as: :select, include_blank: false %>
+							<%= f.input :position, as: :integer, label: 'Urutan', hint: 'Urutan pill di halaman hub.' %>
+							<%= f.association :banner_section, as: :select, include_blank: '— Pakai banner lokasi —', hint: 'Kosong = banner hub lokasi dipakai, dengan judul "Billboard di {area}".' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

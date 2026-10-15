@@ -2,7 +2,7 @@
 # di tab "Block FAQ" halaman detail admin. Pola sama dengan Admins::Snippets::LinkButtonsController
 # (respons JS yang mengisi #myModal dan menyegarkan daftar). Rute dari `concern :content_blockable`.
 class Admins::ContentBlocksController < Admins::BaseController
-	PLACEABLE_PARAMS = { article_id: Article, location_id: Location, industry_id: Industry, product_id: Product }.freeze
+	PLACEABLE_PARAMS = { article_id: Article, location_id: Location, area_id: Area, industry_id: Industry, product_id: Product }.freeze
 
 	before_action :set_placeable
 	before_action :set_block, except: %i[new create]

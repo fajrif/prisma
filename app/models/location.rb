@@ -23,10 +23,15 @@ class Location < ApplicationRecord
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 
 	has_many :products
+	has_many :areas, -> { order(:position, :id) }, dependent: :restrict_with_error
   belongs_to :banner_section
 
 	def should_generate_new_friendly_id?
 		self.name_changed?
+	end
+
+	def public_path(locale = I18n.locale)
+		"#{PublicPath.prefix(locale)}/locations/#{slug}"
 	end
 
 	private

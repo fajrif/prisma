@@ -21,6 +21,16 @@ module StructuredData
 			).payload
 		end
 
+		# Halaman area: daftar titik di area itu, urutannya sama dengan daftar di halaman.
+		def self.for_area(record:, url:)
+			new(
+				url: url,
+				name: I18n.t('locations.area_title', area: record.name),
+				description: record.description.presence || I18n.t('seo.area.description', area: record.name, location: record.location.name, count: record.products.size),
+				items: record.products.map { |product| { name: product.name, path: billboard_path(product) } }
+			).payload
+		end
+
 		# Arsip /locations: daftar ketiga hub.
 		def self.for_locations_index(url:)
 			new(
@@ -36,7 +46,7 @@ module StructuredData
 		end
 
 		def self.billboard_path(product)
-			"#{locale_prefix}/billboards/#{product.slug}"
+			product.public_path
 		end
 
 		def self.hub_path(location)

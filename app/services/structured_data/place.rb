@@ -36,8 +36,9 @@ module StructuredData
 			raw.match?(/\bbillboard\b/i) ? raw : "Billboard #{raw}"
 		end
 
+		# Spec bagian 4: kalimat yang sama dengan subtitle di halaman.
 		def description
-			plain_text(@record.description, limit: 300)
+			plain_text(@record.subtitle, limit: 300)
 		end
 
 		def address_payload
@@ -73,9 +74,10 @@ module StructuredData
 				property(:format, format_label),
 				property(:size, @record.size.presence),
 				property(:orientation, orientation_label),
-				property(:lighting, @record.lighting.presence),
-				property(:slot_duration, @record.slot_duration.presence),
-				property(:operating_hours, @record.operating_hours.presence),
+				# Spec: pencahayaan hanya titik statis; durasi slot & jam tayang hanya LED.
+				(property(:lighting, @record.lighting.presence) if @record.static?),
+				(property(:slot_duration, @record.slot_duration.presence) if @record.digital?),
+				(property(:operating_hours, @record.operating_hours.presence) if @record.digital?),
 				property(:impressions_per_day, @record.impressions_per_day),
 				property(:points_of_interest, @record.interest.presence)
 			].compact
@@ -87,19 +89,13 @@ module StructuredData
 			{ '@type' => 'PropertyValue', 'name' => I18n.t("schema.place.#{key}"), 'value' => value }
 		end
 
-		# Format diturunkan dari enum billboard_type, bukan kolom terpisah.
+		# Format diturunkan dari enum billboard_type, bukan kolom terpisah; label mengikuti bahasa halaman.
 		def format_label
-			@record.billboard_type_label
+			@record.type_name
 		end
 
-		# Orientasi diturunkan dari nama kategori produk ("Horizontal LED",
-		# "Vertical Static Billboard", "Curved Horizontal LED", ...).
 		def orientation_label
-			category = @record.product_category&.name.to_s
-			return if category.blank?
-
-			match = category.match(/\b(curved\s+)?(horizontal|vertical|square)\b/i)
-			match && match[0].split.map(&:capitalize).join(' ')
+			@record.orientation
 		end
 	end
 end

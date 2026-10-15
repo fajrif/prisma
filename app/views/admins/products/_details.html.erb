@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td><b>Slug</b></td>
-    <td><%= link_to product_path(@product), product_path(@product) %></td>
+    <td><%= link_to @product.public_path(:en), @product.public_path(:en), target: '_blank', rel: 'noopener' %></td>
   </tr>
   <tr>
     <td><b>Billboard Type</b></td>
@@ -50,6 +50,10 @@
   <tr>
     <td><b>Location ID</b></td>
     <td><%= link_to "#{@product.location.name} [ID:#{@product.location.id}]", admins_location_path(@product.location.id) if @product.location %></td>
+  </tr>
+  <tr>
+    <td><b>Area</b></td>
+    <td><%= link_to "#{@product.area.name} [ID:#{@product.area.id}]", admins_area_path(@product.area.id) if @product.area %></td>
   </tr>
   <tr>
     <td><b>Product Category ID</b></td>

@@ -60,7 +60,10 @@
               <%= f.input :image2, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
               <label>Banner</label>
               <%= f.input :banner, as: :file, label: false, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp" } %>
-              <%= f.association :location, as: :select %>
+              <%- # Location mengikuti area (Product#before_validation). -%>
+              <%= f.input :area_id, as: :grouped_select, collection: Location.includes(:areas), group_method: :areas,
+                          group_label_method: :name, label_method: :name, value_method: :id, include_blank: false, label: "Area", input_html: { class: "form-select" },
+                          hint: "Dikelompokkan per lokasi. Menentukan URL billboard: /locations/{lokasi}/{area}/{slug}." %>
               <%= f.association :product_category, as: :select %>
               <%= f.input :billboard_type, as: :select, collection: Product.billboard_types.keys.map { |k| [k.humanize.titleize + " Billboard", k] }, include_blank: false, label: "Billboard Type" %>
               <%= f.input :longitude, as: :string %>

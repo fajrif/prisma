@@ -67,6 +67,18 @@ cn:
       points_of_interest: "周边地标"
   product: "广告牌"
   products:
+    type: "广告牌类型"
+    area: "区域"
+    latitude: "纬度"
+    longitude: "经度"
+    map_title: "地图位置"
+    type_with_orientation: "%{type}"
+    subtitle: "位于%{place}的%{type}，每日预估曝光量%{count}次。"
+    subtitle_short: "位于%{place}的%{type}。"
+    related:
+      title: "%{area}的更多广告牌"
+      desc: "%{area}的其他静态与数字广告牌，靠近此位置。组合附近的广告位，更频繁地触达同一受众。"
+      view_all: "查看%{area}的所有广告位"
     category: "类别"
     specification: "规格"
     est_impression: "预估曝光量"
@@ -83,6 +95,8 @@ cn:
     success: "感谢您的申请！"
     errors: "抱歉，我们无法提交您的申请！"
   locations:
+    area: "区域"
+    area_title: "%{area}的广告牌"
     name: "位置"
     title: "数字与静态广告牌位置"
     desc: "我们的广告牌位于雅加达及周边地区的高流量区域，拥有最佳位置。每个地点都具有强大的覆盖和互动能力，确保您的广告活动获得最大的曝光率。"
@@ -188,6 +202,8 @@ cn:
     500_title: "页面错误"
     500_desc: "抱歉，系统发生了错误。"
   global:
+    whatsapp_default: "您好 Prisma Advertising，我浏览了贵公司的网站，想咨询 Prisma 的服务和产品，能否协助？"
+    whatsapp_product: "您好 Prisma Advertising，我想咨询位于%{area}的%{type}：%{url} 能否提供更多信息？"
     skip_to_content: "跳到主要内容"
     toggle_navigation: "切换导航"
     open_submenu: "展开%{name}子菜单"
@@ -196,6 +212,7 @@ cn:
     language_switcher: "语言"
     main_navigation: "主导航"
     carousel: "轮播"
+    breadcrumb: "面包屑导航"
     chat_whatsapp: "通过 WhatsApp 聊天"
     opens_new_tab: "（在新标签页打开）"
     dismiss: "关闭"
@@ -236,6 +253,9 @@ cn:
     updated: "更新于"
     last_updated: "最后更新"
   seo:
+    area:
+      title: "Billboards in %{area}, %{location}"
+      description: "Browse %{count} digital and static billboards in %{area}, %{location}, with specifications, map locations and daily impressions."
     site: "Prisma Advertising"
     billboard_type:
       digital: "Digital Billboard"

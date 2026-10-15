@@ -245,7 +245,7 @@ module AdminHelper
 		when Industry then industry_path(record.slug, locale: loc)
 		when Portfolio then portfolio_path(record.slug, locale: loc)
 		when Location then location_path(record.slug, locale: loc)
-		when Product then product_path(record.slug, locale: loc)
+		when Area, Product then record.public_path(locale)
 		end
 	end
 
@@ -503,7 +503,7 @@ module AdminHelper
 		when 'Service' then "/services/#{slug}"
 		when 'Industry' then "/industries/#{slug}"
 		when 'Portfolio' then "/campaigns/#{slug}"
-		when 'Product' then "/products/#{slug}"
+		when 'Product', 'Area' then record.public_path(I18n.default_locale)
 		when 'Location' then "/locations/#{slug}"
 		when 'Career' then "/careers/#{slug}"
 		else '/'

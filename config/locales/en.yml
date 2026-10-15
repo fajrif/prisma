@@ -66,6 +66,18 @@ en:
       points_of_interest: "Nearby landmarks"
   product: "Billboard"
   products:
+    type: "Billboard Type"
+    area: "Area"
+    latitude: "Latitude"
+    longitude: "Longitude"
+    map_title: "Location on Map"
+    type_with_orientation: "%{orientation} %{type}"
+    subtitle: "%{type} in %{place}, with an estimated %{count} impressions per day."
+    subtitle_short: "%{type} in %{place}."
+    related:
+      title: "More Billboards in %{area}"
+      desc: "Other static and digital billboard sites in %{area}, close to this location. Combine nearby sites to reach the same audience more often."
+      view_all: "View all sites in %{area}"
     category: "Category"
     specification: "Specification"
     est_impression: "Est. Impression"
@@ -82,6 +94,8 @@ en:
     success: "Thank You for your application!"
     errors: "Oops sorry we are unable to submit your application!"
   locations:
+    area: "Area"
+    area_title: "Billboards in %{area}"
     name: "Location"
     title: "Digital & Static Billboard Locations"
     desc: "Our billboards offer optimal placement in high-traffic areas all around Jakarta and beyond. Each location delivers powerful reach and engagement, ensuring maximum visibility for your campaigns."
@@ -187,6 +201,8 @@ en:
     500_title: "Page Error"
     500_desc: "We're sorry, but something went wrong."
   global:
+    whatsapp_default: "Hi Prisma Advertising, I saw your website and would like to ask about Prisma’s services and products. Could you please assist me?"
+    whatsapp_product: "Hi Prisma Advertising, I'd like to ask about the %{type} in %{area}: %{url} Could you share more information?"
     skip_to_content: "Skip to main content"
     toggle_navigation: "Toggle navigation"
     open_submenu: "Open %{name} submenu"
@@ -195,6 +211,7 @@ en:
     language_switcher: "Language"
     main_navigation: "Main navigation"
     carousel: "Carousel"
+    breadcrumb: "Breadcrumb"
     chat_whatsapp: "Chat on WhatsApp"
     opens_new_tab: "(opens in a new tab)"
     dismiss: "Dismiss"
@@ -235,6 +252,9 @@ en:
     updated: "Updated"
     last_updated: "Last updated"
   seo:
+    area:
+      title: "Billboards in %{area}, %{location}"
+      description: "Browse %{count} digital and static billboards in %{area}, %{location}, with specifications, map locations and daily impressions."
     site: "Prisma Advertising"
     billboard_type:
       digital: "Digital Billboard"

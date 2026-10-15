@@ -1,5 +1,5 @@
-$('#product-list').html('<%= j render "products_list", products: @products %>');
-$('#map-data').replaceWith('<%= j render "map_data", products: @products %>');
+$('#product-list').html('<%= j render "locations/products_list", products: @products %>');
+$('#map-data').replaceWith('<%= j render "locations/map_data", products: @products %>');
 <% if @products.empty? %>
   $('#no-data-message').show();
 <% else %>

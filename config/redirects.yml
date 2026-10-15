@@ -2,7 +2,8 @@
 #
 # Sumber: request/SEO_Strategist/prisma-redirect-map_1.csv (293 baris).
 # Sebagian besar baris CSV tidak ada di sini karena sudah tercakup aturan umum:
-#   - 258 baris /products/{slug} -> /billboards/{slug}  : route redirect di config/routes.rb
+#   - 258 baris /products/{slug} -> URL billboard          : RedirectsController#billboard
+#     (sejak 2026-10-14 URL billboard = /locations/{location}/{area}/{slug}; /billboards/{slug} ikut 301)
 #   - 15 baris /careers/{slug kedaluwarsa} -> /careers   : CareersController
 #   -  3 baris /locations/jabodetabek -> /locations/jakarta : route redirect
 #   -  1 baris www -> apex                                 : nginx, bukan aplikasi
@@ -14,11 +15,12 @@
 # Slug halaman lama. Kunci sudah dinormalisasi: huruf kecil, tanpa "-" dan "_".
 legacy_pages:
   # --- Titik billboard yang kini punya halamannya sendiri ---
-  # Sebelumnya semua ini dibuang ke /locations atau homepage.
-  bringrandeled:           "/billboards/brin-grande-led-gatot-subroto"
-  ledbraga:                "/billboards/led-braga"
-  ledtekukumar:            "/billboards/led-teuku-umar"
-  metaled:                 "/billboards/metaled-djakarta-theater"
+  # Sebelumnya semua ini dibuang ke /locations atau homepage. "billboard:<slug>" dihitung
+  # saat request dari data titik (location + area), jadi tetap satu hop bila area berubah.
+  bringrandeled:           "billboard:brin-grande-led-gatot-subroto"
+  ledbraga:                "billboard:led-braga"
+  ledtekukumar:            "billboard:led-teuku-umar"
+  metaled:                 "billboard:metaled-djakarta-theater"
 
   # --- Halaman perusahaan ---
   about:                   "/about-us"

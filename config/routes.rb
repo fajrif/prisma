@@ -127,6 +127,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :portfolios, concerns: :seo_editable
       resources :locations, concerns: %i[seo_editable content_blockable]
+      resources :areas, concerns: %i[seo_editable content_blockable]
       resources :products, concerns: %i[seo_editable content_blockable] do
         member do
           delete 'delete_attachment/:name' => 'products#delete_attachment', :as => :delete_attachment
@@ -186,16 +187,16 @@ Rails.application.routes.draw do
       target = "#{locale_prefix_for.call(params)}/locations/jakarta"
       request.query_string.present? ? "#{target}?#{request.query_string}" : target
     }
-    # 86 titik x 3 bahasa = 258 baris di redirect map, seluruhnya tercakup aturan ini.
-    get '/products/:id', to: redirect(status: 301) { |params, _request|
-      "#{locale_prefix_for.call(params)}/billboards/#{params[:id]}"
-    }
+    # URL billboard lama: /products/:slug (WordPress) dan /billboards/:slug (8–14 Okt 2026).
+    # Keduanya 301 satu hop ke URL bertingkat yang dihitung dari data (area bisa berubah).
+    get '/products/:id', to: 'redirects#billboard'
+    get '/billboards/:id', to: 'redirects#billboard'
 
     resources :locations, only: %i[index show]
-    # Halaman titik billboard. URL /products/:slug diganti /billboards/:slug
-    # (disetujui client 8 Okt 2026); slug-nya sendiri tidak berubah.
-    resources :products, only: [:show], path: 'billboards'
-
+    # Halaman area dan halaman titik billboard (disetujui user 2026-10-13):
+    # /locations/jakarta/jakarta-pusat dan /locations/jakarta/jakarta-pusat/{slug}.
+    get '/locations/:location_id/:id', to: 'areas#show', as: :area
+    get '/locations/:location_id/:area_id/:id', to: 'products#show', as: :billboard
 
     # URL lama yang masih dikunjungi di ketiga bahasa. Harus sebelum catch-all
     # `match ':id'`, kalau tidak akan dicari sebagai halaman CMS dan balas 404.

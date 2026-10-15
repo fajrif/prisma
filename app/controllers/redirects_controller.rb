@@ -28,9 +28,25 @@ class RedirectsController < ApplicationController
     head :gone
   end
 
+  # /products/:slug dan /billboards/:slug -> /locations/{location}/{area}/{slug}, satu hop.
+  def billboard
+    product = Product.unscoped.find_by(slug: params[:id].to_s)
+    raise ActiveRecord::RecordNotFound, 'Billboard not found' unless product
+
+    redirect_to product.public_path, status: :moved_permanently, allow_other_host: false
+  end
+
   # Slug halaman lama, dipetakan di config/redirects.yml.
   def legacy_page
     target = RedirectMap.legacy_page(params[:slug])
+
+    # Target "billboard:<slug>" dihitung dari data, supaya tetap satu hop saat titik pindah area.
+    if target.to_s.start_with?('billboard:')
+      product = Product.unscoped.find_by(slug: target.delete_prefix('billboard:'))
+      return redirect_to(product.public_path, status: :moved_permanently, allow_other_host: false) if product
+
+      target = '/locations'
+    end
 
     # Slug yang tidak dikenal diarahkan ke beranda, bukan 404, karena route ini
     # hanya dipasang untuk URL yang memang pernah ada dan masih punya backlink.
