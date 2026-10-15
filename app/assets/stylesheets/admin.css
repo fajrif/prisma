@@ -47,3 +47,21 @@
 #index_search .choices {
   margin-bottom: 0;
 }
+
+/* Tombol Edit/Destroy/View All di panel Details: di kanan atas, ukuran kecil. */
+.form-actions-top {
+	display: flex;
+	justify-content: flex-end;
+	gap: 6px;
+	margin-bottom: 1rem;
+}
+.form-actions-top .btn {
+	padding: 4px 12px;
+	font-size: 12px;
+}
+
+/* Semua tombol di admin dibuat lebih kecil (btn-sm/btn-lg tetap memakai ukurannya sendiri). */
+body .btn:not(.btn-sm):not(.btn-lg):not(.btn-icon):not(.btn-topbar):not(.header-item) {
+	padding: 4px 12px;
+	font-size: 12px;
+}

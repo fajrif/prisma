@@ -543,6 +543,9 @@
 .page-breadcrumb a:hover { color: var(--base-color); }
 .page-breadcrumb [aria-current] { font-weight: 600; }
 
+/* Foto titik sering terang: lapisan gelap tambahan di atas gradien banner supaya teks terbaca. */
+.product-banner .opacity-medium { background-color: rgba(0, 0, 0, .45); }
+
 /* T12: judul area dan pill area di hub/halaman area (locations/_explorer). */
 .area-heading {
 	font-size: 14px;
@@ -553,25 +556,25 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: center;
-	gap: 8px 12px;
+	justify-content: flex-start;
+	gap: 6px 10px;
 }
 .area-pills {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	gap: 8px;
+	justify-content: flex-start;
+	gap: 6px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 .area-pill {
 	display: inline-block;
-	padding: 3px 14px;
+	padding: 1px 10px;
 	border: 1px solid #232323;
 	border-radius: 50px;
-	font-size: 13px;
-	line-height: 1.6;
+	font-size: 12px;
+	line-height: 1.5;
 	color: #232323;
 	transition: background-color .2s, color .2s, border-color .2s;
 }

@@ -1,15 +1,14 @@
 <!-- start page single banner -->
-<section class="p-0 single-banner parallax hero-bg" data-parallax-background-ratio="0.5" style="<%= hero_bg_style(@product.banner) %>">
+<section class="p-0 single-banner parallax hero-bg product-banner" data-parallax-background-ratio="0.5" style="<%= hero_bg_style(@product.banner) %>">
   <div class="opacity-medium bg-transparent-black z-index-0"></div>
 	<div class="full-screen text-white-2">
 		<div class="container position-relative h-100">
-      <div class="row h-100 align-items-center">
+      <div class="row h-100 align-items-end">
 				<div class="col-xl-10 col-md-10 margin-30px-bottom">
-          <%= render "shared/breadcrumb", css_class: "margin-20px-bottom text-white-2" %>
           <span class="d-block mb-2"><%= t('product') %></span>
 					<% content_for(:has_visible_h1, true) %>
 					<h1 class="font-weight-600 text-white-2 alt-font w-90 size-h2"><%= @product.name %></h1>
-          <p class="text-large w-80 sm-w-100 mb-0"><%= @product.subtitle %></p>
+          <div class="text-start w-40 sm-w-100"><%= @product.subtitle %></div>
           <div class="d-flex flex-wrap gap-2 mt-4">
             <span class="btn btn-medium btn-rounded btn-border btn-transparent-prisma"><%= @product.type_name %></span>
             <% if @product.product_category %>

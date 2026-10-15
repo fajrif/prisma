@@ -7,9 +7,9 @@
     <div class="container">
         <%= render "shared/breadcrumb", css_class: "margin-25px-bottom" %>
         <div class="row align-items-center mb-4">
-          <div class="col-12 col-lg-3 col-md-3">
+          <div class="col-12 col-md-7 col-lg-4 col-xl-3">
             <div class="d-flex justify-content-lg-start align-items-center gap-2">
-              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Filter by Billboard Type:</label>
+              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Billboard Type:</label>
               <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= location.slug %>" data-location-path="<%= filter_path %>">
                 <option value="" <%= 'selected' if params[:billboard_type].blank? %>>All Types</option>
                 <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>>Digital Billboard</option>
@@ -17,11 +17,11 @@
               </select>
             </div>
           </div>
-          <div class="col-12 col-lg-9 col-md-9 text-center mt-3 mt-lg-0">
-            <div class="text-extra-dark-gray alt-font text-uppercase font-weight-600">
+          <div class="col-12 col-lg-8 col-xl-9 left-sidebar text-start mt-3 mt-lg-0">
+            <div class="text-extra-dark-gray alt-font text-uppercase font-weight-600 mb-2">
               <h2 class="heading-reset">
                 <% if area %>
-                  <%= t('locations.name') %>: <%= link_to location.name, location.public_path, class: "text-extra-dark-gray text-decoration-underline" %>
+                  <%= t('locations.name') %>: <%= link_to location.name, location.public_path, class: "text-extra-dark-gray" %>
                 <% else %>
                   <%= "#{t('locations.name')}: #{location.name}" %>
                 <% end %>
@@ -30,14 +30,12 @@
             <% if area %>
               <h3 class="heading-reset area-heading margin-10px-top"><%= t('locations.area') %>: <%= area.name %></h3>
             <% elsif (areas = location.areas.to_a).size > 1 %>
-              <div class="area-pills-row margin-10px-top">
-                <h3 class="heading-reset area-heading"><%= t('locations.area') %>:</h3>
-                <ul class="area-pills">
-                  <% areas.each do |a| %>
-                    <li><%= link_to a.name, a.public_path, class: "area-pill" %></li>
-                  <% end %>
-                </ul>
-              </div>
+              <ul class="area-pills margin-10px-top">
+                <li><h3 class="heading-reset area-heading"><%= t('locations.area') %>:</h3></li>
+                <% areas.each do |a| %>
+                  <li><%= link_to a.name, a.public_path, class: "area-pill" %></li>
+                <% end %>
+              </ul>
             <% end %>
           </div>
         </div>

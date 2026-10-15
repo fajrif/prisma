@@ -5,6 +5,18 @@
 			<div class="card">
 				<div class="card-body">
 					<%= f.error_notification %>
+					<h6 class="mb-1">Identitas resmi <span class="badge bg-warning-subtle text-warning ms-1">Berisiko</span></h6>
+					<p class="text-muted fs-13">Nilai di bawah jarang berubah dan perubahan yang salah berdampak ke seluruh situs. Untuk mengubahnya ada satu langkah konfirmasi tersendiri.</p>
+					<table class="table table-sm table-bordered">
+						<tr><td style="width: 30%;"><b>Nama dagang</b></td><td><%= @setting.profile(:brand_name) %></td></tr>
+						<tr><td><b>Legal name</b></td><td><%= @setting.profile(:legal_name) %></td></tr>
+						<tr><td><b>Tahun berdiri</b></td><td><%= @setting.profile(:founding_year) %></td></tr>
+						<tr><td><b>Anak perusahaan</b></td><td><%= safe_join(Array(@setting.profile(:sub_organizations)).map { |o| tag.div("#{o['name']} (#{o['id']})") }) %></td></tr>
+					</table>
+					<button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#identityModal">
+						Ubah identitas resmi…
+					</button>
+					<hr/>
 					<fieldset>
 						<%= f.input :logo, as: :file, input_html: { class: "mb-3", accept: "image/png, image/jpg, image/jpeg, image/webp, image/svg+xml" },
 												hint: "Logo resmi untuk schema Organization. Idealnya PNG dengan latar transparan." %>
@@ -32,18 +44,6 @@
 												hint: "Format: jenis | telepon | email | area | bahasa. Contoh: sales | +62-811-1306-888 | sales@prisma-ads.com | ID | id,en. Kontak pertama menjadi telepon utama Organization." %>
 					</fieldset>
 
-					<hr/>
-					<h6 class="mb-1">Identitas resmi <span class="badge bg-warning-subtle text-warning ms-1">Berisiko</span></h6>
-					<p class="text-muted fs-13">Nilai di bawah jarang berubah dan perubahan yang salah berdampak ke seluruh situs. Untuk mengubahnya ada satu langkah konfirmasi tersendiri.</p>
-					<table class="table table-sm table-bordered">
-						<tr><td style="width: 30%;"><b>Nama dagang</b></td><td><%= @setting.profile(:brand_name) %></td></tr>
-						<tr><td><b>Legal name</b></td><td><%= @setting.profile(:legal_name) %></td></tr>
-						<tr><td><b>Tahun berdiri</b></td><td><%= @setting.profile(:founding_year) %></td></tr>
-						<tr><td><b>Anak perusahaan</b></td><td><%= safe_join(Array(@setting.profile(:sub_organizations)).map { |o| tag.div("#{o['name']} (#{o['id']})") }) %></td></tr>
-					</table>
-					<button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#identityModal">
-						Ubah identitas resmi…
-					</button>
 					<hr/>
 					<%= f.error :base %>
 					<div class="form-actions" style="margin-top:10px;">

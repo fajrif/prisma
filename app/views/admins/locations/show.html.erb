@@ -22,6 +22,11 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active show" id="details" role="tabpanel">
+						<div class="form-actions form-actions-top">
+						<%= link_to 'Edit', edit_admins_location_path(@location.id), :class => 'btn btn-secondary' %>
+						<%= link_to 'Destroy', admins_location_path(@location.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+						<%= link_to 'View All', admins_locations_path, :class => 'btn btn-light' %>
+						</div>
 						<%= render "details" %>
 					</div>
 					<div class="tab-pane" id="seo-details" role="tabpanel">
@@ -30,11 +35,6 @@
 					<div class="tab-pane" id="faq-blocks" role="tabpanel">
 						<%= render 'admins/shared/faq_blocks', record: @location %>
 					</div>
-				</div>
-				<div class="form-actions">
-					<%= link_to 'Edit', edit_admins_location_path(@location.id), :class => 'btn btn-secondary' %>
-					<%= link_to 'Destroy', admins_location_path(@location.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
-					<%= link_to 'View All', admins_locations_path, :class => 'btn btn-light' %>
 				</div>
 			</div>
 		</div>

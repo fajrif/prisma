@@ -1,7 +1,7 @@
 <%# Sementara (sampai ada desain): satu gambar + satu kartu berisi semua data titik. %>
 <%- facts = [
       [t('products.type'), @product.type_name],
-      [t('products.area'), (link_to(@product.area.name, @product.area.public_path, class: "text-white-2 text-decoration-underline") if @product.area)],
+      [t('products.area'), @product.try(:area).try(:name)],
       [t('products.category'), @product.product_category&.name],
       [t('products.specification'), @product.specification],
       [t('products.est_impression'), @product.est_impression],

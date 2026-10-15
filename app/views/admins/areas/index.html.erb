@@ -1,4 +1,5 @@
 <% title_page("Areas") %>
+<style>.area-location-filter .choices { margin-bottom: 0; }</style>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card">
@@ -12,9 +13,9 @@
 						</p>
 					</div>
 					<div class="col-sm-auto">
-						<div class="hstack gap-2">
-							<%= form_tag admins_areas_path, method: :get, class: 'd-flex gap-2' do %>
-								<%= select_tag :location_id, options_from_collection_for_select(Location.all, :id, :name, params[:location_id]), include_blank: 'Semua lokasi', class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+						<div class="hstack gap-2 align-items-center">
+							<%= form_tag admins_areas_path, method: :get, class: 'd-flex gap-2 mb-0 area-location-filter' do %>
+								<%= select_tag :location_id, options_from_collection_for_select(Location.all, :id, :name, params[:location_id]), include_blank: 'Semua lokasi', class: 'form-select mb-0', style: 'min-width: 180px;', onchange: 'this.form.submit()' %>
 							<% end %>
 							<a class="btn btn-success add-btn text-nowrap" href="<%= new_admins_area_path(location_id: params[:location_id]) %>"><i class="ri-add-line align-bottom me-1"></i> Add area</a>
 						</div>
