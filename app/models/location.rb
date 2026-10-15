@@ -34,6 +34,16 @@ class Location < ApplicationRecord
 		"#{PublicPath.prefix(locale)}/locations/#{slug}"
 	end
 
+	# Titik berkoordinat yang tampil di hub, urut per area (sama dengan urutan pill) lalu nama.
+	# Satu sumber untuk daftar kiri, peta, dan ItemList schema, jadi isi dan urutannya selalu sama.
+	# `type`: "static"/"digital" untuk filter ?billboard_type=; nilai lain diabaikan.
+	def ordered_products(type = nil)
+		scope = products.left_outer_joins(:area).includes(:location, :area)
+										.where.not(latitude: nil, longitude: nil)
+										.reorder(Arel.sql('areas.position ASC NULLS LAST, areas.id ASC, products.name ASC'))
+		Product.billboard_types.key?(type.to_s) ? scope.where(billboard_type: type) : scope
+	end
+
 	private
 
 	# Halaman hub menampilkan daftar billboard, jadi ikut berubah bila billboard-nya berubah.

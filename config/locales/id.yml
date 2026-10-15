@@ -97,6 +97,12 @@ id:
   locations:
     area: "Area"
     area_title: "Billboard di %{area}"
+    stats:
+      sites: "Titik billboard"
+      static: "Statis"
+      digital: "Digital"
+      areas: "Area"
+      impressions: "Est. impresi/hari"
     name: "Lokasi"
     title: "Lokasi Papan Iklan Digital & Statis"
     desc: "Papan reklame kami menawarkan penempatan optimal di area dengan lalu lintas tinggi di seluruh Jakarta dan sekitarnya. Setiap lokasi memberikan jangkauan dan interaksi yang kuat, memastikan visibilitas maksimal untuk kampanye Anda."

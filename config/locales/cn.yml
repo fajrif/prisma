@@ -97,6 +97,12 @@ cn:
   locations:
     area: "区域"
     area_title: "%{area}的广告牌"
+    stats:
+      sites: "广告牌点位"
+      static: "静态"
+      digital: "数字"
+      areas: "区域"
+      impressions: "日均预估曝光"
     name: "位置"
     title: "数字与静态广告牌位置"
     desc: "我们的广告牌位于雅加达及周边地区的高流量区域，拥有最佳位置。每个地点都具有强大的覆盖和互动能力，确保您的广告活动获得最大的曝光率。"

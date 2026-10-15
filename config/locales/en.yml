@@ -96,6 +96,14 @@ en:
   locations:
     area: "Area"
     area_title: "Billboards in %{area}"
+    stats:
+      sites:
+        one: "Billboard site"
+        other: "Billboard sites"
+      static: "Static"
+      digital: "Digital"
+      areas: "Areas"
+      impressions: "Est. impressions/day"
     name: "Location"
     title: "Digital & Static Billboard Locations"
     desc: "Our billboards offer optimal placement in high-traffic areas all around Jakarta and beyond. Each location delivers powerful reach and engagement, ensuring maximum visibility for your campaigns."

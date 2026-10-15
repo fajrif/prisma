@@ -1,0 +1,22 @@
+<%# Strip statistik hub/halaman area, dihitung dari data titik (tidak ikut filter ?billboard_type=).
+    locals: record (Location atau Area) %>
+<% sites = record.ordered_products.to_a %>
+<% if sites.any? %>
+  <%- delimiter = I18n.locale.to_sym == :id ? '.' : ',' -%>
+  <%- area_count = record.is_a?(Location) ? record.areas.size : 0 -%>
+  <%- impressions = sites.sum { |site| site.impressions_per_day.to_i } -%>
+  <ul class="location-stats margin-20px-top">
+    <li><strong><%= number_with_delimiter(sites.size, delimiter: delimiter) %></strong> <%= t('locations.stats.sites', count: sites.size) %></li>
+    <%# Jenis yang tidak ada di lokasi/area ini (mis. Bali tanpa titik statis) tidak ditampilkan. %>
+    <% { static: sites.count(&:static?), digital: sites.count(&:digital?) }.each do |type, count| %>
+      <% next if count.zero? %>
+      <li><strong><%= number_with_delimiter(count, delimiter: delimiter) %></strong> <%= t("locations.stats.#{type}") %></li>
+    <% end %>
+    <% if area_count > 1 %>
+      <li><strong><%= area_count %></strong> <%= t('locations.stats.areas') %></li>
+    <% end %>
+    <% if impressions.positive? %>
+      <li><strong><%= number_with_delimiter(impressions, delimiter: delimiter) %></strong> <%= t('locations.stats.impressions') %></li>
+    <% end %>
+  </ul>
+<% end %>

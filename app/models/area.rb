@@ -44,6 +44,13 @@ class Area < ApplicationRecord
 		"#{PublicPath.prefix(locale)}/locations/#{location.slug}/#{slug}"
 	end
 
+	# Titik berkoordinat di area ini, urut nama (urutan yang sama dengan Location#ordered_products).
+	# Dipakai daftar kiri, peta, ItemList schema, dan section "Billboard lain di {area}".
+	def ordered_products(type = nil)
+		scope = products.includes(:location, :area).where.not(latitude: nil, longitude: nil).reorder(:name)
+		Product.billboard_types.key?(type.to_s) ? scope.where(billboard_type: type) : scope
+	end
+
 	private
 
 	# Halaman area menampilkan daftar billboard, jadi ikut berubah bila billboard-nya berubah.

@@ -9,8 +9,7 @@ class AreasController < ApplicationController
 
 		@schema_subject = @area
 		set_banner
-		@products = @area.products.includes(:location, :area).where.not(latitude: nil, longitude: nil)
-		@products = @products.where(billboard_type: params[:billboard_type]) if Product.billboard_types.key?(params[:billboard_type])
+		@products = @area.ordered_products(params[:billboard_type])
 
 		respond_to do |format|
 			format.html

@@ -10,12 +10,7 @@ class LocationsController < ApplicationController
 		@schema_subject = @location
     @locations = Location.all # for the dropdown
     set_banner_show
-    @products = @location.products.where.not(latitude: nil, longitude: nil)
-    
-    # Filter by billboard_type if provided
-    if params[:billboard_type].present?
-      @products = @products.where(billboard_type: params[:billboard_type])
-    end
+    @products = @location.ordered_products(params[:billboard_type])
 
     respond_to do |format|
       format.html

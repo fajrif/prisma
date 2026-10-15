@@ -1,6 +1,12 @@
 // app/assets/javascripts/locations.js
 let map;
 let markers = [];
+
+// Warna marker per billboard_type (nilai enum Product: "static" / "digital").
+const PIN_COLORS = {
+  static: { background: "#dc3545", borderColor: "#721c24", glyphColor: "#721c24" },
+  digital: { background: "#0d6efd", borderColor: "#052c65", glyphColor: "#052c65" }
+};
 let infoWindows = [];
 let products = [];
 // T15: Google Maps API (±1 MB skrip + 72 marker) baru dimuat saat peta mendekati layar, atau saat
@@ -74,12 +80,8 @@ function createMarkers(AdvancedMarkerElement, PinElement) {
 
   // Create markers and info windows for our products
   products.forEach(function (product, index) {
-    // Create a custom pin for our products
-    const pinElement = new PinElement({
-      background: "#dc3545",
-      borderColor: "#721c24",
-      glyphColor: "#721c24"
-    });
+    // Warna pin per tipe: statis merah, digital biru.
+    const pinElement = new PinElement(PIN_COLORS[product.billboard_type] || PIN_COLORS.static);
 
     const marker = new AdvancedMarkerElement({
       map: map,

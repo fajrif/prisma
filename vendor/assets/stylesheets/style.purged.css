@@ -532,10 +532,6 @@ blockquote small:before {
 
 /* text property */
 
-.text-decoration-underline {
-  text-decoration: underline;
-}
-
 .line-height-normal {
   line-height: normal;
 }

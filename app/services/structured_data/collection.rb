@@ -17,7 +17,7 @@ module StructuredData
 				url: url,
 				name: record.name,
 				description: record.description,
-				items: record.products.map { |product| { name: product.name, path: billboard_path(product) } }
+				items: record.ordered_products.map { |product| { name: product.name, path: billboard_path(product) } }
 			).payload
 		end
 
@@ -27,7 +27,7 @@ module StructuredData
 				url: url,
 				name: I18n.t('locations.area_title', area: record.name),
 				description: record.description.presence || I18n.t('seo.area.description', area: record.name, location: record.location.name, count: record.products.size),
-				items: record.products.map { |product| { name: product.name, path: billboard_path(product) } }
+				items: record.ordered_products.map { |product| { name: product.name, path: billboard_path(product) } }
 			).payload
 		end
 

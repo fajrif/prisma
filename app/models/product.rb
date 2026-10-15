@@ -112,7 +112,7 @@ class Product < ApplicationRecord
   # Titik lain di area yang sama untuk section "Billboard lain di {area}", urutan sama dengan
   # daftar di halaman area. Kosong bila titik ini satu-satunya di areanya (section tidak dirender).
   def related_sites
-    others = area ? area.products.where.not(id: id).to_a : []
+    others = area ? area.ordered_products.where.not(id: id).to_a : []
     [others, area]
   end
 
