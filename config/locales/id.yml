@@ -209,6 +209,7 @@ id:
     view_profile: "Lihat Profil"
     view_all: "Lihat Semua"
     view: "Lihat"
+    explore: "Jelajahi"
     back_to: "Kembali ke %{object_name}"
     back_to_blogs: "Kembali ke Blog"
     others: "%{object_name}"

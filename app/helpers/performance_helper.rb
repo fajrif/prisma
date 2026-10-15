@@ -71,6 +71,21 @@ module PerformanceHelper
 		image_tag(img, options)
 	end
 
+	# true bila rasio lebar:tinggi file asli logo > ambang (landscape), dipakai untuk memilih
+	# layout "logo di atas judul" (stacked) alih-alih "logo di samping judul" di kartu services.
+	WIDE_LOGO_RATIO = 1.5
+
+	def wide_logo?(attachment, threshold: WIDE_LOGO_RATIO)
+		return false unless attachment.respond_to?(:attached?) && attachment.attached?
+
+		blob = attachment.blob
+		w = blob.metadata[:width].to_i
+		h = blob.metadata[:height].to_i
+		return false unless w.positive? && h.positive?
+
+		(w.to_f / h) > threshold
+	end
+
 	# Gambar hero dipasang sebagai background CSS, sehingga browser baru menemukannya setelah CSS
 	# diproses dan memberinya prioritas rendah, padahal gambar inilah yang sering menjadi LCP.
 	# Helper ini memberi dua ukuran (HP 1200px, layar lebar 1920px) lewat custom property yang dipilih

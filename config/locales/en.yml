@@ -208,6 +208,7 @@ en:
     view_profile: "View Profile"
     view_all: "View All"
     view: "View"
+    explore: "Explore"
     back_to: "Back to %{object_name}"
     back_to_blogs: "Back to Blogs"
     others: "Other %{object_name}"
