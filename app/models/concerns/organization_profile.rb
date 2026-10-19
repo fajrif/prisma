@@ -63,14 +63,15 @@ module OrganizationProfile
       type, phone, email, area, langs = line.split('|', 5).map(&:strip)
       problem =
         if type.blank? then 'jenis kontak kosong'
-        elsif phone !~ PHONE_FORMAT then 'telepon harus format internasional, mis. +62-21-5835-6575'
+        elsif phone.blank? && email.blank? then 'isi telepon atau email'
+        elsif phone.present? && phone !~ PHONE_FORMAT then 'telepon harus format internasional, mis. +62-811-1306-888'
         elsif email.present? && email !~ URI::MailTo::EMAIL_REGEXP then 'email tidak valid'
         elsif area.present? && area !~ /\A[A-Z]{2}\z/ then 'area harus kode negara dua huruf, mis. ID'
         elsif Array(langs.to_s.split(',')).map(&:strip).any? { |l| l !~ LANGUAGE_FORMAT } then 'bahasa harus kode seperti id,en'
         end
       next profile_error(:contact_points_text, "baris tidak valid: \"#{line}\" (#{problem}). Format: jenis | telepon | email | area | bahasa") if problem
 
-      { 'contact_type' => type, 'telephone' => phone, 'email' => email.presence, 'area_served' => area.presence,
+      { 'contact_type' => type, 'telephone' => phone.presence, 'email' => email.presence, 'area_served' => area.presence,
         'available_language' => langs.to_s.split(',').map(&:strip).reject(&:blank?) }.compact
     end
   end

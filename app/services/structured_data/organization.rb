@@ -87,9 +87,10 @@ module StructuredData
 			@setting.profile(:founding_year).presence || @setting.founding_date&.year&.to_s
 		end
 
+		# Telepon kontak pertama yang punya nomor (customer service boleh tanpa telepon).
 		def primary_telephone
-			first = Array(@setting.profile(:contact_points)).first
-			first&.dig('telephone').presence || @setting.phone.presence || configatron.company_phone1
+			from_points = Array(@setting.profile(:contact_points)).filter_map { |c| c['telephone'].presence }.first
+			from_points || @setting.phone.presence
 		end
 
 		def address_payload

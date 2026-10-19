@@ -5,7 +5,6 @@ namespace :seo do
 
 		setting.alternate_name = 'Prisma Ads' if setting.alternate_name.blank?
 		setting.email = configatron.info_email if setting.email.blank?
-		setting.phone = configatron.company_phone1 if setting.phone.blank?
 		setting.whatsapp = configatron.whatsapp_number if setting.whatsapp.blank?
 
 		# Tahun pendirian dari spec. Hanya tahunnya yang dipakai di schema.

@@ -35,9 +35,6 @@ configatron.hrd_name = "HRD Recruitment Prisma Ads"
 configatron.marketing_name = "Marketing Agent Prisma Ads"
 configatron.sales_name = "Sales Team Prisma Ads"
 
-configatron.company_phone1 = "+62 21 5835 6575 (Hunting)"
-configatron.company_phone1 = "+62 21 5835 6570"
-
 # Site key bersifat publik (memang tampil di HTML), secret key TIDAK boleh ada di repo.
 # Nilai fallback yang dulu ditulis di sini sudah terlanjur masuk git history sejak
 # commit 12e2abf, jadi keempat key lama harus dianggap bocor dan wajib diganti.

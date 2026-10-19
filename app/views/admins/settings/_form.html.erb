@@ -23,7 +23,7 @@
 						<%= f.input :description, as: :text, input_html: { rows: 4 },
 												hint: "Deskripsi singkat perusahaan (mengikuti bahasa aktif: #{I18n.locale.to_s.upcase})" %>
 						<%= f.input :email, as: :string %>
-						<%= f.input :phone, as: :string, hint: "Format internasional, contoh: +62-21-5835-6570" %>
+						<%= f.input :phone, as: :string, hint: "Format internasional, contoh: +62-811-1306-888. Kosongkan bila tidak ingin ada telepon di luar Contact points." %>
 						<%= f.input :whatsapp, as: :string, hint: "Contoh: 628111306888" %>
 						<%= f.input :same_as_text, as: :text, label: "Social profiles (sameAs)", input_html: { rows: 6 },
 												hint: "Satu URL per baris. Kosongkan untuk memakai daftar bawaan dari konfigurasi." %>
@@ -41,7 +41,7 @@
 						<%= f.input :area_served_text, as: :text, label: "Area served", input_html: { rows: 4 },
 												hint: "Format \"Tipe: Nama\", mis. \"City: Jakarta\". Tipe: #{Service::AREA_TYPES.join(', ')}." %>
 						<%= f.input :contact_points_text, as: :text, label: "Contact points", input_html: { rows: 4 },
-												hint: "Format: jenis | telepon | email | area | bahasa. Contoh: sales | +62-811-1306-888 | sales@prisma-ads.com | ID | id,en. Kontak pertama menjadi telepon utama Organization." %>
+												hint: "Format: jenis | telepon | email | area | bahasa. Contoh: sales | +62-811-1306-888 | sales@prisma-ads.com | ID | id,en. Telepon boleh kosong bila email diisi, mis. customer service |  | info@prisma-ads.com | ID | id,en. Telepon kontak pertama yang terisi menjadi telepon utama Organization." %>
 					</fieldset>
 
 					<hr/>
