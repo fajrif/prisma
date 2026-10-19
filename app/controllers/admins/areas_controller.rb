@@ -1,5 +1,5 @@
-# Area di dalam hub lokasi (Jakarta Pusat, SCBD, ...). Menentukan URL billboard
-# /locations/{location}/{area}/{slug} dan halaman area /locations/{location}/{area}.
+# Area di dalam hub lokasi (Jakarta Pusat, SCBD, ...). Menentukan halaman area
+# /locations/{location}/{area} dan level area di breadcrumb billboard.
 class Admins::AreasController < Admins::BaseController
 	include SeoEditable
 	before_action :set_area, except: %i[index new create]

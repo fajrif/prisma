@@ -12,8 +12,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  # /locations/:location_id/:area_id/:id. Titik dicari dari slug-nya saja; bila segmen
-  # location/area di URL tidak sama dengan data (titik pindah area, area diganti nama),
+  # /billboards/:id. Bila path tidak sama dengan public_path (mis. trailing slash),
   # 301 ke URL yang benar.
   def show
 		@product = Product.unscoped.includes(:location, :area).find_by!(slug: params[:id].to_s)

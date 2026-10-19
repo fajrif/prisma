@@ -3,7 +3,7 @@
 # Sumber: request/SEO_Strategist/prisma-redirect-map_1.csv (293 baris).
 # Sebagian besar baris CSV tidak ada di sini karena sudah tercakup aturan umum:
 #   - 258 baris /products/{slug} -> URL billboard          : RedirectsController#billboard
-#     (sejak 2026-10-14 URL billboard = /locations/{location}/{area}/{slug}; /billboards/{slug} ikut 301)
+#     (sejak 2026-10-19 URL billboard kembali /billboards/{slug}; URL bertingkat lama ikut 301)
 #   - 15 baris /careers/{slug kedaluwarsa} -> /careers   : CareersController
 #   -  3 baris /locations/jabodetabek -> /locations/jakarta : route redirect
 #   -  1 baris www -> apex                                 : nginx, bukan aplikasi

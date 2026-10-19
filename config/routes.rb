@@ -187,16 +187,15 @@ Rails.application.routes.draw do
       target = "#{locale_prefix_for.call(params)}/locations/jakarta"
       request.query_string.present? ? "#{target}?#{request.query_string}" : target
     }
-    # URL billboard lama: /products/:slug (WordPress) dan /billboards/:slug (8–14 Okt 2026).
-    # Keduanya 301 satu hop ke URL bertingkat yang dihitung dari data (area bisa berubah).
+    # URL billboard: /billboards/:slug. URL lama /products/:slug (WordPress) dan
+    # /locations/:location/:area/:slug (15–19 Okt 2026) 301 satu hop ke sana.
     get '/products/:id', to: 'redirects#billboard'
-    get '/billboards/:id', to: 'redirects#billboard'
+    get '/billboards/:id', to: 'products#show', as: :billboard
 
     resources :locations, only: %i[index show]
-    # Halaman area dan halaman titik billboard (disetujui user 2026-10-13):
-    # /locations/jakarta/jakarta-pusat dan /locations/jakarta/jakarta-pusat/{slug}.
+    # Halaman area (disetujui user 2026-10-13): /locations/jakarta/jakarta-pusat.
     get '/locations/:location_id/:id', to: 'areas#show', as: :area
-    get '/locations/:location_id/:area_id/:id', to: 'products#show', as: :billboard
+    get '/locations/:location_id/:area_id/:id', to: 'redirects#billboard'
 
     # URL lama yang masih dikunjungi di ketiga bahasa. Harus sebelum catch-all
     # `match ':id'`, kalau tidak akan dicari sebagai halaman CMS dan balas 404.

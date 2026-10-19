@@ -28,7 +28,7 @@ class RedirectsController < ApplicationController
     head :gone
   end
 
-  # /products/:slug dan /billboards/:slug -> /locations/{location}/{area}/{slug}, satu hop.
+  # /products/:slug dan /locations/{location}/{area}/:slug -> /billboards/{slug}, satu hop.
   def billboard
     product = Product.unscoped.find_by(slug: params[:id].to_s)
     raise ActiveRecord::RecordNotFound, 'Billboard not found' unless product

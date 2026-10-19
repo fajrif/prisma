@@ -116,12 +116,11 @@ class Product < ApplicationRecord
     [others, area]
   end
 
-  # URL halaman billboard: /locations/{location}/{area}/{slug} (satu sumber untuk sitemap,
-  # schema, peta, admin, redirect). Titik tanpa area jatuh ke halaman hub-nya.
+  # URL halaman billboard: /billboards/{slug} (satu sumber untuk sitemap, schema, peta, admin,
+  # redirect). Datar supaya tidak berubah saat area diganti nama/dikelompokkan ulang (keputusan
+  # 2026-10-19); hierarki lokasi › area tetap tampil lewat breadcrumb.
   def public_path(locale = I18n.locale)
-    return location&.public_path(locale) if area.nil?
-
-    "#{area.public_path(locale)}/#{slug}"
+    "#{PublicPath.prefix(locale)}/billboards/#{slug}"
   end
 
   # Dipakai info window peta (locations.js); path relatif agar ikut host yang sedang dibuka.
