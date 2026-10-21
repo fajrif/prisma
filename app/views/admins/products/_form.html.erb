@@ -63,7 +63,7 @@
               <%- # Location mengikuti area (Product#before_validation). -%>
               <%= f.input :area_id, as: :grouped_select, collection: Location.includes(:areas), group_method: :areas,
                           group_label_method: :name, label_method: :name, value_method: :id, include_blank: false, label: "Area", input_html: { class: "form-select" },
-                          hint: "Dikelompokkan per lokasi. Tampil di breadcrumb dan halaman area; URL billboard tetap /billboards/{slug}." %>
+                          hint: "Dikelompokkan per lokasi. Menentukan section di hub dan level area di breadcrumb; URL billboard tetap /billboards/{slug}." %>
               <%- # Sub area mengelompokkan judul H3 di halaman area (kosong = tampil tanpa judul H3). -%>
               <%= f.input :sub_area_id, as: :select, include_blank: '— Tanpa sub area —',
                           collection: SubArea.joins(area: :location).order('locations.id, areas.position, sub_areas.position').map { |sa| ["#{sa.area.location.name} · #{sa.area.name} · #{sa.display_name}", sa.id] },

@@ -127,7 +127,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :portfolios, concerns: :seo_editable
       resources :locations, concerns: %i[seo_editable content_blockable]
-      resources :areas, concerns: %i[seo_editable content_blockable]
+      resources :areas, concerns: :content_blockable
       resources :sub_areas
       resources :products, concerns: %i[seo_editable content_blockable] do
         member do

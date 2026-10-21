@@ -81,10 +81,7 @@ class SitemapBuilder
 			list.concat(group(location.content_modified_at, record: location) { |l| routes.location_path(location.slug, locale: param(l)) })
 		end
 
-		# Halaman area, kecuali area tunggal sebuah location (canonical ke hub).
-		Area.includes(:location).select(&:standalone?).each do |area|
-			list.concat(group(area.content_modified_at, record: area) { |l| area.public_path(l) })
-		end
+		# Area tidak punya halaman sendiri (section di hub), jadi tidak masuk sitemap.
 		list
 	end
 

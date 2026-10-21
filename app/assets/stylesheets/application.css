@@ -662,14 +662,41 @@
 	color: #fff;
 }
 
-/* T13: judul & deskripsi sub_area (neighbourhood) di daftar halaman area (locations/_product_groups). */
-.sub-area-heading {
-	font-size: 15px;
+/* T13: section area di hub (locations/_area_sections): H2 area, H3 neighbourhood, grid kartu titik. */
+.area-section { padding: 40px 0 10px; scroll-margin-top: 90px; }
+.area-section-title { font-size: 26px; line-height: 1.25; margin-bottom: 10px; color: #232323; }
+.area-section-intro { max-width: 860px; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+.area-subsection { margin-top: 26px; }
+.area-subsection-title {
+	font-size: 17px;
 	text-transform: uppercase;
 	border-bottom: 1px solid #e4e4e4;
 	padding-bottom: 6px;
+	margin-bottom: 8px;
+	color: #232323;
 }
-.sub-area-intro { font-size: 13px; line-height: 1.5; }
+.area-subsection-intro { max-width: 860px; font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+.area-site-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 16px;
+	margin-top: 14px;
+}
+.area-site-card {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #e4e4e4;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #fff;
+}
+.area-site-card-photo { display: block; position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: #f1f1f1; }
+.area-site-card-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.area-site-card-body { padding: 12px 14px 14px; }
+.area-site-card-title { font-size: 15px; line-height: 1.35; margin: 0 0 6px; font-weight: 600; }
+.area-site-card-title a { color: #232323; }
+.area-site-card-title a:hover { text-decoration: underline; }
+.area-site-card-meta { list-style: none; margin: 0; padding: 0; font-size: 12.5px; line-height: 1.5; color: #555; }
 
 /* Nama titik di daftar hub/area adalah link; tampilannya tetap seperti teks kartu. */
 .product-item .product-link { color: inherit; }

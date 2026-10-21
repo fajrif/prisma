@@ -1,25 +1,6 @@
-<%# Daftar titik di aside: datar di hub, terkelompok per sub_area (judul H3 + deskripsi) di
-    halaman area yang punya sub_area — sheet SEO 19 Oct. Titik tanpa sub_area tampil setelah
-    H3 terakhir. Grup kosong saat filter tipe aktif dilepas oleh Area#grouped_products.
-    locals: area (nil di hub), products, billboard_type (nilai filter ?billboard_type=) %>
-<% if area && area.sub_areas.any? %>
-  <div id="product-list">
-    <% area.grouped_products(billboard_type).each do |sub_area, titik| %>
-      <div class="sub-area-group margin-15px-bottom">
-        <% if sub_area %>
-          <h3 class="sub-area-heading alt-font text-extra-dark-gray font-weight-600 margin-15px-top margin-5px-bottom"><%= sub_area.display_name %></h3>
-          <% if (intro = sub_area.description.presence) %>
-            <%= simple_format(intro, { class: "sub-area-intro text-medium margin-10px-bottom" }, wrapper_tag: "p") %>
-          <% end %>
-        <% end %>
-        <ul class="latest-post position-relative">
-          <%= render "locations/products_list", products: titik %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <ul id="product-list" class="latest-post position-relative">
-    <%= render "locations/products_list", products: products %>
-  </ul>
-<% end %>
+<%# Daftar titik di samping peta: datar, urut impresi/hari (urutan = ItemList schema = peta).
+    Pengelompokan per area/sub area ada di section di bawah peta (locations/_area_sections).
+    locals: products %>
+<ul id="product-list" class="latest-post position-relative">
+  <%= render "locations/products_list", products: products %>
+</ul>

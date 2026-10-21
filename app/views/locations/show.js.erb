@@ -1,7 +1,8 @@
-<%# Filter tipe billboard (AJAX): ganti daftar titik (datar di hub, terkelompok per sub_area di
-    halaman area) dan data peta. @area sudah di-set oleh AreasController; di LocationsController nil. %>
-$('#product-list-container').html('<%= j render "locations/product_groups", area: @area, products: @products, billboard_type: params[:billboard_type] %>');
+<%# Filter tipe billboard (AJAX): ganti daftar titik, data peta, dan section area di bawah peta
+    (section yang tidak punya titik bertipe itu hilang). Chip area dan statistik tidak berubah. %>
+$('#product-list-container').html('<%= j render "locations/product_groups", products: @products %>');
 $('#map-data').replaceWith('<%= j render "locations/map_data", products: @products %>');
+$('#area-sections').replaceWith('<%= j render "locations/area_sections", location: @location, billboard_type: params[:billboard_type] %>');
 <% if @products.empty? %>
   $('#no-data-message').show();
 <% else %>

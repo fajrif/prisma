@@ -1,3 +1,4 @@
 <%= render "shared/setting_banners" %>
 <%= render "locations/explorer", location: @location, products: @products %>
+<%= render "locations/area_sections", location: @location, billboard_type: params[:billboard_type] %>
 <%= render_content_blocks(@location) %>

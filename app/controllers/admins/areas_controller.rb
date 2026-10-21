@@ -1,7 +1,6 @@
-# Area di dalam hub lokasi (Jakarta Pusat, SCBD, ...). Menentukan halaman area
-# /locations/{location}/{area} dan level area di breadcrumb billboard.
+# Area di dalam hub lokasi (Jakarta Pusat, SCBD, ...). Menjadi section H2 di hub
+# (/locations/{location}#{slug}) dan level area di breadcrumb billboard.
 class Admins::AreasController < Admins::BaseController
-	include SeoEditable
 	before_action :set_area, except: %i[index new create]
 
 	def index
@@ -49,7 +48,7 @@ class Admins::AreasController < Admins::BaseController
 	private
 
 	def params_area
-		params.require(:area).permit(:location_id, :name, :description, :position, :banner_section_id)
+		params.require(:area).permit(:location_id, :name, :hub_title, :description, :position)
 	end
 
 	def set_area

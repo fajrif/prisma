@@ -1,8 +1,6 @@
-<%# Hub (/locations/:slug) dan halaman area (/locations/:location/:area) memakai tampilan yang sama:
-    breadcrumb, filter tipe, judul lokasi (+ pill area atau nama area), daftar titik, peta.
-    locals: location, area (nil di hub), products %>
-<%- area = local_assigns[:area] -%>
-<%- filter_path = area ? area.public_path : location.public_path -%>
+<%# Hub (/locations/:slug): breadcrumb, filter tipe, judul lokasi + chip area (anchor ke section
+    area di bawah peta, lihat locations/_area_sections), intro, statistik, key facts, daftar titik, peta.
+    locals: location, products %>
 <section class="half-section">
     <div class="container">
         <%= render "shared/breadcrumb", css_class: "margin-25px-bottom" %>
@@ -10,7 +8,7 @@
           <div class="col-12 col-md-7 col-lg-4 col-xl-3">
             <div class="d-flex justify-content-lg-start align-items-center gap-2">
               <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap"><%= t('locations.filter.label') %></label>
-              <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= location.slug %>" data-location-path="<%= filter_path %>">
+              <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= location.slug %>" data-location-path="<%= location.public_path %>">
                 <option value="" <%= 'selected' if params[:billboard_type].blank? %>><%= t('locations.filter.all') %></option>
                 <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>><%= t('locations.filter.digital') %></option>
                 <option value="static" <%= 'selected' if params[:billboard_type] == 'static' %>><%= t('locations.filter.static') %></option>
@@ -19,39 +17,31 @@
           </div>
           <div class="col-12 col-lg-8 col-xl-9 left-sidebar text-start mt-3 mt-lg-0">
             <div class="text-extra-dark-gray alt-font text-uppercase font-weight-600 mb-2">
-              <h2 class="heading-reset">
-                <% if area %>
-                  <%= t('locations.name') %>: <%= link_to location.name, location.public_path, class: "text-extra-dark-gray" %>
-                <% else %>
-                  <%= "#{t('locations.name')}: #{location.name}" %>
-                <% end %>
-              </h2>
+              <h2 class="heading-reset"><%= "#{t('locations.name')}: #{location.name}" %></h2>
             </div>
-            <% if area %>
-              <h3 class="heading-reset area-heading margin-10px-top"><%= t('locations.area') %>: <%= area.name %></h3>
-            <% elsif (areas = location.areas.to_a).size > 1 %>
-              <%# Chip area: link ke halaman area + jumlah titik per area (sheet SEO 19 Oct; keputusan: tetap halaman area, bukan anchor). %>
+            <% if (areas = location.areas.to_a).size > 1 %>
+              <%# Chip area: anchor ke section area di hub + jumlah titik per area (sheet SEO 19 Oct, Step 4). %>
               <ul class="area-pills margin-10px-top">
                 <li><h3 class="heading-reset area-heading"><%= t('locations.area') %>:</h3></li>
                 <% areas.each do |a| %>
-                  <li><%= link_to "#{a.name} (#{a.products.size})", a.public_path, class: "area-pill" %></li>
+                  <li><%= link_to "#{a.name} (#{a.products.size})", "##{a.slug}", class: "area-pill" %></li>
                 <% end %>
               </ul>
             <% end %>
-            <%# Intro hub dari Location.description (halaman area memakai Area.description di banner). %>
-            <% if area.nil? && (intro = location.description.presence) %>
+            <%# Intro hub dari Location.description. %>
+            <% if (intro = location.description.presence) %>
               <%= simple_format(intro, { class: "location-intro margin-15px-top mb-0" }, wrapper_tag: "p") %>
             <% end %>
-            <%= render "locations/stats", record: area || location %>
-            <%# Key facts: 3 kotak fakta kualitatif di hub (di bawah intro + statistik); ukuran maksimal dihitung dari data titik. %>
-            <%= render "locations/key_facts", location: location if area.nil? %>
+            <%= render "locations/stats", record: location %>
+            <%# Key facts: 3 kotak fakta kualitatif (di bawah intro + statistik); ukuran maksimal dihitung dari data titik. %>
+            <%= render "locations/key_facts", location: location %>
           </div>
         </div>
         <div class="row flex-nowrap h-600px">
           <% unless products.empty? %>
             <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
                 <div class="flex-grow-1 overflow-auto" id="product-list-container">
-                  <%= render "locations/product_groups", area: area, products: products, billboard_type: params[:billboard_type] %>
+                  <%= render "locations/product_groups", products: products %>
                 </div>
             </aside>
             <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">

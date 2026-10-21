@@ -1,0 +1,18 @@
+<%# Kartu titik di section area hub (sheet SEO 19 Oct): foto, nama (link ke /billboards/{slug}, H4),
+    tipe, ukuran, impresi/hari. Bukan .product-item, supaya tidak terikat handler peta (locations.js).
+    locals: product %>
+<article class="area-site-card h-100">
+  <% if (thumb = product.image_url_thumb(Product::LIST_THUMB_SIZE)) %>
+    <a href="<%= product.public_path %>" tabindex="-1" aria-hidden="true" class="area-site-card-photo">
+      <img src="<%= thumb %>" alt="" loading="lazy" decoding="async">
+    </a>
+  <% end %>
+  <div class="area-site-card-body">
+    <h4 class="area-site-card-title"><a href="<%= product.public_path %>"><%= product.name %></a></h4>
+    <ul class="area-site-card-meta">
+      <li><%= product.type_name %></li>
+      <% if product.size.present? %><li><%= product.size %></li><% end %>
+      <% if product.impressions_per_day.to_i.positive? %><li><%= product.impressions_text %> <%= t('locations.stats.impressions') %></li><% end %>
+    </ul>
+  </div>
+</article>

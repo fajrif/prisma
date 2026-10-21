@@ -32,7 +32,6 @@
 								<th>Name</th>
 								<th>URL</th>
 								<th class="text-center">Billboard</th>
-								<th>Banner</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -44,10 +43,8 @@
 									<td><h5 class="fs-14 mb-0"><%= link_to area.name, admins_area_path(area.id), class: 'text-primary' %></h5></td>
 									<td>
 										<%= link_to area.public_path(:en), area.public_path(:en), target: '_blank', rel: 'noopener' %>
-										<% unless area.standalone? %><span class="badge bg-light text-muted" title="Satu-satunya area di lokasi ini: canonical ke hub, tidak masuk sitemap">canonical ke hub</span><% end %>
 									</td>
 									<td class="text-center"><%= area.products.size %></td>
-									<td><%= area.banner_section&.name || content_tag(:span, 'banner lokasi', class: 'text-muted') %></td>
 									<td>
 										<%= link_to 'Edit', edit_admins_area_path(area.id), class: 'btn btn-sm btn-soft-primary' %>
 									</td>

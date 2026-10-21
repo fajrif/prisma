@@ -5,8 +5,9 @@
 				<div class="card-body">
 					<%= f.error_notification %>
 					<fieldset>
-						<%= f.input :name, as: :string, hint: "Nama lokal, sama di semua bahasa (mis. Jakarta Pusat, SCBD, PIK). Slug URL dibentuk dari nama ini; mengganti nama mengubah URL area dan semua billboard di dalamnya (URL lama 301 otomatis)." %>
-						<%= f.input :description, as: :text, input_html: { rows: 4 }, hint: "Teks pengantar halaman area, per bahasa (ganti bahasa admin untuk mengisi versi lain). Kosong = kalimat otomatis." %>
+						<%= f.input :name, as: :string, hint: "Nama per bahasa (ganti bahasa admin untuk mengisi versi lain; ID = nama lokal, mis. Jakarta Pusat, SCBD, PIK). Id/anchor section di hub dibentuk dari nama ID; mengganti nama ID mengubah anchor dan URL area lama (301 ke hub)." %>
+						<%= f.input :hub_title, as: :string, label: "Judul H2 di hub", hint: "Opsional, per bahasa. Kosong = \"Billboard di {nama}\" / \"Billboards in {name}\". Isi bila ingin tambahan, mis. \"Billboard di Jakarta Timur (Pulomas)\"." %>
+						<%= f.input :description, as: :text, input_html: { rows: 4 }, hint: "Paragraf di bawah judul H2 section area di hub, per bahasa (ganti bahasa admin untuk mengisi versi lain). Kosong = section tanpa paragraf." %>
 					</fieldset>
 					<%= f.error :base %>
 					<div class="form-actions">
@@ -26,8 +27,7 @@
 						</div>
 						<div class="card-body">
 							<%= f.association :location, as: :select, include_blank: false %>
-							<%= f.input :position, as: :integer, label: 'Urutan', hint: 'Urutan pill di halaman hub.' %>
-							<%= f.association :banner_section, as: :select, include_blank: '— Pakai banner lokasi —', hint: 'Kosong = banner hub lokasi dipakai, dengan judul "Billboard di {area}".' %>
+							<%= f.input :position, as: :integer, label: 'Urutan', hint: 'Urutan chip dan section area di hub.' %>
 						</div>
 					</div>
 				</div>

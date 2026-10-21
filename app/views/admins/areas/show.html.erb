@@ -7,9 +7,6 @@
 					<li class="nav-item" role="presentation">
 						<a class="nav-link active" data-bs-toggle="tab" href="#details" role="tab" aria-selected="true">Details</a>
 					</li>
-					<li class="nav-item" role="presentation">
-						<a class="nav-link" data-bs-toggle="tab" href="#seo-details" role="tab" aria-selected="false">SEO Details</a>
-					</li>
 					<% if false %>
 					<li class="nav-item" role="presentation">
 						<a class="nav-link" data-bs-toggle="tab" href="#faq-blocks" role="tab" aria-selected="false" tabindex="-1">
@@ -33,14 +30,13 @@
 								<td><b>URL</b></td>
 								<td>
 									<%= link_to @area.public_path(:en), @area.public_path(:en), target: '_blank', rel: 'noopener' %>
-									<% unless @area.standalone? %>
-										<div class="text-muted small">Satu-satunya area di lokasi ini: halaman ini canonical ke hub dan tidak masuk sitemap, pill area tidak ditampilkan.</div>
-									<% end %>
+									<div class="text-muted small">Section di hub (id = slug). URL lama /locations/{lokasi}/{area} di-301 ke sini.</div>
 								</td>
 							</tr>
 							<tr><td><b>Urutan</b></td><td><%= @area.position %></td></tr>
-							<tr><td><b>Banner</b></td><td><%= @area.banner_section&.name || "— banner lokasi (#{@area.location.banner_section&.name || 'tidak ada'})" %></td></tr>
-							<tr><td><b>Description</b></td><td><%= @area.description.presence || content_tag(:span, '— kalimat otomatis', class: 'text-muted') %></td></tr>
+							<tr><td><b>Judul H2 (ID)</b></td><td><%= @area.hub_title(locale: :id, fallback: false).presence || content_tag(:span, "— Billboard di #{@area.name(locale: :id, fallback: false).presence || @area.name}", class: 'text-muted') %></td></tr>
+							<tr><td><b>Judul H2 (EN)</b></td><td><%= @area.hub_title(locale: :en, fallback: false).presence || content_tag(:span, "— Billboards in #{@area.name(locale: :en, fallback: false).presence || @area.name}", class: 'text-muted') %></td></tr>
+							<tr><td><b>Description</b></td><td><%= @area.description.presence || content_tag(:span, '— kosong (section tanpa paragraf)', class: 'text-muted') %></td></tr>
 						<tr>
 							<td><b>Billboard (<%= @area.products.size %>)</b></td>
 							<td>
@@ -57,9 +53,6 @@
 							</td>
 						</tr>
 						</table>
-					</div>
-					<div class="tab-pane" id="seo-details" role="tabpanel">
-						<%= render 'admins/shared/seo_details', record: @area %>
 					</div>
 					<% if false %>
 					<div class="tab-pane" id="faq-blocks" role="tabpanel">

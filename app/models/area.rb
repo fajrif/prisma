@@ -1,5 +1,6 @@
-# Area di dalam hub lokasi (mis. Jakarta Pusat di Jakarta). Tingkat ketiga URL billboard:
-# /locations/{location}/{area}/{product}, dan punya halaman sendiri /locations/{location}/{area}.
+# Area di dalam hub lokasi (mis. Jakarta Pusat di Jakarta). Tidak punya halaman sendiri:
+# tampil sebagai section H2 (id = slug) di hub /locations/{location}#{slug}; URL lama
+# /locations/{location}/{area} di-301 ke sana (AreasController).
 #
 # Nama diterjemahkan (ID = nama lokal, EN mengikuti sheet SEO 19 Oct: "Central Jakarta", ...;
 # CN jatuh ke EN); slug URL dibentuk dari nama ID (nama lokal) dan hanya berubah bila nama ID
@@ -9,11 +10,11 @@ class Area < ApplicationRecord
 	extend Mobility
 	translates :name
 	translates :description
+	translates :hub_title
 
 	extend FriendlyId
 	friendly_id :slug_source, use: :scoped, scope: :location
 
-	include HasSeoSetting
 	include HasContentBlocks
 
 	default_scope { order(:position, :id) }
@@ -35,23 +36,16 @@ class Area < ApplicationRecord
 		slug.blank? || id_name_changed?
 	end
 
-	# Banner sendiri bila diisi; kalau tidak, banner hub-nya.
-	def effective_banner_section
-		banner_section || location&.banner_section
-	end
-
-	def own_banner?
-		banner_section.present?
-	end
-
-	# Location dengan satu area saja (Bandung, Bali): halaman area isinya sama dengan hub,
-	# jadi tidak ditampilkan sebagai pill, canonical ke hub, dan tidak masuk sitemap.
-	def standalone?
-		location.areas.size > 1
-	end
-
+	# Link ke section area di hub (satu sumber untuk breadcrumb produk, tombol "view all",
+	# admin, dan redirect halaman area lama).
+	# Location dengan satu area (Bandung, Bali) tidak punya section area, jadi tanpa anchor.
 	def public_path(locale = I18n.locale)
-		"#{PublicPath.prefix(locale)}/locations/#{location.slug}/#{slug}"
+		location.areas.size > 1 ? "#{location.public_path(locale)}##{slug}" : location.public_path(locale)
+	end
+
+	# Judul H2 section di hub: override per bahasa bila diisi, kalau tidak "Billboard di {area}".
+	def section_title
+		hub_title.presence || I18n.t('locations.area_title', area: name)
 	end
 
 	# Titik berkoordinat di area ini, urut impresi/hari lalu nama (urutan yang sama dengan

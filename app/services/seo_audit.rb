@@ -75,7 +75,6 @@ class SeoAudit
 			list += Industry.all.map { |r| ["industry:#{r.slug}", r] }
 			list += Portfolio.all.map { |r| ["portfolio:#{r.slug}", r] }
 			list += Location.all.map { |r| ["location:#{r.slug}", r] }
-			list += Area.includes(:location).select(&:standalone?).map { |r| ["area:#{r.location.slug}/#{r.slug}", r] }
 			list += Product.unscoped.map { |r| ["billboard:#{r.slug}", r] }
 			list += Career.all.map { |r| ["career:#{r.slug}", r] }
 			%w[articles portfolios industries locations inquiries].each do |c|

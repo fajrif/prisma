@@ -48,6 +48,7 @@ class Location < ApplicationRecord
 
 	# Halaman hub menampilkan daftar billboard, jadi ikut berubah bila billboard-nya berubah.
 	def related_modified_at
-		[products.unscope(:order).maximum(:updated_at)]
+		[products.unscope(:order).maximum(:updated_at), areas.unscope(:order).maximum(:updated_at),
+		 SubArea.unscoped.where(area_id: areas.select(:id)).maximum(:updated_at)]
 	end
 end

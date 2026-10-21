@@ -52,11 +52,6 @@ module SeoHelper
     # canonical ke versi bahasa aslinya supaya tidak dihitung duplikat.
     return alternate_language_urls[article_canonical_locale] if article_canonical_locale
 
-    # Location dengan satu area (Bandung, Bali): halaman area isinya sama dengan hub.
-    if schema_subject.is_a?(Area) && !schema_subject.standalone?
-      return "#{configatron.site_url}#{schema_subject.location.public_path}"
-    end
-
     url = "#{configatron.site_url}#{canonical_path}"
     page = params[:page].to_i
     page > 1 ? "#{url}?page=#{page}" : url
@@ -182,17 +177,11 @@ module SeoHelper
     when 'locations'
       trail << [t('breadcrumb.locations'), "#{locale_prefix}/locations"]
       trail << [@location.name, canonical_path] if @location
-    when 'areas'
-      trail << [t('breadcrumb.locations'), "#{locale_prefix}/locations"]
-      if @area
-        trail << [@area.location.name, @area.location.public_path]
-        trail << [@area.name, canonical_path]
-      end
     when 'products'
       if @product
         trail << [t('breadcrumb.locations'), "#{locale_prefix}/locations"]
         trail << [@product.location.name, @product.location.public_path] if @product.location
-        # Level area menautkan halaman area (keputusan 2026-10-13; spec bagian 5 memakai anchor hub).
+        # Level area menautkan section area di hub (anchor, sesuai spec bagian 5).
         trail << [@product.area.name, @product.area.public_path] if @product.area
         trail << [@product.name, canonical_path]
       end

@@ -1,0 +1,36 @@
+<%# Section per area di hub (sheet SEO 19 Oct, Step 4): H2 (id = slug area, target chip) + deskripsi,
+    lalu per sub area H3 + deskripsi + kartu titik; area tanpa sub area langsung kartu. Urutan area =
+    position (urutan chip), titik = impresi/hari. Hanya location dengan lebih dari satu area.
+    Section kosong (mis. karena filter tipe aktif) tidak dirender.
+    locals: location, billboard_type (nilai ?billboard_type=, boleh nil) %>
+<div id="area-sections">
+  <% if (areas = location.areas.to_a).size > 1 %>
+    <% areas.each do |area| %>
+      <%- groups = area.grouped_products(billboard_type) -%>
+      <% next if groups.empty? %>
+      <section id="<%= area.slug %>" class="area-section">
+        <div class="container">
+          <h2 class="area-section-title alt-font font-weight-600"><%= area.section_title %></h2>
+          <% if (intro = area.description.presence) %>
+            <%= simple_format(intro, { class: "area-section-intro" }, wrapper_tag: "p") %>
+          <% end %>
+          <% groups.each do |sub_area, titik| %>
+            <div class="area-subsection">
+              <% if sub_area %>
+                <h3 class="area-subsection-title alt-font font-weight-600"><%= sub_area.display_name %></h3>
+                <% if (sub_intro = sub_area.description.presence) %>
+                  <%= simple_format(sub_intro, { class: "area-subsection-intro" }, wrapper_tag: "p") %>
+                <% end %>
+              <% end %>
+              <div class="area-site-grid">
+                <% titik.each do |product| %>
+                  <%= render "locations/site_card", product: product %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+</div>
