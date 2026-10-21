@@ -103,6 +103,16 @@ id:
       digital: "Digital"
       areas: "Area"
       impressions: "Est. impresi/hari"
+    filter:
+      label: "Jenis Billboard:"
+      all: "Semua"
+      digital: "Billboard Digital"
+      static: "Billboard Statis"
+    key_facts:
+      types: "Billboard statis & videotron"
+      max_size: "Ukuran hingga %{size}"
+      max_size_fallback: "Billboard statis & videotron beragam ukuran"
+      permits: "Izin & pajak reklame kami urus"
     name: "Lokasi"
     title: "Lokasi Papan Iklan Digital & Statis"
     desc: "Papan reklame kami menawarkan penempatan optimal di area dengan lalu lintas tinggi di seluruh Jakarta dan sekitarnya. Setiap lokasi memberikan jangkauan dan interaksi yang kuat, memastikan visibilitas maksimal untuk kampanye Anda."

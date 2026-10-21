@@ -22,9 +22,11 @@ class Product < ApplicationRecord
 	has_one_attached :image2, dependent: :purge
   belongs_to :location
   belongs_to :area
+  belongs_to :sub_area, optional: true
   belongs_to :product_category
 
 	validates_presence_of :name, :address, :longitude, :latitude
+	validate :sub_area_belongs_to_area
 
 	# Location selalu mengikuti area-nya; kolom location_id dipertahankan untuk query lama.
 	before_validation { self.location_id = area.location_id if area }
@@ -126,6 +128,15 @@ class Product < ApplicationRecord
   # Dipakai info window peta (locations.js); path relatif agar ikut host yang sedang dibuka.
   def product_url_path
     public_path
+  end
+
+  private
+
+  # Sub area harus milik area titik ini; kalau area diganti, sub area lama tidak boleh terbawa.
+  def sub_area_belongs_to_area
+    return if sub_area.blank? || sub_area.area_id == area_id
+
+    errors.add(:sub_area, 'bukan bagian dari area yang dipilih')
   end
 end
 

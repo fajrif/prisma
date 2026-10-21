@@ -41,14 +41,21 @@
 							<tr><td><b>Urutan</b></td><td><%= @area.position %></td></tr>
 							<tr><td><b>Banner</b></td><td><%= @area.banner_section&.name || "— banner lokasi (#{@area.location.banner_section&.name || 'tidak ada'})" %></td></tr>
 							<tr><td><b>Description</b></td><td><%= @area.description.presence || content_tag(:span, '— kalimat otomatis', class: 'text-muted') %></td></tr>
-							<tr>
-								<td><b>Billboard (<%= @area.products.size %>)</b></td>
-								<td>
-									<% @area.products.each do |product| %>
-										<div><%= link_to product.name, admins_product_path(product.id) %> <span class="badge <%= product.digital? ? 'bg-primary' : 'bg-success' %>"><%= product.billboard_type_label %></span></div>
-									<% end %>
-								</td>
-							</tr>
+						<tr>
+							<td><b>Billboard (<%= @area.products.size %>)</b></td>
+							<td>
+								<% @area.sub_areas.each do |sa| %>
+									<div class="mb-2">
+										<b><%= link_to sa.display_name, admins_sub_area_path(sa.id), class: 'text-primary' %></b>
+										<span class="badge bg-light text-muted"><code><%= sa.key %></code></span>
+										<div class="text-muted small"><%= sa.products.size %> titik · urutan <%= sa.position %></div>
+									</div>
+								<% end %>
+								<% @area.products.where(sub_area_id: nil).each do |product| %>
+									<div><%= link_to product.name, admins_product_path(product.id) %> <span class="badge <%= product.digital? ? 'bg-primary' : 'bg-success' %>"><%= product.billboard_type_label %></span></div>
+								<% end %>
+							</td>
+						</tr>
 						</table>
 					</div>
 					<div class="tab-pane" id="seo-details" role="tabpanel">

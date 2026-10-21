@@ -1,0 +1,60 @@
+<% title_page("Sub Areas") %>
+<style>.area-location-filter .choices { margin-bottom: 0; }</style>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header border-0">
+				<div class="row g-3 align-items-center">
+					<div class="col-sm">
+						<p class="text-muted mb-0">
+							Sub area (neighbourhood) mengelompokkan billboard di dalam satu area menjadi judul H3
+							pada halaman area (mis. Sudirman–Thamrin di Jakarta Pusat). Judul &amp; deskripsi
+							diterjemahkan per bahasa (CN mengikuti EN bila kosong). Sub area tanpa halaman sendiri.
+						</p>
+					</div>
+					<div class="col-sm-auto">
+						<div class="hstack gap-2 align-items-center">
+							<%= form_tag admins_sub_areas_path, method: :get, class: 'd-flex gap-2 mb-0 area-location-filter' do %>
+								<%= select_tag :area_id, options_from_collection_for_select(Area.joins(:location).order('locations.id, areas.position'), :id, ->(a) { "#{a.location.name} · #{a.name}" }, params[:area_id]), include_blank: 'Semua area', class: 'form-select mb-0', style: 'min-width: 220px;', onchange: 'this.form.submit()' %>
+							<% end %>
+							<a class="btn btn-success add-btn text-nowrap" href="<%= new_admins_sub_area_path(area_id: params[:area_id]) %>"><i class="ri-add-line align-bottom me-1"></i> Add sub area</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="table-card">
+					<table class="table table-hover table-striped align-middle mb-0">
+						<thead class="table-light">
+							<tr>
+								<th>Area</th>
+								<th class="text-center">Urutan</th>
+								<th>Key</th>
+								<th>Name (ID)</th>
+								<th>Name (EN)</th>
+								<th class="text-center">Billboard</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @sub_areas.each do |sub_area| %>
+								<tr>
+									<td><%= link_to "#{sub_area.area.location.name} · #{sub_area.area.name}", admins_area_path(sub_area.area_id), class: 'text-primary' %></td>
+									<td class="text-center"><%= sub_area.position %></td>
+									<td><code><%= sub_area.key %></code></td>
+									<td><h5 class="fs-14 mb-0"><%= link_to sub_area.name(locale: :id), admins_sub_area_path(sub_area.id), class: 'text-primary' %></h5></td>
+									<td><%= sub_area.name(locale: :en) %></td>
+									<td class="text-center"><%= sub_area.products.size %></td>
+									<td>
+										<%= link_to 'Edit', edit_admins_sub_area_path(sub_area.id), class: 'btn btn-sm btn-soft-primary' %>
+									</td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+				<%= paginate @sub_areas %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -9,11 +9,11 @@
         <div class="row align-items-center mb-4">
           <div class="col-12 col-md-7 col-lg-4 col-xl-3">
             <div class="d-flex justify-content-lg-start align-items-center gap-2">
-              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap">Billboard Type:</label>
+              <label for="billboard-type-filter" class="font-weight-600 mb-0 text-nowrap"><%= t('locations.filter.label') %></label>
               <select id="billboard-type-filter" class="form-select form-select-sm mb-0" style="width: auto;" data-location-id="<%= location.slug %>" data-location-path="<%= filter_path %>">
-                <option value="" <%= 'selected' if params[:billboard_type].blank? %>>All Types</option>
-                <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>>Digital Billboard</option>
-                <option value="static" <%= 'selected' if params[:billboard_type] == 'static' %>>Static Billboard</option>
+                <option value="" <%= 'selected' if params[:billboard_type].blank? %>><%= t('locations.filter.all') %></option>
+                <option value="digital" <%= 'selected' if params[:billboard_type] == 'digital' %>><%= t('locations.filter.digital') %></option>
+                <option value="static" <%= 'selected' if params[:billboard_type] == 'static' %>><%= t('locations.filter.static') %></option>
               </select>
             </div>
           </div>
@@ -30,10 +30,11 @@
             <% if area %>
               <h3 class="heading-reset area-heading margin-10px-top"><%= t('locations.area') %>: <%= area.name %></h3>
             <% elsif (areas = location.areas.to_a).size > 1 %>
+              <%# Chip area: link ke halaman area + jumlah titik per area (sheet SEO 19 Oct; keputusan: tetap halaman area, bukan anchor). %>
               <ul class="area-pills margin-10px-top">
                 <li><h3 class="heading-reset area-heading"><%= t('locations.area') %>:</h3></li>
                 <% areas.each do |a| %>
-                  <li><%= link_to a.name, a.public_path, class: "area-pill" %></li>
+                  <li><%= link_to "#{a.name} (#{a.products.size})", a.public_path, class: "area-pill" %></li>
                 <% end %>
               </ul>
             <% end %>
@@ -42,15 +43,15 @@
               <%= simple_format(intro, { class: "location-intro margin-15px-top mb-0" }, wrapper_tag: "p") %>
             <% end %>
             <%= render "locations/stats", record: area || location %>
+            <%# Key facts: 3 kotak fakta kualitatif di hub (di bawah intro + statistik); ukuran maksimal dihitung dari data titik. %>
+            <%= render "locations/key_facts", location: location if area.nil? %>
           </div>
         </div>
         <div class="row flex-nowrap h-600px">
           <% unless products.empty? %>
             <aside class="col-xl-3 col-lg-4 col-md-7 d-flex flex-column sm-margin-25px-bottom">
-                <div class="flex-grow-1 overflow-auto">
-                  <ul id="product-list" class="latest-post position-relative">
-                    <%= render "locations/products_list", products: products %>
-                  </ul>
+                <div class="flex-grow-1 overflow-auto" id="product-list-container">
+                  <%= render "locations/product_groups", area: area, products: products, billboard_type: params[:billboard_type] %>
                 </div>
             </aside>
             <article class="col-xl-9 col-lg-8 left-sidebar sm-margin-40px-bottom">

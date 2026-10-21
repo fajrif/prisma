@@ -128,6 +128,7 @@ Rails.application.routes.draw do
       resources :portfolios, concerns: :seo_editable
       resources :locations, concerns: %i[seo_editable content_blockable]
       resources :areas, concerns: %i[seo_editable content_blockable]
+      resources :sub_areas
       resources :products, concerns: %i[seo_editable content_blockable] do
         member do
           delete 'delete_attachment/:name' => 'products#delete_attachment', :as => :delete_attachment

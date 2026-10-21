@@ -1,0 +1,11 @@
+<%# Key facts: 3 kotak fakta kualitatif di bawah intro hub (sheet SEO 19 Oct — "Key facts",
+    menggantikan bagian kualitatif dari strip statistik lama). Teks dari locale
+    locations.key_facts.*; nilai ukuran maksimal dihitung dari data titik (fallback ke teks
+    locale bila tidak ada ukuran terbaca). locals: location %>
+<%- size = max_billboard_size_meters(location.products) -%>
+<%- facts = [t('locations.key_facts.types'), size ? t('locations.key_facts.max_size', size: billboard_size_label(*size)) : t('locations.key_facts.max_size_fallback'), t('locations.key_facts.permits')] -%>
+<ul class="location-key-facts margin-20px-top">
+  <% facts.each do |fact| %>
+    <li><%= fact %></li>
+  <% end %>
+</ul>

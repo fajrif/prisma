@@ -580,6 +580,36 @@
 .location-stats li { display: flex; align-items: baseline; gap: 6px; }
 .location-stats strong { font-size: 22px; font-weight: 700; color: #232323; }
 
+/* T13: key facts — 3 kotak fakta kualitatif di hub (locations/_key_facts). */
+.location-key-facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	list-style: none;
+	margin-bottom: 0;
+	padding: 0;
+}
+.location-key-facts li {
+	position: relative;
+	flex: 1 1 180px;
+	padding: 10px 12px 10px 30px;
+	border: 1px solid #e4e4e4;
+	border-radius: 8px;
+	background: #fafafa;
+	font-size: 13px;
+	line-height: 1.4;
+}
+.location-key-facts li::before {
+	content: "";
+	position: absolute;
+	left: 12px;
+	top: 15px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--base-color);
+}
+
 /* Legenda warna marker di bawah peta hub/area. */
 .map-legend {
 	display: flex;
@@ -631,6 +661,15 @@
 	border-color: var(--base-color);
 	color: #fff;
 }
+
+/* T13: judul & deskripsi sub_area (neighbourhood) di daftar halaman area (locations/_product_groups). */
+.sub-area-heading {
+	font-size: 15px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #e4e4e4;
+	padding-bottom: 6px;
+}
+.sub-area-intro { font-size: 13px; line-height: 1.5; }
 
 /* Nama titik di daftar hub/area adalah link; tampilannya tetap seperti teks kartu. */
 .product-item .product-link { color: inherit; }

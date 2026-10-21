@@ -1,0 +1,32 @@
+<% title_page("Sub Area details") %>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card card-box">
+			<div class="card-body">
+				<div class="form-actions form-actions-top">
+					<%= link_to 'Edit', edit_admins_sub_area_path(@sub_area.id), class: 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_sub_area_path(@sub_area.id), data: { confirm: 'Hapus sub area ini? Titik di dalamnya kembali tampil tanpa judul H3.' }, method: :delete, class: 'btn btn-danger' %>
+					<%= link_to 'View All', admins_sub_areas_path(area_id: @sub_area.area_id), class: 'btn btn-light' %>
+				</div>
+				<table class="table table-hover">
+					<tr><td style="width:15%;"><b>ID</b></td><td><%= @sub_area.id %></td></tr>
+					<tr><td><b>Area</b></td><td><%= link_to "#{@sub_area.area.location.name} · #{@sub_area.area.name}", admins_area_path(@sub_area.area_id) %></td></tr>
+					<tr><td><b>Key</b></td><td><code><%= @sub_area.key %></code> <span class="text-muted small">— ident stabil, dipakai pemetaan data; jangan diubah setelah dipakai.</span></td></tr>
+					<tr><td><b>Name (ID)</b></td><td><b><%= @sub_area.name(locale: :id) %></b></td></tr>
+					<tr><td><b>Name (EN)</b></td><td><b><%= @sub_area.name(locale: :en) %></b></td></tr>
+					<tr><td><b>Description (ID)</b></td><td><%= @sub_area.description(locale: :id).presence || content_tag(:span, '—', class: 'text-muted') %></td></tr>
+					<tr><td><b>Description (EN)</b></td><td><%= @sub_area.description(locale: :en).presence || content_tag(:span, '—', class: 'text-muted') %></td></tr>
+					<tr><td><b>Urutan</b></td><td><%= @sub_area.position %> <span class="text-muted small">— urutan H3 di dalam area.</span></td></tr>
+					<tr>
+						<td><b>Billboard (<%= @sub_area.products.size %>)</b></td>
+						<td>
+							<% @sub_area.products.each do |product| %>
+								<div><%= link_to product.name, admins_product_path(product.id) %> <span class="badge <%= product.digital? ? 'bg-primary' : 'bg-success' %>"><%= product.billboard_type_label %></span></div>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

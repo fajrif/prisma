@@ -104,6 +104,16 @@ en:
       digital: "Digital"
       areas: "Areas"
       impressions: "Est. impressions/day"
+    filter:
+      label: "Billboard Type:"
+      all: "All Types"
+      digital: "Digital Billboard"
+      static: "Static Billboard"
+    key_facts:
+      types: "Static billboards & videotrons"
+      max_size: "Sizes up to %{size}"
+      max_size_fallback: "Static billboards & videotrons in many sizes"
+      permits: "Permits & billboard tax handled"
     name: "Location"
     title: "Digital & Static Billboard Locations"
     desc: "Our billboards offer optimal placement in high-traffic areas all around Jakarta and beyond. Each location delivers powerful reach and engagement, ensuring maximum visibility for your campaigns."

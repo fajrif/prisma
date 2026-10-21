@@ -1,0 +1,37 @@
+<%= simple_form_for @sub_area, url: (@sub_area.new_record? ? admins_sub_areas_path : admins_sub_area_path(@sub_area.id)), method: (@sub_area.new_record? ? :post : :put) do |f| %>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<%= f.error_notification %>
+					<fieldset>
+						<%= f.input :name, as: :string, hint: "Judul H3 di halaman area, per bahasa (ganti bahasa admin untuk mengisi versi lain; CN mengikuti EN bila kosong)." %>
+						<%= f.input :description, as: :text, input_html: { rows: 4 }, hint: "Deskripsi neighbourhood di bawah judul H3, per bahasa. Opsional." %>
+					</fieldset>
+					<%= f.error :base %>
+					<div class="form-actions">
+						<%= f.button :submit, class: 'btn btn-secondary' %>
+						<%= link_to 'Cancel', (@sub_area.new_record? ? admins_sub_areas_path : admins_sub_area_path(@sub_area.id)), class: 'btn btn-light' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="row">
+				<%= render "admins/shared/error_messages", target: @sub_area, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.association :area, as: :select, include_blank: false, collection: Area.joins(:location).order('locations.id, areas.position').map { |a| ["#{a.location.name} · #{a.name}", a.id] }, hint: "Area tempat sub area ini berada." %>
+							<%= f.input :key, as: :string, hint: "Ident stabil huruf kecil dengan tanda hubung (mis. sudirman-thamrin). Dibentuk otomatis saat baru; jangan diubah setelah titik ter-assign." %>
+							<%= f.input :position, as: :integer, label: 'Urutan', hint: 'Urutan judul H3 di dalam area.' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
